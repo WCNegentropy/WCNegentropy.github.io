@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>⚡ Your Name — Code, Repos, Products</title>
+  <meta name="description" content="High‑quality ML/AI code, repos, and products. Buy licenses, explore open source, and find me across the web." />
+  <link rel="canonical" href="https://yourusername.github.io/" />
+  <meta name="theme-color" content="#0ea5e9" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Your Name — Code & Repos" />
+  <meta property="og:description" content="High‑quality ML/AI code, repos, and products. Buy licenses, explore open source, and find me across the web." />
+  <meta property="og:image" content="/og-image.png" />
+  <meta property="og:url" content="https://yourusername.github.io/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@yourhandle" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind (buildless) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              50: '#e6f8ff', 100: '#ccefff', 200: '#99dfff', 300: '#66cfff', 400: '#33bfff',
+              500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e'
+            }
+          },
+          boxShadow: {
+            glow: '0 10px 30px rgba(14,165,233,0.25)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: Inter, ui-sans-serif, system-ui; }
+    /* Subtle animated gradient background */
+    .bg-grid {
+      background-image: radial-gradient( circle at 1px 1px, rgba(0,0,0,.05) 1px, transparent 0 );
+      background-size: 22px 22px;
+    }
+    .blob {
+      position: absolute; filter: blur(70px); opacity: .3; pointer-events:none;
+      background: conic-gradient(from 90deg at 50% 50%, #60a5fa, #a78bfa, #22d3ee, #60a5fa);
+      animation: spin 18s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(1turn); } }
+  </style>
+
+  <!-- Plausible (optional). Replace domain; or remove. -->
+  <!-- <script defer data-domain="yourusername.github.io" src="https://plausible.io/js/script.js"></script> -->
+
+  <!-- JSON‑LD will be injected by JS based on settings below -->
+</head>
+<body class="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
+  <!-- ===== CONFIG (edit these in one place) ===== -->
+  <script>
+    const SITE = {
+      ownerName: "Your Name",
+      tagline: "Engineer • ML/AI • Open Source",
+      email: "hello@example.com",
+      location: "NYC, USA",
+      githubUser: "yourusername", // used to fetch repos
+      avatar: "https://avatars.githubusercontent.com/u/9919?v=4", // replace with yours
+      social: {
+        github: "https://github.com/yourusername",
+        x: "https://x.com/yourhandle",
+        huggingface: "https://huggingface.co/yourhandle",
+        linkedin: "https://www.linkedin.com/in/yourhandle/",
+        email: "mailto:hello@example.com"
+      },
+      // Products you sell. Each should include a checkout link (Stripe, Lemon Squeezy, Gumroad, etc.)
+      products: [
+        {
+          id: "prod-vectorizer",
+          name: "FastVectorizer",
+          blurb: "Blazing‑fast text vectorizer (CPU/GPU) with pluggable tokenizers.",
+          price: 49,
+          license: "Single‑dev commercial license.",
+          image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop",
+          highlights: [">1M tok/s on M2", "Triton kernels", "NumPy & PyTorch APIs"],
+          checkout: "https://your-checkout-link.example/fastvectorizer"
+        },
+        {
+          id: "prod-reranker",
+          name: "MiniReranker",
+          blurb: "Small reranker that punches above its weight for RAG.",
+          price: 79,
+          license: "App/site license.",
+          image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop",
+          highlights: ["<50MB on disk", "bge‑style API", "ONNX + PyTorch"],
+          checkout: "https://your-checkout-link.example/minireranker"
+        },
+        {
+          id: "prod-dataset",
+          name: "Cleaned Q&A Dataset",
+          blurb: "200k high‑quality Q&A pairs, de‑duped and normalized.",
+          price: 99,
+          license: "Per‑project license.",
+          image: "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=1200&auto=format&fit=crop",
+          highlights: ["CC‑BY sources", "Schema v2", "Eval split included"],
+          checkout: "https://your-checkout-link.example/qa-dataset"
+        }
+      ]
+    }
+  </script>
+
+  <!-- Background blobs -->
+  <div class="blob w-[40vw] h-[40vw] top-[-10vw] left-[-10vw] rounded-full"></div>
+  <div class="blob w-[30vw] h-[30vw] bottom-[-10vw] right-[-10vw] rounded-full"></div>
+
+  <!-- HEADER / NAV -->
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60 border-b border-slate-200/60 dark:border-slate-800">
+    <div class="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <img id="avatar" class="size-10 rounded-full ring-2 ring-brand-400/40" alt="avatar" />
+        <div>
+          <div id="owner-name" class="font-semibold tracking-tight group-hover:text-brand-600 transition"></div>
+          <div id="owner-tagline" class="text-xs text-slate-500 dark:text-slate-400"></div>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#products" class="hover:text-brand-600">Products</a>
+        <a href="#repos" class="hover:text-brand-600">Repos</a>
+        <a href="#about" class="hover:text-brand-600">About</a>
+        <a href="#contact" class="hover:text-brand-600">Contact</a>
+        <a href="#links" class="hover:text-brand-600">Links</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="theme-toggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-1.5 text-xs hover:shadow-glow transition" aria-label="Toggle theme">
+          <span class="i-theme">🌞</span><span class="hidden sm:inline">Theme</span>
+        </button>
+        <a id="cta-top" href="#products" class="rounded-xl bg-brand-600 text-white px-4 py-2 text-sm font-semibold shadow-glow hover:bg-brand-700">Buy code</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid pointer-events-none"></div>
+    <div class="mx-auto max-w-7xl px-6 pt-16 pb-12 lg:pt-24 lg:pb-16">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+            Build faster with <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-violet-500">battle‑tested</span> code.
+          </h1>
+          <p class="mt-5 text-lg text-slate-600 dark:text-slate-300 max-w-2xl">
+            I ship high‑quality tooling, models, and datasets for practitioners. Buy a license, explore open source, or hire me for custom work.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#products" class="rounded-xl bg-brand-600 text-white px-6 py-3 font-semibold shadow-glow hover:bg-brand-700">Browse products</a>
+            <a href="#contact" class="rounded-xl border border-slate-300 dark:border-slate-600 px-6 py-3 font-semibold hover:bg-slate-50 dark:hover:bg-slate-900">Hire me</a>
+          </div>
+          <!-- Socials -->
+          <div class="mt-8 flex items-center gap-4 text-slate-500">
+            <a id="link-github" class="hover:text-brand-600" href="#" target="_blank" rel="noopener">GitHub</a>
+            <a id="link-x" class="hover:text-brand-600" href="#" target="_blank" rel="noopener">X</a>
+            <a id="link-hf" class="hover:text-brand-600" href="#" target="_blank" rel="noopener">Hugging Face</a>
+            <a id="link-linkedin" class="hover:text-brand-600" href="#" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="relative p-2 rounded-2xl bg-gradient-to-br from-brand-500/10 via-violet-500/10 to-cyan-500/10 ring-1 ring-slate-200 dark:ring-slate-800">
+            <img id="hero-img" alt="preview" class="rounded-xl shadow-2xl" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1600&auto=format&fit=crop" />
+          </div>
+          <p class="mt-3 text-xs text-slate-500 text-center">Swap this image with a product collage or logo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST / NUMBERS (optional) -->
+  <section class="mx-auto max-w-7xl px-6 pb-8">
+    <div class="grid sm:grid-cols-3 gap-4">
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 text-center">
+        <div class="text-3xl font-extrabold" id="kpi1">10k+</div>
+        <div class="text-sm text-slate-500">Monthly downloads</div>
+      </div>
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 text-center">
+        <div class="text-3xl font-extrabold" id="kpi2">200k</div>
+        <div class="text-sm text-slate-500">Dataset rows shipped</div>
+      </div>
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 text-center">
+        <div class="text-3xl font-extrabold" id="kpi3">4.9★</div>
+        <div class="text-sm text-slate-500">Average buyer rating</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="mx-auto max-w-7xl px-6 py-16">
+    <div class="flex items-end justify-between flex-wrap gap-4">
+      <div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Products & Licenses</h2>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 max-w-2xl">Buy production‑ready code, models, and datasets. Instant delivery via your checkout provider.</p>
+      </div>
+      <a href="#contact" class="text-brand-600 hover:underline">Need a team license? →</a>
+    </div>
+
+    <div id="products-grid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </section>
+
+  <!-- REPOS (auto‑fetched from GitHub) -->
+  <section id="repos" class="mx-auto max-w-7xl px-6 py-16">
+    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Open Source Repos</h2>
+    <p class="mt-2 text-slate-600 dark:text-slate-300 max-w-2xl">Latest public repositories from <span id="gh-name" class="font-semibold"></span>. Star those you like!</p>
+    <div id="repo-grid" class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    <div class="mt-6"><a id="gh-see-all" class="inline-block text-brand-600 hover:underline" href="#" target="_blank" rel="noopener">See all on GitHub →</a></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="mx-auto max-w-7xl px-6 py-16">
+    <div class="grid lg:grid-cols-3 gap-8 items-start">
+      <div class="lg:col-span-2">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">About</h2>
+        <div class="prose dark:prose-invert max-w-none mt-4">
+          <p>I'm <strong id="about-name">Your Name</strong>, an engineer focused on ML/AI tooling and pragmatic products. I value shipping, clarity, and steady iteration.</p>
+          <p>Previously: <em>Add relevant roles, clients, or highlights.</em></p>
+          <p>Currently available for <strong>short consulting engagements</strong> (model evaluation, RAG hardening, dataset curation, developer tooling).</p>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#contact" class="rounded-xl bg-brand-600 text-white px-5 py-2.5 font-semibold shadow-glow hover:bg-brand-700">Work with me</a>
+          <a id="cv-link" href="#" class="rounded-xl border border-slate-300 dark:border-slate-600 px-5 py-2.5 font-semibold hover:bg-slate-50 dark:hover:bg-slate-900">Download CV</a>
+        </div>
+      </div>
+      <aside class="lg:col-span-1">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5">
+          <h3 class="font-semibold">Quick Facts</h3>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+            <li>📍 <span id="about-location">NYC, USA</span></li>
+            <li>✉️ <a id="about-email" class="text-brand-600" href="#">Email me</a></li>
+            <li>💼 <a class="text-brand-600" id="about-linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li>🧪 <a class="text-brand-600" id="about-hf" href="#" target="_blank" rel="noopener">Hugging Face profile</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- LINKS / LINK-IN-BIO -->
+  <section id="links" class="mx-auto max-w-7xl px-6 py-16">
+    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Elsewhere</h2>
+    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <a class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-glow transition" id="link-card-github" href="#" target="_blank" rel="noopener">
+        <div class="text-lg font-semibold">GitHub</div>
+        <div class="text-sm text-slate-500">Open source & snippets</div>
+      </a>
+      <a class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-glow transition" id="link-card-x" href="#" target="_blank" rel="noopener">
+        <div class="text-lg font-semibold">X / Twitter</div>
+        <div class="text-sm text-slate-500">Notes & releases</div>
+      </a>
+      <a class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-glow transition" id="link-card-hf" href="#" target="_blank" rel="noopener">
+        <div class="text-lg font-semibold">Hugging Face</div>
+        <div class="text-sm text-slate-500">Models & Spaces</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER / CONTACT -->
+  <section id="contact" class="mx-auto max-w-7xl px-6 py-16">
+    <div class="grid md:grid-cols-2 gap-10">
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+        <h3 class="text-2xl font-bold">Newsletter</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300">Occasional updates on releases and posts.</p>
+        <form class="mt-4 flex gap-2" action="https://example.com/newsletter" method="post">
+          <input required name="email" type="email" placeholder="you@example.com" class="flex-1 rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-2" />
+          <button class="rounded-xl bg-brand-600 text-white px-5 py-2 font-semibold hover:bg-brand-700">Subscribe</button>
+        </form>
+      </div>
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+        <h3 class="text-2xl font-bold">Contact</h3>
+        <p class="mt-2 text-slate-600 dark:text-slate-300">Use the form or email me directly.</p>
+        <form class="mt-4 space-y-3" action="https://formspree.io/f/yourid" method="post">
+          <input required name="name" placeholder="Name" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-2" />
+          <input required type="email" name="email" placeholder="Email" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-2" />
+          <textarea required name="message" rows="4" placeholder="How can I help?" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-2"></textarea>
+          <button class="rounded-xl bg-brand-600 text-white px-5 py-2 font-semibold hover:bg-brand-700">Send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-10">
+    <div class="mx-auto max-w-7xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-slate-500">© <span id="year"></span> <span id="foot-name">Your Name</span>. All rights reserved.</p>
+      <div class="flex items-center gap-4 text-sm text-slate-500">
+        <a href="#" class="hover:text-brand-600">Terms</a>
+        <a href="#" class="hover:text-brand-600">Privacy</a>
+        <a href="#top" class="hover:text-brand-600">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // --- Theme ---
+    const applyTheme = (t) => {
+      const root = document.documentElement;
+      if (t === 'dark') root.classList.add('dark'); else root.classList.remove('dark');
+      document.querySelector('.i-theme').textContent = t === 'dark' ? '🌙' : '🌞';
+      localStorage.setItem('theme', t);
+    }
+    const initTheme = () => {
+      const pref = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      applyTheme(pref);
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const t = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+        applyTheme(t);
+      });
+    });
+
+    // --- Populate owner info ---
+    const byId = (id) => document.getElementById(id);
+    const setLinks = () => {
+      byId('owner-name').textContent = SITE.ownerName;
+      byId('owner-tagline').textContent = SITE.tagline;
+      byId('avatar').src = SITE.avatar;
+      byId('gh-name').textContent = SITE.githubUser;
+      byId('gh-see-all').href = SITE.social.github;
+      byId('link-github').href = SITE.social.github;
+      byId('link-x').href = SITE.social.x;
+      byId('link-hf').href = SITE.social.huggingface;
+      byId('link-linkedin').href = SITE.social.linkedin;
+      byId('link-card-github').href = SITE.social.github;
+      byId('link-card-x').href = SITE.social.x;
+      byId('link-card-hf').href = SITE.social.huggingface;
+      byId('about-email').href = SITE.social.email || `mailto:${SITE.email}`;
+      byId('about-location').textContent = SITE.location;
+      byId('about-name').textContent = SITE.ownerName;
+      byId('about-linkedin').href = SITE.social.linkedin;
+      byId('about-hf').href = SITE.social.huggingface;
+      byId('year').textContent = new Date().getFullYear();
+      byId('foot-name').textContent = SITE.ownerName;
+      document.title = `${SITE.ownerName} — Code, Repos, Products`;
+      document.querySelector('meta[name=description]')?.setAttribute('content', `${SITE.ownerName} builds ML/AI code, repos, and products.`);
+    }
+
+    // --- Render products ---
+    const fmt = (n) => new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD'}).format(n);
+    const productsGrid = () => {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '';
+      SITE.products.forEach(p => {
+        const el = document.createElement('article');
+        el.className = 'group rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-glow transition flex flex-col';
+        el.innerHTML = `
+          <img src="${p.image}" alt="${p.name}" class="aspect-[16/9] object-cover"/>
+          <div class="p-5 flex-1 flex flex-col">
+            <h3 class="text-xl font-bold">${p.name}</h3>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">${p.blurb}</p>
+            <ul class="mt-3 text-sm text-slate-600 dark:text-slate-300 space-y-1">
+              ${p.highlights.map(h => `<li>• ${h}</li>`).join('')}
+            </ul>
+            <div class="mt-4 flex items-center justify-between">
+              <div>
+                <div class="text-2xl font-extrabold">${fmt(p.price)}</div>
+                <div class="text-xs text-slate-500">${p.license}</div>
+              </div>
+              <a href="${p.checkout}" target="_blank" rel="noopener" class="rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700">Buy</a>
+            </div>
+          </div>
+        `;
+        grid.appendChild(el);
+      });
+    }
+
+    // --- Fetch GH repos (public) ---
+    async function fetchRepos(user) {
+      try {
+        const res = await fetch(`https://api.github.com/users/${user}/repos?per_page=100&sort=updated`);
+        const data = await res.json();
+        if (!Array.isArray(data)) return [];
+        // Sort by stargazers desc, then updated
+        data.sort((a,b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.updated_at) - new Date(a.updated_at)));
+        return data.slice(0, 6).map(r => ({
+          name: r.name,
+          desc: r.description || '',
+          stars: r.stargazers_count,
+          lang: r.language || '—',
+          html_url: r.html_url,
+          archived: r.archived,
+          updated: r.updated_at
+        }));
+      } catch (e) {
+        console.error('Repo fetch failed', e); return [];
+      }
+    }
+
+    async function renderRepos() {
+      const grid = document.getElementById('repo-grid');
+      grid.innerHTML = '<div class="text-slate-500">Loading repos…</div>';
+      const repos = await fetchRepos(SITE.githubUser);
+      grid.innerHTML = '';
+      if (!repos.length) { grid.innerHTML = '<div class="text-slate-500">No repos found.</div>'; return; }
+      repos.forEach(r => {
+        const el = document.createElement('article');
+        el.className = 'rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-glow transition';
+        el.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <a href="${r.html_url}" target="_blank" rel="noopener" class="text-lg font-semibold hover:text-brand-600">${r.name}</a>
+            <span class="text-xs rounded-full border px-2 py-0.5 border-slate-200 dark:border-slate-700">${r.lang}</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">${r.desc}</p>
+          <div class="mt-3 text-xs text-slate-500">⭐ ${r.stars} • Updated ${new Date(r.updated).toLocaleDateString()}</div>
+        `;
+        grid.appendChild(el);
+      });
+    }
+
+    // --- JSON‑LD ---
+    const injectJSONLD = () => {
+      const org = {
+        '@context': 'https://schema.org', '@type': 'Person',
+        name: SITE.ownerName, url: location.origin, email: SITE.email,
+        sameAs: [SITE.social.github, SITE.social.x, SITE.social.huggingface, SITE.social.linkedin].filter(Boolean)
+      };
+      const products = SITE.products.map(p => ({
+        '@context': 'https://schema.org', '@type': 'Product',
+        name: p.name, description: p.blurb,
+        image: p.image, url: location.origin + '#'+p.id,
+        offers: { '@type': 'Offer', price: p.price, priceCurrency: 'USD', url: p.checkout, availability: 'https://schema.org/InStock' }
+      }));
+      const scripts = [org, ...products].map(obj => {
+        const s = document.createElement('script'); s.type = 'application/ld+json';
+        s.textContent = JSON.stringify(obj); return s;
+      });
+      scripts.forEach(s => document.head.appendChild(s));
+    }
+
+    // --- On load ---
+    document.addEventListener('DOMContentLoaded', async () => {
+      setLinks();
+      productsGrid();
+      renderRepos();
+      injectJSONLD();
+    });
+  </script>
+</body>
+</html>
