@@ -188,7 +188,7 @@
 
     <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 mb-8">
       <div class="flex flex-wrap items-center gap-4 mb-6">
-        <select id="neuralExample" class="rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-2">
+        <select id="neuralExample" class="rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white px-4 py-2">
           <option value="xor">XOR Gate</option>
           <option value="classification">Binary Classification</option>
           <option value="regression">Simple Regression</option>
@@ -487,6 +487,7 @@
         this.isDragging = false;
         this.dragMode = null; // 'start', 'end', or 'wall'
         this.isDrawingWalls = false;
+        this.wallDrawMode = 'add'; // 'add' or 'remove'
         console.log('📐 Grid dimensions:', this.rows, 'x', this.cols);
         console.log('🎯 Start:', this.start, 'End:', this.end);
         this.initGrid();
@@ -616,7 +617,9 @@
           this.dragMode = 'end';
         } else {
           this.isDrawingWalls = true;
-          this.toggleWall(row, col);
+          // Determine if we're adding or removing walls based on current state
+          this.wallDrawMode = this.grid[row][col] === 1 ? 'remove' : 'add';
+          this.setWall(row, col, this.wallDrawMode === 'add');
         }
       }
 
@@ -630,7 +633,7 @@
         } else if (this.isDrawingWalls) {
           if ((row !== this.start.row || col !== this.start.col) &&
               (row !== this.end.row || col !== this.end.col)) {
-            this.setWall(row, col, true);
+            this.setWall(row, col, this.wallDrawMode === 'add');
           }
         }
       }

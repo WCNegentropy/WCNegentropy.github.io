@@ -341,25 +341,32 @@
     // --- Populate owner info ---
     const byId = (id) => document.getElementById(id);
     const setLinks = () => {
-      byId('owner-name').textContent = SITE.ownerName;
-      byId('owner-tagline').textContent = SITE.tagline;
-      byId('avatar').src = SITE.avatar;
-      byId('gh-name').textContent = SITE.githubUser;
-      byId('gh-see-all').href = SITE.social.github;
-      byId('link-github').href = SITE.social.github;
-      byId('link-x').href = SITE.social.x;
-      byId('link-hf').href = SITE.social.huggingface;
-      byId('link-linkedin').href = SITE.social.linkedin;
-      byId('link-card-github').href = SITE.social.github;
-      byId('link-card-x').href = SITE.social.x;
-      byId('link-card-hf').href = SITE.social.huggingface;
-      byId('about-email').href = SITE.social.email || `mailto:${SITE.email}`;
-      byId('about-location').textContent = SITE.location;
-      byId('about-name').textContent = SITE.ownerName;
-      byId('about-linkedin').href = SITE.social.linkedin;
-      byId('about-hf').href = SITE.social.huggingface;
-      byId('year').textContent = new Date().getFullYear();
-      byId('foot-name').textContent = SITE.ownerName;
+      const setIfExists = (id, prop, value) => {
+        const el = byId(id);
+        if (el) el[prop] = value;
+        else console.warn(`Element not found: ${id}`);
+      };
+      
+      setIfExists('owner-name', 'textContent', SITE.ownerName);
+      setIfExists('owner-tagline', 'textContent', SITE.tagline);
+      setIfExists('avatar', 'src', SITE.avatar);
+      setIfExists('gh-name', 'textContent', SITE.githubUser);
+      setIfExists('gh-see-all', 'href', SITE.social.github);
+      setIfExists('link-github', 'href', SITE.social.github);
+      setIfExists('link-x', 'href', SITE.social.x);
+      setIfExists('link-hf', 'href', SITE.social.huggingface);
+      setIfExists('link-linkedin', 'href', SITE.social.linkedin);
+      setIfExists('link-card-github', 'href', SITE.social.github);
+      setIfExists('link-card-x', 'href', SITE.social.x);
+      setIfExists('link-card-hf', 'href', SITE.social.huggingface);
+      setIfExists('about-email', 'href', SITE.social.email || `mailto:${SITE.email}`);
+      setIfExists('about-location', 'textContent', SITE.location);
+      setIfExists('about-name', 'textContent', SITE.ownerName);
+      setIfExists('about-linkedin', 'href', SITE.social.linkedin);
+      setIfExists('about-hf', 'href', SITE.social.huggingface);
+      setIfExists('year', 'textContent', new Date().getFullYear());
+      setIfExists('foot-name', 'textContent', SITE.ownerName);
+      
       document.title = `${SITE.ownerName} — Code, Repos, Products`;
       document.querySelector('meta[name=description]')?.setAttribute('content', `${SITE.ownerName} builds ML/AI code, repos, and products.`);
     }
