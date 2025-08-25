@@ -1,0 +1,47 @@
+{
+  "name": "WCNegentropy Static Site",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  
+  // Prevent automatic port forwarding
+  "forwardPorts": [],
+  "portsAttributes": {
+    // Explicitly disable forwarding for VS Code internal ports
+    "16634": {
+      "label": "Language Server",
+      "onAutoForward": "ignore"
+    },
+    "16635": {
+      "label": "Language Server",
+      "onAutoForward": "ignore"
+    },
+    // Ranges to ignore
+    "40000-50000": {
+      "label": "Internal Services",
+      "onAutoForward": "ignore"
+    }
+  },
+  
+  // Disable automatic port detection entirely
+  "otherPortsAttributes": {
+    "onAutoForward": "ignore"
+  },
+  
+  // Extensions for static web development
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-json",
+        "bradlc.vscode-tailwindcss"
+      ],
+      "settings": {
+        "files.exclude": {
+          "**/.git": true,
+          "**/node_modules": true
+        }
+      }
+    }
+  },
+  
+  // Post-create command to set up the environment
+  "postCreateCommand": "echo 'Static site development environment ready!'"
+}

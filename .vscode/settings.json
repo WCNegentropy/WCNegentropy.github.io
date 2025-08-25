@@ -1,0 +1,25 @@
+{
+  "remote.autoForwardPorts": false,
+  "remote.autoForwardPortsSource": "output",
+  "extensions.autoCheckUpdates": false,
+  "extensions.autoUpdate": false,
+  "workbench.startupEditor": "readme",
+  
+  // Exclude patterns to reduce file watchers
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true
+  },
+  
+  // Configure for static site development
+  "emmet.includeLanguages": {
+    "html": "html"
+  },
+  
+  // Tailwind CSS support
+  "css.validate": false,
+  "tailwindCSS.includeLanguages": {
+    "html": "html"
+  }
+}
