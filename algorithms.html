@@ -500,11 +500,22 @@
       }
 
       toggleWall(row, col) {
+        if (this.isRunning) return; // Prevent changes during algorithm execution
         if ((row === this.start.row && col === this.start.col) || 
             (row === this.end.row && col === this.end.col)) return;
         
         this.grid[row][col] = this.grid[row][col] === 1 ? 0 : 1;
-        this.render();
+        
+        // Update only the specific cell instead of full re-render
+        const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+        if (cell) {
+          if (this.grid[row][col] === 1) {
+            cell.classList.add('wall');
+            cell.classList.remove('visited', 'path');
+          } else {
+            cell.classList.remove('wall', 'visited', 'path');
+          }
+        }
       }
 
       async aStar() {
@@ -512,8 +523,11 @@
         const openSet = [{...this.start, f: 0, g: 0, h: 0, parent: null}];
         const closedSet = new Set();
         const visited = new Set();
+        let iterations = 0;
+        const maxIterations = this.rows * this.cols * 2; // Safety limit
 
-        while (openSet.length > 0 && this.isRunning) {
+        while (openSet.length > 0 && this.isRunning && iterations < maxIterations) {
+          iterations++;
           openSet.sort((a, b) => a.f - b.f);
           const current = openSet.shift();
           
@@ -977,17 +991,35 @@
       });
 
       // Initialize visualizers
+      console.log('Initializing visualizers...');
       const sortViz = new SortingVisualizer();
+      console.log('SortingVisualizer created:', !!sortViz);
       const pathViz = new PathfindingVisualizer();
+      console.log('PathfindingVisualizer created:', !!pathViz);
       const neuralViz = new NeuralNetworkVisualizer();
+      console.log('NeuralNetworkVisualizer created:', !!neuralViz);
       
       // Event listeners with safety checks
       const sortStartBtn = document.getElementById('sortStart');
       const sortResetBtn = document.getElementById('sortReset');
       const sortSpeedSlider = document.getElementById('sortSpeed');
       
-      if (sortStartBtn) sortStartBtn.addEventListener('click', () => sortViz && sortViz.start());
-      if (sortResetBtn) sortResetBtn.addEventListener('click', () => sortViz && sortViz.reset());
+      if (sortStartBtn) {
+        console.log('Sort start button found');
+        sortStartBtn.addEventListener('click', () => {
+          console.log('Sort start button clicked');
+          if (sortViz) sortViz.start();
+        });
+      } else {
+        console.error('Sort start button not found');
+      }
+      
+      if (sortResetBtn) {
+        sortResetBtn.addEventListener('click', () => {
+          console.log('Sort reset button clicked');
+          if (sortViz) sortViz.reset();
+        });
+      }
       if (sortSpeedSlider) {
         sortSpeedSlider.addEventListener('input', (e) => {
           if (sortViz) sortViz.speed = parseInt(e.target.value);
@@ -997,22 +1029,52 @@
       const pathStartBtn = document.getElementById('pathStart');
       const pathResetBtn = document.getElementById('pathReset');
       
-      if (pathStartBtn) pathStartBtn.addEventListener('click', () => pathViz && pathViz.start());
-      if (pathResetBtn) pathResetBtn.addEventListener('click', () => pathViz && pathViz.reset());
+      if (pathStartBtn) {
+        console.log('Pathfinding start button found');
+        pathStartBtn.addEventListener('click', () => {
+          console.log('Pathfinding start button clicked');
+          if (pathViz) pathViz.start();
+        });
+      } else {
+        console.error('Pathfinding start button not found');
+      }
+      
+      if (pathResetBtn) {
+        console.log('Pathfinding reset button found');
+        pathResetBtn.addEventListener('click', () => {
+          console.log('Pathfinding reset button clicked');
+          if (pathViz) pathViz.reset();
+        });
+      } else {
+        console.error('Pathfinding reset button not found');
+      }
       
       const neuralTrainBtn = document.getElementById('neuralTrain');
       const neuralResetBtn = document.getElementById('neuralReset');
       
-      if (neuralTrainBtn) neuralTrainBtn.addEventListener('click', () => neuralViz && neuralViz.train());
+      if (neuralTrainBtn) {
+        console.log('Neural train button found');
+        neuralTrainBtn.addEventListener('click', () => {
+          console.log('Neural train button clicked');
+          if (neuralViz && neuralViz.train) neuralViz.train();
+        });
+      } else {
+        console.error('Neural train button not found');
+      }
+      
       if (neuralResetBtn) {
+        console.log('Neural reset button found');
         neuralResetBtn.addEventListener('click', () => {
+          console.log('Neural reset button clicked');
           if (neuralViz) {
             neuralViz.isTraining = false;
             neuralViz.lossHistory = [];
-            neuralViz.drawNetwork();
-            neuralViz.drawLoss();
+            if (neuralViz.drawNetwork) neuralViz.drawNetwork();
+            if (neuralViz.drawLoss) neuralViz.drawLoss();
           }
         });
+      } else {
+        console.error('Neural reset button not found');
       }
       
       // Initial draws

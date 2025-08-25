@@ -693,14 +693,21 @@ cipher.bruteForce("Olssv Dvysk!");`
       initTheme();
       
       // Initialize CodeMirror
-      editor = CodeMirror(document.getElementById('editor'), {
-        mode: 'javascript',
-        theme: document.documentElement.classList.contains('dark') ? 'monokai' : 'eclipse',
-        lineNumbers: true,
-        autoCloseBrackets: true,
-        matchBrackets: true,
-        indentUnit: 2,
-        tabSize: 2,
+      const editorElement = document.getElementById('editor');
+      if (!editorElement) {
+        console.error('Editor element not found');
+        return;
+      }
+      
+      try {
+        editor = CodeMirror(editorElement, {
+          mode: 'javascript',
+          theme: document.documentElement.classList.contains('dark') ? 'monokai' : 'eclipse',
+          lineNumbers: true,
+          autoCloseBrackets: true,
+          matchBrackets: true,
+          indentUnit: 2,
+          tabSize: 2,
         value: `// Welcome to the WCNegentropy Code Playground!
 // Write your JavaScript code here and hit Run
 
@@ -717,7 +724,12 @@ console.log('Sorted array:', [...numbers].sort((a, b) => a - b));
 console.log('Sum:', numbers.reduce((sum, num) => sum + num, 0));
 
 // Click on the example cards below to load pre-built algorithms!`
-      });
+        });
+        console.log('CodeMirror initialized successfully');
+      } catch (error) {
+        console.error('Failed to initialize CodeMirror:', error);
+        return;
+      }
       
       // Theme toggle
       document.getElementById('theme-toggle').addEventListener('click', () => {
@@ -744,7 +756,15 @@ console.log('Sum:', numbers.reduce((sum, num) => sum + num, 0));
       };
       
       const runBtn = document.getElementById('runCode');
-      if (runBtn) runBtn.addEventListener('click', runCode);
+      if (runBtn) {
+        console.log('Run button found, adding event listener');
+        runBtn.addEventListener('click', () => {
+          console.log('Run button clicked');
+          runCode();
+        });
+      } else {
+        console.error('Run button not found');
+      }
       
       // Keyboard shortcut
       if (editor) {
