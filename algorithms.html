@@ -173,8 +173,9 @@
         </select>
         <button type="button" id="pathStart" class="rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700">Find Path</button>
         <button type="button" id="pathReset" class="rounded-xl border border-slate-300 dark:border-slate-600 px-4 py-2 font-semibold">Reset</button>
+        <button type="button" id="pathMaze" class="rounded-xl bg-violet-600 text-white px-4 py-2 font-semibold hover:bg-violet-700">Generate Maze</button>
         <div class="text-sm text-slate-600 dark:text-slate-400">
-          🟢 Drag green start point | 🔴 Drag red end point | Click/drag to add walls
+          🟢 Drag green start point | 🔴 Drag red end point | 🧩 Generate random maze
         </div>
       </div>
       <div id="pathGrid" class="pathfinding-grid grid gap-0 w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-xl p-4"></div>
@@ -485,9 +486,7 @@
         this.end = {row: 8, col: 17};
         this.isRunning = false;
         this.isDragging = false;
-        this.dragMode = null; // 'start', 'end', or 'wall'
-        this.isDrawingWalls = false;
-        this.wallDrawMode = 'add'; // 'add' or 'remove'
+        this.dragMode = null; // 'start' or 'end'
         console.log('📐 Grid dimensions:', this.rows, 'x', this.cols);
         console.log('🎯 Start:', this.start, 'End:', this.end);
         this.initGrid();
@@ -574,10 +573,9 @@
               wallCount++;
             }
 
-            // Add comprehensive mouse interaction
+            // Add simple drag interaction for start/end points only
             cell.addEventListener('mousedown', (e) => this.handleMouseDown(e, row, col));
-            cell.addEventListener('mouseenter', (e) => this.handleMouseEnter(e, row, col));
-            cell.addEventListener('mouseup', () => this.handleMouseUp());
+            cell.addEventListener('mouseenter', () => this.handleMouseEnter(row, col));
             container.appendChild(cell);
           }
         }
@@ -615,33 +613,22 @@
         } else if (row === this.end.row && col === this.end.col) {
           this.isDragging = true;
           this.dragMode = 'end';
-        } else {
-          this.isDrawingWalls = true;
-          // Determine if we're adding or removing walls based on current state
-          this.wallDrawMode = this.grid[row][col] === 1 ? 'remove' : 'add';
-          this.setWall(row, col, this.wallDrawMode === 'add');
         }
       }
 
-      handleMouseEnter(e, row, col) {
-        if (this.isRunning) return;
+      handleMouseEnter(row, col) {
+        if (this.isRunning || !this.isDragging) return;
 
-        if (this.isDragging && this.dragMode === 'start') {
+        if (this.dragMode === 'start') {
           this.moveStart(row, col);
-        } else if (this.isDragging && this.dragMode === 'end') {
+        } else if (this.dragMode === 'end') {
           this.moveEnd(row, col);
-        } else if (this.isDrawingWalls) {
-          if ((row !== this.start.row || col !== this.start.col) &&
-              (row !== this.end.row || col !== this.end.col)) {
-            this.setWall(row, col, this.wallDrawMode === 'add');
-          }
         }
       }
 
       handleMouseUp() {
         this.isDragging = false;
         this.dragMode = null;
-        this.isDrawingWalls = false;
       }
 
       moveStart(row, col) {
@@ -676,17 +663,70 @@
         }
       }
 
-      setWall(row, col, isWall) {
-        this.grid[row][col] = isWall ? 1 : 0;
-        const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
-        if (cell) {
-          if (isWall) {
-            cell.classList.add('wall');
-            cell.classList.remove('visited', 'path');
-          } else {
-            cell.classList.remove('wall', 'visited', 'path');
+      generateRandomMaze() {
+        if (this.isRunning) return;
+        
+        // Clear existing walls and paths
+        this.clearPaths();
+        
+        // Generate random maze with ~30% wall density
+        for (let row = 0; row < this.rows; row++) {
+          for (let col = 0; col < this.cols; col++) {
+            // Skip start and end positions
+            if ((row === this.start.row && col === this.start.col) ||
+                (row === this.end.row && col === this.end.col)) {
+              this.grid[row][col] = 0;
+              continue;
+            }
+            
+            // Random wall placement (30% chance)
+            this.grid[row][col] = Math.random() < 0.3 ? 1 : 0;
           }
         }
+        
+        // Update visual representation
+        this.updateGridDisplay();
+        console.log('🧩 Random maze generated');
+      }
+
+      clearMaze() {
+        if (this.isRunning) return;
+        
+        // Clear all walls and paths
+        for (let row = 0; row < this.rows; row++) {
+          for (let col = 0; col < this.cols; col++) {
+            if ((row === this.start.row && col === this.start.col) ||
+                (row === this.end.row && col === this.end.col)) {
+              continue;
+            }
+            this.grid[row][col] = 0;
+          }
+        }
+        
+        this.clearPaths();
+        this.updateGridDisplay();
+        console.log('🧹 Maze cleared');
+      }
+
+      updateGridDisplay() {
+        for (let row = 0; row < this.rows; row++) {
+          for (let col = 0; col < this.cols; col++) {
+            const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+            if (!cell) continue;
+            
+            if (this.grid[row][col] === 1) {
+              cell.classList.add('wall');
+            } else {
+              cell.classList.remove('wall');
+            }
+            cell.classList.remove('visited', 'path');
+          }
+        }
+      }
+
+      clearPaths() {
+        const cells = document.querySelectorAll('.visited, .path');
+        cells.forEach(cell => cell.classList.remove('visited', 'path'));
       }
 
       async aStar() {
@@ -1443,6 +1483,32 @@
         });
       } else {
         console.error('Pathfinding reset button not found');
+      }
+
+      const pathMazeBtn = document.getElementById('pathMaze');
+      if (pathMazeBtn) {
+        console.log('Pathfinding maze button found');
+        let mazeActive = false;
+        pathMazeBtn.addEventListener('click', () => {
+          console.log('Pathfinding maze button clicked');
+          if (pathViz) {
+            if (!mazeActive) {
+              pathViz.generateRandomMaze();
+              pathMazeBtn.textContent = 'Clear Maze';
+              pathMazeBtn.classList.remove('bg-violet-600', 'hover:bg-violet-700');
+              pathMazeBtn.classList.add('bg-orange-600', 'hover:bg-orange-700');
+              mazeActive = true;
+            } else {
+              pathViz.clearMaze();
+              pathMazeBtn.textContent = 'Generate Maze';
+              pathMazeBtn.classList.remove('bg-orange-600', 'hover:bg-orange-700');
+              pathMazeBtn.classList.add('bg-violet-600', 'hover:bg-violet-700');
+              mazeActive = false;
+            }
+          }
+        });
+      } else {
+        console.error('Pathfinding maze button not found');
       }
 
       const neuralTrainBtn = document.getElementById('neuralTrain');

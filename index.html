@@ -341,10 +341,15 @@
     // --- Populate owner info ---
     const byId = (id) => document.getElementById(id);
     const setLinks = () => {
+      console.log('🔗 Setting links with SITE.social:', SITE.social);
       const setIfExists = (id, prop, value) => {
         const el = byId(id);
-        if (el) el[prop] = value;
-        else console.warn(`Element not found: ${id}`);
+        if (el) {
+          el[prop] = value;
+          console.log(`✅ Set ${id}.${prop} = ${value}`);
+        } else {
+          console.warn(`❌ Element not found: ${id}`);
+        }
       };
       
       setIfExists('owner-name', 'textContent', SITE.ownerName);
@@ -559,7 +564,8 @@
 
     // --- On load ---
     document.addEventListener('DOMContentLoaded', async () => {
-      setLinks();
+      // Ensure DOM is fully ready before setting links
+      setTimeout(() => setLinks(), 100);
       productsGrid();
       renderRepos();
       injectJSONLD();
