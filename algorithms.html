@@ -9,6 +9,13 @@
   <meta name="description" content="Interactive algorithm visualizations by WCNegentropy. Watch sorting algorithms, pathfinding, and neural networks come to life." />
   <link rel="canonical" href="https://WCNegentropy.github.io/algorithms" />
   <meta name="theme-color" content="#0ea5e9" />
+  
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -65,6 +72,16 @@
     /* Neural network styles */
     .neuron { transition: all 0.3s ease; }
     .connection { transition: all 0.3s ease; }
+    
+    /* Canvas styling */
+    canvas {
+      background: #ffffff;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+    .dark canvas {
+      background: #1e293b;
+      border-color: rgba(148, 163, 184, 0.2);
+    }
   </style>
 </head>
 
@@ -783,21 +800,41 @@
           cell.classList.remove('visited', 'path');
         });
 
+        // Update stats display
+        const statsElement = document.getElementById('pathStats');
+        if (statsElement) {
+          statsElement.textContent = 'Running pathfinding algorithm...';
+        }
+
         const algorithm = document.getElementById('pathAlgorithm').value;
+        console.log(`Starting ${algorithm} pathfinding algorithm`);
         
-        switch (algorithm) {
-          case 'astar':
-            await this.aStar();
-            break;
-          case 'dijkstra':
-            await this.dijkstra();
-            break;
-          case 'bfs':
-            await this.bfs();
-            break;
-          case 'dfs':
-            await this.dfs();
-            break;
+        try {
+          switch (algorithm) {
+            case 'astar':
+              await this.aStar();
+              break;
+            case 'dijkstra':
+              await this.dijkstra();
+              break;
+            case 'bfs':
+              await this.bfs();
+              break;
+            case 'dfs':
+              await this.dfs();
+              break;
+            default:
+              console.error('Unknown algorithm:', algorithm);
+          }
+          
+          if (statsElement) {
+            statsElement.textContent = `${algorithm.toUpperCase()} algorithm completed!`;
+          }
+        } catch (error) {
+          console.error('Pathfinding error:', error);
+          if (statsElement) {
+            statsElement.textContent = 'Algorithm encountered an error.';
+          }
         }
         
         this.isRunning = false;
@@ -831,11 +868,19 @@
       }
       
       resizeCanvases() {
-        const rect = this.canvas.getBoundingClientRect();
-        this.canvas.width = Math.max(400, rect.width);
-        this.canvas.height = Math.max(300, rect.height);
-        this.lossCanvas.width = Math.max(400, rect.width);
-        this.lossCanvas.height = Math.max(300, rect.height);
+        // Set fixed dimensions to avoid layout issues
+        this.canvas.width = 400;
+        this.canvas.height = 300;
+        this.lossCanvas.width = 400;
+        this.lossCanvas.height = 300;
+        
+        // Apply CSS sizing for responsiveness
+        this.canvas.style.width = '100%';
+        this.canvas.style.height = 'auto';
+        this.lossCanvas.style.width = '100%';
+        this.lossCanvas.style.height = 'auto';
+        
+        console.log('Neural network canvases resized:', this.canvas.width, 'x', this.canvas.height);
       }
 
       initNetwork(inputSize = 2, hiddenSize = 4, outputSize = 1) {
@@ -883,22 +928,37 @@
       }
 
       drawNetwork() {
+        if (!this.ctx) {
+          console.error('Canvas context not available');
+          return;
+        }
+        
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
-        // Draw a simple network visualization
+        // Network structure
         const layers = [2, 4, 1]; // input, hidden, output
-        const layerX = [50, 200, 350];
-        const nodeRadius = 15;
+        const layerX = [60, 200, 340];
+        const nodeRadius = 12;
+        const colors = ['#10b981', '#0ea5e9', '#ef4444']; // input, hidden, output
         
-        // Draw connections
-        this.ctx.strokeStyle = '#64748b';
+        // Draw connections with weights visualization
         this.ctx.lineWidth = 1;
         
         for (let l = 0; l < layers.length - 1; l++) {
           for (let i = 0; i < layers[l]; i++) {
             for (let j = 0; j < layers[l + 1]; j++) {
-              const y1 = 50 + i * 60;
-              const y2 = 50 + j * 60;
+              const y1 = this.getNodeY(i, layers[l]);
+              const y2 = this.getNodeY(j, layers[l + 1]);
+              
+              // Weight-based connection opacity
+              let opacity = 0.5;
+              if (this.network && l === 0 && this.network.weights1[i] && this.network.weights1[i][j]) {
+                opacity = Math.min(1, Math.abs(this.network.weights1[i][j]) + 0.2);
+              } else if (this.network && l === 1 && this.network.weights2[i] && this.network.weights2[i][j]) {
+                opacity = Math.min(1, Math.abs(this.network.weights2[i][j]) + 0.2);
+              }
+              
+              this.ctx.strokeStyle = `rgba(100, 116, 139, ${opacity})`;
               this.ctx.beginPath();
               this.ctx.moveTo(layerX[l] + nodeRadius, y1);
               this.ctx.lineTo(layerX[l + 1] - nodeRadius, y2);
@@ -907,47 +967,134 @@
           }
         }
         
-        // Draw nodes
+        // Draw nodes with labels
         layers.forEach((count, l) => {
           for (let i = 0; i < count; i++) {
-            const y = 50 + i * 60;
-            this.ctx.fillStyle = l === 0 ? '#10b981' : l === layers.length - 1 ? '#ef4444' : '#0ea5e9';
+            const y = this.getNodeY(i, count);
+            const x = layerX[l];
+            
+            // Node circle
+            this.ctx.fillStyle = colors[l];
             this.ctx.beginPath();
-            this.ctx.arc(layerX[l], y, nodeRadius, 0, 2 * Math.PI);
+            this.ctx.arc(x, y, nodeRadius, 0, 2 * Math.PI);
             this.ctx.fill();
+            
+            // Node border
+            this.ctx.strokeStyle = '#ffffff';
+            this.ctx.lineWidth = 2;
+            this.ctx.stroke();
+            
+            // Node labels
+            this.ctx.fillStyle = '#374151';
+            this.ctx.font = '10px Inter';
+            this.ctx.textAlign = 'center';
+            const labels = [['X1', 'X2'], ['H1', 'H2', 'H3', 'H4'], ['Y']];
+            if (labels[l] && labels[l][i]) {
+              this.ctx.fillText(labels[l][i], x, y + 3);
+            }
           }
         });
+        
+        // Layer labels
+        this.ctx.fillStyle = '#6b7280';
+        this.ctx.font = '12px Inter';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText('Input', layerX[0], 30);
+        this.ctx.fillText('Hidden', layerX[1], 30);
+        this.ctx.fillText('Output', layerX[2], 30);
+      }
+      
+      getNodeY(nodeIndex, totalNodes) {
+        const startY = 80;
+        const spacing = Math.min(60, (this.canvas.height - 160) / Math.max(1, totalNodes - 1));
+        if (totalNodes === 1) {
+          return this.canvas.height / 2;
+        }
+        return startY + nodeIndex * spacing;
       }
 
       drawLoss() {
+        if (!this.lossCtx) {
+          console.error('Loss canvas context not available');
+          return;
+        }
+        
         this.lossCtx.clearRect(0, 0, this.lossCanvas.width, this.lossCanvas.height);
         
-        if (this.lossHistory.length < 2) return;
+        if (this.lossHistory.length < 2) {
+          // Draw placeholder text
+          this.lossCtx.fillStyle = '#9ca3af';
+          this.lossCtx.font = '14px Inter';
+          this.lossCtx.textAlign = 'center';
+          this.lossCtx.fillText('Loss curve will appear here', this.lossCanvas.width / 2, this.lossCanvas.height / 2);
+          return;
+        }
         
-        this.lossCtx.strokeStyle = '#0ea5e9';
-        this.lossCtx.lineWidth = 2;
-        this.lossCtx.beginPath();
+        // Draw grid lines
+        this.lossCtx.strokeStyle = '#e5e7eb';
+        this.lossCtx.lineWidth = 1;
+        for (let i = 0; i <= 4; i++) {
+          const y = (i / 4) * this.lossCanvas.height;
+          this.lossCtx.beginPath();
+          this.lossCtx.moveTo(40, y);
+          this.lossCtx.lineTo(this.lossCanvas.width - 20, y);
+          this.lossCtx.stroke();
+        }
+        
+        // Calculate display bounds with padding
+        const padding = 40;
+        const chartWidth = this.lossCanvas.width - padding - 20;
+        const chartHeight = this.lossCanvas.height - 60;
         
         const maxLoss = Math.max(...this.lossHistory);
         const minLoss = Math.min(...this.lossHistory);
-        const range = maxLoss - minLoss || 1;
+        const range = Math.max(maxLoss - minLoss, 0.001); // Prevent division by zero
+        
+        // Draw loss curve
+        this.lossCtx.strokeStyle = '#0ea5e9';
+        this.lossCtx.lineWidth = 3;
+        this.lossCtx.beginPath();
         
         this.lossHistory.forEach((loss, i) => {
-          const x = (i / (this.lossHistory.length - 1)) * this.lossCanvas.width;
-          const y = this.lossCanvas.height - ((loss - minLoss) / range) * this.lossCanvas.height;
+          const x = padding + (i / (this.lossHistory.length - 1)) * chartWidth;
+          const normalizedLoss = (loss - minLoss) / range;
+          const y = chartHeight - (normalizedLoss * (chartHeight - 40)) + 40;
           
           if (i === 0) this.lossCtx.moveTo(x, y);
           else this.lossCtx.lineTo(x, y);
         });
         
         this.lossCtx.stroke();
+        
+        // Draw labels
+        this.lossCtx.fillStyle = '#374151';
+        this.lossCtx.font = '12px Inter';
+        this.lossCtx.textAlign = 'center';
+        this.lossCtx.fillText('Training Loss Over Time', this.lossCanvas.width / 2, 20);
+        
+        // Y-axis labels
+        this.lossCtx.textAlign = 'right';
+        this.lossCtx.fillText(maxLoss.toFixed(3), 35, 45);
+        this.lossCtx.fillText(minLoss.toFixed(3), 35, chartHeight + 35);
+        
+        // X-axis labels  
+        this.lossCtx.textAlign = 'center';
+        this.lossCtx.fillText('0', padding, this.lossCanvas.height - 10);
+        this.lossCtx.fillText(this.lossHistory.length.toString(), this.lossCanvas.width - 20, this.lossCanvas.height - 10);
       }
 
       async train() {
         if (this.isTraining) return;
         this.isTraining = true;
         
+        console.log('Starting neural network training...');
         this.initNetwork();
+        this.drawNetwork();
+        
+        const statsElement = document.getElementById('neuralStats');
+        if (statsElement) {
+          statsElement.textContent = 'Initializing training...';
+        }
         
         // XOR training data
         const data = [
@@ -957,26 +1104,62 @@
           {input: [1, 1], output: [0]}
         ];
         
-        for (let epoch = 0; epoch < 1000 && this.isTraining; epoch++) {
+        const maxEpochs = 1000;
+        const updateInterval = 20;
+        
+        for (let epoch = 0; epoch < maxEpochs && this.isTraining; epoch++) {
           let totalLoss = 0;
           
+          // Calculate loss for all training samples
           for (let sample of data) {
             const result = this.forward(sample.input);
             const loss = Math.pow(result.output[0] - sample.output[0], 2);
             totalLoss += loss;
+            
+            // Simple gradient descent simulation (weight updates)
+            if (this.network) {
+              const learningRate = 0.01;
+              const error = sample.output[0] - result.output[0];
+              
+              // Simulate basic weight updates
+              for (let i = 0; i < this.network.weights2.length; i++) {
+                for (let j = 0; j < this.network.weights2[i].length; j++) {
+                  this.network.weights2[i][j] += learningRate * error * result.hidden[i] * 0.1;
+                }
+              }
+            }
           }
           
-          this.lossHistory.push(totalLoss / data.length);
+          const avgLoss = totalLoss / data.length;
+          this.lossHistory.push(avgLoss);
           
-          if (epoch % 10 === 0) {
+          // Update visualization periodically
+          if (epoch % updateInterval === 0 || epoch === maxEpochs - 1) {
             this.drawNetwork();
             this.drawLoss();
-            document.getElementById('neuralStats').textContent = 
-              `Epoch: ${epoch}, Loss: ${(totalLoss / data.length).toFixed(4)}`;
-            await new Promise(resolve => setTimeout(resolve, 10));
+            
+            if (statsElement) {
+              const progress = ((epoch / maxEpochs) * 100).toFixed(1);
+              statsElement.textContent = `Epoch: ${epoch}/${maxEpochs} (${progress}%) | Loss: ${avgLoss.toFixed(6)}`;
+            }
+            
+            // Allow UI updates
+            await new Promise(resolve => setTimeout(resolve, 1));
+          }
+          
+          // Early stopping if loss is very low
+          if (avgLoss < 0.001) {
+            console.log(`Training converged at epoch ${epoch}`);
+            break;
           }
         }
         
+        if (statsElement) {
+          const finalLoss = this.lossHistory[this.lossHistory.length - 1];
+          statsElement.textContent = `Training completed! Final loss: ${finalLoss.toFixed(6)}`;
+        }
+        
+        console.log('Neural network training completed');
         this.isTraining = false;
       }
     }
@@ -1078,9 +1261,21 @@
         console.error('Neural reset button not found');
       }
       
-      // Initial draws
-      if (neuralViz && neuralViz.drawNetwork) {
-        setTimeout(() => neuralViz.drawNetwork(), 100);
+      // Initial draws with error handling
+      if (neuralViz) {
+        setTimeout(() => {
+          try {
+            if (neuralViz.drawNetwork) {
+              neuralViz.drawNetwork();
+              console.log('Neural network initial visualization drawn');
+            }
+            if (neuralViz.drawLoss) {
+              neuralViz.drawLoss();
+            }
+          } catch (error) {
+            console.error('Error drawing initial neural network:', error);
+          }
+        }, 100);
       }
       
       console.log('✅ Algorithm Visualizer initialization complete!');

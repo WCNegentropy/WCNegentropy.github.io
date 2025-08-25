@@ -9,6 +9,13 @@
   <meta name="description" content="Interactive code playground by WCNegentropy. Write, run, and experiment with JavaScript, Python concepts, and algorithms live in your browser." />
   <link rel="canonical" href="https://WCNegentropy.github.io/playground" />
   <meta name="theme-color" content="#0ea5e9" />
+  
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -72,6 +79,7 @@
     }
     .output-error { border-left-color: #ef4444; background-color: rgba(239, 68, 68, 0.1); }
     .output-success { border-left-color: #10b981; background-color: rgba(16, 185, 129, 0.1); }
+    .output-warn { border-left-color: #f59e0b; background-color: rgba(245, 158, 11, 0.1); }
     .example-btn { transition: all 0.2s ease; }
     .example-btn:hover { transform: translateY(-1px); }
   </style>
@@ -646,32 +654,125 @@ cipher.bruteForce("Olssv Dvysk!");`
       }
     };
 
-    // JavaScript execution
+    // Secure JavaScript execution with sandboxing
     function executeJavaScript(code) {
       const output = document.getElementById('output');
       
-      // Capture console output
+      // Security check: block dangerous patterns
+      const dangerousPatterns = [
+        /document\s*\.\s*cookie/i,
+        /localStorage/i,
+        /sessionStorage/i,
+        /window\s*\.\s*location/i,
+        /location\s*\.\s*(href|replace|assign)/i,
+        /XMLHttpRequest/i,
+        /fetch\s*\(/i,
+        /import\s*\(/i,
+        /require\s*\(/i,
+        /\.__proto__/i,
+        /constructor\s*\(/i,
+        /Function\s*\(/i,
+        /setTimeout\s*\(.*eval/i,
+        /setInterval\s*\(.*eval/i,
+        /document\s*\.\s*write/i,
+        /innerHTML\s*=.*<script/i,
+        /outerHTML\s*=/i,
+        /document\s*\.\s*createElement\s*\(\s*['"]script['"]/i,
+        /window\s*\[/i,
+        /globalThis/i,
+        /this\s*\[.*constructor/i
+      ];
+      
+      // Check for dangerous code
+      for (const pattern of dangerousPatterns) {
+        if (pattern.test(code)) {
+          output.innerHTML = '<div class="output-line output-error">Security Error: Code contains potentially dangerous operations and cannot be executed.</div>';
+          return;
+        }
+      }
+      
+      // Capture console output safely
       const logs = [];
       const originalLog = console.log;
       const originalError = console.error;
+      const originalWarn = console.warn;
       
       console.log = (...args) => {
-        logs.push({type: 'log', content: args.join(' ')});
+        // Sanitize output to prevent XSS
+        const sanitized = args.map(arg => {
+          if (typeof arg === 'string') {
+            return arg.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          }
+          return String(arg);
+        }).join(' ');
+        logs.push({type: 'log', content: sanitized});
       };
       
       console.error = (...args) => {
-        logs.push({type: 'error', content: args.join(' ')});
+        const sanitized = args.map(arg => String(arg).replace(/</g, '&lt;').replace(/>/g, '&gt;')).join(' ');
+        logs.push({type: 'error', content: sanitized});
+      };
+      
+      console.warn = (...args) => {
+        const sanitized = args.map(arg => String(arg).replace(/</g, '&lt;').replace(/>/g, '&gt;')).join(' ');
+        logs.push({type: 'warn', content: sanitized});
       };
       
       try {
-        // Execute the code
-        eval(code);
+        // Create a restricted execution context
+        const restrictedContext = {
+          console: { log: console.log, error: console.error, warn: console.warn },
+          Math: Math,
+          Array: Array,
+          Object: Object,
+          String: String,
+          Number: Number,
+          Boolean: Boolean,
+          Date: Date,
+          JSON: JSON,
+          parseInt: parseInt,
+          parseFloat: parseFloat,
+          isNaN: isNaN,
+          isFinite: isFinite,
+          RegExp: RegExp,
+          Map: Map,
+          Set: Set,
+          WeakMap: WeakMap,
+          WeakSet: WeakSet,
+          Promise: Promise,
+          // Block dangerous globals
+          window: undefined,
+          document: undefined,
+          location: undefined,
+          history: undefined,
+          localStorage: undefined,
+          sessionStorage: undefined,
+          XMLHttpRequest: undefined,
+          fetch: undefined,
+          eval: undefined,
+          Function: undefined,
+          setTimeout: undefined,
+          setInterval: undefined,
+          clearTimeout: undefined,
+          clearInterval: undefined
+        };
         
-        // Display output
+        // Execute code in restricted context using Function constructor with limited scope
+        const restrictedEval = function(code, context) {
+          const keys = Object.keys(context);
+          const values = keys.map(key => context[key]);
+          const func = new Function(...keys, `'use strict'; ${code}`);
+          return func.apply(null, values);
+        };
+        
+        restrictedEval(code, restrictedContext);
+        
+        // Display output with HTML escaping
         output.innerHTML = '';
         logs.forEach(log => {
           const line = document.createElement('div');
-          line.className = `output-line output-${log.type === 'error' ? 'error' : 'success'}`;
+          line.className = `output-line output-${log.type === 'error' ? 'error' : log.type === 'warn' ? 'warn' : 'success'}`;
+          // Use textContent for safe insertion
           line.textContent = log.content;
           output.appendChild(line);
         });
@@ -681,11 +782,14 @@ cipher.bruteForce("Olssv Dvysk!");`
         }
         
       } catch (error) {
-        output.innerHTML = `<div class="output-line output-error">Error: ${error.message}</div>`;
+        // Sanitize error message
+        const sanitizedError = error.message.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        output.innerHTML = `<div class="output-line output-error">Error: ${sanitizedError}</div>`;
       } finally {
-        // Restore original console methods
+        // Always restore original console methods
         console.log = originalLog;
         console.error = originalError;
+        console.warn = originalWarn;
       }
     }
 
@@ -751,7 +855,7 @@ console.log('Sum:', numbers.reduce((sum, num) => sum + num, 0));
           // Python concept demonstration
           const output = document.getElementById('output');
           if (output) {
-            output.innerHTML = '<div class="output-line output-error">Python execution not available in browser. This playground demonstrates JavaScript implementations of Python concepts.</div>';
+            output.innerHTML = '<div class="output-line output-warn">⚠️ Python execution not available in browser. This playground demonstrates JavaScript implementations of Python concepts. Switch to JavaScript mode to run the code.</div>';
           }
         }
       };
