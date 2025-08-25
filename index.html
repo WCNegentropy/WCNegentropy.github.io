@@ -380,6 +380,11 @@
     const fmt = (n) => new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD'}).format(n);
     const productsGrid = () => {
       const grid = document.getElementById('products-grid');
+      if (!grid) {
+        console.error('❌ Products grid element not found: #products-grid');
+        return;
+      }
+      console.log('✅ Products grid element found, populating...');
       grid.innerHTML = '';
       SITE.products.forEach(p => {
         const el = document.createElement('article');
@@ -502,10 +507,18 @@
 
     async function renderRepos() {
       const grid = document.getElementById('repo-grid');
+      if (!grid) {
+        console.error('❌ Repo grid element not found: #repo-grid');
+        return;
+      }
+      console.log('✅ Repo grid element found, fetching repositories...');
       grid.innerHTML = '<div class="text-slate-500">Loading repos…</div>';
       const repos = await fetchRepos(SITE.githubUser);
       grid.innerHTML = '';
-      if (!repos.length) { grid.innerHTML = '<div class="text-slate-500">No repos found.</div>'; return; }
+      if (!repos.length) { 
+        grid.innerHTML = '<div class="text-slate-500">No repos found.</div>'; 
+        return; 
+      }
       repos.forEach(r => {
         const el = document.createElement('article');
         el.className = 'rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-glow transition';
@@ -562,14 +575,34 @@
       scripts.forEach(s => document.head.appendChild(s));
     }
 
+    // --- Initialize site with proper DOM timing ---
+    const initializeSite = async () => {
+      console.log('🚀 Initializing site with proper DOM timing...');
+      
+      // Wait for DOM to be completely ready
+      await new Promise(resolve => setTimeout(resolve, 150));
+      
+      try {
+        console.log('📝 Setting owner links and info...');
+        setLinks();
+        
+        console.log('🏗️ Rendering products grid...');
+        productsGrid();
+        
+        console.log('📦 Fetching and rendering repositories...');
+        await renderRepos();
+        
+        console.log('🏷️ Injecting JSON-LD structured data...');
+        injectJSONLD();
+        
+        console.log('✅ Site initialization complete!');
+      } catch (error) {
+        console.error('❌ Site initialization error:', error);
+      }
+    };
+
     // --- On load ---
-    document.addEventListener('DOMContentLoaded', async () => {
-      // Ensure DOM is fully ready before setting links
-      setTimeout(() => setLinks(), 100);
-      productsGrid();
-      renderRepos();
-      injectJSONLD();
-    });
+    document.addEventListener('DOMContentLoaded', initializeSite);
   </script>
 </body>
 </html>
