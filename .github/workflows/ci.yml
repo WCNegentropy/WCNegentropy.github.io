@@ -327,14 +327,14 @@ jobs:
               await page.click('#pathStart');
               
               // Wait for algorithm to start
-              await page.waitForTimeout(2000);
+              await new Promise(resolve => setTimeout(resolve, 2000));
               
               // Check if status text is updated (our fix)
               const statusText = await page.$eval('#pathStats', el => el.textContent).catch(() => '');
               console.log('✅ Status text:', statusText);
               
               // Check if any cells have visited class (visual feedback fix)
-              await page.waitForTimeout(3000); // Give algorithm time to run
+              await new Promise(resolve => setTimeout(resolve, 3000)); // Give algorithm time to run
               const visitedCells = await page.$$('.visited');
               console.log('✅ Visited cells found:', visitedCells.length > 0);
               
@@ -408,7 +408,7 @@ jobs:
               
               // Test training button functionality
               await page.click('#neuralTrain');
-              await page.waitForTimeout(2000);
+              await new Promise(resolve => setTimeout(resolve, 2000));
               
               // Check if training status is updating (our fix)
               const statsText = await page.$eval('#neuralStats', el => el.textContent).catch(() => '');
@@ -472,7 +472,7 @@ jobs:
               
               // Try to run the malicious code
               await page.click('#runCode');
-              await page.waitForTimeout(1000);
+              await new Promise(resolve => setTimeout(resolve, 1000));
               
               // Check if security error is displayed (our fix)
               const output = await page.$eval('#output', el => el.textContent).catch(() => '');
@@ -494,7 +494,7 @@ jobs:
               });
               
               await page.click('#runCode');
-              await page.waitForTimeout(1000);
+              await new Promise(resolve => setTimeout(resolve, 1000));
               
               const safeOutput = await page.$eval('#output', el => el.textContent).catch(() => '');
               console.log('✅ Output for safe code:', safeOutput);
@@ -546,7 +546,7 @@ jobs:
               console.log('✅ GitHub repos section loaded');
               
               // Check if repositories are displayed safely (our fix)
-              await page.waitForTimeout(3000); // Allow time for API call
+              await new Promise(resolve => setTimeout(resolve, 3000)); // Allow time for API call
               
               const repoElements = await page.$$('#repo-grid article');
               console.log('✅ Repository elements found:', repoElements.length);
