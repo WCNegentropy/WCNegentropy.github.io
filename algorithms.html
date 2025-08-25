@@ -141,7 +141,7 @@
 
     <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 mb-8">
       <div class="flex flex-wrap items-center gap-4 mb-6">
-        <select id="sortAlgorithm" class="rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-2">
+        <select id="sortAlgorithm" class="rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white px-4 py-2">
           <option value="bubble">Bubble Sort</option>
           <option value="quick">Quick Sort</option>
           <option value="merge">Merge Sort</option>
@@ -164,7 +164,7 @@
 
     <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 mb-8">
       <div class="flex flex-wrap items-center gap-4 mb-6">
-        <select id="pathAlgorithm" class="rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-2">
+        <select id="pathAlgorithm" class="rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white px-4 py-2">
           <option value="astar">A* Search</option>
           <option value="dijkstra">Dijkstra's</option>
           <option value="bfs">Breadth-First Search</option>
@@ -487,6 +487,28 @@
 
       initGrid() {
         this.grid = Array(this.rows).fill().map(() => Array(this.cols).fill(0));
+        
+        // Add some walls to make pathfinding more interesting and visible
+        // Create a simple maze pattern
+        for (let row = 2; row < this.rows - 2; row += 2) {
+          for (let col = 1; col < this.cols - 1; col += 3) {
+            if ((row !== this.start.row || col !== this.start.col) && 
+                (row !== this.end.row || col !== this.end.col)) {
+              this.grid[row][col] = 1; // Wall
+            }
+          }
+        }
+        
+        // Add some vertical walls
+        for (let col = 5; col < this.cols - 5; col += 4) {
+          for (let row = 1; row < this.rows - 1; row++) {
+            if ((row !== this.start.row || col !== this.start.col) && 
+                (row !== this.end.row || col !== this.end.col)) {
+              this.grid[row][col] = 1; // Wall
+            }
+          }
+        }
+        
         this.render();
       }
 
@@ -568,13 +590,18 @@
 
           closedSet.add(`${current.row},${current.col}`);
 
-          // Visualize visited node
+          // Visualize visited node with better debugging
           if (current.row !== this.start.row || current.col !== this.start.col) {
             const cell = document.querySelector(`[data-row="${current.row}"][data-col="${current.col}"]`);
-            if (cell) cell.classList.add('visited');
+            if (cell) {
+              cell.classList.add('visited');
+              console.log(`Visiting cell (${current.row}, ${current.col})`);
+            } else {
+              console.error(`Could not find cell (${current.row}, ${current.col})`);
+            }
           }
 
-          await new Promise(resolve => setTimeout(resolve, 50));
+          await new Promise(resolve => setTimeout(resolve, 200));
 
           // Check neighbors
           const neighbors = [
@@ -649,7 +676,7 @@
             return;
           }
 
-          await new Promise(resolve => setTimeout(resolve, 50));
+          await new Promise(resolve => setTimeout(resolve, 200));
 
           // Check neighbors
           const neighbors = [
@@ -699,7 +726,7 @@
             if (cell) cell.classList.add('visited');
           }
 
-          await new Promise(resolve => setTimeout(resolve, 50));
+          await new Promise(resolve => setTimeout(resolve, 200));
 
           const neighbors = [
             {row: current.row - 1, col: current.col},
@@ -750,7 +777,7 @@
             if (cell) cell.classList.add('visited');
           }
 
-          await new Promise(resolve => setTimeout(resolve, 50));
+          await new Promise(resolve => setTimeout(resolve, 200));
 
           const neighbors = [
             {row: current.row - 1, col: current.col},
@@ -792,7 +819,7 @@
               if (cell) cell.classList.add('path');
             }
           }
-          await new Promise(resolve => setTimeout(resolve, 100));
+          await new Promise(resolve => setTimeout(resolve, 300));
         }
       }
 

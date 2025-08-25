@@ -592,23 +592,76 @@ jobs:
           echo "🎯 CI/CD Pipeline Summary for WCNegentropy.github.io"
           echo "=================================================="
           echo ""
-          echo "✅ HTML Validation: Completed"
-          echo "⚡ Lighthouse Audit: Completed"
-          echo "🔍 Code Quality Check: Completed"
-          echo "🌐 Compatibility Test: Completed"
-          echo "📊 Performance Budget: Completed"
-          echo "📚 Documentation Check: Completed"
-          echo "🐛 Bug Fix Module Testing: Completed"
+          
+          # Check actual job results using GitHub context
+          validate_result="${{ needs.validate.result }}"
+          lighthouse_result="${{ needs.lighthouse.result }}"
+          quality_result="${{ needs.code-quality.result }}"
+          compat_result="${{ needs.compatibility.result }}"
+          budget_result="${{ needs.performance-budget.result }}"
+          docs_result="${{ needs.documentation.result }}"
+          bugs_result="${{ needs.bug-fix-testing.result }}"
+          
+          # Function to display result with appropriate emoji
+          display_result() {
+            case $2 in
+              "success") echo "✅ $1: Passed" ;;
+              "failure") echo "❌ $1: Failed" ;;
+              "cancelled") echo "⏸️ $1: Cancelled" ;;
+              "skipped") echo "⏭️ $1: Skipped" ;;
+              *) echo "❓ $1: $2" ;;
+            esac
+          }
+          
+          # Display all job results
+          display_result "HTML Validation" "$validate_result"
+          display_result "Lighthouse Audit" "$lighthouse_result"
+          display_result "Code Quality Check" "$quality_result"
+          display_result "Compatibility Test" "$compat_result"
+          display_result "Performance Budget" "$budget_result"
+          display_result "Documentation Check" "$docs_result"
+          display_result "Bug Fix Module Testing" "$bugs_result"
+          
           echo ""
           echo "🐛 BUG FIXES TESTED:"
-          echo "  ✅ Pathfinding Visualization: Visual feedback verified"
-          echo "  ✅ Neural Network Display: Canvas and training verified"
-          echo "  ✅ Code Playground Security: Sandboxing verified"
-          echo "  ✅ GitHub API Security: Safe rendering verified"
+          
+          if [ "$bugs_result" = "success" ]; then
+            echo "  ✅ Pathfinding Visualization: Visual feedback verified"
+            echo "  ✅ Neural Network Display: Canvas and training verified"
+            echo "  ✅ Code Playground Security: Sandboxing verified"
+            echo "  ✅ GitHub API Security: Safe rendering verified"
+          else
+            echo "  ❌ Bug fix testing failed - check individual test logs"
+            echo "  🔍 Review the 'Bug Fix Module Testing' job for details"
+          fi
+          
           echo ""
-          echo "🚀 All systems verified - Static site ready for deployment!"
-          echo ""
-          echo "Next steps:"
-          echo "- All critical bugs have been tested and verified"
-          echo "- Security vulnerabilities have been patched and tested"
-          echo "- Monitor performance metrics after deployment"
+          
+          # Overall pipeline status
+          failed_jobs=0
+          [ "$validate_result" != "success" ] && ((failed_jobs++))
+          [ "$lighthouse_result" != "success" ] && ((failed_jobs++))
+          [ "$quality_result" != "success" ] && ((failed_jobs++))
+          [ "$compat_result" != "success" ] && ((failed_jobs++))
+          [ "$budget_result" != "success" ] && ((failed_jobs++))
+          [ "$docs_result" != "success" ] && ((failed_jobs++))
+          [ "$bugs_result" != "success" ] && ((failed_jobs++))
+          
+          if [ $failed_jobs -eq 0 ]; then
+            echo "🚀 All systems verified - Static site ready for deployment!"
+            echo ""
+            echo "Next steps:"
+            echo "- All critical bugs have been tested and verified"
+            echo "- Security vulnerabilities have been patched and tested"
+            echo "- Monitor performance metrics after deployment"
+          else
+            echo "⚠️ Pipeline completed with $failed_jobs failed job(s)"
+            echo ""
+            echo "Next steps:"
+            echo "- Review failed job logs above"
+            echo "- Fix any issues identified in the failing tests"
+            echo "- Re-run the pipeline after making corrections"
+            
+            # Set exit code to indicate failure
+            exit 1
+          fi
