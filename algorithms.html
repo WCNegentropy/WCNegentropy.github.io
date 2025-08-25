@@ -1297,9 +1297,13 @@
 
       if (pathStartBtn) {
         console.log('Pathfinding start button found');
-        pathStartBtn.addEventListener('click', () => {
+        pathStartBtn.addEventListener('click', async () => {
           console.log('Pathfinding start button clicked');
-          if (pathViz) pathViz.start();
+          if (pathViz && typeof pathViz.start === 'function') {
+            await pathViz.start();
+          } else {
+            console.error('PathViz start method not available:', typeof pathViz.start);
+          }
         });
       } else {
         console.error('Pathfinding start button not found');
