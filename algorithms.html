@@ -77,7 +77,7 @@
   <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60 border-b border-slate-200/60 dark:border-slate-800">
     <div class="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3 group">
-        <img src="https://avatars.githubusercontent.com/u/WCNegentropy?v=4" class="size-10 rounded-full ring-2 ring-brand-400/40" alt="WCNegentropy" />
+        <img src="https://github.com/WCNegentropy.png" class="size-10 rounded-full ring-2 ring-brand-400/40" alt="WCNegentropy" />
         <div>
           <div class="font-semibold tracking-tight group-hover:text-brand-600 transition">WCNegentropy</div>
           <div class="text-xs text-slate-500 dark:text-slate-400">Algorithm Visualizer</div>
@@ -154,7 +154,7 @@
           Click to add walls | Drag start/end points
         </div>
       </div>
-      <div id="pathGrid" class="grid grid-cols-20 gap-0 w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-xl p-4"></div>
+      <div id="pathGrid" class="grid gap-0 w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-xl p-4" style="grid-template-columns: repeat(20, 1fr);"></div>
       <div id="pathStats" class="mt-4 text-sm text-slate-600 dark:text-slate-400 text-center"></div>
     </div>
   </section>
@@ -312,6 +312,98 @@
         return i + 1;
       }
 
+      async mergeSort(arr = [...this.array], start = 0, end = this.array.length - 1) {
+        if (start >= end) return arr;
+        
+        const mid = Math.floor((start + end) / 2);
+        const left = await this.mergeSort(arr, start, mid);
+        const right = await this.mergeSort(arr, mid + 1, end);
+        return await this.merge(left, right, start, end);
+      }
+
+      async merge(left, right, start, end) {
+        const result = [];
+        let i = 0, j = 0;
+
+        while (i < left.length && j < right.length) {
+          if (!this.isRunning) return result.concat(left.slice(i)).concat(right.slice(j));
+          this.comparisons++;
+          
+          if (left[i] <= right[j]) {
+            result.push(left[i]);
+            i++;
+          } else {
+            result.push(right[j]);
+            j++;
+          }
+          
+          // Update the main array for visualization
+          for (let k = 0; k < result.length; k++) {
+            this.array[start + k] = result[k];
+          }
+          this.render();
+          await this.highlightBars([start + result.length - 1], '#22d3ee');
+          this.resetBarColors();
+        }
+
+        while (i < left.length) {
+          result.push(left[i]);
+          this.array[start + result.length - 1] = left[i];
+          i++;
+        }
+
+        while (j < right.length) {
+          result.push(right[j]);
+          this.array[start + result.length - 1] = right[j];
+          j++;
+        }
+
+        return result;
+      }
+
+      async heapSort() {
+        const n = this.array.length;
+        
+        // Build heap
+        for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+          await this.heapify(n, i);
+        }
+        
+        // Extract elements from heap
+        for (let i = n - 1; i > 0; i--) {
+          await this.swap(0, i);
+          await this.heapify(i, 0);
+        }
+      }
+
+      async heapify(n, i) {
+        let largest = i;
+        const left = 2 * i + 1;
+        const right = 2 * i + 2;
+
+        if (left < n) {
+          this.comparisons++;
+          await this.highlightBars([left, largest], '#fbbf24');
+          if (this.array[left] > this.array[largest]) {
+            largest = left;
+          }
+        }
+
+        if (right < n) {
+          this.comparisons++;
+          await this.highlightBars([right, largest], '#fbbf24');
+          if (this.array[right] > this.array[largest]) {
+            largest = right;
+          }
+        }
+
+        if (largest !== i) {
+          await this.swap(i, largest);
+          await this.heapify(n, largest);
+        }
+        this.resetBarColors();
+      }
+
       updateStats() {
         document.getElementById('sortStats').textContent = 
           `Comparisons: ${this.comparisons} | Swaps: ${this.swaps}`;
@@ -332,7 +424,12 @@
           case 'quick':
             await this.quickSort();
             break;
-          // Add more algorithms here
+          case 'merge':
+            await this.mergeSort();
+            break;
+          case 'heap':
+            await this.heapSort();
+            break;
         }
         
         this.isRunning = false;
@@ -461,6 +558,184 @@
         }
       }
 
+      async dijkstra() {
+        const distances = Array(this.rows).fill().map(() => Array(this.cols).fill(Infinity));
+        const previous = Array(this.rows).fill().map(() => Array(this.cols).fill(null));
+        const unvisited = new Set();
+        
+        // Initialize
+        distances[this.start.row][this.start.col] = 0;
+        for (let row = 0; row < this.rows; row++) {
+          for (let col = 0; col < this.cols; col++) {
+            if (this.grid[row][col] !== 1) {
+              unvisited.add(`${row},${col}`);
+            }
+          }
+        }
+
+        while (unvisited.size > 0 && this.isRunning) {
+          // Find node with minimum distance
+          let current = null;
+          let minDist = Infinity;
+          
+          for (let nodeKey of unvisited) {
+            const [row, col] = nodeKey.split(',').map(Number);
+            if (distances[row][col] < minDist) {
+              minDist = distances[row][col];
+              current = {row, col};
+            }
+          }
+          
+          if (!current || minDist === Infinity) break;
+          
+          unvisited.delete(`${current.row},${current.col}`);
+          
+          // Visualize
+          if (current.row !== this.start.row || current.col !== this.start.col) {
+            const cell = document.querySelector(`[data-row="${current.row}"][data-col="${current.col}"]`);
+            if (cell) cell.classList.add('visited');
+          }
+          
+          if (current.row === this.end.row && current.col === this.end.col) {
+            await this.reconstructPath(previous, current);
+            return;
+          }
+          
+          await new Promise(resolve => setTimeout(resolve, 50));
+
+          // Check neighbors
+          const neighbors = [
+            {row: current.row - 1, col: current.col},
+            {row: current.row + 1, col: current.col},
+            {row: current.row, col: current.col - 1},
+            {row: current.row, col: current.col + 1}
+          ];
+
+          for (let neighbor of neighbors) {
+            if (neighbor.row >= 0 && neighbor.row < this.rows && 
+                neighbor.col >= 0 && neighbor.col < this.cols &&
+                this.grid[neighbor.row][neighbor.col] !== 1 &&
+                unvisited.has(`${neighbor.row},${neighbor.col}`)) {
+              
+              const newDist = distances[current.row][current.col] + 1;
+              if (newDist < distances[neighbor.row][neighbor.col]) {
+                distances[neighbor.row][neighbor.col] = newDist;
+                previous[neighbor.row][neighbor.col] = current;
+              }
+            }
+          }
+        }
+      }
+
+      async bfs() {
+        const queue = [{...this.start, parent: null}];
+        const visited = new Set([`${this.start.row},${this.start.col}`]);
+
+        while (queue.length > 0 && this.isRunning) {
+          const current = queue.shift();
+          
+          if (current.row === this.end.row && current.col === this.end.col) {
+            const path = [];
+            let node = current;
+            while (node) {
+              path.unshift(node);
+              node = node.parent;
+            }
+            await this.animatePath(path);
+            return;
+          }
+
+          // Visualize
+          if (current.row !== this.start.row || current.col !== this.start.col) {
+            const cell = document.querySelector(`[data-row="${current.row}"][data-col="${current.col}"]`);
+            if (cell) cell.classList.add('visited');
+          }
+          
+          await new Promise(resolve => setTimeout(resolve, 50));
+
+          const neighbors = [
+            {row: current.row - 1, col: current.col},
+            {row: current.row + 1, col: current.col},
+            {row: current.row, col: current.col - 1},
+            {row: current.row, col: current.col + 1}
+          ];
+
+          for (let neighbor of neighbors) {
+            const key = `${neighbor.row},${neighbor.col}`;
+            if (neighbor.row >= 0 && neighbor.row < this.rows && 
+                neighbor.col >= 0 && neighbor.col < this.cols &&
+                this.grid[neighbor.row][neighbor.col] !== 1 &&
+                !visited.has(key)) {
+              
+              visited.add(key);
+              queue.push({...neighbor, parent: current});
+            }
+          }
+        }
+      }
+
+      async dfs() {
+        const stack = [{...this.start, parent: null}];
+        const visited = new Set();
+
+        while (stack.length > 0 && this.isRunning) {
+          const current = stack.pop();
+          const key = `${current.row},${current.col}`;
+          
+          if (visited.has(key)) continue;
+          visited.add(key);
+          
+          if (current.row === this.end.row && current.col === this.end.col) {
+            const path = [];
+            let node = current;
+            while (node) {
+              path.unshift(node);
+              node = node.parent;
+            }
+            await this.animatePath(path);
+            return;
+          }
+
+          // Visualize
+          if (current.row !== this.start.row || current.col !== this.start.col) {
+            const cell = document.querySelector(`[data-row="${current.row}"][data-col="${current.col}"]`);
+            if (cell) cell.classList.add('visited');
+          }
+          
+          await new Promise(resolve => setTimeout(resolve, 50));
+
+          const neighbors = [
+            {row: current.row - 1, col: current.col},
+            {row: current.row + 1, col: current.col},
+            {row: current.row, col: current.col - 1},
+            {row: current.row, col: current.col + 1}
+          ];
+
+          for (let neighbor of neighbors) {
+            const key = `${neighbor.row},${neighbor.col}`;
+            if (neighbor.row >= 0 && neighbor.row < this.rows && 
+                neighbor.col >= 0 && neighbor.col < this.cols &&
+                this.grid[neighbor.row][neighbor.col] !== 1 &&
+                !visited.has(key)) {
+              
+              stack.push({...neighbor, parent: current});
+            }
+          }
+        }
+      }
+
+      async reconstructPath(previous, end) {
+        const path = [];
+        let current = end;
+        
+        while (current) {
+          path.unshift(current);
+          current = previous[current.row][current.col];
+        }
+        
+        await this.animatePath(path);
+      }
+
       async animatePath(path) {
         for (let node of path) {
           if (node.row !== this.start.row || node.col !== this.start.col) {
@@ -488,7 +763,15 @@
           case 'astar':
             await this.aStar();
             break;
-          // Add more algorithms
+          case 'dijkstra':
+            await this.dijkstra();
+            break;
+          case 'bfs':
+            await this.bfs();
+            break;
+          case 'dfs':
+            await this.dfs();
+            break;
         }
         
         this.isRunning = false;
