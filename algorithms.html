@@ -1310,18 +1310,26 @@
         pathStartBtn.addEventListener('click', async () => {
           console.log('Pathfinding start button clicked');
           if (pathViz) {
-            console.log('✅ Calling pathViz.start() directly');
+            console.log('✅ Attempting pathfinding start');
             try {
-              // Direct method call - simplest approach
-              await pathViz.start();
+              // Get the method from the prototype to ensure proper binding
+              const startMethod = Object.getPrototypeOf(pathViz).start;
+              if (startMethod) {
+                console.log('Found start method on prototype, calling with proper context');
+                await startMethod.call(pathViz);
+              } else {
+                console.error('Start method not found on prototype');
+              }
             } catch (error) {
-              console.error('❌ Error in pathViz.start():', error);
+              console.error('❌ Error in pathfinding:', error);
               console.error('PathViz debug info:', {
                 pathViz: !!pathViz,
                 start: !!pathViz?.start,
                 typeof: typeof pathViz?.start,
                 constructor: pathViz?.start?.constructor?.name,
-                isRunning: pathViz?.isRunning
+                isRunning: pathViz?.isRunning,
+                prototype: Object.getPrototypeOf(pathViz),
+                prototypeStart: !!Object.getPrototypeOf(pathViz).start
               });
             }
           } else {
