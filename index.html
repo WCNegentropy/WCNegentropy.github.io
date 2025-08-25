@@ -354,7 +354,29 @@
       
       setIfExists('owner-name', 'textContent', SITE.ownerName);
       setIfExists('owner-tagline', 'textContent', SITE.tagline);
-      setIfExists('avatar', 'src', SITE.avatar);
+      
+      // Special handling for avatar with additional validation
+      const avatarEl = byId('avatar');
+      if (avatarEl && SITE.avatar) {
+        console.log(`🖼️ Setting avatar: ${SITE.avatar}`);
+        avatarEl.src = SITE.avatar;
+        avatarEl.onerror = (e) => {
+          console.error('❌ Avatar failed to load, trying fallback');
+          const fallbackUrl = `https://api.github.com/users/${SITE.githubUser}/avatar`;
+          if (avatarEl.src !== fallbackUrl) {
+            avatarEl.src = fallbackUrl;
+          } else {
+            console.error('❌ Fallback avatar also failed, using placeholder');
+            avatarEl.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiMzNzM3MzciLz4KPHRleHQgeD0iMjAiIHk9IjI2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkludGVyIiBmb250LXNpemU9IjE0Ij5XQzwvdGV4dD4KPHN2Zz4K';
+          }
+        };
+        avatarEl.onload = () => console.log('✅ Avatar loaded successfully');
+      } else {
+        console.error('❌ Avatar element or SITE.avatar not found:', {
+          element: !!avatarEl,
+          avatarUrl: SITE.avatar
+        });
+      }
       setIfExists('gh-name', 'textContent', SITE.githubUser);
       setIfExists('gh-see-all', 'href', SITE.social.github);
       setIfExists('link-github', 'href', SITE.social.github);
