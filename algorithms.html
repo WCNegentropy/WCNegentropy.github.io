@@ -1251,8 +1251,17 @@
       console.log('Initializing visualizers...');
       const sortViz = new SortingVisualizer();
       console.log('SortingVisualizer created:', !!sortViz);
-      const pathViz = new PathfindingVisualizer();
-      console.log('PathfindingVisualizer created:', !!pathViz);
+      
+      let pathViz;
+      try {
+        pathViz = new PathfindingVisualizer();
+        console.log('PathfindingVisualizer created:', !!pathViz);
+        console.log('pathViz.start method exists:', typeof pathViz.start);
+        console.log('pathViz methods:', Object.getOwnPropertyNames(Object.getPrototypeOf(pathViz)));
+      } catch (error) {
+        console.error('❌ Error creating PathfindingVisualizer:', error);
+      }
+      
       const neuralViz = new NeuralNetworkVisualizer();
       console.log('NeuralNetworkVisualizer created:', !!neuralViz);
 
