@@ -499,31 +499,28 @@
         console.log('🔧 initGrid() called');
         this.grid = Array(this.rows).fill().map(() => Array(this.cols).fill(0));
         
-        console.log('🧱 Adding maze walls...');
+        console.log('🧱 Adding initial sparse maze walls...');
         let wallsAdded = 0;
         
-        // Add some walls to make pathfinding more interesting and visible
-        // Create a simple maze pattern
-        for (let row = 2; row < this.rows - 2; row += 2) {
-          for (let col = 1; col < this.cols - 1; col += 3) {
-            if ((row !== this.start.row || col !== this.start.col) && 
-                (row !== this.end.row || col !== this.end.col)) {
+        // Add some random walls across the entire grid for better pathfinding demonstration
+        // Use the whole grid, not just a narrow corridor
+        for (let row = 1; row < this.rows - 1; row++) {
+          for (let col = 1; col < this.cols - 1; col++) {
+            // Skip start and end positions
+            if ((row === this.start.row && col === this.start.col) || 
+                (row === this.end.row && col === this.end.col)) {
+              continue;
+            }
+            
+            // Add walls with ~15% probability for a light initial maze
+            if (Math.random() < 0.15) {
               this.grid[row][col] = 1; // Wall
               wallsAdded++;
             }
           }
         }
         
-        // Add some vertical walls
-        for (let col = 5; col < this.cols - 5; col += 4) {
-          for (let row = 1; row < this.rows - 1; row++) {
-            if ((row !== this.start.row || col !== this.start.col) && 
-                (row !== this.end.row || col !== this.end.col)) {
-              this.grid[row][col] = 1; // Wall
-              wallsAdded++;
-            }
-          }
-        }
+        // No additional strategic walls - let the random distribution be natural
         
         console.log(`🧱 Added ${wallsAdded} walls to grid`);
         this.render();
@@ -709,19 +706,28 @@
       }
 
       updateGridDisplay() {
+        console.log('🔄 updateGridDisplay() called');
+        let wallsAdded = 0, wallsRemoved = 0, cellsNotFound = 0;
+        
         for (let row = 0; row < this.rows; row++) {
           for (let col = 0; col < this.cols; col++) {
             const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
-            if (!cell) continue;
+            if (!cell) {
+              cellsNotFound++;
+              continue;
+            }
             
             if (this.grid[row][col] === 1) {
               cell.classList.add('wall');
+              wallsAdded++;
             } else {
               cell.classList.remove('wall');
+              wallsRemoved++;
             }
             cell.classList.remove('visited', 'path');
           }
         }
+        console.log(`🧱 Maze update: ${wallsAdded} walls added, ${wallsRemoved} walls removed, ${cellsNotFound} cells not found`);
       }
 
       clearPaths() {
