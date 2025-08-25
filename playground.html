@@ -670,7 +670,7 @@ cipher.bruteForce("Olssv Dvysk!");`
         output.innerHTML = '';
         logs.forEach(log => {
           const line = document.createElement('div');
-          line.className = \`output-line output-\${log.type === 'error' ? 'error' : 'success'}\`;
+          line.className = `output-line output-${log.type === 'error' ? 'error' : 'success'}`;
           line.textContent = log.content;
           output.appendChild(line);
         });
@@ -680,7 +680,7 @@ cipher.bruteForce("Olssv Dvysk!");`
         }
         
       } catch (error) {
-        output.innerHTML = \`<div class="output-line output-error">Error: \${error.message}</div>\`;
+        output.innerHTML = `<div class="output-line output-error">Error: ${error.message}</div>`;
       } finally {
         // Restore original console methods
         console.log = originalLog;
@@ -701,7 +701,7 @@ cipher.bruteForce("Olssv Dvysk!");`
         matchBrackets: true,
         indentUnit: 2,
         tabSize: 2,
-        value: \`// Welcome to the WCNegentropy Code Playground!
+        value: `// Welcome to the WCNegentropy Code Playground!
 // Write your JavaScript code here and hit Run
 
 function greet(name) {
@@ -716,7 +716,7 @@ console.log('Original array:', numbers);
 console.log('Sorted array:', [...numbers].sort((a, b) => a - b));
 console.log('Sum:', numbers.reduce((sum, num) => sum + num, 0));
 
-// Click on the example cards below to load pre-built algorithms!\`
+// Click on the example cards below to load pre-built algorithms!`
       });
       
       // Theme toggle
@@ -727,38 +727,56 @@ console.log('Sum:', numbers.reduce((sum, num) => sum + num, 0));
       
       // Run code
       const runCode = () => {
+        if (!editor) return;
         const code = editor.getValue();
-        const language = document.getElementById('languageSelect').value;
+        const languageSelect = document.getElementById('languageSelect');
+        const language = languageSelect ? languageSelect.value : 'javascript';
         
         if (language === 'javascript' || language === 'algorithm') {
           executeJavaScript(code);
         } else if (language === 'python') {
           // Python concept demonstration
-          document.getElementById('output').innerHTML = '<div class="output-line output-error">Python execution not available in browser. This playground demonstrates JavaScript implementations of Python concepts.</div>';
+          const output = document.getElementById('output');
+          if (output) {
+            output.innerHTML = '<div class="output-line output-error">Python execution not available in browser. This playground demonstrates JavaScript implementations of Python concepts.</div>';
+          }
         }
       };
       
-      document.getElementById('runCode').addEventListener('click', runCode);
+      const runBtn = document.getElementById('runCode');
+      if (runBtn) runBtn.addEventListener('click', runCode);
       
       // Keyboard shortcut
-      editor.setOption('extraKeys', {
-        'Ctrl-Enter': runCode
-      });
+      if (editor) {
+        editor.setOption('extraKeys', {
+          'Ctrl-Enter': runCode
+        });
+      }
       
       // Clear buttons
-      document.getElementById('clearCode').addEventListener('click', () => {
-        editor.setValue('// Write your code here...');
-      });
+      const clearCodeBtn = document.getElementById('clearCode');
+      if (clearCodeBtn) {
+        clearCodeBtn.addEventListener('click', () => {
+          if (editor) editor.setValue('// Write your code here...');
+        });
+      }
       
-      document.getElementById('clearOutput').addEventListener('click', () => {
-        document.getElementById('output').innerHTML = '<div class="text-slate-500">Run your code to see output here...</div>';
-      });
+      const clearOutputBtn = document.getElementById('clearOutput');
+      if (clearOutputBtn) {
+        clearOutputBtn.addEventListener('click', () => {
+          const output = document.getElementById('output');
+          if (output) output.innerHTML = '<div class="text-slate-500">Run your code to see output here...</div>';
+        });
+      }
       
       // Language selector
-      document.getElementById('languageSelect').addEventListener('change', (e) => {
-        const mode = e.target.value === 'python' ? 'python' : 'javascript';
-        editor.setOption('mode', mode);
-      });
+      const languageSelector = document.getElementById('languageSelect');
+      if (languageSelector) {
+        languageSelector.addEventListener('change', (e) => {
+          const mode = e.target.value === 'python' ? 'python' : 'javascript';
+          if (editor) editor.setOption('mode', mode);
+        });
+      }
       
       // Example buttons
       document.querySelectorAll('.example-btn').forEach(btn => {

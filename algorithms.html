@@ -231,13 +231,19 @@
 
       render() {
         const container = document.getElementById('sortVisualization');
+        if (!container) return;
+        
         container.innerHTML = '';
+        
+        // Use fixed width to prevent layout thrashing
+        const barWidth = Math.max(8, Math.min(20, 800 / this.size));
         
         this.array.forEach((value, index) => {
           const bar = document.createElement('div');
           bar.className = 'array-bar bg-brand-500';
           bar.style.height = `${value}px`;
-          bar.style.width = `${Math.max(1, (container.offsetWidth - this.size * 2) / this.size)}px`;
+          bar.style.width = `${barWidth}px`;
+          bar.style.marginRight = '2px';
           bar.dataset.index = index;
           container.appendChild(bar);
         });
@@ -463,14 +469,19 @@
 
       render() {
         const container = document.getElementById('pathGrid');
+        if (!container) return;
+        
         container.innerHTML = '';
-        container.style.gridTemplateRows = `repeat(${this.rows}, 1fr)`;
-        container.style.gridTemplateColumns = `repeat(${this.cols}, 1fr)`;
+        container.style.gridTemplateRows = `repeat(${this.rows}, minmax(20px, 1fr))`;
+        container.style.gridTemplateColumns = `repeat(${this.cols}, minmax(20px, 1fr))`;
+        container.style.aspectRatio = `${this.cols}/${this.rows}`;
         
         for (let row = 0; row < this.rows; row++) {
           for (let col = 0; col < this.cols; col++) {
             const cell = document.createElement('div');
-            cell.className = 'grid-cell w-6 h-6 cursor-pointer';
+            cell.className = 'grid-cell bg-white dark:bg-slate-700 cursor-pointer transition-colors duration-200';
+            cell.style.minHeight = '20px';
+            cell.style.minWidth = '20px';
             cell.dataset.row = row;
             cell.dataset.col = col;
             
@@ -788,11 +799,28 @@
       constructor() {
         this.canvas = document.getElementById('neuralNetwork');
         this.lossCanvas = document.getElementById('lossChart');
+        
+        if (!this.canvas || !this.lossCanvas) {
+          console.error('Neural network canvas elements not found');
+          return;
+        }
+        
         this.ctx = this.canvas.getContext('2d');
         this.lossCtx = this.lossCanvas.getContext('2d');
         this.network = null;
         this.lossHistory = [];
         this.isTraining = false;
+        
+        // Set canvas size
+        this.resizeCanvases();
+      }
+      
+      resizeCanvases() {
+        const rect = this.canvas.getBoundingClientRect();
+        this.canvas.width = Math.max(400, rect.width);
+        this.canvas.height = Math.max(300, rect.height);
+        this.lossCanvas.width = Math.max(400, rect.width);
+        this.lossCanvas.height = Math.max(300, rect.height);
       }
 
       initNetwork(inputSize = 2, hiddenSize = 4, outputSize = 1) {
@@ -814,16 +842,29 @@
       }
 
       forward(input) {
-        // Simple forward pass
-        const hidden = input.map((inp, i) => 
-          this.network.weights1[i].reduce((sum, w, j) => sum + w * inp, 0) + this.network.bias1[0][i]
-        ).map(x => this.sigmoid(x));
+        if (!this.network) return { hidden: [], output: [0] };
         
-        const output = hidden.map((h, i) => 
-          this.network.weights2[i].reduce((sum, w, j) => sum + w * h, 0) + this.network.bias2[0][0]
-        );
+        // Forward pass: input -> hidden
+        const hidden = [];
+        for (let j = 0; j < this.network.weights1[0].length; j++) {
+          let sum = this.network.bias1[0][j];
+          for (let i = 0; i < input.length; i++) {
+            sum += input[i] * this.network.weights1[i][j];
+          }
+          hidden.push(this.sigmoid(sum));
+        }
         
-        return { hidden, output: output.map(x => this.sigmoid(x)) };
+        // Forward pass: hidden -> output
+        const output = [];
+        for (let k = 0; k < this.network.weights2[0].length; k++) {
+          let sum = this.network.bias2[0][k];
+          for (let j = 0; j < hidden.length; j++) {
+            sum += hidden[j] * this.network.weights2[j][k];
+          }
+          output.push(this.sigmoid(sum));
+        }
+        
+        return { hidden, output };
       }
 
       drawNetwork() {
@@ -940,26 +981,44 @@
       const pathViz = new PathfindingVisualizer();
       const neuralViz = new NeuralNetworkVisualizer();
       
-      // Event listeners
-      document.getElementById('sortStart').addEventListener('click', () => sortViz.start());
-      document.getElementById('sortReset').addEventListener('click', () => sortViz.reset());
-      document.getElementById('sortSpeed').addEventListener('input', (e) => {
-        sortViz.speed = e.target.value;
-      });
+      // Event listeners with safety checks
+      const sortStartBtn = document.getElementById('sortStart');
+      const sortResetBtn = document.getElementById('sortReset');
+      const sortSpeedSlider = document.getElementById('sortSpeed');
       
-      document.getElementById('pathStart').addEventListener('click', () => pathViz.start());
-      document.getElementById('pathReset').addEventListener('click', () => pathViz.reset());
+      if (sortStartBtn) sortStartBtn.addEventListener('click', () => sortViz && sortViz.start());
+      if (sortResetBtn) sortResetBtn.addEventListener('click', () => sortViz && sortViz.reset());
+      if (sortSpeedSlider) {
+        sortSpeedSlider.addEventListener('input', (e) => {
+          if (sortViz) sortViz.speed = parseInt(e.target.value);
+        });
+      }
       
-      document.getElementById('neuralTrain').addEventListener('click', () => neuralViz.train());
-      document.getElementById('neuralReset').addEventListener('click', () => {
-        neuralViz.isTraining = false;
-        neuralViz.lossHistory = [];
-        neuralViz.drawNetwork();
-        neuralViz.drawLoss();
-      });
+      const pathStartBtn = document.getElementById('pathStart');
+      const pathResetBtn = document.getElementById('pathReset');
+      
+      if (pathStartBtn) pathStartBtn.addEventListener('click', () => pathViz && pathViz.start());
+      if (pathResetBtn) pathResetBtn.addEventListener('click', () => pathViz && pathViz.reset());
+      
+      const neuralTrainBtn = document.getElementById('neuralTrain');
+      const neuralResetBtn = document.getElementById('neuralReset');
+      
+      if (neuralTrainBtn) neuralTrainBtn.addEventListener('click', () => neuralViz && neuralViz.train());
+      if (neuralResetBtn) {
+        neuralResetBtn.addEventListener('click', () => {
+          if (neuralViz) {
+            neuralViz.isTraining = false;
+            neuralViz.lossHistory = [];
+            neuralViz.drawNetwork();
+            neuralViz.drawLoss();
+          }
+        });
+      }
       
       // Initial draws
-      neuralViz.drawNetwork();
+      if (neuralViz && neuralViz.drawNetwork) {
+        setTimeout(() => neuralViz.drawNetwork(), 100);
+      }
     });
   </script>
 </body>
