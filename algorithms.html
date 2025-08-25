@@ -43,7 +43,7 @@
     .blob {
       position: absolute; filter: blur(70px); opacity: .2; pointer-events:none;
       background: conic-gradient(from 90deg at 50% 50%, #60a5fa, #a78bfa, #22d3ee, #60a5fa);
-      animation: spin 20s linear infinite;
+      /* animation: spin 20s linear infinite; Temporarily disabled */
     }
     @keyframes spin { to { transform: rotate(1turn); } }
     
@@ -200,6 +200,7 @@
 
   <!-- SCRIPTS -->
   <script>
+    console.log('🚀 Algorithm Visualizer script starting...');
     // Theme system
     const applyTheme = (t) => {
       const root = document.documentElement;
@@ -1081,6 +1082,8 @@
       if (neuralViz && neuralViz.drawNetwork) {
         setTimeout(() => neuralViz.drawNetwork(), 100);
       }
+      
+      console.log('✅ Algorithm Visualizer initialization complete!');
     });
   </script>
 </body>

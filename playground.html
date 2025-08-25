@@ -57,7 +57,7 @@
     .blob {
       position: absolute; filter: blur(70px); opacity: .2; pointer-events:none;
       background: conic-gradient(from 90deg at 50% 50%, #60a5fa, #a78bfa, #22d3ee, #60a5fa);
-      animation: spin 25s linear infinite;
+      /* animation: spin 25s linear infinite; Temporarily disabled */
     }
     @keyframes spin { to { transform: rotate(1turn); } }
     
@@ -249,6 +249,7 @@
 
   <!-- SCRIPTS -->
   <script>
+    console.log('🚀 Code Playground script starting...');
     let editor;
     
     // Theme system
@@ -812,6 +813,8 @@ console.log('Sum:', numbers.reduce((sum, num) => sum + num, 0));
           }
         });
       });
+      
+      console.log('✅ Code Playground initialization complete!');
     });
   </script>
 </body>
