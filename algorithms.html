@@ -24,7 +24,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: 'selector', // Updated from 'class' which is deprecated
       theme: {
         extend: {
           fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
@@ -1257,6 +1257,7 @@
         pathViz = new PathfindingVisualizer();
         console.log('PathfindingVisualizer created:', !!pathViz);
         console.log('pathViz.start method exists:', typeof pathViz.start);
+        console.log('pathViz.start is async function:', pathViz.start && pathViz.start.constructor.name === 'AsyncFunction');
         console.log('pathViz methods:', Object.getOwnPropertyNames(Object.getPrototypeOf(pathViz)));
       } catch (error) {
         console.error('❌ Error creating PathfindingVisualizer:', error);
@@ -1299,10 +1300,20 @@
         console.log('Pathfinding start button found');
         pathStartBtn.addEventListener('click', async () => {
           console.log('Pathfinding start button clicked');
-          if (pathViz && typeof pathViz.start === 'function') {
-            await pathViz.start();
+          if (pathViz && pathViz.start && (typeof pathViz.start === 'function' || pathViz.start.constructor.name === 'AsyncFunction')) {
+            console.log('✅ Calling pathViz.start()');
+            try {
+              await pathViz.start();
+            } catch (error) {
+              console.error('❌ Error in pathViz.start():', error);
+            }
           } else {
-            console.error('PathViz start method not available:', typeof pathViz.start);
+            console.error('PathViz start method not available:', {
+              pathViz: !!pathViz,
+              start: !!pathViz?.start,
+              typeof: typeof pathViz?.start,
+              constructor: pathViz?.start?.constructor?.name
+            });
           }
         });
       } else {
