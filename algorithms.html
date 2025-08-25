@@ -476,17 +476,24 @@
     // Pathfinding Implementation
     class PathfindingVisualizer {
       constructor() {
+        console.log('🚀 PathfindingVisualizer constructor called');
         this.rows = 15;
         this.cols = 20;
         this.grid = [];
         this.start = {row: 5, col: 2};
         this.end = {row: 8, col: 17};
         this.isRunning = false;
+        console.log('📐 Grid dimensions:', this.rows, 'x', this.cols);
+        console.log('🎯 Start:', this.start, 'End:', this.end);
         this.initGrid();
       }
 
       initGrid() {
+        console.log('🔧 initGrid() called');
         this.grid = Array(this.rows).fill().map(() => Array(this.cols).fill(0));
+        
+        console.log('🧱 Adding maze walls...');
+        let wallsAdded = 0;
         
         // Add some walls to make pathfinding more interesting and visible
         // Create a simple maze pattern
@@ -495,6 +502,7 @@
             if ((row !== this.start.row || col !== this.start.col) && 
                 (row !== this.end.row || col !== this.end.col)) {
               this.grid[row][col] = 1; // Wall
+              wallsAdded++;
             }
           }
         }
@@ -505,21 +513,36 @@
             if ((row !== this.start.row || col !== this.start.col) && 
                 (row !== this.end.row || col !== this.end.col)) {
               this.grid[row][col] = 1; // Wall
+              wallsAdded++;
             }
           }
         }
         
+        console.log(`🧱 Added ${wallsAdded} walls to grid`);
         this.render();
       }
 
       render() {
+        console.log('🎯 PathfindingVisualizer.render() called');
         const container = document.getElementById('pathGrid');
-        if (!container) return;
+        
+        if (!container) {
+          console.error('❌ pathGrid container not found!');
+          return;
+        }
+        
+        console.log('✅ pathGrid container found:', container);
 
         container.innerHTML = '';
         container.style.gridTemplateRows = `repeat(${this.rows}, minmax(20px, 1fr))`;
         container.style.gridTemplateColumns = `repeat(${this.cols}, minmax(20px, 1fr))`;
         container.style.aspectRatio = `${this.cols}/${this.rows}`;
+
+        console.log(`🏗️ Creating ${this.rows}x${this.cols} grid`);
+        
+        let wallCount = 0;
+        let startCount = 0;
+        let endCount = 0;
 
         for (let row = 0; row < this.rows; row++) {
           for (let col = 0; col < this.cols; col++) {
@@ -532,16 +555,24 @@
 
             if (row === this.start.row && col === this.start.col) {
               cell.classList.add('start');
+              startCount++;
+              console.log(`🟢 Start cell at (${row}, ${col})`);
             } else if (row === this.end.row && col === this.end.col) {
               cell.classList.add('end');
+              endCount++;
+              console.log(`🔴 End cell at (${row}, ${col})`);
             } else if (this.grid[row][col] === 1) {
               cell.classList.add('wall');
+              wallCount++;
             }
 
             cell.addEventListener('click', () => this.toggleWall(row, col));
             container.appendChild(cell);
           }
         }
+        
+        console.log(`📊 Grid created with ${wallCount} walls, ${startCount} start, ${endCount} end`);
+        console.log('✅ Render complete');
       }
 
       toggleWall(row, col) {
@@ -824,11 +855,17 @@
       }
 
       async start() {
-        if (this.isRunning) return;
+        console.log('🚀 PathfindingVisualizer.start() called');
+        if (this.isRunning) {
+          console.log('⏸️ Already running, ignoring start request');
+          return;
+        }
         this.isRunning = true;
 
         // Clear previous visualization
-        document.querySelectorAll('.visited, .path').forEach(cell => {
+        const prevCells = document.querySelectorAll('.visited, .path');
+        console.log(`🧹 Clearing ${prevCells.length} previously visited/path cells`);
+        prevCells.forEach(cell => {
           cell.classList.remove('visited', 'path');
         });
 
@@ -836,10 +873,14 @@
         const statsElement = document.getElementById('pathStats');
         if (statsElement) {
           statsElement.textContent = 'Running pathfinding algorithm...';
+          console.log('📊 Updated stats element');
+        } else {
+          console.error('❌ pathStats element not found');
         }
 
-        const algorithm = document.getElementById('pathAlgorithm').value;
-        console.log(`Starting ${algorithm} pathfinding algorithm`);
+        const algorithmSelect = document.getElementById('pathAlgorithm');
+        const algorithm = algorithmSelect ? algorithmSelect.value : 'astar';
+        console.log(`🎯 Starting ${algorithm} pathfinding algorithm`);
 
         try {
           switch (algorithm) {
