@@ -174,7 +174,7 @@
         <button type="button" id="pathStart" class="rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700">Find Path</button>
         <button type="button" id="pathReset" class="rounded-xl border border-slate-300 dark:border-slate-600 px-4 py-2 font-semibold">Reset</button>
         <div class="text-sm text-slate-600 dark:text-slate-400">
-          Click to add walls | Drag start/end points
+          🟢 Drag green start point | 🔴 Drag red end point | Click/drag to add walls
         </div>
       </div>
       <div id="pathGrid" class="pathfinding-grid grid gap-0 w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-xl p-4"></div>
@@ -484,9 +484,15 @@
         this.start = {row: 5, col: 2};
         this.end = {row: 8, col: 17};
         this.isRunning = false;
+        this.isDragging = false;
+        this.dragMode = null; // 'start', 'end', or 'wall'
+        this.isDrawingWalls = false;
         console.log('📐 Grid dimensions:', this.rows, 'x', this.cols);
         console.log('🎯 Start:', this.start, 'End:', this.end);
         this.initGrid();
+        
+        // Add global mouse up listener for drag operations
+        document.addEventListener('mouseup', () => this.handleMouseUp());
       }
 
       initGrid() {
@@ -567,7 +573,10 @@
               wallCount++;
             }
 
-            cell.addEventListener('click', () => this.toggleWall(row, col));
+            // Add comprehensive mouse interaction
+            cell.addEventListener('mousedown', (e) => this.handleMouseDown(e, row, col));
+            cell.addEventListener('mouseenter', (e) => this.handleMouseEnter(e, row, col));
+            cell.addEventListener('mouseup', () => this.handleMouseUp());
             container.appendChild(cell);
           }
         }
@@ -587,6 +596,88 @@
         const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
         if (cell) {
           if (this.grid[row][col] === 1) {
+            cell.classList.add('wall');
+            cell.classList.remove('visited', 'path');
+          } else {
+            cell.classList.remove('wall', 'visited', 'path');
+          }
+        }
+      }
+
+      handleMouseDown(e, row, col) {
+        if (this.isRunning) return;
+        e.preventDefault();
+
+        if (row === this.start.row && col === this.start.col) {
+          this.isDragging = true;
+          this.dragMode = 'start';
+        } else if (row === this.end.row && col === this.end.col) {
+          this.isDragging = true;
+          this.dragMode = 'end';
+        } else {
+          this.isDrawingWalls = true;
+          this.toggleWall(row, col);
+        }
+      }
+
+      handleMouseEnter(e, row, col) {
+        if (this.isRunning) return;
+
+        if (this.isDragging && this.dragMode === 'start') {
+          this.moveStart(row, col);
+        } else if (this.isDragging && this.dragMode === 'end') {
+          this.moveEnd(row, col);
+        } else if (this.isDrawingWalls) {
+          if ((row !== this.start.row || col !== this.start.col) &&
+              (row !== this.end.row || col !== this.end.col)) {
+            this.setWall(row, col, true);
+          }
+        }
+      }
+
+      handleMouseUp() {
+        this.isDragging = false;
+        this.dragMode = null;
+        this.isDrawingWalls = false;
+      }
+
+      moveStart(row, col) {
+        if ((row === this.end.row && col === this.end.col) || this.grid[row][col] === 1) return;
+        
+        // Clear old start
+        const oldStartCell = document.querySelector(`[data-row="${this.start.row}"][data-col="${this.start.col}"]`);
+        if (oldStartCell) oldStartCell.classList.remove('start');
+        
+        // Set new start
+        this.start = {row, col};
+        const newStartCell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+        if (newStartCell) {
+          newStartCell.classList.add('start');
+          newStartCell.classList.remove('visited', 'path');
+        }
+      }
+
+      moveEnd(row, col) {
+        if ((row === this.start.row && col === this.start.col) || this.grid[row][col] === 1) return;
+        
+        // Clear old end
+        const oldEndCell = document.querySelector(`[data-row="${this.end.row}"][data-col="${this.end.col}"]`);
+        if (oldEndCell) oldEndCell.classList.remove('end');
+        
+        // Set new end
+        this.end = {row, col};
+        const newEndCell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+        if (newEndCell) {
+          newEndCell.classList.add('end');
+          newEndCell.classList.remove('visited', 'path');
+        }
+      }
+
+      setWall(row, col, isWall) {
+        this.grid[row][col] = isWall ? 1 : 0;
+        const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+        if (cell) {
+          if (isWall) {
             cell.classList.add('wall');
             cell.classList.remove('visited', 'path');
           } else {
@@ -1261,11 +1352,12 @@
         console.log('pathViz.start is async function:', pathViz.start && pathViz.start.constructor.name === 'AsyncFunction');
         console.log('pathViz methods:', Object.getOwnPropertyNames(Object.getPrototypeOf(pathViz)));
         
-        // Test the method directly after creation
-        if (typeof pathViz.start === 'function') {
-          console.log('✅ pathViz.start is properly bound function');
+        // Test the method directly after creation (handle async function binding)
+        const prototypeStart = Object.getPrototypeOf(pathViz).start;
+        if (prototypeStart && (typeof prototypeStart === 'function' || prototypeStart.constructor.name === 'AsyncFunction')) {
+          console.log('✅ pathViz.start is available on prototype');
         } else {
-          console.error('❌ pathViz.start is not a function:', typeof pathViz.start);
+          console.error('❌ pathViz.start method not found on prototype');
         }
       } catch (error) {
         console.error('❌ Error creating PathfindingVisualizer:', error);
