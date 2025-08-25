@@ -1300,10 +1300,11 @@
         console.log('Pathfinding start button found');
         pathStartBtn.addEventListener('click', async () => {
           console.log('Pathfinding start button clicked');
-          if (pathViz && pathViz.start && (typeof pathViz.start === 'function' || pathViz.start.constructor.name === 'AsyncFunction')) {
+          if (pathViz && pathViz.start) {
             console.log('✅ Calling pathViz.start()');
             try {
-              await pathViz.start();
+              // Force call the method regardless of typeof result
+              await pathViz.start.call(pathViz);
             } catch (error) {
               console.error('❌ Error in pathViz.start():', error);
             }
