@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>⚡ Algorithm Visualizer — WCNegentropy</title>
+  <meta name="description" content="Interactive algorithm visualizations by WCNegentropy. Watch sorting algorithms, pathfinding, and neural networks come to life." />
+  <link rel="canonical" href="https://WCNegentropy.github.io/algorithms" />
+  <meta name="theme-color" content="#0ea5e9" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              50: '#e6f8ff', 100: '#ccefff', 200: '#99dfff', 300: '#66cfff', 400: '#33bfff',
+              500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e'
+            }
+          },
+          boxShadow: { glow: '0 10px 30px rgba(14,165,233,0.25)' }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: Inter, ui-sans-serif, system-ui; }
+    .bg-grid {
+      background-image: radial-gradient( circle at 1px 1px, rgba(0,0,0,.05) 1px, transparent 0 );
+      background-size: 22px 22px;
+    }
+    .blob {
+      position: absolute; filter: blur(70px); opacity: .2; pointer-events:none;
+      background: conic-gradient(from 90deg at 50% 50%, #60a5fa, #a78bfa, #22d3ee, #60a5fa);
+      animation: spin 20s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(1turn); } }
+    
+    /* Algorithm specific styles */
+    .array-bar {
+      transition: all 0.3s ease;
+      border-radius: 4px 4px 0 0;
+    }
+    .grid-cell {
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      transition: all 0.2s ease;
+    }
+    .path { background-color: #22d3ee !important; }
+    .wall { background-color: #374151 !important; }
+    .start { background-color: #10b981 !important; }
+    .end { background-color: #ef4444 !important; }
+    .visited { background-color: #a78bfa !important; }
+    
+    /* Neural network styles */
+    .neuron { transition: all 0.3s ease; }
+    .connection { transition: all 0.3s ease; }
+  </style>
+</head>
+
+<body class="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
+  <!-- Background blobs -->
+  <div class="blob w-[30vw] h-[30vw] top-[-10vw] left-[-10vw] rounded-full"></div>
+  <div class="blob w-[25vw] h-[25vw] bottom-[-10vw] right-[-10vw] rounded-full"></div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60 border-b border-slate-200/60 dark:border-slate-800">
+    <div class="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 group">
+        <img src="https://avatars.githubusercontent.com/u/WCNegentropy?v=4" class="size-10 rounded-full ring-2 ring-brand-400/40" alt="WCNegentropy" />
+        <div>
+          <div class="font-semibold tracking-tight group-hover:text-brand-600 transition">WCNegentropy</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">Algorithm Visualizer</div>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="/" class="hover:text-brand-600">Home</a>
+        <a href="#sorting" class="hover:text-brand-600">Sorting</a>
+        <a href="#pathfinding" class="hover:text-brand-600">Pathfinding</a>
+        <a href="#neural" class="hover:text-brand-600">Neural Networks</a>
+        <a href="/playground.html" class="hover:text-brand-600">Code Playground</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="theme-toggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-1.5 text-xs hover:shadow-glow transition">
+          <span class="i-theme">🌞</span><span class="hidden sm:inline">Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid pointer-events-none"></div>
+    <div class="mx-auto max-w-7xl px-6 pt-16 pb-12">
+      <div class="text-center">
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">
+          Algorithm <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-violet-500">Visualizer</span>
+        </h1>
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+          Watch algorithms come to life. Interactive visualizations of sorting, pathfinding, and neural networks.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SORTING ALGORITHMS -->
+  <section id="sorting" class="mx-auto max-w-7xl px-6 py-16">
+    <h2 class="text-3xl font-extrabold tracking-tight mb-8">Sorting Algorithms</h2>
+    
+    <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 mb-8">
+      <div class="flex flex-wrap items-center gap-4 mb-6">
+        <select id="sortAlgorithm" class="rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-2">
+          <option value="bubble">Bubble Sort</option>
+          <option value="quick">Quick Sort</option>
+          <option value="merge">Merge Sort</option>
+          <option value="heap">Heap Sort</option>
+        </select>
+        <button id="sortStart" class="rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700">Start</button>
+        <button id="sortReset" class="rounded-xl border border-slate-300 dark:border-slate-600 px-4 py-2 font-semibold">Reset</button>
+        <div class="text-sm text-slate-600 dark:text-slate-400">
+          Speed: <input type="range" id="sortSpeed" min="1" max="100" value="50" class="ml-2">
+        </div>
+      </div>
+      <div id="sortVisualization" class="h-64 flex items-end justify-center gap-1 bg-white dark:bg-slate-800 rounded-xl p-4"></div>
+      <div id="sortStats" class="mt-4 text-sm text-slate-600 dark:text-slate-400 text-center"></div>
+    </div>
+  </section>
+
+  <!-- PATHFINDING -->
+  <section id="pathfinding" class="mx-auto max-w-7xl px-6 py-16">
+    <h2 class="text-3xl font-extrabold tracking-tight mb-8">Pathfinding Algorithms</h2>
+    
+    <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 mb-8">
+      <div class="flex flex-wrap items-center gap-4 mb-6">
+        <select id="pathAlgorithm" class="rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-2">
+          <option value="astar">A* Search</option>
+          <option value="dijkstra">Dijkstra's</option>
+          <option value="bfs">Breadth-First Search</option>
+          <option value="dfs">Depth-First Search</option>
+        </select>
+        <button id="pathStart" class="rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700">Find Path</button>
+        <button id="pathReset" class="rounded-xl border border-slate-300 dark:border-slate-600 px-4 py-2 font-semibold">Reset</button>
+        <div class="text-sm text-slate-600 dark:text-slate-400">
+          Click to add walls | Drag start/end points
+        </div>
+      </div>
+      <div id="pathGrid" class="grid grid-cols-20 gap-0 w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-xl p-4"></div>
+      <div id="pathStats" class="mt-4 text-sm text-slate-600 dark:text-slate-400 text-center"></div>
+    </div>
+  </section>
+
+  <!-- NEURAL NETWORK -->
+  <section id="neural" class="mx-auto max-w-7xl px-6 py-16">
+    <h2 class="text-3xl font-extrabold tracking-tight mb-8">Neural Network Visualization</h2>
+    
+    <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 mb-8">
+      <div class="flex flex-wrap items-center gap-4 mb-6">
+        <select id="neuralExample" class="rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-2">
+          <option value="xor">XOR Gate</option>
+          <option value="classification">Binary Classification</option>
+          <option value="regression">Simple Regression</option>
+        </select>
+        <button id="neuralTrain" class="rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700">Train Network</button>
+        <button id="neuralReset" class="rounded-xl border border-slate-300 dark:border-slate-600 px-4 py-2 font-semibold">Reset</button>
+        <div class="text-sm text-slate-600 dark:text-slate-400">
+          Learning Rate: <input type="range" id="learningRate" min="0.01" max="1" step="0.01" value="0.1" class="ml-2">
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <canvas id="neuralNetwork" width="400" height="300" class="w-full bg-white dark:bg-slate-800 rounded-xl"></canvas>
+        </div>
+        <div>
+          <canvas id="lossChart" width="400" height="300" class="w-full bg-white dark:bg-slate-800 rounded-xl"></canvas>
+        </div>
+      </div>
+      <div id="neuralStats" class="mt-4 text-sm text-slate-600 dark:text-slate-400 text-center"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-10">
+    <div class="mx-auto max-w-7xl px-6 text-center">
+      <p class="text-sm text-slate-500">© 2024 WCNegentropy. Interactive algorithm demonstrations.</p>
+      <div class="mt-4">
+        <a href="/" class="text-brand-600 hover:underline">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Theme system
+    const applyTheme = (t) => {
+      const root = document.documentElement;
+      if (t === 'dark') root.classList.add('dark'); else root.classList.remove('dark');
+      document.querySelector('.i-theme').textContent = t === 'dark' ? '🌙' : '🌞';
+      localStorage.setItem('theme', t);
+    }
+    const initTheme = () => {
+      const pref = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      applyTheme(pref);
+    }
+
+    // Sorting Algorithm Implementation
+    class SortingVisualizer {
+      constructor() {
+        this.array = [];
+        this.isRunning = false;
+        this.size = 50;
+        this.speed = 50;
+        this.comparisons = 0;
+        this.swaps = 0;
+        this.initArray();
+      }
+
+      initArray() {
+        this.array = Array.from({length: this.size}, () => Math.floor(Math.random() * 250) + 10);
+        this.render();
+      }
+
+      render() {
+        const container = document.getElementById('sortVisualization');
+        container.innerHTML = '';
+        
+        this.array.forEach((value, index) => {
+          const bar = document.createElement('div');
+          bar.className = 'array-bar bg-brand-500';
+          bar.style.height = `${value}px`;
+          bar.style.width = `${Math.max(1, (container.offsetWidth - this.size * 2) / this.size)}px`;
+          bar.dataset.index = index;
+          container.appendChild(bar);
+        });
+      }
+
+      async delay() {
+        return new Promise(resolve => setTimeout(resolve, 101 - this.speed));
+      }
+
+      async highlightBars(indices, color = '#ef4444') {
+        indices.forEach(i => {
+          if (i < this.array.length) {
+            const bar = document.querySelector(`[data-index="${i}"]`);
+            if (bar) bar.style.backgroundColor = color;
+          }
+        });
+        await this.delay();
+      }
+
+      resetBarColors() {
+        document.querySelectorAll('.array-bar').forEach(bar => {
+          bar.style.backgroundColor = '#0ea5e9';
+        });
+      }
+
+      async swap(i, j) {
+        this.swaps++;
+        [this.array[i], this.array[j]] = [this.array[j], this.array[i]];
+        this.render();
+        await this.highlightBars([i, j], '#22d3ee');
+        this.updateStats();
+      }
+
+      async bubbleSort() {
+        const n = this.array.length;
+        for (let i = 0; i < n - 1; i++) {
+          for (let j = 0; j < n - i - 1; j++) {
+            if (!this.isRunning) return;
+            this.comparisons++;
+            await this.highlightBars([j, j + 1], '#fbbf24');
+            if (this.array[j] > this.array[j + 1]) {
+              await this.swap(j, j + 1);
+            }
+            this.resetBarColors();
+          }
+        }
+      }
+
+      async quickSort(arr = this.array, start = 0, end = this.array.length - 1) {
+        if (start < end) {
+          const pi = await this.partition(arr, start, end);
+          await this.quickSort(arr, start, pi - 1);
+          await this.quickSort(arr, pi + 1, end);
+        }
+      }
+
+      async partition(arr, start, end) {
+        const pivot = arr[end];
+        let i = start - 1;
+
+        for (let j = start; j < end; j++) {
+          if (!this.isRunning) return;
+          this.comparisons++;
+          await this.highlightBars([j, end], '#fbbf24');
+          if (arr[j] < pivot) {
+            i++;
+            if (i !== j) await this.swap(i, j);
+          }
+          this.resetBarColors();
+        }
+        if (i + 1 !== end) await this.swap(i + 1, end);
+        return i + 1;
+      }
+
+      updateStats() {
+        document.getElementById('sortStats').textContent = 
+          `Comparisons: ${this.comparisons} | Swaps: ${this.swaps}`;
+      }
+
+      async start() {
+        if (this.isRunning) return;
+        this.isRunning = true;
+        this.comparisons = 0;
+        this.swaps = 0;
+        
+        const algorithm = document.getElementById('sortAlgorithm').value;
+        
+        switch (algorithm) {
+          case 'bubble':
+            await this.bubbleSort();
+            break;
+          case 'quick':
+            await this.quickSort();
+            break;
+          // Add more algorithms here
+        }
+        
+        this.isRunning = false;
+      }
+
+      reset() {
+        this.isRunning = false;
+        this.comparisons = 0;
+        this.swaps = 0;
+        this.initArray();
+        this.updateStats();
+      }
+    }
+
+    // Pathfinding Implementation
+    class PathfindingVisualizer {
+      constructor() {
+        this.rows = 15;
+        this.cols = 20;
+        this.grid = [];
+        this.start = {row: 5, col: 2};
+        this.end = {row: 8, col: 17};
+        this.isRunning = false;
+        this.initGrid();
+      }
+
+      initGrid() {
+        this.grid = Array(this.rows).fill().map(() => Array(this.cols).fill(0));
+        this.render();
+      }
+
+      render() {
+        const container = document.getElementById('pathGrid');
+        container.innerHTML = '';
+        container.style.gridTemplateRows = `repeat(${this.rows}, 1fr)`;
+        container.style.gridTemplateColumns = `repeat(${this.cols}, 1fr)`;
+        
+        for (let row = 0; row < this.rows; row++) {
+          for (let col = 0; col < this.cols; col++) {
+            const cell = document.createElement('div');
+            cell.className = 'grid-cell w-6 h-6 cursor-pointer';
+            cell.dataset.row = row;
+            cell.dataset.col = col;
+            
+            if (row === this.start.row && col === this.start.col) {
+              cell.classList.add('start');
+            } else if (row === this.end.row && col === this.end.col) {
+              cell.classList.add('end');
+            } else if (this.grid[row][col] === 1) {
+              cell.classList.add('wall');
+            }
+            
+            cell.addEventListener('click', () => this.toggleWall(row, col));
+            container.appendChild(cell);
+          }
+        }
+      }
+
+      toggleWall(row, col) {
+        if ((row === this.start.row && col === this.start.col) || 
+            (row === this.end.row && col === this.end.col)) return;
+        
+        this.grid[row][col] = this.grid[row][col] === 1 ? 0 : 1;
+        this.render();
+      }
+
+      async aStar() {
+        // Simplified A* implementation for demo
+        const openSet = [{...this.start, f: 0, g: 0, h: 0, parent: null}];
+        const closedSet = new Set();
+        const visited = new Set();
+
+        while (openSet.length > 0 && this.isRunning) {
+          openSet.sort((a, b) => a.f - b.f);
+          const current = openSet.shift();
+          
+          if (current.row === this.end.row && current.col === this.end.col) {
+            // Reconstruct path
+            let path = [];
+            let node = current;
+            while (node) {
+              path.unshift(node);
+              node = node.parent;
+            }
+            await this.animatePath(path);
+            return;
+          }
+
+          closedSet.add(`${current.row},${current.col}`);
+          
+          // Visualize visited node
+          if (current.row !== this.start.row || current.col !== this.start.col) {
+            const cell = document.querySelector(`[data-row="${current.row}"][data-col="${current.col}"]`);
+            if (cell) cell.classList.add('visited');
+          }
+          
+          await new Promise(resolve => setTimeout(resolve, 50));
+
+          // Check neighbors
+          const neighbors = [
+            {row: current.row - 1, col: current.col},
+            {row: current.row + 1, col: current.col},
+            {row: current.row, col: current.col - 1},
+            {row: current.row, col: current.col + 1}
+          ];
+
+          for (let neighbor of neighbors) {
+            if (neighbor.row < 0 || neighbor.row >= this.rows || 
+                neighbor.col < 0 || neighbor.col >= this.cols ||
+                this.grid[neighbor.row][neighbor.col] === 1 ||
+                closedSet.has(`${neighbor.row},${neighbor.col}`)) continue;
+
+            const g = current.g + 1;
+            const h = Math.abs(neighbor.row - this.end.row) + Math.abs(neighbor.col - this.end.col);
+            const f = g + h;
+
+            const existing = openSet.find(node => node.row === neighbor.row && node.col === neighbor.col);
+            if (!existing) {
+              openSet.push({...neighbor, f, g, h, parent: current});
+            } else if (g < existing.g) {
+              existing.g = g;
+              existing.f = f;
+              existing.parent = current;
+            }
+          }
+        }
+      }
+
+      async animatePath(path) {
+        for (let node of path) {
+          if (node.row !== this.start.row || node.col !== this.start.col) {
+            if (node.row !== this.end.row || node.col !== this.end.col) {
+              const cell = document.querySelector(`[data-row="${node.row}"][data-col="${node.col}"]`);
+              if (cell) cell.classList.add('path');
+            }
+          }
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+      }
+
+      async start() {
+        if (this.isRunning) return;
+        this.isRunning = true;
+        
+        // Clear previous visualization
+        document.querySelectorAll('.visited, .path').forEach(cell => {
+          cell.classList.remove('visited', 'path');
+        });
+
+        const algorithm = document.getElementById('pathAlgorithm').value;
+        
+        switch (algorithm) {
+          case 'astar':
+            await this.aStar();
+            break;
+          // Add more algorithms
+        }
+        
+        this.isRunning = false;
+      }
+
+      reset() {
+        this.isRunning = false;
+        this.initGrid();
+      }
+    }
+
+    // Neural Network Visualization
+    class NeuralNetworkVisualizer {
+      constructor() {
+        this.canvas = document.getElementById('neuralNetwork');
+        this.lossCanvas = document.getElementById('lossChart');
+        this.ctx = this.canvas.getContext('2d');
+        this.lossCtx = this.lossCanvas.getContext('2d');
+        this.network = null;
+        this.lossHistory = [];
+        this.isTraining = false;
+      }
+
+      initNetwork(inputSize = 2, hiddenSize = 4, outputSize = 1) {
+        this.network = {
+          weights1: this.randomMatrix(inputSize, hiddenSize),
+          weights2: this.randomMatrix(hiddenSize, outputSize),
+          bias1: this.randomMatrix(1, hiddenSize),
+          bias2: this.randomMatrix(1, outputSize)
+        };
+        this.lossHistory = [];
+      }
+
+      randomMatrix(rows, cols) {
+        return Array(rows).fill().map(() => Array(cols).fill().map(() => Math.random() * 2 - 1));
+      }
+
+      sigmoid(x) {
+        return 1 / (1 + Math.exp(-x));
+      }
+
+      forward(input) {
+        // Simple forward pass
+        const hidden = input.map((inp, i) => 
+          this.network.weights1[i].reduce((sum, w, j) => sum + w * inp, 0) + this.network.bias1[0][i]
+        ).map(x => this.sigmoid(x));
+        
+        const output = hidden.map((h, i) => 
+          this.network.weights2[i].reduce((sum, w, j) => sum + w * h, 0) + this.network.bias2[0][0]
+        );
+        
+        return { hidden, output: output.map(x => this.sigmoid(x)) };
+      }
+
+      drawNetwork() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Draw a simple network visualization
+        const layers = [2, 4, 1]; // input, hidden, output
+        const layerX = [50, 200, 350];
+        const nodeRadius = 15;
+        
+        // Draw connections
+        this.ctx.strokeStyle = '#64748b';
+        this.ctx.lineWidth = 1;
+        
+        for (let l = 0; l < layers.length - 1; l++) {
+          for (let i = 0; i < layers[l]; i++) {
+            for (let j = 0; j < layers[l + 1]; j++) {
+              const y1 = 50 + i * 60;
+              const y2 = 50 + j * 60;
+              this.ctx.beginPath();
+              this.ctx.moveTo(layerX[l] + nodeRadius, y1);
+              this.ctx.lineTo(layerX[l + 1] - nodeRadius, y2);
+              this.ctx.stroke();
+            }
+          }
+        }
+        
+        // Draw nodes
+        layers.forEach((count, l) => {
+          for (let i = 0; i < count; i++) {
+            const y = 50 + i * 60;
+            this.ctx.fillStyle = l === 0 ? '#10b981' : l === layers.length - 1 ? '#ef4444' : '#0ea5e9';
+            this.ctx.beginPath();
+            this.ctx.arc(layerX[l], y, nodeRadius, 0, 2 * Math.PI);
+            this.ctx.fill();
+          }
+        });
+      }
+
+      drawLoss() {
+        this.lossCtx.clearRect(0, 0, this.lossCanvas.width, this.lossCanvas.height);
+        
+        if (this.lossHistory.length < 2) return;
+        
+        this.lossCtx.strokeStyle = '#0ea5e9';
+        this.lossCtx.lineWidth = 2;
+        this.lossCtx.beginPath();
+        
+        const maxLoss = Math.max(...this.lossHistory);
+        const minLoss = Math.min(...this.lossHistory);
+        const range = maxLoss - minLoss || 1;
+        
+        this.lossHistory.forEach((loss, i) => {
+          const x = (i / (this.lossHistory.length - 1)) * this.lossCanvas.width;
+          const y = this.lossCanvas.height - ((loss - minLoss) / range) * this.lossCanvas.height;
+          
+          if (i === 0) this.lossCtx.moveTo(x, y);
+          else this.lossCtx.lineTo(x, y);
+        });
+        
+        this.lossCtx.stroke();
+      }
+
+      async train() {
+        if (this.isTraining) return;
+        this.isTraining = true;
+        
+        this.initNetwork();
+        
+        // XOR training data
+        const data = [
+          {input: [0, 0], output: [0]},
+          {input: [0, 1], output: [1]},
+          {input: [1, 0], output: [1]},
+          {input: [1, 1], output: [0]}
+        ];
+        
+        for (let epoch = 0; epoch < 1000 && this.isTraining; epoch++) {
+          let totalLoss = 0;
+          
+          for (let sample of data) {
+            const result = this.forward(sample.input);
+            const loss = Math.pow(result.output[0] - sample.output[0], 2);
+            totalLoss += loss;
+          }
+          
+          this.lossHistory.push(totalLoss / data.length);
+          
+          if (epoch % 10 === 0) {
+            this.drawNetwork();
+            this.drawLoss();
+            document.getElementById('neuralStats').textContent = 
+              `Epoch: ${epoch}, Loss: ${(totalLoss / data.length).toFixed(4)}`;
+            await new Promise(resolve => setTimeout(resolve, 10));
+          }
+        }
+        
+        this.isTraining = false;
+      }
+    }
+
+    // Initialize everything when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      
+      // Theme toggle
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const t = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+        applyTheme(t);
+      });
+
+      // Initialize visualizers
+      const sortViz = new SortingVisualizer();
+      const pathViz = new PathfindingVisualizer();
+      const neuralViz = new NeuralNetworkVisualizer();
+      
+      // Event listeners
+      document.getElementById('sortStart').addEventListener('click', () => sortViz.start());
+      document.getElementById('sortReset').addEventListener('click', () => sortViz.reset());
+      document.getElementById('sortSpeed').addEventListener('input', (e) => {
+        sortViz.speed = e.target.value;
+      });
+      
+      document.getElementById('pathStart').addEventListener('click', () => pathViz.start());
+      document.getElementById('pathReset').addEventListener('click', () => pathViz.reset());
+      
+      document.getElementById('neuralTrain').addEventListener('click', () => neuralViz.train());
+      document.getElementById('neuralReset').addEventListener('click', () => {
+        neuralViz.isTraining = false;
+        neuralViz.lossHistory = [];
+        neuralViz.drawNetwork();
+        neuralViz.drawLoss();
+      });
+      
+      // Initial draws
+      neuralViz.drawNetwork();
+    });
+  </script>
+</body>
+</html>

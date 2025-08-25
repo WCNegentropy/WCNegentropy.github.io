@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>⚡ Code Playground — WCNegentropy</title>
+  <meta name="description" content="Interactive code playground by WCNegentropy. Write, run, and experiment with JavaScript, Python concepts, and algorithms live in your browser." />
+  <link rel="canonical" href="https://WCNegentropy.github.io/playground" />
+  <meta name="theme-color" content="#0ea5e9" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { 
+            sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'monospace']
+          },
+          colors: {
+            brand: {
+              50: '#e6f8ff', 100: '#ccefff', 200: '#99dfff', 300: '#66cfff', 400: '#33bfff',
+              500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e'
+            }
+          },
+          boxShadow: { glow: '0 10px 30px rgba(14,165,233,0.25)' }
+        }
+      }
+    }
+  </script>
+
+  <!-- CodeMirror for syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/python/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/addon/edit/closebrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/addon/edit/matchbrackets.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/theme/monokai.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/theme/eclipse.min.css">
+
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: Inter, ui-sans-serif, system-ui; }
+    .bg-grid {
+      background-image: radial-gradient( circle at 1px 1px, rgba(0,0,0,.05) 1px, transparent 0 );
+      background-size: 22px 22px;
+    }
+    .blob {
+      position: absolute; filter: blur(70px); opacity: .2; pointer-events:none;
+      background: conic-gradient(from 90deg at 50% 50%, #60a5fa, #a78bfa, #22d3ee, #60a5fa);
+      animation: spin 25s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(1turn); } }
+    
+    .CodeMirror { height: 100%; font-family: 'JetBrains Mono', monospace !important; }
+    .CodeMirror-scroll { min-height: 300px; }
+    .output-line { 
+      padding: 4px 8px; 
+      border-left: 3px solid #0ea5e9; 
+      margin: 2px 0; 
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+    }
+    .output-error { border-left-color: #ef4444; background-color: rgba(239, 68, 68, 0.1); }
+    .output-success { border-left-color: #10b981; background-color: rgba(16, 185, 129, 0.1); }
+    .example-btn { transition: all 0.2s ease; }
+    .example-btn:hover { transform: translateY(-1px); }
+  </style>
+</head>
+
+<body class="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
+  <!-- Background blobs -->
+  <div class="blob w-[35vw] h-[35vw] top-[-15vw] left-[-15vw] rounded-full"></div>
+  <div class="blob w-[30vw] h-[30vw] bottom-[-15vw] right-[-15vw] rounded-full"></div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/60 border-b border-slate-200/60 dark:border-slate-800">
+    <div class="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 group">
+        <img src="https://avatars.githubusercontent.com/u/WCNegentropy?v=4" class="size-10 rounded-full ring-2 ring-brand-400/40" alt="WCNegentropy" />
+        <div>
+          <div class="font-semibold tracking-tight group-hover:text-brand-600 transition">WCNegentropy</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">Code Playground</div>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="/" class="hover:text-brand-600">Home</a>
+        <a href="/algorithms.html" class="hover:text-brand-600">Algorithm Visualizer</a>
+        <a href="#examples" class="hover:text-brand-600">Examples</a>
+        <a href="#features" class="hover:text-brand-600">Features</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="theme-toggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-1.5 text-xs hover:shadow-glow transition">
+          <span class="i-theme">🌞</span><span class="hidden sm:inline">Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid pointer-events-none"></div>
+    <div class="mx-auto max-w-7xl px-6 pt-16 pb-12">
+      <div class="text-center">
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">
+          Code <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-violet-500">Playground</span>
+        </h1>
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+          Write, run, and experiment with code live in your browser. No setup required.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAYGROUND -->
+  <section class="mx-auto max-w-7xl px-6 py-16">
+    <div class="grid lg:grid-cols-2 gap-8">
+      <!-- CODE EDITOR -->
+      <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl overflow-hidden">
+        <div class="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
+          <div class="flex items-center gap-4">
+            <select id="languageSelect" class="rounded-lg border border-slate-300 dark:border-slate-600 bg-transparent px-3 py-1.5 text-sm">
+              <option value="javascript">JavaScript</option>
+              <option value="python">Python (Concepts)</option>
+              <option value="algorithm">Algorithms</option>
+            </select>
+            <button id="runCode" class="rounded-lg bg-brand-600 text-white px-4 py-1.5 text-sm font-semibold hover:bg-brand-700 shadow-glow">
+              ▶ Run
+            </button>
+            <button id="clearCode" class="rounded-lg border border-slate-300 dark:border-slate-600 px-4 py-1.5 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800">
+              Clear
+            </button>
+          </div>
+          <div class="text-xs text-slate-500">
+            Ctrl+Enter to run
+          </div>
+        </div>
+        <div id="editor" class="min-h-[400px]"></div>
+      </div>
+
+      <!-- OUTPUT -->
+      <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl overflow-hidden">
+        <div class="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
+          <h3 class="font-semibold">Output</h3>
+          <button id="clearOutput" class="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Clear</button>
+        </div>
+        <div id="output" class="p-4 min-h-[400px] bg-white dark:bg-slate-800 font-mono text-sm overflow-auto">
+          <div class="text-slate-500">Run your code to see output here...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLES -->
+  <section id="examples" class="mx-auto max-w-7xl px-6 py-16">
+    <h2 class="text-3xl font-extrabold tracking-tight mb-8 text-center">Try These Examples</h2>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Algorithm Examples -->
+      <div class="example-btn bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-6 border border-blue-200 dark:border-blue-800 cursor-pointer hover:shadow-glow" data-example="sorting">
+        <h3 class="font-bold text-blue-900 dark:text-blue-300">🔄 Bubble Sort</h3>
+        <p class="text-sm text-blue-700 dark:text-blue-400 mt-2">Classic sorting algorithm with step-by-step logging</p>
+      </div>
+
+      <div class="example-btn bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-2xl p-6 border border-green-200 dark:border-green-800 cursor-pointer hover:shadow-glow" data-example="fibonacci">
+        <h3 class="font-bold text-green-900 dark:text-green-300">🌀 Fibonacci Sequence</h3>
+        <p class="text-sm text-green-700 dark:text-green-400 mt-2">Generate Fibonacci numbers with memoization</p>
+      </div>
+
+      <div class="example-btn bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl p-6 border border-purple-200 dark:border-purple-800 cursor-pointer hover:shadow-glow" data-example="binarySearch">
+        <h3 class="font-bold text-purple-900 dark:text-purple-300">🎯 Binary Search</h3>
+        <p class="text-sm text-purple-700 dark:text-purple-400 mt-2">Efficient searching with logarithmic complexity</p>
+      </div>
+
+      <div class="example-btn bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 rounded-2xl p-6 border border-red-200 dark:border-red-800 cursor-pointer hover:shadow-glow" data-example="neural">
+        <h3 class="font-bold text-red-900 dark:text-red-300">🧠 Simple Neural Net</h3>
+        <p class="text-sm text-red-700 dark:text-red-400 mt-2">Basic perceptron with forward propagation</p>
+      </div>
+
+      <div class="example-btn bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 rounded-2xl p-6 border border-yellow-200 dark:border-yellow-800 cursor-pointer hover:shadow-glow" data-example="graph">
+        <h3 class="font-bold text-yellow-900 dark:text-yellow-300">🕸️ Graph Traversal</h3>
+        <p class="text-sm text-yellow-700 dark:text-yellow-400 mt-2">DFS and BFS graph algorithms</p>
+      </div>
+
+      <div class="example-btn bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 rounded-2xl p-6 border border-indigo-200 dark:border-indigo-800 cursor-pointer hover:shadow-glow" data-example="crypto">
+        <h3 class="font-bold text-indigo-900 dark:text-indigo-300">🔐 Simple Cipher</h3>
+        <p class="text-sm text-indigo-700 dark:text-indigo-400 mt-2">Caesar cipher implementation</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="mx-auto max-w-7xl px-6 py-16">
+    <h2 class="text-3xl font-extrabold tracking-tight mb-8 text-center">Playground Features</h2>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="text-center">
+        <div class="w-12 h-12 bg-brand-100 dark:bg-brand-900 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <span class="text-2xl">⚡</span>
+        </div>
+        <h3 class="font-semibold mb-2">Instant Execution</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Run code immediately in your browser</p>
+      </div>
+      
+      <div class="text-center">
+        <div class="w-12 h-12 bg-brand-100 dark:bg-brand-900 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <span class="text-2xl">🎨</span>
+        </div>
+        <h3 class="font-semibold mb-2">Syntax Highlighting</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Beautiful code with proper highlighting</p>
+      </div>
+      
+      <div class="text-center">
+        <div class="w-12 h-12 bg-brand-100 dark:bg-brand-900 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <span class="text-2xl">🔧</span>
+        </div>
+        <h3 class="font-semibold mb-2">Multiple Languages</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400">JavaScript, Python concepts, and more</p>
+      </div>
+      
+      <div class="text-center">
+        <div class="w-12 h-12 bg-brand-100 dark:bg-brand-900 rounded-xl flex items-center justify-center mx-auto mb-4">
+          <span class="text-2xl">📚</span>
+        </div>
+        <h3 class="font-semibold mb-2">Example Library</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Ready-to-run algorithm examples</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-10">
+    <div class="mx-auto max-w-7xl px-6 text-center">
+      <p class="text-sm text-slate-500">© 2024 WCNegentropy. Interactive code playground.</p>
+      <div class="mt-4">
+        <a href="/" class="text-brand-600 hover:underline">← Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    let editor;
+    
+    // Theme system
+    const applyTheme = (t) => {
+      const root = document.documentElement;
+      if (t === 'dark') root.classList.add('dark'); else root.classList.remove('dark');
+      document.querySelector('.i-theme').textContent = t === 'dark' ? '🌙' : '🌞';
+      localStorage.setItem('theme', t);
+      if (editor) {
+        editor.setOption('theme', t === 'dark' ? 'monokai' : 'eclipse');
+      }
+    }
+    
+    const initTheme = () => {
+      const pref = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      applyTheme(pref);
+    }
+
+    // Code examples
+    const examples = {
+      sorting: {
+        language: 'javascript',
+        code: `// Bubble Sort Algorithm
+function bubbleSort(arr) {
+  const n = arr.length;
+  console.log(\`Starting bubble sort on [\${arr.join(', ')}]\`);
+  
+  for (let i = 0; i < n - 1; i++) {
+    console.log(\`Pass \${i + 1}:\`);
+    
+    for (let j = 0; j < n - i - 1; j++) {
+      console.log(\`  Comparing \${arr[j]} and \${arr[j + 1]}\`);
+      
+      if (arr[j] > arr[j + 1]) {
+        // Swap elements
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        console.log(\`    Swapped! New array: [\${arr.join(', ')}]\`);
+      }
+    }
+  }
+  
+  console.log(\`Final sorted array: [\${arr.join(', ')}]\`);
+  return arr;
+}
+
+// Test the algorithm
+const numbers = [64, 34, 25, 12, 22, 11, 90];
+bubbleSort([...numbers]); // Use spread to avoid modifying original`
+      },
+      
+      fibonacci: {
+        language: 'javascript',
+        code: `// Fibonacci with Memoization
+class FibonacciCalculator {
+  constructor() {
+    this.memo = new Map();
+    this.callCount = 0;
+  }
+  
+  calculate(n) {
+    this.callCount++;
+    
+    if (n <= 1) return n;
+    
+    if (this.memo.has(n)) {
+      console.log(\`Cache hit for F(\${n})\`);
+      return this.memo.get(n);
+    }
+    
+    console.log(\`Computing F(\${n})\`);
+    const result = this.calculate(n - 1) + this.calculate(n - 2);
+    this.memo.set(n, result);
+    
+    return result;
+  }
+  
+  generateSequence(count) {
+    console.log(\`Generating first \${count} Fibonacci numbers:\`);
+    const sequence = [];
+    
+    for (let i = 0; i < count; i++) {
+      const fib = this.calculate(i);
+      sequence.push(fib);
+      console.log(\`F(\${i}) = \${fib}\`);
+    }
+    
+    console.log(\`Total function calls: \${this.callCount}\`);
+    console.log(\`Cached values: \${this.memo.size}\`);
+    return sequence;
+  }
+}
+
+const fib = new FibonacciCalculator();
+fib.generateSequence(10);`
+      },
+      
+      binarySearch: {
+        language: 'javascript',
+        code: `// Binary Search Algorithm
+function binarySearch(arr, target) {
+  console.log(\`Searching for \${target} in [\${arr.join(', ')}]\`);
+  
+  let left = 0;
+  let right = arr.length - 1;
+  let step = 1;
+  
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    console.log(\`Step \${step}: left=\${left}, right=\${right}, mid=\${mid}\`);
+    console.log(\`  Checking arr[\${mid}] = \${arr[mid]}\`);
+    
+    if (arr[mid] === target) {
+      console.log(\`  ✅ Found \${target} at index \${mid}!\`);
+      return mid;
+    }
+    
+    if (arr[mid] < target) {
+      console.log(\`  \${arr[mid]} < \${target}, searching right half\`);
+      left = mid + 1;
+    } else {
+      console.log(\`  \${arr[mid]} > \${target}, searching left half\`);
+      right = mid - 1;
+    }
+    
+    step++;
+  }
+  
+  console.log(\`❌ \${target} not found in array\`);
+  return -1;
+}
+
+// Test with sorted array
+const sortedNumbers = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+binarySearch(sortedNumbers, 11);
+binarySearch(sortedNumbers, 6);`
+      },
+      
+      neural: {
+        language: 'javascript',
+        code: `// Simple Neural Network (Perceptron)
+class SimpleNeuron {
+  constructor(inputSize) {
+    // Initialize random weights
+    this.weights = Array.from({length: inputSize}, () => Math.random() * 2 - 1);
+    this.bias = Math.random() * 2 - 1;
+    
+    console.log('Initialized neuron:');
+    console.log(\`  Weights: [\${this.weights.map(w => w.toFixed(3)).join(', ')}]\`);
+    console.log(\`  Bias: \${this.bias.toFixed(3)}\`);
+  }
+  
+  // Activation function (sigmoid)
+  sigmoid(x) {
+    return 1 / (1 + Math.exp(-x));
+  }
+  
+  // Forward propagation
+  forward(inputs) {
+    console.log(\`\\nForward pass with inputs: [\${inputs.join(', ')}]\`);
+    
+    // Calculate weighted sum
+    let weightedSum = 0;
+    for (let i = 0; i < inputs.length; i++) {
+      const contribution = inputs[i] * this.weights[i];
+      weightedSum += contribution;
+      console.log(\`  Input[\${i}] * Weight[\${i}] = \${inputs[i]} * \${this.weights[i].toFixed(3)} = \${contribution.toFixed(3)}\`);
+    }
+    
+    // Add bias
+    weightedSum += this.bias;
+    console.log(\`  + Bias = \${this.bias.toFixed(3)}\`);
+    console.log(\`  Total weighted sum = \${weightedSum.toFixed(3)}\`);
+    
+    // Apply activation function
+    const output = this.sigmoid(weightedSum);
+    console.log(\`  Sigmoid(\${weightedSum.toFixed(3)}) = \${output.toFixed(3)}\`);
+    
+    return output;
+  }
+}
+
+// Create and test the neuron
+const neuron = new SimpleNeuron(3);
+
+// Test cases
+const testInputs = [
+  [1, 0, 1],
+  [0, 1, 0],
+  [1, 1, 1],
+  [0, 0, 0]
+];
+
+testInputs.forEach((inputs, i) => {
+  console.log(\`\\n=== Test Case \${i + 1} ===\`);
+  const result = neuron.forward(inputs);
+  console.log(\`Final output: \${result.toFixed(3)}\`);
+});`
+      },
+      
+      graph: {
+        language: 'javascript',
+        code: `// Graph Traversal Algorithms
+class Graph {
+  constructor() {
+    this.adjacencyList = {};
+  }
+  
+  addVertex(vertex) {
+    if (!this.adjacencyList[vertex]) {
+      this.adjacencyList[vertex] = [];
+      console.log(\`Added vertex: \${vertex}\`);
+    }
+  }
+  
+  addEdge(v1, v2) {
+    this.adjacencyList[v1].push(v2);
+    this.adjacencyList[v2].push(v1);
+    console.log(\`Added edge: \${v1} ↔ \${v2}\`);
+  }
+  
+  // Depth-First Search
+  dfs(start) {
+    console.log(\`\\n🔍 DFS starting from \${start}:\`);
+    const result = [];
+    const visited = {};
+    
+    const dfsHelper = (vertex) => {
+      visited[vertex] = true;
+      result.push(vertex);
+      console.log(\`  Visited: \${vertex}\`);
+      
+      this.adjacencyList[vertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          console.log(\`    Exploring neighbor: \${neighbor}\`);
+          dfsHelper(neighbor);
+        } else {
+          console.log(\`    Skipping visited neighbor: \${neighbor}\`);
+        }
+      });
+    };
+    
+    dfsHelper(start);
+    console.log(\`DFS result: [\${result.join(', ')}]\`);
+    return result;
+  }
+  
+  // Breadth-First Search
+  bfs(start) {
+    console.log(\`\\n🔍 BFS starting from \${start}:\`);
+    const queue = [start];
+    const result = [];
+    const visited = {};
+    visited[start] = true;
+    
+    while (queue.length) {
+      const vertex = queue.shift();
+      result.push(vertex);
+      console.log(\`  Visited: \${vertex}\`);
+      console.log(\`    Queue: [\${queue.join(', ')}]\`);
+      
+      this.adjacencyList[vertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+          console.log(\`    Added to queue: \${neighbor}\`);
+        }
+      });
+    }
+    
+    console.log(\`BFS result: [\${result.join(', ')}]\`);
+    return result;
+  }
+}
+
+// Create and test the graph
+const graph = new Graph();
+
+// Build a sample graph
+['A', 'B', 'C', 'D', 'E', 'F'].forEach(v => graph.addVertex(v));
+
+graph.addEdge('A', 'B');
+graph.addEdge('A', 'C');
+graph.addEdge('B', 'D');
+graph.addEdge('C', 'E');
+graph.addEdge('D', 'E');
+graph.addEdge('D', 'F');
+graph.addEdge('E', 'F');
+
+console.log('\\nGraph structure:', graph.adjacencyList);
+
+graph.dfs('A');
+graph.bfs('A');`
+      },
+      
+      crypto: {
+        language: 'javascript',
+        code: `// Caesar Cipher Implementation
+class CaesarCipher {
+  constructor(shift = 3) {
+    this.shift = shift;
+    console.log(\`🔐 Caesar Cipher initialized with shift: \${shift}\`);
+  }
+  
+  // Encrypt text
+  encrypt(text) {
+    console.log(\`\\nEncrypting: "\${text}"\`);
+    let result = '';
+    
+    for (let i = 0; i < text.length; i++) {
+      let char = text[i];
+      
+      if (char.match(/[a-z]/i)) {
+        const isUpperCase = char === char.toUpperCase();
+        char = char.toLowerCase();
+        
+        // Get character code and shift it
+        const charCode = char.charCodeAt(0);
+        const shiftedCode = ((charCode - 97 + this.shift) % 26) + 97;
+        const shiftedChar = String.fromCharCode(shiftedCode);
+        
+        const finalChar = isUpperCase ? shiftedChar.toUpperCase() : shiftedChar;
+        
+        console.log(\`  '\${text[i]}' → '\${finalChar}' (shift \${this.shift})\`);
+        result += finalChar;
+      } else {
+        // Non-alphabetic characters remain unchanged
+        console.log(\`  '\${char}' → '\${char}' (no change)\`);
+        result += char;
+      }
+    }
+    
+    console.log(\`Encrypted result: "\${result}"\`);
+    return result;
+  }
+  
+  // Decrypt text
+  decrypt(text) {
+    console.log(\`\\nDecrypting: "\${text}"\`);
+    let result = '';
+    
+    for (let i = 0; i < text.length; i++) {
+      let char = text[i];
+      
+      if (char.match(/[a-z]/i)) {
+        const isUpperCase = char === char.toUpperCase();
+        char = char.toLowerCase();
+        
+        // Get character code and reverse shift it
+        const charCode = char.charCodeAt(0);
+        const shiftedCode = ((charCode - 97 - this.shift + 26) % 26) + 97;
+        const shiftedChar = String.fromCharCode(shiftedCode);
+        
+        const finalChar = isUpperCase ? shiftedChar.toUpperCase() : shiftedChar;
+        
+        console.log(\`  '\${text[i]}' → '\${finalChar}' (reverse shift \${this.shift})\`);
+        result += finalChar;
+      } else {
+        console.log(\`  '\${char}' → '\${char}' (no change)\`);
+        result += char;
+      }
+    }
+    
+    console.log(\`Decrypted result: "\${result}"\`);
+    return result;
+  }
+  
+  // Brute force decrypt (try all possible shifts)
+  bruteForce(ciphertext) {
+    console.log(\`\\n🔨 Brute force decryption of: "\${ciphertext}"\`);
+    
+    for (let shift = 1; shift <= 25; shift++) {
+      const tempCipher = new CaesarCipher(shift);
+      const decrypted = tempCipher.decrypt(ciphertext);
+      console.log(\`Shift \${shift.toString().padStart(2)}: "\${decrypted}"\`);
+    }
+  }
+}
+
+// Test the cipher
+const cipher = new CaesarCipher(7);
+const message = "Hello World! Mad Science Rules!";
+
+const encrypted = cipher.encrypt(message);
+const decrypted = cipher.decrypt(encrypted);
+
+console.log(\`\\n=== Summary ===\`);
+console.log(\`Original:  "\${message}"\`);
+console.log(\`Encrypted: "\${encrypted}"\`);
+console.log(\`Decrypted: "\${decrypted}"\`);
+
+// Try brute force on a mystery message
+console.log('\\n' + '='.repeat(50));
+cipher.bruteForce("Olssv Dvysk!");`
+      }
+    };
+
+    // JavaScript execution
+    function executeJavaScript(code) {
+      const output = document.getElementById('output');
+      
+      // Capture console output
+      const logs = [];
+      const originalLog = console.log;
+      const originalError = console.error;
+      
+      console.log = (...args) => {
+        logs.push({type: 'log', content: args.join(' ')});
+      };
+      
+      console.error = (...args) => {
+        logs.push({type: 'error', content: args.join(' ')});
+      };
+      
+      try {
+        // Execute the code
+        eval(code);
+        
+        // Display output
+        output.innerHTML = '';
+        logs.forEach(log => {
+          const line = document.createElement('div');
+          line.className = \`output-line output-\${log.type === 'error' ? 'error' : 'success'}\`;
+          line.textContent = log.content;
+          output.appendChild(line);
+        });
+        
+        if (logs.length === 0) {
+          output.innerHTML = '<div class="text-slate-500">Code executed successfully (no output)</div>';
+        }
+        
+      } catch (error) {
+        output.innerHTML = \`<div class="output-line output-error">Error: \${error.message}</div>\`;
+      } finally {
+        // Restore original console methods
+        console.log = originalLog;
+        console.error = originalError;
+      }
+    }
+
+    // Initialize everything when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      
+      // Initialize CodeMirror
+      editor = CodeMirror(document.getElementById('editor'), {
+        mode: 'javascript',
+        theme: document.documentElement.classList.contains('dark') ? 'monokai' : 'eclipse',
+        lineNumbers: true,
+        autoCloseBrackets: true,
+        matchBrackets: true,
+        indentUnit: 2,
+        tabSize: 2,
+        value: \`// Welcome to the WCNegentropy Code Playground!
+// Write your JavaScript code here and hit Run
+
+function greet(name) {
+  console.log(\`Hello, \${name}! Welcome to the mad science lab! 🧪\`);
+}
+
+greet('Developer');
+
+// Try some basic operations
+const numbers = [3, 1, 4, 1, 5, 9, 2, 6];
+console.log('Original array:', numbers);
+console.log('Sorted array:', [...numbers].sort((a, b) => a - b));
+console.log('Sum:', numbers.reduce((sum, num) => sum + num, 0));
+
+// Click on the example cards below to load pre-built algorithms!\`
+      });
+      
+      // Theme toggle
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const t = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+        applyTheme(t);
+      });
+      
+      // Run code
+      const runCode = () => {
+        const code = editor.getValue();
+        const language = document.getElementById('languageSelect').value;
+        
+        if (language === 'javascript' || language === 'algorithm') {
+          executeJavaScript(code);
+        } else if (language === 'python') {
+          // Python concept demonstration
+          document.getElementById('output').innerHTML = '<div class="output-line output-error">Python execution not available in browser. This playground demonstrates JavaScript implementations of Python concepts.</div>';
+        }
+      };
+      
+      document.getElementById('runCode').addEventListener('click', runCode);
+      
+      // Keyboard shortcut
+      editor.setOption('extraKeys', {
+        'Ctrl-Enter': runCode
+      });
+      
+      // Clear buttons
+      document.getElementById('clearCode').addEventListener('click', () => {
+        editor.setValue('// Write your code here...');
+      });
+      
+      document.getElementById('clearOutput').addEventListener('click', () => {
+        document.getElementById('output').innerHTML = '<div class="text-slate-500">Run your code to see output here...</div>';
+      });
+      
+      // Language selector
+      document.getElementById('languageSelect').addEventListener('change', (e) => {
+        const mode = e.target.value === 'python' ? 'python' : 'javascript';
+        editor.setOption('mode', mode);
+      });
+      
+      // Example buttons
+      document.querySelectorAll('.example-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const exampleKey = btn.dataset.example;
+          const example = examples[exampleKey];
+          
+          if (example) {
+            document.getElementById('languageSelect').value = example.language;
+            editor.setOption('mode', example.language === 'python' ? 'python' : 'javascript');
+            editor.setValue(example.code);
+            document.getElementById('output').innerHTML = '<div class="text-slate-500">Click Run to execute this example...</div>';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
