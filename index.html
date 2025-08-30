@@ -283,10 +283,10 @@
         <p class="mt-2 text-slate-600 dark:text-slate-300">Ready to collaborate on cutting-edge innovation? Drop me a line.</p>
       </div>
       <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-8">
-        <form class="space-y-4" action="mailto:contact@wcnegentropy.com" method="post" enctype="text/plain">
+        <form id="contactForm" class="space-y-4">
           <div class="grid md:grid-cols-2 gap-4">
-            <input required name="name" placeholder="Name" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-3" />
-            <input required type="email" name="email" placeholder="Email" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-3" />
+            <input required name="name" placeholder="Name" autocomplete="name" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-3" />
+            <input required type="email" name="email" placeholder="Email" autocomplete="email" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-3" />
           </div>
           <input name="subject" placeholder="Subject" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-3" />
           <textarea required name="message" rows="5" placeholder="Tell me about your project, idea, or how we might collaborate..." class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-3"></textarea>
@@ -387,6 +387,59 @@
       setIfExists('about-hf', 'href', SITE.social.huggingface);
       setIfExists('year', 'textContent', new Date().getFullYear());
       setIfExists('foot-name', 'textContent', SITE.ownerName);
+      
+      // Handle contact form submission (secure autofill-enabled version)
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          // Get form data
+          const formData = new FormData(contactForm);
+          const name = formData.get('name') || '';
+          const email = formData.get('email') || '';
+          const subject = formData.get('subject') || 'Contact from WCNegentropy.com';
+          const message = formData.get('message') || '';
+          
+          // Validate required fields
+          if (!name.trim() || !email.trim() || !message.trim()) {
+            alert('Please fill in all required fields.');
+            return;
+          }
+          
+          // Basic email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+          }
+          
+          // Create mailto URL with proper encoding
+          const emailBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+          const mailtoUrl = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${emailBody}`;
+          
+          // Open email client
+          window.location.href = mailtoUrl;
+          
+          // Show success feedback
+          const button = contactForm.querySelector('button[type="submit"]');
+          const originalText = button.textContent;
+          button.textContent = '✓ Opening Email Client...';
+          button.disabled = true;
+          button.classList.add('bg-green-600', 'hover:bg-green-700');
+          button.classList.remove('bg-brand-600', 'hover:bg-brand-700');
+          
+          // Reset button after delay
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.disabled = false;
+            button.classList.remove('bg-green-600', 'hover:bg-green-700');
+            button.classList.add('bg-brand-600', 'hover:bg-brand-700');
+            // Optional: Clear form
+            contactForm.reset();
+          }, 3000);
+        });
+      }
       
       document.title = `${SITE.ownerName} — Code, Repos, Products`;
       document.querySelector('meta[name=description]')?.setAttribute('content', `${SITE.ownerName} builds ML/AI code, repos, and products.`);

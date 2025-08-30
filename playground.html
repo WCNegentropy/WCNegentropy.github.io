@@ -654,7 +654,7 @@ cipher.bruteForce("Olssv Dvysk!");`
       }
     };
 
-    // Secure JavaScript execution with sandboxing
+    // Modern secure JavaScript execution using iframe sandbox
     function executeJavaScript(code) {
       const output = document.getElementById('output');
       
@@ -671,16 +671,19 @@ cipher.bruteForce("Olssv Dvysk!");`
         /require\s*\(/i,
         /\.__proto__/i,
         /constructor\s*\(/i,
+        /eval\s*\(/i,
         /Function\s*\(/i,
-        /setTimeout\s*\(.*eval/i,
-        /setInterval\s*\(.*eval/i,
+        /setTimeout\s*\(/i,
+        /setInterval\s*\(/i,
         /document\s*\.\s*write/i,
         /innerHTML\s*=.*<script/i,
         /outerHTML\s*=/i,
         /document\s*\.\s*createElement\s*\(\s*['"]script['"]/i,
         /window\s*\[/i,
         /globalThis/i,
-        /this\s*\[.*constructor/i
+        /this\s*\[.*constructor/i,
+        /parent\./i,
+        /top\./i
       ];
       
       // Check for dangerous code
@@ -691,106 +694,133 @@ cipher.bruteForce("Olssv Dvysk!");`
         }
       }
       
-      // Capture console output safely
+      // Create sandboxed iframe for code execution
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.sandbox = 'allow-scripts'; // Very restrictive sandbox
+      
+      // Clear previous output
+      output.innerHTML = '<div class="text-slate-500">Executing code...</div>';
+      
+      // Create the sandbox HTML with restricted environment
+      const sandboxHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+        </head>
+        <body>
+          <script>
+            // Create a safe console that posts messages back to parent
+            const safeConsole = {
+              log: (...args) => {
+                const message = args.map(arg => {
+                  if (typeof arg === 'object') {
+                    try {
+                      return JSON.stringify(arg, null, 2);
+                    } catch {
+                      return String(arg);
+                    }
+                  }
+                  return String(arg);
+                }).join(' ');
+                window.parent.postMessage({type: 'log', message}, '*');
+              },
+              error: (...args) => {
+                const message = args.map(arg => String(arg)).join(' ');
+                window.parent.postMessage({type: 'error', message}, '*');
+              },
+              warn: (...args) => {
+                const message = args.map(arg => String(arg)).join(' ');
+                window.parent.postMessage({type: 'warn', message}, '*');
+              }
+            };
+            
+            // Override global console
+            window.console = safeConsole;
+            
+            // Block access to potentially dangerous objects
+            delete window.parent;
+            delete window.top;
+            delete window.frames;
+            
+            // Execute user code safely
+            try {
+              ${code}
+              window.parent.postMessage({type: 'complete'}, '*');
+            } catch (error) {
+              window.parent.postMessage({
+                type: 'error', 
+                message: error.message
+              }, '*');
+            }
+          </script>
+        </body>
+        </html>
+      `;
+      
+      // Handle messages from the sandbox
       const logs = [];
-      const originalLog = console.log;
-      const originalError = console.error;
-      const originalWarn = console.warn;
+      let executionComplete = false;
       
-      console.log = (...args) => {
-        // Sanitize output to prevent XSS
-        const sanitized = args.map(arg => {
-          if (typeof arg === 'string') {
-            return arg.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-          }
-          return String(arg);
-        }).join(' ');
-        logs.push({type: 'log', content: sanitized});
+      const messageHandler = (event) => {
+        if (event.source !== iframe.contentWindow) return;
+        
+        const { type, message } = event.data;
+        
+        if (type === 'log' || type === 'error' || type === 'warn') {
+          // Sanitize message to prevent XSS
+          const sanitized = String(message).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          logs.push({ type, content: sanitized });
+        } else if (type === 'complete') {
+          executionComplete = true;
+          updateOutput();
+        }
       };
       
-      console.error = (...args) => {
-        const sanitized = args.map(arg => String(arg).replace(/</g, '&lt;').replace(/>/g, '&gt;')).join(' ');
-        logs.push({type: 'error', content: sanitized});
-      };
-      
-      console.warn = (...args) => {
-        const sanitized = args.map(arg => String(arg).replace(/</g, '&lt;').replace(/>/g, '&gt;')).join(' ');
-        logs.push({type: 'warn', content: sanitized});
-      };
-      
-      try {
-        // Create a restricted execution context
-        const restrictedContext = {
-          console: { log: console.log, error: console.error, warn: console.warn },
-          Math: Math,
-          Array: Array,
-          Object: Object,
-          String: String,
-          Number: Number,
-          Boolean: Boolean,
-          Date: Date,
-          JSON: JSON,
-          parseInt: parseInt,
-          parseFloat: parseFloat,
-          isNaN: isNaN,
-          isFinite: isFinite,
-          RegExp: RegExp,
-          Map: Map,
-          Set: Set,
-          WeakMap: WeakMap,
-          WeakSet: WeakSet,
-          Promise: Promise,
-          // Block dangerous globals
-          window: undefined,
-          document: undefined,
-          location: undefined,
-          history: undefined,
-          localStorage: undefined,
-          sessionStorage: undefined,
-          XMLHttpRequest: undefined,
-          fetch: undefined,
-          eval: undefined,
-          Function: undefined,
-          setTimeout: undefined,
-          setInterval: undefined,
-          clearTimeout: undefined,
-          clearInterval: undefined
-        };
+      const updateOutput = () => {
+        // Remove the iframe and event listener
+        window.removeEventListener('message', messageHandler);
+        document.body.removeChild(iframe);
         
-        // Execute code in restricted context using Function constructor with limited scope
-        const restrictedEval = function(code, context) {
-          const keys = Object.keys(context);
-          const values = keys.map(key => context[key]);
-          const func = new Function(...keys, `'use strict'; ${code}`);
-          return func.apply(null, values);
-        };
-        
-        restrictedEval(code, restrictedContext);
-        
-        // Display output with HTML escaping
+        // Display results
         output.innerHTML = '';
-        logs.forEach(log => {
-          const line = document.createElement('div');
-          line.className = `output-line output-${log.type === 'error' ? 'error' : log.type === 'warn' ? 'warn' : 'success'}`;
-          // Use textContent for safe insertion
-          line.textContent = log.content;
-          output.appendChild(line);
-        });
-        
         if (logs.length === 0) {
           output.innerHTML = '<div class="text-slate-500">Code executed successfully (no output)</div>';
+        } else {
+          logs.forEach(log => {
+            const line = document.createElement('div');
+            line.className = `output-line output-${log.type === 'error' ? 'error' : log.type === 'warn' ? 'warn' : 'success'}`;
+            line.textContent = log.content;
+            output.appendChild(line);
+          });
         }
-        
-      } catch (error) {
-        // Sanitize error message
-        const sanitizedError = error.message.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        output.innerHTML = `<div class="output-line output-error">Error: ${sanitizedError}</div>`;
-      } finally {
-        // Always restore original console methods
-        console.log = originalLog;
-        console.error = originalError;
-        console.warn = originalWarn;
-      }
+      };
+      
+      // Set up timeout for execution
+      const timeout = setTimeout(() => {
+        if (!executionComplete) {
+          window.removeEventListener('message', messageHandler);
+          document.body.removeChild(iframe);
+          output.innerHTML = '<div class="output-line output-error">Execution timed out (5 seconds)</div>';
+        }
+      }, 5000);
+      
+      // Add message listener
+      window.addEventListener('message', messageHandler);
+      
+      // Add iframe to DOM and load content
+      document.body.appendChild(iframe);
+      iframe.contentDocument.open();
+      iframe.contentDocument.write(sandboxHTML);
+      iframe.contentDocument.close();
+      
+      // Clear timeout when execution completes
+      const originalUpdateOutput = updateOutput;
+      updateOutput = () => {
+        clearTimeout(timeout);
+        originalUpdateOutput();
+      };
     }
 
     // Initialize everything when page loads
