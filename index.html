@@ -81,7 +81,7 @@
       email: "contact@wcnegentropy.com",
       location: "NJ, USA",
       githubUser: "WCNegentropy", // used to fetch repos
-      avatar: "https://github.com/WCNegentropy.png", // GitHub profile picture
+      avatar: "https://github.com/WCNegentropy.png", // GitHub profile picture (fallback to /images/brand/avatar.png when added)
       social: {
         github: "https://github.com/WCNegentropy",
         x: "https://twitter.com/WCNegentropy",
@@ -97,7 +97,7 @@
           blurb: "Experimental bit-level transformer with 9-bit encoding (8 data + 1 parity). Novel reversible architecture with built-in safety telemetry.",
           price: "Open Source",
           license: "AGPLv3 - Research & Academic Use",
-          image: "https://images.unsplash.com/photo-1518709268805-4e9042af2ac1?q=80&w=1200&auto=format&fit=crop",
+          image: "/images/products/bit-transformer.jpg",
           highlights: ["793K-771M parameters", "Bit-level processing", "Safety telemetry", "Reversible layers"],
           checkout: "https://huggingface.co/WCNegentropy/BitTransformerLM",
           comingSoon: false,
@@ -109,7 +109,7 @@
           blurb: "Experimental wave-interference memory system using 4D tensor operations. High-precision associative memory with parallel retrieval.",
           price: "Open Source", 
           license: "AGPL-3.0 - Experimental Research",
-          image: "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?q=80&w=1200&auto=format&fit=crop",
+          image: "/images/products/wrinkle-brane.jpg",
           highlights: ["Wave-interference memory", "150+ dB PSNR precision", "4D tensor storage", "Parallel retrieval"],
           checkout: "https://huggingface.co/WCNegentropy/WrinkleBrane",
           comingSoon: false,
@@ -121,7 +121,7 @@
           blurb: "Bespoke experimental AI systems and novel algorithm development. Academic collaborations welcome.",
           price: "Contact",
           license: "Custom research agreements.",
-          image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
+          image: "/images/products/custom-research.jpg",
           highlights: ["Novel architectures", "Academic partnerships", "Research validation", "Open publication"],
           checkout: "#contact",
           comingSoon: false
@@ -416,6 +416,18 @@
         img.src = p.image; // Safe since p.image is from trusted SITE config
         img.alt = p.name; // Safe since p.name is from trusted SITE config
         img.className = 'aspect-[16/9] object-cover';
+        
+        // Add fallback for missing custom images
+        img.onerror = () => {
+          console.log(`Image not found: ${p.image}, using fallback`);
+          // Create a placeholder with gradient background
+          const placeholder = document.createElement('div');
+          placeholder.className = 'aspect-[16/9] bg-gradient-to-br from-brand-500/20 via-violet-500/20 to-cyan-500/20 flex items-center justify-center';
+          placeholder.innerHTML = `<div class="text-center p-4"><div class="text-2xl mb-2">🧪</div><div class="text-sm font-medium">${p.name}</div></div>`;
+          img.style.display = 'none';
+          imageDiv.appendChild(placeholder);
+        };
+        
         imageDiv.appendChild(img);
         
         if (p.comingSoon) {

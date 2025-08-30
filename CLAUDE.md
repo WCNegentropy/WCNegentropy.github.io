@@ -488,6 +488,75 @@ All pages now include comprehensive security headers:
 - **User Engagement**: Clear calls-to-action to interact with actual models
 - **Academic Positioning**: Proper research disclaimers and licensing
 
+## 🖼️ Custom Images & Media Management
+
+### Image Directory Structure
+```
+images/
+├── products/           # Product showcase images (1200x675px)
+│   ├── bit-transformer.jpg    # BitTransformerLM showcase
+│   ├── wrinkle-brane.jpg      # WrinkleBrane showcase  
+│   └── custom-research.jpg    # Custom R&D projects
+├── social/            # Social media & preview images
+│   ├── og-image.png          # Open Graph preview (1200x630px)
+│   ├── twitter-card.png      # Twitter card image (1200x628px)
+│   └── favicon.ico           # Site favicon (32x32px)
+└── brand/             # Brand & identity images
+    ├── avatar.png            # Profile/avatar image (400x400px)
+    ├── logo.svg              # Site logo (vector)
+    └── hero-bg.jpg           # Hero background (optional)
+```
+
+### Adding Custom Images (Step-by-Step)
+
+#### 1. **Prepare Your Images**
+- **Product Images**: 1200x675px (16:9 aspect ratio)
+- **Avatar**: 400x400px square, PNG with transparency
+- **Social Images**: Exact dimensions for platform compliance
+
+#### 2. **Optimize for Web**
+```bash
+# Recommended tools:
+- TinyPNG.com (online compression)
+- squoosh.app (Google's web app)
+- ImageOptim (Mac) / FileOptimizer (Windows)
+
+# Target file sizes:
+- Product images: < 200KB
+- Social images: < 1MB
+- Avatar: < 100KB
+```
+
+#### 3. **Add to Repository**
+```bash
+# Upload images to correct directories:
+git add images/products/bit-transformer.jpg
+git add images/products/wrinkle-brane.jpg
+git add images/products/custom-research.jpg
+git add images/brand/avatar.png
+git commit -m "Add custom product and brand images"
+git push origin main
+```
+
+#### 4. **Update Avatar Reference** (Optional)
+To use custom avatar instead of GitHub profile:
+```javascript
+// In index.html SITE configuration:
+avatar: "/images/brand/avatar.png", // Custom avatar
+```
+
+### Fallback System
+- **Automatic**: Site shows elegant placeholders if images are missing
+- **No Broken Images**: Graceful degradation with branded placeholders
+- **Development Friendly**: Works during image preparation phase
+
+### Image Best Practices
+- **Format**: WebP preferred, JPEG fallback
+- **Compression**: 80-85% quality for web
+- **Alt Text**: Descriptive alternative text for accessibility
+- **Lazy Loading**: Implemented for performance
+- **Responsive**: Single high-res images with CSS scaling
+
 ---
 
-*This documentation serves as a comprehensive guide for understanding, maintaining, and extending the WCNegentropy GitHub Pages site. The site embodies a philosophy of innovation, education, and technical excellence in the realm of AI/ML and algorithmic research. All major bugs have been resolved and security vulnerabilities patched as of December 2024. Live model integration completed August 2025.*
+*This documentation serves as a comprehensive guide for understanding, maintaining, and extending the WCNegentropy GitHub Pages site. The site embodies a philosophy of innovation, education, and technical excellence in the realm of AI/ML and algorithmic research. All major bugs have been resolved and security vulnerabilities patched as of December 2024. Live model integration and custom image system completed August 2025.*
