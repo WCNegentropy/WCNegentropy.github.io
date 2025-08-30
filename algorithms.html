@@ -114,7 +114,7 @@
         <a href="/playground.html" class="hover:text-brand-600">Code Playground</a>
       </nav>
       <div class="flex items-center gap-2">
-        <button type="button" id="theme-toggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-1.5 text-xs hover:shadow-glow transition">
+        <button type="button" id="theme-toggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-1.5 text-xs hover:shadow-glow transition" aria-label="Toggle theme">
           <span class="i-theme">🌞</span><span class="hidden sm:inline">Theme</span>
         </button>
       </div>
@@ -148,8 +148,8 @@
           <option value="merge">Merge Sort</option>
           <option value="heap">Heap Sort</option>
         </select>
-        <button type="button" id="sortStart" class="rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700">Start</button>
-        <button type="button" id="sortReset" class="rounded-xl border border-slate-300 dark:border-slate-600 px-4 py-2 font-semibold">Reset</button>
+        <button type="button" id="sortStart" class="rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700" aria-label="Start sorting algorithm">Start</button>
+        <button type="button" id="sortReset" class="rounded-xl border border-slate-300 dark:border-slate-600 px-4 py-2 font-semibold" aria-label="Reset array">Reset</button>
         <div class="text-sm text-slate-600 dark:text-slate-400">
           Speed: <input type="range" id="sortSpeed" min="1" max="100" value="50" class="ml-2">
         </div>
@@ -171,9 +171,9 @@
           <option value="bfs">Breadth-First Search</option>
           <option value="dfs">Depth-First Search</option>
         </select>
-        <button type="button" id="pathStart" class="rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700">Find Path</button>
-        <button type="button" id="pathReset" class="rounded-xl border border-slate-300 dark:border-slate-600 px-4 py-2 font-semibold">Reset</button>
-        <button type="button" id="pathMaze" class="rounded-xl bg-violet-600 text-white px-4 py-2 font-semibold hover:bg-violet-700">Generate Maze</button>
+        <button type="button" id="pathStart" class="rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700" aria-label="Start pathfinding algorithm">Find Path</button>
+        <button type="button" id="pathReset" class="rounded-xl border border-slate-300 dark:border-slate-600 px-4 py-2 font-semibold" aria-label="Reset grid">Reset</button>
+        <button type="button" id="pathMaze" class="rounded-xl bg-violet-600 text-white px-4 py-2 font-semibold hover:bg-violet-700" aria-label="Generate random maze">Generate Maze</button>
         <div class="text-sm text-slate-600 dark:text-slate-400">
           🟢 Drag green start point | 🔴 Drag red end point | 🧩 Generate random maze
         </div>
@@ -194,8 +194,8 @@
           <option value="classification">Binary Classification</option>
           <option value="regression">Simple Regression</option>
         </select>
-        <button type="button" id="neuralTrain" class="rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700">Train Network</button>
-        <button type="button" id="neuralReset" class="rounded-xl border border-slate-300 dark:border-slate-600 px-4 py-2 font-semibold">Reset</button>
+        <button type="button" id="neuralTrain" class="rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700" aria-label="Start neural network training">Train Network</button>
+        <button type="button" id="neuralReset" class="rounded-xl border border-slate-300 dark:border-slate-600 px-4 py-2 font-semibold" aria-label="Reset neural network">Reset</button>
         <div class="text-sm text-slate-600 dark:text-slate-400">
           Learning Rate: <input type="range" id="learningRate" min="0.01" max="1" step="0.01" value="0.1" class="ml-2">
         </div>

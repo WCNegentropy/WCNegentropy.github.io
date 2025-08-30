@@ -93,21 +93,27 @@ const SITE = {
 - **Rate Limits**: Handles API failures gracefully
 - **Display**: Top 6 repositories with metadata
 
-## 🔬 R&D Product Showcase
+## 🔬 Live AI Research Models
 
-### 1. **Bit-Native Reversible Transformer**
-- Revolutionary language model using text↔parity bit conversion
-- Novel architecture with perfect reversibility
-- Status: Coming Soon
+### 1. **BitTransformerLM** ✅ LIVE
+- **Repository**: https://huggingface.co/WCNegentropy/BitTransformerLM
+- **Architecture**: Experimental bit-level transformer with 9-bit encoding (8 data + 1 parity)
+- **Features**: Novel reversible architecture with built-in safety telemetry
+- **Parameters**: 793K-771M configurable model size
+- **License**: AGPLv3 - Research & Academic Use
+- **Status**: Live on Hugging Face (Research Phase)
 
-### 2. **Deterministic Game Engine**
-- Fully procedural: world, textures, graphics, physics from single seed
-- Complete determinism for reproducible experiences
-- Status: Coming Soon
+### 2. **WrinkleBrane** ✅ LIVE
+- **Repository**: https://huggingface.co/WCNegentropy/WrinkleBrane
+- **Architecture**: Experimental wave-interference memory system using 4D tensor operations
+- **Features**: High-precision associative memory with parallel retrieval (150+ dB PSNR)
+- **Technology**: Orthogonal code spaces (Hadamard and DCT codes)
+- **License**: AGPL-3.0 - Experimental Research
+- **Status**: Live on Hugging Face (Early Research Phase)
 
-### 3. **Custom R&D Projects**
-- Bespoke cutting-edge solutions
-- AI breakthroughs to novel algorithms
+### 3. **Custom Research Projects**
+- Bespoke experimental AI systems and novel algorithm development
+- Academic collaborations and research partnerships
 - Status: Available for consultation
 
 ## ⚙️ Development Environment
@@ -449,4 +455,39 @@ All pages now include comprehensive security headers:
 
 ---
 
-*This documentation serves as a comprehensive guide for understanding, maintaining, and extending the WCNegentropy GitHub Pages site. The site embodies a philosophy of innovation, education, and technical excellence in the realm of AI/ML and algorithmic research. All major bugs have been resolved and security vulnerabilities patched as of December 2024.*
+## 🚀 Recent Major Updates (August 2025)
+
+### Live Model Integration (✅ COMPLETED)
+**Major Enhancement**: Replaced all placeholder products with actual live Hugging Face models
+
+#### Key Changes:
+- **Real Research Showcase**: Updated main page to feature BitTransformerLM and WrinkleBrane models
+- **Live Hugging Face Links**: Direct links to actual research repositories
+- **Enhanced User Experience**: 
+  - Removed placeholder hero image for cleaner, focused design
+  - Added "Live on HF" badges with pulsing animation
+  - Updated CTAs to "View Live Models" and "View on HF"
+  - Hero section restructured for better model discovery
+
+#### Technical Improvements:
+- **GitHub Repository Filtering**: Automatically excludes website repo from repository listings
+- **External Link Handling**: Proper `target="_blank"` and `rel="noopener noreferrer"` for HF links
+- **Visual Enhancements**: 
+  - Orange HF buttons for live model links
+  - Green animated badges for live status
+  - Center-aligned hero for better focus
+
+#### Content Updates:
+- **Accurate Model Descriptions**: Based on actual HF repository data
+- **Research-Focused Messaging**: Emphasizes experimental nature and academic use
+- **License Clarity**: AGPLv3 and AGPL-3.0 licensing properly displayed
+
+### Impact:
+- **Professional Credibility**: Site now showcases real, deployable research
+- **Research Visibility**: Direct pathways to live AI models
+- **User Engagement**: Clear calls-to-action to interact with actual models
+- **Academic Positioning**: Proper research disclaimers and licensing
+
+---
+
+*This documentation serves as a comprehensive guide for understanding, maintaining, and extending the WCNegentropy GitHub Pages site. The site embodies a philosophy of innovation, education, and technical excellence in the realm of AI/ML and algorithmic research. All major bugs have been resolved and security vulnerabilities patched as of December 2024. Live model integration completed August 2025.*

@@ -33,7 +33,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: 'selector',
       theme: {
         extend: {
           fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
@@ -89,38 +89,40 @@
         linkedin: "", // temporarily removed
         email: "mailto:contact@wcnegentropy.com"
       },
-      // Products & innovations - launching soon!
+      // Real R&D Products - Live models on Hugging Face!
       products: [
         {
-          id: "prod-reversible-transformer",
-          name: "Bit-Native Reversible Transformer",
-          blurb: "Revolutionary language model using text↔parity bit conversion. Truly reversible neural architecture.",
-          price: "TBA",
-          license: "Commercial license coming soon.",
-          image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1200&auto=format&fit=crop",
-          highlights: ["Bit-native processing", "Perfect reversibility", "Novel architecture"],
-          checkout: "#contact",
-          comingSoon: true
+          id: "prod-bit-transformer",
+          name: "BitTransformerLM",
+          blurb: "Experimental bit-level transformer with 9-bit encoding (8 data + 1 parity). Novel reversible architecture with built-in safety telemetry.",
+          price: "Open Source",
+          license: "AGPLv3 - Research & Academic Use",
+          image: "https://images.unsplash.com/photo-1518709268805-4e9042af2ac1?q=80&w=1200&auto=format&fit=crop",
+          highlights: ["793K-771M parameters", "Bit-level processing", "Safety telemetry", "Reversible layers"],
+          checkout: "https://huggingface.co/WCNegentropy/BitTransformerLM",
+          comingSoon: false,
+          isLive: true
         },
         {
-          id: "prod-procedural-engine",
-          name: "Deterministic Game Engine",
-          blurb: "Fully procedural game engine. World, textures, graphics, physics—all from one seed.",
-          price: "TBA", 
-          license: "Commercial license coming soon.",
-          image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
-          highlights: ["Single seed generation", "Complete determinism", "Graphics + Physics + World"],
-          checkout: "#contact",
-          comingSoon: true
+          id: "prod-wrinkle-brane",
+          name: "WrinkleBrane",
+          blurb: "Experimental wave-interference memory system using 4D tensor operations. High-precision associative memory with parallel retrieval.",
+          price: "Open Source", 
+          license: "AGPL-3.0 - Experimental Research",
+          image: "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?q=80&w=1200&auto=format&fit=crop",
+          highlights: ["Wave-interference memory", "150+ dB PSNR precision", "4D tensor storage", "Parallel retrieval"],
+          checkout: "https://huggingface.co/WCNegentropy/WrinkleBrane",
+          comingSoon: false,
+          isLive: true
         },
         {
-          id: "prod-custom-innovation",
-          name: "Custom R&D Projects",
-          blurb: "Bespoke cutting-edge solutions. From AI breakthroughs to novel algorithms.",
+          id: "prod-custom-research",
+          name: "Custom Research Projects",
+          blurb: "Bespoke experimental AI systems and novel algorithm development. Academic collaborations welcome.",
           price: "Contact",
-          license: "Custom licensing available.",
+          license: "Custom research agreements.",
           image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
-          highlights: ["Bleeding-edge tech", "Novel approaches", "Mad science guaranteed"],
+          highlights: ["Novel architectures", "Academic partnerships", "Research validation", "Open publication"],
           checkout: "#contact",
           comingSoon: false
         }
@@ -163,32 +165,24 @@
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 bg-grid pointer-events-none"></div>
     <div class="mx-auto max-w-7xl px-6 pt-16 pb-12 lg:pt-24 lg:pb-16">
-      <div class="grid lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-7">
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-            Mad science <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-violet-500">code factory</span> unleashed.
-          </h1>
-          <p class="mt-5 text-lg text-slate-600 dark:text-slate-300 max-w-2xl">
-            Radical innovations in AI, graphics, and algorithms. From reversible transformers to deterministic game engines—cutting‑edge R&D that pushes boundaries.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="/algorithms.html" class="rounded-xl bg-brand-600 text-white px-6 py-3 font-semibold shadow-glow hover:bg-brand-700">Try Algorithm Visualizer</a>
-            <a href="/playground.html" class="rounded-xl bg-violet-600 text-white px-6 py-3 font-semibold shadow-glow hover:bg-violet-700">Code Playground</a>
-            <a href="#products" class="rounded-xl border border-slate-300 dark:border-slate-600 px-6 py-3 font-semibold hover:bg-slate-50 dark:hover:bg-slate-900">View R&D</a>
-          </div>
-          <!-- Socials -->
-          <div class="mt-8 flex items-center gap-4 text-slate-500">
-            <a id="link-github" class="hover:text-brand-600" href="#" target="_blank" rel="noopener">GitHub</a>
-            <a id="link-x" class="hover:text-brand-600" href="#" target="_blank" rel="noopener">X</a>
-            <a id="link-hf" class="hover:text-brand-600" href="#" target="_blank" rel="noopener">Hugging Face</a>
-            <!-- LinkedIn link removed temporarily -->
-          </div>
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+          Mad science <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-violet-500">code factory</span> unleashed.
+        </h1>
+        <p class="mt-5 text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+          Experimental AI research with live models on Hugging Face. From bit-level transformers to wave-interference memory systems—pushing the boundaries of what's possible.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a href="#products" class="rounded-xl bg-brand-600 text-white px-6 py-3 font-semibold shadow-glow hover:bg-brand-700">View Live Models</a>
+          <a href="/algorithms.html" class="rounded-xl bg-violet-600 text-white px-6 py-3 font-semibold shadow-glow hover:bg-violet-700">Algorithm Visualizer</a>
+          <a href="/playground.html" class="rounded-xl border border-slate-300 dark:border-slate-600 px-6 py-3 font-semibold hover:bg-slate-50 dark:hover:bg-slate-900">Code Playground</a>
         </div>
-        <div class="lg:col-span-5">
-          <div class="relative p-2 rounded-2xl bg-gradient-to-br from-brand-500/10 via-violet-500/10 to-cyan-500/10 ring-1 ring-slate-200 dark:ring-slate-800">
-            <img id="hero-img" alt="preview" class="rounded-xl shadow-2xl" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1600&auto=format&fit=crop" />
-          </div>
-          <p class="mt-3 text-xs text-slate-500 text-center">Swap this image with a product collage or logo.</p>
+        <!-- Socials -->
+        <div class="mt-8 flex items-center justify-center gap-4 text-slate-500">
+          <a id="link-github" class="hover:text-brand-600" href="#" target="_blank" rel="noopener">GitHub</a>
+          <a id="link-x" class="hover:text-brand-600" href="#" target="_blank" rel="noopener">X</a>
+          <a id="link-hf" class="hover:text-brand-600" href="#" target="_blank" rel="noopener">Hugging Face</a>
+          <!-- LinkedIn link removed temporarily -->
         </div>
       </div>
     </div>
@@ -216,8 +210,8 @@
   <section id="products" class="mx-auto max-w-7xl px-6 py-16">
     <div class="flex items-end justify-between flex-wrap gap-4">
       <div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Innovations & R&D</h2>
-        <p class="mt-2 text-slate-600 dark:text-slate-300 max-w-2xl">Cutting‑edge breakthroughs in AI, graphics, and algorithms. Revolutionary tech that pushes boundaries.</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Live AI Research Models</h2>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 max-w-2xl">Experimental models deployed on Hugging Face. Open source research in novel architectures and AI safety.</p>
       </div>
       <a href="#contact" class="text-brand-600 hover:underline">Need a team license? →</a>
     </div>
@@ -412,8 +406,8 @@
         const el = document.createElement('article');
         el.className = 'group rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-glow transition flex flex-col';
         const priceDisplay = typeof p.price === 'number' ? fmt(p.price) : p.price;
-        const buttonText = p.comingSoon ? 'Coming Soon' : (p.price === 'Contact' ? 'Get Quote' : 'Buy');
-        const buttonClass = p.comingSoon ? 'rounded-xl border-2 border-brand-600 text-brand-600 px-4 py-2 font-semibold' : 'rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700';
+        const buttonText = p.comingSoon ? 'Coming Soon' : (p.isLive ? 'View on HF' : (p.price === 'Contact' ? 'Get Quote' : 'Buy'));
+        const buttonClass = p.comingSoon ? 'rounded-xl border-2 border-brand-600 text-brand-600 px-4 py-2 font-semibold' : (p.isLive ? 'rounded-xl bg-orange-600 text-white px-4 py-2 font-semibold hover:bg-orange-700' : 'rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700');
         // Create elements safely to prevent XSS
         const imageDiv = document.createElement('div');
         imageDiv.className = 'relative';
@@ -428,6 +422,11 @@
           const badge = document.createElement('div');
           badge.className = 'absolute top-3 right-3 bg-gradient-to-r from-brand-500 to-violet-500 text-white text-xs px-2 py-1 rounded-full font-semibold';
           badge.textContent = 'Coming Soon';
+          imageDiv.appendChild(badge);
+        } else if (p.isLive) {
+          const badge = document.createElement('div');
+          badge.className = 'absolute top-3 right-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse';
+          badge.textContent = 'Live on HF';
           imageDiv.appendChild(badge);
         }
         
@@ -467,7 +466,7 @@
         button.href = p.checkout;
         if (!p.checkout.startsWith('#')) {
           button.target = '_blank';
-          button.rel = 'noopener';
+          button.rel = 'noopener noreferrer';
         }
         button.className = buttonClass;
         button.textContent = buttonText;
@@ -511,16 +510,19 @@
         // Sort by stargazers desc, then updated
         data.sort((a,b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.updated_at) - new Date(a.updated_at)));
         
-        return data.slice(0, 6).map(r => ({
-          // Sanitize and validate each field
-          name: String(r.name || 'Unknown').substring(0, 100),
-          desc: String(r.description || '').substring(0, 200),
-          stars: Math.max(0, parseInt(r.stargazers_count) || 0),
-          lang: String(r.language || '—').substring(0, 50),
-          html_url: r.html_url && r.html_url.startsWith('https://github.com/') ? r.html_url : '#',
-          archived: Boolean(r.archived),
-          updated: r.updated_at || new Date().toISOString()
-        }));
+        return data
+          .filter(r => r.name !== 'WCNegentropy.github.io') // Exclude this website repo
+          .slice(0, 6)
+          .map(r => ({
+            // Sanitize and validate each field
+            name: String(r.name || 'Unknown').substring(0, 100),
+            desc: String(r.description || '').substring(0, 200),
+            stars: Math.max(0, parseInt(r.stargazers_count) || 0),
+            lang: String(r.language || '—').substring(0, 50),
+            html_url: r.html_url && r.html_url.startsWith('https://github.com/') ? r.html_url : '#',
+            archived: Boolean(r.archived),
+            updated: r.updated_at || new Date().toISOString()
+          }));
       } catch (e) {
         console.error('Repo fetch failed:', e.message);
         return [];

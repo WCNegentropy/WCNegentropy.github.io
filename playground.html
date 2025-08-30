@@ -25,7 +25,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: 'selector',
       theme: {
         extend: {
           fontFamily: { 
@@ -107,7 +107,7 @@
         <a href="#features" class="hover:text-brand-600">Features</a>
       </nav>
       <div class="flex items-center gap-2">
-        <button id="theme-toggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-1.5 text-xs hover:shadow-glow transition">
+        <button id="theme-toggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-1.5 text-xs hover:shadow-glow transition" aria-label="Toggle theme">
           <span class="i-theme">🌞</span><span class="hidden sm:inline">Theme</span>
         </button>
       </div>
@@ -141,10 +141,10 @@
               <option value="python">Python (Concepts)</option>
               <option value="algorithm">Algorithms</option>
             </select>
-            <button id="runCode" class="rounded-lg bg-brand-600 text-white px-4 py-1.5 text-sm font-semibold hover:bg-brand-700 shadow-glow">
+            <button id="runCode" class="rounded-lg bg-brand-600 text-white px-4 py-1.5 text-sm font-semibold hover:bg-brand-700 shadow-glow" aria-label="Run code">
               ▶ Run
             </button>
-            <button id="clearCode" class="rounded-lg border border-slate-300 dark:border-slate-600 px-4 py-1.5 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800">
+            <button id="clearCode" class="rounded-lg border border-slate-300 dark:border-slate-600 px-4 py-1.5 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Clear code editor">
               Clear
             </button>
           </div>
@@ -159,7 +159,7 @@
       <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl overflow-hidden">
         <div class="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
           <h3 class="font-semibold">Output</h3>
-          <button id="clearOutput" class="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Clear</button>
+          <button id="clearOutput" class="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300" aria-label="Clear output window">Clear</button>
         </div>
         <div id="output" class="p-4 min-h-[400px] bg-white dark:bg-slate-800 font-mono text-sm overflow-auto">
           <div class="text-slate-500">Run your code to see output here...</div>
