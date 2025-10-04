@@ -7,31 +7,53 @@
 ### 🎯 Mission Statement
 *"Mad science code factory unleashed"* - The site embodies a philosophy of radical innovation in AI, graphics, and algorithms, pushing the boundaries of what's possible with deterministic, bleeding-edge R&D.
 
+### ⚡ Recent Migration to Jekyll (October 2025)
+The site has been successfully migrated from pure static HTML to **Jekyll**, providing:
+- **Maintainable Structure**: Reusable layouts and includes for easier updates
+- **Data-Driven Content**: Site configuration in YAML files instead of JavaScript objects
+- **SEO Enhancement**: Automatic sitemap generation and SEO tags
+- **Future-Ready**: Easy content management and blog integration capability
+- **Preserved Functionality**: All interactive features remain fully functional
+
 ## 📁 Repository Structure
 
 ```
 WCNegentropy.github.io/
-├── index.html              # Main landing page - professional portfolio
+├── index.md                # Main landing page with frontmatter
 ├── algorithms.html         # Interactive algorithm visualizer
-├── playground.html         # Live code execution environment
-├── README.md              # Basic project description (minimal)
+├── _config.yml             # Jekyll configuration
+├── Gemfile                 # Ruby dependencies
+├── _layouts/               # Jekyll page templates
+│   ├── default.html        # Base layout with header/footer
+│   ├── home.html           # Homepage layout
+│   └── page.html           # Standard page layout
+├── _includes/              # Reusable components
+│   ├── head.html           # HTML head with meta tags
+│   ├── header.html         # Navigation bar
+│   ├── footer.html         # Footer content
+│   └── scripts.html        # JavaScript for interactive features
+├── _data/                  # Site data files
+│   └── site.yml            # Site configuration (owner, social links, products)
+├── images/                 # Image assets
+│   ├── brand/              # Brand images (avatar, logo)
+│   ├── products/           # Product showcase images
+│   └── social/             # Social media preview images
 ├── .github/workflows/
-│   └── pages.yml          # GitHub Pages deployment automation
+│   └── pages.yml           # GitHub Actions Jekyll build & deploy
 ├── .devcontainer/
-│   └── devcontainer.json  # Codespace development environment config
-├── .vscode/
-│   └── settings.json      # VS Code workspace settings
-└── .claude/
-    └── settings.local.json # Claude Code configuration
+│   └── devcontainer.json   # Codespace development environment
+└── .vscode/
+    └── settings.json       # VS Code workspace settings
 ```
 
 ## 🌐 Site Architecture & Features
 
-### 1. **Main Portfolio (index.html)**
-- **Framework**: Static HTML with Tailwind CSS (CDN)
+### 1. **Main Portfolio (index.md → index.html)**
+- **Framework**: Jekyll with Liquid templating + Tailwind CSS (CDN)
 - **Design**: Modern, dark-mode supported, responsive design
+- **Layout**: Uses `home.html` layout extending `default.html`
 - **Key Sections**:
-  - Hero with dynamic configuration via JavaScript `SITE` object
+  - Hero with dynamic configuration from `_data/site.yml`
   - R&D Products showcase (3 innovative projects)
   - Auto-fetched GitHub repositories (top 6 by stars)
   - About section with professional details
@@ -47,16 +69,23 @@ WCNegentropy.github.io/
 - **Tech Stack**: Vanilla JavaScript with Canvas API for neural network visualization
 - **Educational Value**: Step-by-step algorithm execution with detailed logging
 - **Status**: ✅ Fully functional and maintained
+- **Note**: Kept as static HTML for complex JavaScript interactions
 
 ## 🛠 Technical Implementation
 
-### Configuration Management
-All site data is centralized in the `SITE` JavaScript object in `index.html`:
+### Jekyll Build System
+The site uses **Jekyll 4.3.x** for static site generation:
+- **Layouts**: Modular templates in `_layouts/` for consistent structure
+- **Includes**: Reusable components in `_includes/` (header, footer, scripts)
+- **Data Files**: YAML configuration in `_data/` for easy content management
+- **Build Process**: GitHub Actions automatically builds and deploys on push to main
 
-```javascript
-const SITE = {
-  ownerName: "WCNegentropy",
-  tagline: "The Architect • Software Engineer • R&D • ML/AI",
+### Configuration Management
+Site data is now centralized in `_data/site.yml` (previously JavaScript):
+
+```yaml
+owner_name: "WCNegentropy"
+tagline: "The Architect • Software Engineer • R&D • ML/AI"
   email: "contact@wcnegentropy.com",
   location: "NJ, USA",
   githubUser: "WCNegentropy",
@@ -189,17 +218,33 @@ const SITE = {
 
 ## 🚀 Deployment & CI/CD
 
-### GitHub Pages Integration
-- **Automatic Deployment**: On push to main branch
-- **Static Hosting**: Direct file serving, no build process
-- **Custom Domain Ready**: Easy CNAME configuration support
+### GitHub Pages Integration with Jekyll
+- **Automatic Deployment**: On push to main branch via GitHub Actions
+- **Jekyll Build**: Ruby 3.1, Jekyll 4.3.x with plugins (sitemap, SEO tags)
+- **Custom Domain**: wcnegentropy.com configured via CNAME
 - **HTTPS Enforced**: GitHub Pages SSL certificate
 
+### Local Jekyll Development
+```bash
+# Install dependencies
+gem install bundler --user-install
+bundle install --path vendor/bundle
+
+# Build the site
+bundle exec jekyll build
+
+# Serve locally with live reload
+bundle exec jekyll serve --host 0.0.0.0 --port 4000
+
+# Access at http://localhost:4000
+```
+
 ### Development Workflow
-1. **Local Development**: Codespace or VS Code with Live Server
+1. **Local Development**: Jekyll server with live reload
 2. **Git Workflow**: Feature branches with main branch protection
-3. **Automatic Deployment**: GitHub Actions on merge
-4. **Testing**: Manual QA on preview deployments
+3. **Automatic Build**: GitHub Actions builds Jekyll on push
+4. **Automatic Deployment**: Deploys to GitHub Pages after successful build
+5. **Testing**: Local testing before push, automated build validation
 
 ## 🎯 Future Enhancement Opportunities
 
@@ -223,38 +268,56 @@ const SITE = {
 
 ## 🛡️ Testing Commands
 
-### Recommended Testing Workflow
+### Jekyll Testing Workflow
 ```bash
-# Local development server (if using Python)
-python -m http.server 8000
+# Install dependencies
+bundle install --path vendor/bundle
 
-# Or using Node.js
-npx serve .
+# Build site (check for errors)
+bundle exec jekyll build
+
+# Serve locally with live reload
+bundle exec jekyll serve --host 0.0.0.0 --port 4000
+
+# Access at http://localhost:4000
 
 # Validate HTML
-curl -s https://validator.w3.org/nu/?doc=YOUR_SITE_URL
+curl -s http://localhost:4000/ | head -100
+
+# Check for build warnings
+bundle exec jekyll build --verbose
+
+# Clean build artifacts
+bundle exec jekyll clean
+```
+
+### Production Testing
+```bash
+# Validate HTML
+curl -s https://validator.w3.org/nu/?doc=https://wcnegentropy.com
 
 # Check accessibility
 npm install -g lighthouse
-lighthouse YOUR_SITE_URL --chrome-flags="--headless"
+lighthouse https://wcnegentropy.com --chrome-flags="--headless"
 
-# Performance testing
-npm install -g @web/dev-server
-web-dev-server --open
+# Test Jekyll build in CI environment
+bundle exec jekyll build --baseurl "" --verbose
 ```
 
 ### Manual Testing Checklist
-- [ ] All navigation links work correctly
-- [ ] Algorithm visualizations run without errors (✅ FIXED: Pathfinding now shows visual feedback)
-- [ ] Code playground executes JavaScript properly (✅ SECURED: Now properly sandboxed)
-- [ ] Neural network visualization displays properly (✅ FIXED: Canvas and loss chart working)
-- [ ] Theme toggle functions across all pages
+- [x] Jekyll build completes without errors
+- [x] Local server runs on port 4000
+- [x] All navigation links work correctly
+- [x] Algorithm visualizations run without errors (✅ FIXED: Pathfinding now shows visual feedback)
+- [x] Neural network visualization displays properly (✅ FIXED: Canvas and loss chart working)
+- [ ] Theme toggle functions across all pages (needs validation on production)
 - [ ] Mobile responsiveness on different screen sizes
-- [ ] GitHub API integration displays repositories (✅ SECURED: Input validation added)
+- [x] GitHub API integration displays repositories (✅ SECURED: Input validation added)
 - [ ] Contact forms generate proper mailto links
 - [ ] All external links open in new tabs
-- [ ] Security: Attempt to execute malicious code in playground (should be blocked)
-- [ ] Security: Verify no XSS vulnerabilities in GitHub API data display
+- [x] Sitemap.xml generated correctly
+- [x] Robots.txt generated correctly
+- [x] SEO tags included in head
 
 ## 📞 Support & Maintenance
 
@@ -610,4 +673,50 @@ avatar: "/images/brand/avatar.png", // Custom avatar
 
 ---
 
-*This documentation serves as a comprehensive guide for understanding, maintaining, and extending the WCNegentropy GitHub Pages site. The site embodies a philosophy of innovation, education, and technical excellence in the realm of AI/ML and algorithmic research. All major bugs have been resolved and security vulnerabilities patched as of December 2024. Live model integration and custom image system completed August 2025.*
+## 🎉 Jekyll Migration Complete (October 2025)
+
+### Migration Summary
+The site has been successfully migrated from static HTML to Jekyll, providing a more maintainable and scalable foundation:
+
+**✅ Completed:**
+- Jekyll 4.3.x with Ruby 3.1 configuration
+- Modular layouts system (_layouts/default.html, home.html, page.html)
+- Reusable includes (_includes/head.html, header.html, footer.html, scripts.html)
+- Data-driven configuration (_data/site.yml replacing JavaScript SITE object)
+- GitHub Actions workflow for automated Jekyll builds
+- SEO enhancements (sitemap.xml, robots.txt, jekyll-seo-tag plugin)
+- Local development with `bundle exec jekyll serve`
+- All interactive features preserved (products grid, GitHub API, contact form, theme toggle)
+- Algorithm visualizer fully functional
+
+**Benefits:**
+- **Easier Maintenance**: Update content in YAML files instead of HTML
+- **Better SEO**: Automatic sitemap generation and structured data
+- **Cleaner Code**: Separation of content, structure, and presentation
+- **Future-Ready**: Easy to add blog posts or additional content types
+- **Professional Workflow**: Standard Ruby/Jekyll development practices
+
+**Migration Notes:**
+- Original HTML files backed up as `*.backup` (excluded from build)
+- Custom domain (wcnegentropy.com) configuration preserved
+- All URLs remain the same (no breaking changes)
+- Interactive JavaScript features work identically
+
+### Quick Start for Development
+```bash
+# Clone repository
+git clone https://github.com/WCNegentropy/WCNegentropy.github.io.git
+cd WCNegentropy.github.io
+
+# Install dependencies
+bundle install --path vendor/bundle
+
+# Run local server
+bundle exec jekyll serve
+
+# Access at http://localhost:4000
+```
+
+---
+
+*This documentation serves as a comprehensive guide for understanding, maintaining, and extending the WCNegentropy GitHub Pages site. The site embodies a philosophy of innovation, education, and technical excellence in the realm of AI/ML and algorithmic research. All major bugs have been resolved and security vulnerabilities patched as of December 2024. Live model integration and custom image system completed August 2025. **Jekyll migration completed October 2025** for improved maintainability and SEO.*
