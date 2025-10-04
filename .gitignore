@@ -7,6 +7,14 @@ yarn-error.log*
 # Package manager files
 package-lock.json
 
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+Gemfile.lock
+vendor/
+
 # IDE files
 .vscode/
 .idea/

@@ -1,0 +1,139 @@
+---
+layout: default
+---
+
+<!-- HERO -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-grid pointer-events-none"></div>
+  <div class="mx-auto max-w-7xl px-6 pt-16 pb-12 lg:pt-24 lg:pb-16">
+    <div class="text-center max-w-4xl mx-auto">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+        Mad science <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-violet-500">code factory</span> unleashed.
+      </h1>
+      <p class="mt-5 text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+        Experimental AI research with novel, cutting-edge models on Hugging Face. From bit-level transformers to wave-interference memory systems—pushing the boundaries of what's possible.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="#products" class="rounded-xl bg-brand-600 text-white px-6 py-3 font-semibold shadow-glow hover:bg-brand-700">View AI Models</a>
+        <a href="/algorithms.html" class="rounded-xl bg-violet-600 text-white px-6 py-3 font-semibold shadow-glow hover:bg-violet-700">Algorithm Visualizer</a>
+        <a href="#contact" class="rounded-xl border border-slate-300 dark:border-slate-600 px-6 py-3 font-semibold hover:bg-slate-50 dark:hover:bg-slate-900">Get In Touch</a>
+      </div>
+      <!-- Socials -->
+      <div class="mt-8 flex items-center justify-center gap-4 text-slate-500">
+        <a href="{{ site.data.site.social.github }}" class="hover:text-brand-600" target="_blank" rel="noopener">GitHub</a>
+        <a href="{{ site.data.site.social.x }}" class="hover:text-brand-600" target="_blank" rel="noopener">X</a>
+        <a href="{{ site.data.site.social.huggingface }}" class="hover:text-brand-600" target="_blank" rel="noopener">Hugging Face</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST / NUMBERS -->
+<section class="mx-auto max-w-7xl px-6 pb-8">
+  <div class="grid sm:grid-cols-3 gap-4">
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 text-center">
+      <div class="text-3xl font-extrabold">∞</div>
+      <div class="text-sm text-slate-500">Possibilities unlocked</div>
+    </div>
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 text-center">
+      <div class="text-3xl font-extrabold">100%</div>
+      <div class="text-sm text-slate-500">Deterministic innovation</div>
+    </div>
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 text-center">
+      <div class="text-3xl font-extrabold">⚡</div>
+      <div class="text-sm text-slate-500">Mad science factor</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="mx-auto max-w-7xl px-6 py-16">
+  <div class="flex items-end justify-between flex-wrap gap-4">
+    <div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Live AI Research Models</h2>
+      <p class="mt-2 text-slate-600 dark:text-slate-300 max-w-2xl">Experimental models deployed on Hugging Face. Open source research in novel architectures and AI safety.</p>
+    </div>
+    <a href="#contact" class="text-brand-600 hover:underline">Need a team license? →</a>
+  </div>
+
+  <div id="products-grid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+</section>
+
+<!-- REPOS -->
+<section id="repos" class="mx-auto max-w-7xl px-6 py-16">
+  <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Open Source Repos</h2>
+  <p class="mt-2 text-slate-600 dark:text-slate-300 max-w-2xl">Latest public repositories from <span class="font-semibold">{{ site.data.site.github_user }}</span>. Star those you like!</p>
+  <div id="repo-grid" class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  <div class="mt-6"><a class="inline-block text-brand-600 hover:underline" href="{{ site.data.site.social.github }}" target="_blank" rel="noopener">See all on GitHub →</a></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="mx-auto max-w-7xl px-6 py-16">
+  <div class="grid lg:grid-cols-3 gap-8 items-start">
+    <div class="lg:col-span-2">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">About</h2>
+      <div class="prose dark:prose-invert max-w-none mt-4">
+        <p>I'm <strong>The Architect</strong>, a solo developer running a mad science code factory. I build software that pushes the boundaries of what's possible.</p>
+        <p>Current focus: Revolutionary AI architectures (bit-native transformers), deterministic procedural systems, and bleeding-edge R&D across ML/AI, and algorithms.</p>
+        <p>Everything from revolutionary language models to fully procedural game engines—all deterministically deviated from the same obsessive pursuit of innovation.</p>
+      </div>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="#contact" class="rounded-xl bg-brand-600 text-white px-5 py-2.5 font-semibold shadow-glow hover:bg-brand-700">Work with me</a>
+        <a href="#" class="rounded-xl border border-slate-300 dark:border-slate-600 px-5 py-2.5 font-semibold hover:bg-slate-50 dark:hover:bg-slate-900">Download CV</a>
+      </div>
+    </div>
+    <aside class="lg:col-span-1">
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5">
+        <h3 class="font-semibold">Quick Facts</h3>
+        <ul class="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+          <li>📍 <span>{{ site.data.site.location }}</span></li>
+          <li>✉️ <a class="text-brand-600" href="#contact">Email me</a></li>
+          <li>🧪 <a class="text-brand-600" href="{{ site.data.site.social.huggingface }}" target="_blank" rel="noopener">Hugging Face profile</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- LINKS -->
+<section id="links" class="mx-auto max-w-7xl px-6 py-16">
+  <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Elsewhere</h2>
+  <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <a class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-glow transition" href="{{ site.data.site.social.github }}" target="_blank" rel="noopener">
+      <div class="text-lg font-semibold">GitHub</div>
+      <div class="text-sm text-slate-500">Open source & snippets</div>
+    </a>
+    <a class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-glow transition" href="{{ site.data.site.social.x }}" target="_blank" rel="noopener">
+      <div class="text-lg font-semibold">X / Twitter</div>
+      <div class="text-sm text-slate-500">Notes & releases</div>
+    </a>
+    <a class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-glow transition" href="{{ site.data.site.social.huggingface }}" target="_blank" rel="noopener">
+      <div class="text-lg font-semibold">Hugging Face</div>
+      <div class="text-sm text-slate-500">Models & Spaces</div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="mx-auto max-w-7xl px-6 py-16">
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Get In Touch</h2>
+      <p class="mt-2 text-slate-600 dark:text-slate-300">Ready to collaborate on cutting-edge innovation? Drop me a line.</p>
+    </div>
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-8">
+      <form id="contactForm" class="space-y-4">
+        <div class="grid md:grid-cols-2 gap-4">
+          <input required name="name" placeholder="Name" autocomplete="name" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-3" />
+          <input required type="email" name="email" placeholder="Email" autocomplete="email" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-3" />
+        </div>
+        <input name="subject" placeholder="Subject" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-3" />
+        <textarea required name="message" rows="5" placeholder="Tell me about your project, idea, or how we might collaborate..." class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-transparent px-4 py-3"></textarea>
+        <div class="flex items-center justify-between">
+          <p class="text-sm text-slate-500">Or email directly: <a href="mailto:{{ site.data.site.email }}" class="text-brand-600 hover:underline">{{ site.data.site.email }}</a></p>
+          <button type="submit" class="rounded-xl bg-brand-600 text-white px-6 py-3 font-semibold shadow-glow hover:bg-brand-700">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+# Jekyll Configuration for WCNegentropy Portfolio Site
+title: "WCNegentropy"
+description: "Mad science code factory unleashed - AI research and bleeding-edge R&D"
+url: "https://wcnegentropy.com"
+baseurl: ""
+
+# Site owner information
+owner:
+  name: "WCNegentropy"
+  tagline: "The Architect • Software Engineer • R&D • ML/AI"
+  email: "contact@wcnegentropy.com"
+  location: "NJ, USA"
+  github_user: "WCNegentropy"
+  avatar: "https://github.com/WCNegentropy.png"
+
+# Jekyll settings
+markdown: kramdown
+highlighter: rouge
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections (for future blog posts)
+collections:
+  posts:
+    output: true
+    permalink: /:categories/:year/:month/:day/:title/
+
+# Exclude from build
+exclude:
+  - README.md
+  - CLAUDE.md
+  - .gitignore
+  - .devcontainer/
+  - .vscode/
+  - .github/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - node_modules/
+  - package.json
+  - package-lock.json
+
+# Theme color for browsers
+theme_color: "#0ea5e9"
