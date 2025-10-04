@@ -45,6 +45,9 @@ exclude:
   - node_modules/
   - package.json
   - package-lock.json
+  - "*.backup"
+  - index.html.backup
+  - algorithms.html.backup
 
 # Theme color for browsers
 theme_color: "#0ea5e9"
