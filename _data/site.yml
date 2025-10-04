@@ -1,0 +1,59 @@
+owner_name: "WCNegentropy"
+tagline: "The Architect • Software Engineer • R&D • ML/AI"
+email: "contact@wcnegentropy.com"
+location: "NJ, USA"
+github_user: "WCNegentropy"
+avatar: "https://github.com/WCNegentropy.png"
+
+social:
+  github: "https://github.com/WCNegentropy"
+  x: "https://twitter.com/WCNegentropy"
+  huggingface: "https://huggingface.co/WCNegentropy"
+  linkedin: ""
+  email: "mailto:contact@wcnegentropy.com"
+
+products:
+  - id: "prod-bit-transformer"
+    name: "BitTransformerLM"
+    blurb: "Experimental bit-level transformer with 9-bit encoding (8 data + 1 parity). Novel reversible architecture with built-in safety telemetry."
+    price: "Research"
+    license: "AGPLv3 - Research & Academic Use"
+    image: "/images/products/bit-transformer.jpg"
+    highlights:
+      - "9-bit encoding system"
+      - "Reversible architecture"
+      - "Safety telemetry"
+      - "793K-771M parameters"
+    checkout: "https://huggingface.co/WCNegentropy/BitTransformerLM"
+    coming_soon: false
+    is_live: true
+
+  - id: "prod-wrinkle-brane"
+    name: "WrinkleBrane"
+    blurb: "Experimental wave-interference memory system using 4D tensor operations. High-precision associative memory with parallel retrieval (150+ dB PSNR)."
+    price: "Research"
+    license: "AGPL-3.0 - Experimental Research"
+    image: "/images/products/wrinkle-brane.jpg"
+    highlights:
+      - "4D tensor operations"
+      - "Wave-interference memory"
+      - "150+ dB PSNR"
+      - "Parallel retrieval"
+    checkout: "https://huggingface.co/WCNegentropy/WrinkleBrane"
+    coming_soon: false
+    is_live: true
+
+  - id: "prod-custom-research"
+    name: "Custom Research Projects"
+    blurb: "Bespoke experimental AI systems and novel algorithm development. Academic collaborations welcome."
+    price: "Contact"
+    license: "Custom research agreements."
+    image: "/images/products/custom-research.jpg"
+    highlights:
+      - "Novel architectures"
+      - "Academic partnerships"
+      - "Research validation"
+      - "Open publication"
+    checkout: "#contact"
+    coming_soon: false
+    is_live: false
