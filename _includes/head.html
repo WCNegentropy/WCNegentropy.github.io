@@ -50,18 +50,65 @@
 
 <style>
   :root { color-scheme: light dark; }
-  body { font-family: Inter, ui-sans-serif, system-ui; }
+  
+  /* Prevent horizontal scroll and layout shifts */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Inter, ui-sans-serif, system-ui;
+    /* Smooth transitions for theme changes */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
   /* Subtle animated gradient background */
   .bg-grid {
     background-image: radial-gradient( circle at 1px 1px, rgba(0,0,0,.05) 1px, transparent 0 );
     background-size: 22px 22px;
   }
+  
+  /* Dark mode grid adjustment */
+  .dark .bg-grid {
+    background-image: radial-gradient( circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0 );
+  }
+  
+  /* Optimized animated blobs - prevent layout shifts */
   .blob {
-    position: absolute; filter: blur(70px); opacity: .3; pointer-events:none;
+    position: fixed; /* Changed from absolute to fixed */
+    filter: blur(70px);
+    opacity: .3;
+    pointer-events: none;
     background: conic-gradient(from 90deg at 50% 50%, #60a5fa, #a78bfa, #22d3ee, #60a5fa);
     animation: spin 18s linear infinite;
+    /* GPU acceleration for better performance */
+    will-change: transform;
+    transform: translateZ(0);
   }
-  @keyframes spin { to { transform: rotate(1turn); } }
+  
+  @keyframes spin { 
+    to { transform: rotate(1turn); } 
+  }
+  
+  /* Prevent flash of unstyled content during theme load */
+  html:not(.dark):not(.light) {
+    visibility: hidden;
+  }
+  
+  html.dark, html.light {
+    visibility: visible;
+  }
+  
+  /* Smooth scroll behavior already applied via scroll-smooth class */
+  /* But ensure it works properly */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
 </style>
 
 {% seo %}
