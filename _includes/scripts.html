@@ -11,10 +11,10 @@
       github: "{{ site.data.site.social.github }}",
       x: "{{ site.data.site.social.x }}",
       huggingface: "{{ site.data.site.social.huggingface }}",
+      reddit: "{{ site.data.site.social.reddit }}",
       linkedin: "{{ site.data.site.social.linkedin }}",
       email: "{{ site.data.site.social.email }}"
-    },
-    products: {{ site.data.site.products | jsonify }}
+    }
   };
 
   // --- Theme ---
@@ -33,213 +33,6 @@
   // --- Populate dynamic content ---
   const byId = (id) => document.getElementById(id);
   
-  // --- Render products ---
-  const fmt = (n) => new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD'}).format(n);
-  const productsGrid = () => {
-    const grid = document.getElementById('products-grid');
-    if (!grid) return;
-    
-    grid.innerHTML = '';
-    SITE.products.forEach(p => {
-      const el = document.createElement('article');
-      el.className = 'group rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-glow transition flex flex-col';
-      const priceDisplay = typeof p.price === 'number' ? fmt(p.price) : p.price;
-      const buttonText = p.coming_soon ? 'Coming Soon' : (p.is_live ? 'View on HF' : (p.price === 'Contact' ? 'Get Quote' : 'Buy'));
-      const buttonClass = p.coming_soon ? 'rounded-xl border-2 border-brand-600 text-brand-600 px-4 py-2 font-semibold' : (p.is_live ? 'rounded-xl bg-orange-600 text-white px-4 py-2 font-semibold hover:bg-orange-700' : 'rounded-xl bg-brand-600 text-white px-4 py-2 font-semibold hover:bg-brand-700');
-      
-      const imageDiv = document.createElement('div');
-      imageDiv.className = 'relative';
-      
-      const img = document.createElement('img');
-      img.src = p.image;
-      img.alt = p.name;
-      img.className = 'aspect-[16/9] object-cover';
-      
-      img.onerror = () => {
-        const placeholder = document.createElement('div');
-        placeholder.className = 'aspect-[16/9] bg-gradient-to-br from-brand-500/20 via-violet-500/20 to-cyan-500/20 flex items-center justify-center';
-        placeholder.innerHTML = `<div class="text-center p-4"><div class="text-2xl mb-2">🧪</div><div class="text-sm font-medium">${p.name}</div></div>`;
-        img.style.display = 'none';
-        imageDiv.appendChild(placeholder);
-      };
-      
-      imageDiv.appendChild(img);
-      
-      if (p.coming_soon) {
-        const badge = document.createElement('div');
-        badge.className = 'absolute top-3 right-3 bg-gradient-to-r from-brand-500 to-violet-500 text-white text-xs px-2 py-1 rounded-full font-semibold';
-        badge.textContent = 'Coming Soon';
-        imageDiv.appendChild(badge);
-      } else if (p.is_live) {
-        const badge = document.createElement('div');
-        badge.className = 'absolute top-3 right-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs px-2 py-1 rounded-full font-semibold animate-pulse';
-        badge.textContent = 'Live on HF';
-        imageDiv.appendChild(badge);
-      }
-      
-      const contentDiv = document.createElement('div');
-      contentDiv.className = 'p-5 flex-1 flex flex-col';
-      
-      const title = document.createElement('h3');
-      title.className = 'text-xl font-bold';
-      title.textContent = p.name;
-      
-      const description = document.createElement('p');
-      description.className = 'mt-1 text-sm text-slate-600 dark:text-slate-300';
-      description.textContent = p.blurb;
-      
-      const highlightsList = document.createElement('ul');
-      highlightsList.className = 'mt-3 text-sm text-slate-600 dark:text-slate-300 space-y-1';
-      p.highlights.forEach(h => {
-        const li = document.createElement('li');
-        li.textContent = `• ${h}`;
-        highlightsList.appendChild(li);
-      });
-      
-      const bottomDiv = document.createElement('div');
-      bottomDiv.className = 'mt-4 flex items-center justify-between';
-      
-      const priceDiv = document.createElement('div');
-      const priceElement = document.createElement('div');
-      priceElement.className = 'text-2xl font-extrabold';
-      priceElement.textContent = priceDisplay;
-      const licenseElement = document.createElement('div');
-      licenseElement.className = 'text-xs text-slate-500';
-      licenseElement.textContent = p.license;
-      priceDiv.appendChild(priceElement);
-      priceDiv.appendChild(licenseElement);
-      
-      const button = document.createElement('a');
-      button.href = p.checkout;
-      if (!p.checkout.startsWith('#')) {
-        button.target = '_blank';
-        button.rel = 'noopener noreferrer';
-      }
-      button.className = buttonClass;
-      button.textContent = buttonText;
-      
-      bottomDiv.appendChild(priceDiv);
-      bottomDiv.appendChild(button);
-      
-      contentDiv.appendChild(title);
-      contentDiv.appendChild(description);
-      contentDiv.appendChild(highlightsList);
-      contentDiv.appendChild(bottomDiv);
-      
-      el.appendChild(imageDiv);
-      el.appendChild(contentDiv);
-      grid.appendChild(el);
-    });
-  }
-
-  // --- Fetch GH repos ---
-  async function fetchRepos(user) {
-    try {
-      if (!user || typeof user !== 'string' || !/^[a-zA-Z0-9\-._]+$/.test(user)) {
-        console.error('Invalid GitHub username');
-        return [];
-      }
-      
-      const res = await fetch(`https://api.github.com/users/${encodeURIComponent(user)}/repos?per_page=100&sort=updated`);
-      
-      if (!res.ok) {
-        console.error('GitHub API request failed:', res.status, res.statusText);
-        return [];
-      }
-      
-      const data = await res.json();
-      if (!Array.isArray(data)) {
-        console.error('Unexpected API response format');
-        return [];
-      }
-      
-      data.sort((a,b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.updated_at) - new Date(a.updated_at)));
-      
-      return data
-        .filter(r => r.name !== 'WCNegentropy.github.io')
-        .slice(0, 6)
-        .map(r => ({
-          name: String(r.name || 'Unknown').substring(0, 100),
-          desc: String(r.description || '').substring(0, 200),
-          stars: Math.max(0, parseInt(r.stargazers_count) || 0),
-          lang: String(r.language || '—').substring(0, 50),
-          html_url: r.html_url && r.html_url.startsWith('https://github.com/') ? r.html_url : '#',
-          archived: Boolean(r.archived),
-          updated: r.updated_at || new Date().toISOString()
-        }));
-    } catch (e) {
-      console.error('Repo fetch failed:', e.message);
-      return [];
-    }
-  }
-
-  async function renderRepos() {
-    const grid = document.getElementById('repo-grid');
-    if (!grid) return;
-    
-    grid.innerHTML = '<div class="text-slate-500">Loading repos…</div>';
-    const repos = await fetchRepos(SITE.githubUser);
-    grid.innerHTML = '';
-    if (!repos.length) { 
-      grid.innerHTML = '<div class="text-slate-500">No repos found.</div>'; 
-      return; 
-    }
-    repos.forEach(r => {
-      const el = document.createElement('article');
-      el.className = 'rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-glow transition';
-      
-      const headerDiv = document.createElement('div');
-      headerDiv.className = 'flex items-start justify-between gap-3';
-      
-      const repoLink = document.createElement('a');
-      repoLink.href = r.html_url;
-      repoLink.target = '_blank';
-      repoLink.rel = 'noopener';
-      repoLink.className = 'text-lg font-semibold hover:text-brand-600';
-      repoLink.textContent = r.name;
-      
-      const langSpan = document.createElement('span');
-      langSpan.className = 'text-xs rounded-full border px-2 py-0.5 border-slate-200 dark:border-slate-700';
-      langSpan.textContent = r.lang || '—';
-      
-      headerDiv.appendChild(repoLink);
-      headerDiv.appendChild(langSpan);
-      
-      const descP = document.createElement('p');
-      descP.className = 'mt-2 text-sm text-slate-600 dark:text-slate-300';
-      descP.textContent = r.desc || 'No description available';
-      
-      const statsDiv = document.createElement('div');
-      statsDiv.className = 'mt-3 text-xs text-slate-500';
-      statsDiv.textContent = `⭐ ${r.stars} • Updated ${new Date(r.updated).toLocaleDateString()}`;
-      
-      el.appendChild(headerDiv);
-      el.appendChild(descP);
-      el.appendChild(statsDiv);
-      grid.appendChild(el);
-    });
-  }
-
-  // --- JSON‑LD ---
-  const injectJSONLD = () => {
-    const org = {
-      '@context': 'https://schema.org', '@type': 'Person',
-      name: SITE.ownerName, url: location.origin, email: SITE.email,
-      sameAs: [SITE.social.github, SITE.social.x, SITE.social.huggingface, SITE.social.linkedin].filter(Boolean)
-    };
-    const products = SITE.products.map(p => ({
-      '@context': 'https://schema.org', '@type': 'Product',
-      name: p.name, description: p.blurb,
-      image: p.image, url: location.origin + '#'+p.id,
-      offers: { '@type': 'Offer', price: p.price, priceCurrency: 'USD', url: p.checkout, availability: 'https://schema.org/InStock' }
-    }));
-    const scripts = [org, ...products].map(obj => {
-      const s = document.createElement('script'); s.type = 'application/ld+json';
-      s.textContent = JSON.stringify(obj); return s;
-    });
-    scripts.forEach(s => document.head.appendChild(s));
-  }
-
   // --- Contact form ---
   const setupContactForm = () => {
     const contactForm = document.getElementById('contactForm');
@@ -295,15 +88,6 @@
       // Set year in footer
       const yearEl = byId('year');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
-      
-      // Render products
-      productsGrid();
-      
-      // Fetch and render repos
-      await renderRepos();
-      
-      // Inject JSON-LD
-      injectJSONLD();
       
       // Setup contact form
       setupContactForm();
