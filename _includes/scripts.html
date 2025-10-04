@@ -94,9 +94,7 @@
   }
 
   // --- Initialize site ---
-  const initializeSite = async () => {
-    await new Promise(resolve => setTimeout(resolve, 150));
-    
+  const initializeSite = () => {
     try {
       // Set year in footer
       const yearEl = byId('year');
