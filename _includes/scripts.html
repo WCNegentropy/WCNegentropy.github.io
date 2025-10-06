@@ -102,20 +102,12 @@
     
     if (!packageCards.length || !messageField || !contactSection) return;
     
-    packageCards.forEach(card => {
-      card.style.cursor = 'pointer';
+    // Helper function to perform autofill for a given package
+    const performAutofill = (packageName, card) => {
+      if (!packageName) return;
       
-      card.addEventListener('click', (e) => {
-        // Don't trigger if clicking on a link or button inside the card
-        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a')) {
-          return;
-        }
-        
-        const packageName = card.getAttribute('data-package-name');
-        if (!packageName) return;
-        
-        // Generate professional inquiry message
-        const inquiryMessage = `Hello,
+      // Generate professional inquiry message
+      const inquiryMessage = `Hello,
 
 I am interested in learning more about your ${packageName} service for my business. I would like to discuss how this package could meet my needs and get a detailed quote.
 
@@ -124,33 +116,59 @@ Please contact me at this email or at:
 [Your preferred contact method/phone number]
 
 Thank you for your time, and I look forward to hearing from you.`;
-        
-        // Set subject
-        if (subjectField) {
-          subjectField.value = `Inquiry about ${packageName}`;
-        }
-        
-        // Set message
-        messageField.value = inquiryMessage;
-        
-        // Scroll to contact section with smooth animation
-        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        
-        // Add visual feedback - briefly highlight the card
+      
+      // Set subject
+      if (subjectField) {
+        subjectField.value = `Inquiry about ${packageName}`;
+      }
+      
+      // Set message
+      messageField.value = inquiryMessage;
+      
+      // Scroll to contact section with smooth animation
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      // Add visual feedback - briefly highlight the card
+      if (card) {
         card.style.transform = 'scale(0.98)';
         setTimeout(() => {
           card.style.transform = '';
         }, 150);
+      }
+      
+      // Focus the message field after scrolling (with delay)
+      setTimeout(() => {
+        messageField.focus();
+        // Move cursor to the placeholder position
+        const placeholderPos = inquiryMessage.indexOf('[Your preferred contact method');
+        if (placeholderPos !== -1) {
+          messageField.setSelectionRange(placeholderPos, placeholderPos + 47); // Select the placeholder text
+        }
+      }, 800);
+    };
+    
+    packageCards.forEach(card => {
+      card.style.cursor = 'pointer';
+      
+      // Add click handler for the card itself
+      card.addEventListener('click', (e) => {
+        // Don't trigger if clicking on a link or button inside the card
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a')) {
+          return;
+        }
         
-        // Focus the message field after scrolling (with delay)
-        setTimeout(() => {
-          messageField.focus();
-          // Move cursor to the placeholder position
-          const placeholderPos = inquiryMessage.indexOf('[Your preferred contact method');
-          if (placeholderPos !== -1) {
-            messageField.setSelectionRange(placeholderPos, placeholderPos + 47); // Select the placeholder text
-          }
-        }, 800);
+        const packageName = card.getAttribute('data-package-name');
+        performAutofill(packageName, card);
+      });
+      
+      // Add click handlers for buttons/links within the card
+      const buttons = card.querySelectorAll('a[href*="#contact"]');
+      buttons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault(); // Prevent default link behavior
+          const packageName = card.getAttribute('data-package-name');
+          performAutofill(packageName, card);
+        });
       });
     });
   }
