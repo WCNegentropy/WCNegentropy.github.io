@@ -2,10 +2,17 @@
 
 ## 🚀 Project Overview
 
-**WCNegentropy.github.io** is a modern, interactive personal portfolio and showcase site for a developer focused on cutting-edge AI/ML research, algorithms, and software innovations. The site serves as both a professional portfolio and an interactive playground for demonstrating technical expertise.
+**WCNegentropy.github.io** is the business website for WCNegentropy, a New Jersey-based digital services company providing comprehensive web development, e-commerce setup, and automation solutions exclusively for local NJ businesses. The site serves as both a service showcase and client portfolio, featuring competitive pricing and emphasizing in-person setup and support.
 
 ### 🎯 Mission Statement
-*"Mad science code factory unleashed"* - The site embodies a philosophy of radical innovation in AI, graphics, and algorithms, pushing the boundaries of what's possible with deterministic, bleeding-edge R&D.
+*"Your Local NJ Digital Partner"* - We're committed to empowering New Jersey businesses with professional digital solutions, hands-on support, and competitive rates that undercut the competition. Every client gets in-person consultations, setup, and training right at their location.
+
+### 🏠 Business Model (Updated December 2025)
+- **Service Area**: New Jersey local businesses exclusively
+- **Approach**: In-person setup, consultations, and hands-on training
+- **Pricing**: Highly competitive rates (50% below market average)
+- **Focus**: Local restaurants, salons, professional services, and small-to-medium NJ businesses
+- **Specialization**: Web development, e-commerce (Shopify/Wix), automation, and digital presence
 
 ### ⚡ Recent Migration to Jekyll (October 2025)
 The site has been successfully migrated from pure static HTML to **Jekyll**, providing:
@@ -48,15 +55,16 @@ WCNegentropy.github.io/
 
 ## 🌐 Site Architecture & Features
 
-### 1. **Main Portfolio (index.md → index.html)**
+### 1. **Main Business Website (index.md → index.html)**
 - **Framework**: Jekyll with Liquid templating + Tailwind CSS (CDN)
 - **Design**: Modern, dark-mode supported, responsive design
 - **Layout**: Uses `home.html` layout extending `default.html`
 - **Key Sections**:
-  - Hero with dynamic configuration from `_data/site.yml`
-  - R&D Products showcase (3 innovative projects)
-  - Auto-fetched GitHub repositories (top 6 by stars)
-  - About section with professional details
+  - Hero emphasizing NJ local business focus and in-person support
+  - About section highlighting local service area and hands-on approach
+  - Service packages with competitive pricing (all prices cut 50% below market)
+  - Client testimonials (NSCoutureStudio case study)
+  - Research projects showcase (BitTransformerLM, WrinkleBrane on HuggingFace)
   - Contact form with mailto integration
   - Social links (GitHub, X/Twitter, Hugging Face)
 
@@ -85,14 +93,13 @@ Site data is now centralized in `_data/site.yml` (previously JavaScript):
 
 ```yaml
 owner_name: "WCNegentropy"
-tagline: "The Architect • Software Engineer • R&D • ML/AI"
-  email: "contact@wcnegentropy.com",
-  location: "NJ, USA",
-  githubUser: "WCNegentropy",
-  avatar: "https://github.com/WCNegentropy.png",
-  social: { /* social links */ },
-  products: [ /* R&D innovations */ ]
-}
+tagline: "New Jersey's Local Business Digital Partner • Web Development • E-Commerce • Automation"
+email: "contact@wcnegentropy.com"
+location: "Serving New Jersey Local Businesses Exclusively"
+github_user: "WCNegentropy"
+avatar: "https://github.com/WCNegentropy.png"
+social: { /* social links */ }
+products: [ /* HuggingFace research projects */ ]
 ```
 
 ### Theme System
@@ -129,6 +136,66 @@ tagline: "The Architect • Software Engineer • R&D • ML/AI"
 - Bespoke experimental AI systems and novel algorithm development
 - Academic collaborations and research partnerships
 - Status: Available for consultation
+
+## 💼 Service Packages & Pricing (Updated December 2025)
+
+### Business Positioning
+- **Target Market**: New Jersey local businesses exclusively
+- **Service Model**: In-person setup, consultations, and hands-on training
+- **Competitive Edge**: Prices cut 50% below market average to undercut competition
+- **Geographic Focus**: Serving NJ communities with local, personal touch
+
+### Core Business Packages
+1. **Small Business Essentials** - $1,250 setup / $250/month
+   - Perfect for local restaurants, salons, service providers
+   - 3-5 page professional website with contact forms
+   - Domain, hosting, Google Workspace setup
+   - Local SEO and mobile optimization
+
+2. **Startup Launch Package** - $2,250 setup / $375/month
+   - Complete digital presence for new businesses
+   - Custom 5-10 page website with modern design
+   - Professional email, workspace, marketing automation
+   - 60 days support and training
+
+3. **Growth & Scaling Package** - $3,250 setup / $600/month
+   - For established businesses ready to expand
+   - Advanced website with CRM integration
+   - Marketing automation, SEO, social media
+   - Priority technical support (10-15 hours/month)
+
+### E-Commerce Packages
+1. **Shopify Store Builder** - $1,750 setup / $325/month
+2. **E-Commerce Automation Suite** - $3,750 setup / $900/month
+3. **Multi-Channel Commerce** - $6,000 setup / $1,250/month
+
+### Service-Based Business Packages
+1. **Local Service Provider** - $1,600 setup / $300/month (restaurants, gyms)
+2. **Professional Services Suite** - $2,750 setup / $550/month (lawyers, accountants)
+3. **Healthcare/Wellness Package** - $4,250 setup / $800/month (HIPAA-compliant)
+
+### Marketing & Automation
+1. **Digital Marketing Automation** - $2,000 setup / $700/month
+2. **Lead Generation Engine** - $3,000 setup / $900/month
+3. **Content & SEO Powerhouse** - $2,750 setup / $650/month
+
+### Enterprise & Advanced
+1. **Enterprise Web Solutions** - $7,500+ setup / $1,750+/month
+2. **Business Intelligence & Analytics** - $6,000 setup / $1,400/month
+3. **Complete Digital Transformation** - $12,500+ setup / $2,250+/month
+
+### Add-On Services
+- **WordPress to Modern Migration**: $1,250 - $4,250
+- **Mobile App Development**: $4,250 - $12,500
+- **Custom Integration Solutions**: $750 - $2,750
+- **Emergency Support & Consulting**: $62.50-$100/hour
+
+### Value Proposition
+- All packages include in-person setup and training at client location
+- Hands-on support throughout the entire process
+- No hidden fees or surprise charges
+- Local NJ business focus ensures fast response times
+- Competitive pricing designed to undercut larger agencies
 
 ## ⚙️ Development Environment
 
@@ -719,4 +786,39 @@ bundle exec jekyll serve
 
 ---
 
-*This documentation serves as a comprehensive guide for understanding, maintaining, and extending the WCNegentropy GitHub Pages site. The site embodies a philosophy of innovation, education, and technical excellence in the realm of AI/ML and algorithmic research. All major bugs have been resolved and security vulnerabilities patched as of December 2024. Live model integration and custom image system completed August 2025. **Jekyll migration completed October 2025** for improved maintainability and SEO.*
+*This documentation serves as a comprehensive guide for understanding, maintaining, and extending the WCNegentropy GitHub Pages site. The site embodies a philosophy of innovation, education, and technical excellence in the realm of AI/ML and algorithmic research. All major bugs have been resolved and security vulnerabilities patched as of December 2024. Live model integration and custom image system completed August 2025. **Jekyll migration completed October 2025** for improved maintainability and SEO. **Business model pivot to NJ local services completed December 2025** with competitive pricing and in-person support emphasis.*
+
+---
+
+## 🔄 Business Model Update (December 2025)
+
+### Major Strategic Shift
+WCNegentropy has pivoted to focus exclusively on serving **New Jersey local businesses** with a hands-on, in-person approach:
+
+**Key Changes:**
+- ✅ **Geographic Focus**: Now serving NJ businesses exclusively
+- ✅ **Pricing Strategy**: All service prices cut 50% to undercut competition
+- ✅ **Service Model**: Emphasis on in-person setup, consultations, and training
+- ✅ **Target Market**: Local restaurants, salons, professional services, and SMBs
+- ✅ **Value Proposition**: Local partner with competitive rates and personal touch
+
+**Website Updates:**
+- Hero section updated to emphasize NJ local business focus
+- About section rewritten with local service area and in-person messaging
+- Services intro emphasizes competitive pricing and local support
+- All package prices reduced by 50% across the board
+- Site tagline updated: "New Jersey's Local Business Digital Partner"
+
+**Documentation Updates:**
+- CLAUDE.md revised to reflect new business model
+- Comprehensive pricing list added to documentation
+- Service area and approach clearly defined
+- Target market and competitive positioning documented
+
+**Pricing Examples (50% reduction):**
+- Small Business Essentials: $2,500 → $1,250 setup
+- Startup Launch: $4,500 → $2,250 setup
+- E-Commerce Automation: $7,500 → $3,750 setup
+- Emergency Support: $125-200/hr → $62.50-100/hr
+
+This pivot positions WCNegentropy as the most competitive and accessible digital services provider for New Jersey local businesses.
