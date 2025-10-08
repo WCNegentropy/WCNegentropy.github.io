@@ -5,7 +5,7 @@ description: "Updates, insights, and announcements from WCNegentropy—spanning 
 permalink: /blog/
 ---
 
-<div class="mb-12 p-6 bg-gradient-to-br from-brand-50 to-violet-50 dark:from-brand-950/20 dark:to-violet-950/20 rounded-2xl border border-brand-200 dark:border-brand-800 transition-all duration-300">
+<div class="mb-12 p-6 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 rounded-2xl border border-slate-200 dark:border-slate-800 transition-all duration-300">
   <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">Welcome to the WCNegentropy Innovation Hub 🚀</h2>
   <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
     This is your central hub for updates across all WCNegentropy ventures—from cutting-edge AI/ML research and open-source tools to business solutions, trading strategies, and ecosystem build-outs. Here, we share:
