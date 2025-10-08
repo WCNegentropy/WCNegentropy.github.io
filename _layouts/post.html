@@ -1,0 +1,100 @@
+---
+layout: default
+---
+
+<article class="mx-auto max-w-4xl px-6 py-16">
+  <!-- Post header -->
+  <header class="mb-12">
+    <div class="mb-6">
+      {% if page.categories %}
+      <div class="flex gap-2 mb-4">
+        {% for category in page.categories %}
+        <span class="text-xs bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 px-3 py-1 rounded-full font-semibold">{{ category }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+      
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">{{ page.title }}</h1>
+      
+      <div class="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+        <time datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: "%B %d, %Y" }}
+        </time>
+        {% if page.author %}
+        <span>•</span>
+        <span>{{ page.author }}</span>
+        {% endif %}
+        {% if page.read_time %}
+        <span>•</span>
+        <span>{{ page.read_time }} min read</span>
+        {% endif %}
+      </div>
+    </div>
+    
+    {% if page.description %}
+    <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">{{ page.description }}</p>
+    {% endif %}
+  </header>
+
+  <!-- Post content -->
+  <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-brand-600 hover:prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-pre:bg-slate-900 dark:prose-pre:bg-slate-950 prose-code:text-brand-600 dark:prose-code:text-brand-400">
+    {{ content }}
+  </div>
+
+  <!-- Disqus comments section (if enabled) -->
+  {% if page.comments and site.disqus_shortname %}
+  <div class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = "{{ page.url | absolute_url }}";
+        this.page.identifier = "{{ page.id }}";
+      };
+      
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://{{ site.disqus_shortname }}.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+  {% elsif page.comments %}
+  <div class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
+    <div class="text-center text-slate-500 dark:text-slate-400 py-8 bg-slate-50 dark:bg-slate-900 rounded-xl">
+      <p class="text-lg mb-2">💬 Comments section ready for Disqus integration</p>
+      <p class="text-sm">Configure <code class="px-2 py-1 bg-slate-200 dark:bg-slate-800 rounded">disqus_shortname</code> in <code class="px-2 py-1 bg-slate-200 dark:bg-slate-800 rounded">_config.yml</code> to enable comments</p>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Post navigation -->
+  <nav class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
+    <div class="flex flex-col sm:flex-row justify-between gap-6">
+      {% if page.previous.url %}
+      <a href="{{ page.previous.url }}" class="group flex-1">
+        <div class="text-sm text-slate-500 dark:text-slate-400 mb-2">← Previous Post</div>
+        <div class="text-lg font-semibold group-hover:text-brand-600 transition-colors">{{ page.previous.title }}</div>
+      </a>
+      {% else %}
+      <div class="flex-1"></div>
+      {% endif %}
+      
+      {% if page.next.url %}
+      <a href="{{ page.next.url }}" class="group flex-1 text-right">
+        <div class="text-sm text-slate-500 dark:text-slate-400 mb-2">Next Post →</div>
+        <div class="text-lg font-semibold group-hover:text-brand-600 transition-colors">{{ page.next.title }}</div>
+      </a>
+      {% else %}
+      <div class="flex-1"></div>
+      {% endif %}
+    </div>
+    
+    <div class="text-center mt-8">
+      <a href="/blog/" class="inline-block text-brand-600 hover:text-brand-700 font-semibold transition-colors">
+        ← Back to All Posts
+      </a>
+    </div>
+  </nav>
+</article>
