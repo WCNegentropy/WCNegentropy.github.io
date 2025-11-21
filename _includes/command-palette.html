@@ -108,7 +108,7 @@
         // External
         { icon: '🐙', title: 'GitHub', description: 'Open source repositories', url: 'https://github.com/WCNegentropy' },
         { icon: '🤗', title: 'HuggingFace', description: 'AI models and research', url: 'https://huggingface.co/WCNegentropy' },
-        { icon: '𝕏', title: 'X / Twitter', description: 'Updates and thoughts', url: 'https://x.com/WCNegentropy' },
+        { icon: 'X', title: 'X / Twitter', description: 'Updates and thoughts', url: 'https://x.com/WCNegentropy' },
         { icon: '🤖', title: 'Reddit', description: 'Community discussions', url: 'https://reddit.com/user/WCNegentropy' },
         
         // Pages
@@ -145,10 +145,15 @@
       },
       
       navigate(url) {
-        if (url.startsWith('http')) {
+        // Validate URL to prevent XSS attacks
+        if (url.startsWith('http://') || url.startsWith('https://')) {
           window.open(url, '_blank', 'noopener,noreferrer');
-        } else {
+        } else if (url.startsWith('/') || url.startsWith('#')) {
+          // Safe internal navigation
           window.location.href = url;
+        } else {
+          // Invalid URL format - ignore
+          console.warn('Invalid URL format:', url);
         }
         this.open = false;
         this.search = '';

@@ -22,12 +22,12 @@ jobs:
     
     steps:
       # Step 1: Checkout repository
-      # Using SHA for security (actions/checkout@v4.2.2)
+      # SHA-pinned for security: actions/checkout@v4.2.2
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       
       # Step 2: Setup Node.js for Tailwind CSS
-      # Using SHA for security (actions/setup-node@v4.1.0)
+      # SHA-pinned for security: actions/setup-node@v4.1.0
       - name: Setup Node.js
         uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
         with:
@@ -43,7 +43,7 @@ jobs:
         run: npm run build:css
       
       # Step 5: Setup Ruby for Jekyll
-      # Using SHA for security (ruby/setup-ruby@v1.203.0)
+      # SHA-pinned for security: ruby/setup-ruby@v1.203.0
       - name: Setup Ruby
         uses: ruby/setup-ruby@c04af2a97e31b11a0158f6277deb0dbfc2652e1f
         with:
@@ -51,7 +51,7 @@ jobs:
           bundler-cache: true
       
       # Step 6: Setup GitHub Pages
-      # Using SHA for security (actions/configure-pages@v5.0.0)
+      # SHA-pinned for security: actions/configure-pages@v5.0.0
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
@@ -63,7 +63,7 @@ jobs:
           JEKYLL_ENV: production
       
       # Step 8: Upload artifact for deployment
-      # Using SHA for security (actions/upload-pages-artifact@v3.0.1)
+      # SHA-pinned for security: actions/upload-pages-artifact@v3.0.1
       - name: Upload artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
 
@@ -77,7 +77,7 @@ jobs:
     
     steps:
       # Deploy to GitHub Pages
-      # Using SHA for security (actions/deploy-pages@v4.0.5)
+      # SHA-pinned for security: actions/deploy-pages@v4.0.5
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
