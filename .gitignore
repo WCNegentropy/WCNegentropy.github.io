@@ -15,6 +15,9 @@ _site/
 Gemfile.lock
 vendor/
 
+# Build artifacts (CSS is committed as it's needed for GitHub Pages)
+# assets/css/main.css is intentionally NOT ignored as it's the built output
+
 # IDE files
 .vscode/
 .idea/
@@ -26,3 +29,6 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Backup files
+*.backup
