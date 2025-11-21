@@ -43,9 +43,9 @@ jobs:
         run: npm run build:css
       
       # Step 5: Setup Ruby for Jekyll
-      # SHA-pinned for security: ruby/setup-ruby@v1.203.0
+      # SHA-pinned for security: ruby/setup-ruby@v1.268.0
       - name: Setup Ruby
-        uses: ruby/setup-ruby@c04af2a97e31b11a0158f6277deb0dbfc2652e1f
+        uses: ruby/setup-ruby@8aeb6ff8030dd539317f8e1769a044873b56ea71
         with:
           ruby-version: '3.1'
           bundler-cache: true
