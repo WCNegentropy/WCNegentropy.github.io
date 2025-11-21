@@ -1,0 +1,17 @@
+{
+  "name": "wcnegentropy-website",
+  "version": "2.0.0",
+  "description": "Professional Jekyll website with Tailwind CSS JIT compilation",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./_includes/input.css -o ./assets/css/main.css --minify",
+    "watch:css": "tailwindcss -i ./_includes/input.css -o ./assets/css/main.css --watch",
+    "build": "npm run build:css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

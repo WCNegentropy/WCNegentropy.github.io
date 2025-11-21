@@ -14,6 +14,13 @@
       <a href="/#links" class="hover:text-brand-600 transition-colors">Links</a>
     </nav>
     <div class="flex items-center gap-2">
+      <button 
+        x-data 
+        @click="$dispatch('toggle-command-palette')"
+        class="hidden md:inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-1.5 text-xs hover:shadow-glow transition-all duration-300" 
+        aria-label="Open command palette">
+        <span>⌘K</span>
+      </button>
       <button id="theme-toggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-1.5 text-xs hover:shadow-glow transition-all duration-300" aria-label="Toggle theme">
         <span class="i-theme">🌞</span><span class="hidden sm:inline">Theme</span>
       </button>

@@ -23,108 +23,20 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@WCNegentropy" />
 
+<!-- Resource Preloading for Performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}" as="style">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-<!-- Tailwind (buildless) -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    darkMode: 'selector',
-    theme: {
-      extend: {
-        fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
-        colors: {
-          brand: {
-            50: '#e6f8ff', 100: '#ccefff', 200: '#99dfff', 300: '#66cfff', 400: '#33bfff',
-            500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e'
-          }
-        },
-        boxShadow: {
-          glow: '0 10px 30px rgba(14,165,233,0.25)'
-        }
-      }
-    }
-  }
-</script>
+<!-- Compiled Tailwind CSS -->
+<link href="{{ '/assets/css/main.css' | relative_url }}" rel="stylesheet" />
 
-<style>
-  :root { color-scheme: light dark; }
-  
-  /* Prevent horizontal scroll and layout shifts */
-  html, body {
-    overflow-x: hidden;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Scroll padding for sticky header */
-  html {
-    scroll-padding-top: 80px;
-  }
-  
-  body {
-    font-family: Inter, ui-sans-serif, system-ui;
-    /* Smooth transitions for theme changes */
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  /* Subtle animated gradient background */
-  .bg-grid {
-    background-image: radial-gradient( circle at 1px 1px, rgba(0,0,0,.05) 1px, transparent 0 );
-    background-size: 22px 22px;
-  }
-  
-  /* Dark mode grid adjustment */
-  .dark .bg-grid {
-    background-image: radial-gradient( circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 0 );
-  }
-  
-  /* Optimized animated blobs - prevent layout shifts */
-  .blob {
-    position: fixed; /* Changed from absolute to fixed */
-    filter: blur(70px);
-    opacity: .3;
-    pointer-events: none;
-    background: conic-gradient(from 90deg at 50% 50%, #60a5fa, #a78bfa, #22d3ee, #60a5fa);
-    animation: spin 18s linear infinite;
-    /* GPU acceleration for better performance */
-    will-change: transform;
-    transform: translateZ(0);
-  }
-  
-  @keyframes spin { 
-    to { transform: rotate(1turn); } 
-  }
-  
-  /* Prevent flash of unstyled content during theme load */
-  html:not(.dark):not(.light) {
-    visibility: hidden;
-  }
-  
-  html.dark, html.light {
-    visibility: visible;
-  }
-  
-  /* Smooth scroll behavior already applied via scroll-smooth class */
-  /* But ensure it works properly */
-  @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
-    }
-  }
-  
-  /* Reduced motion support */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-</style>
+<!-- Alpine.js for interactive components (Command Palette) -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
 
 {% seo %}
