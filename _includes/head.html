@@ -28,11 +28,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}" as="style">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <!-- Compiled Tailwind CSS -->
 <link href="{{ '/assets/css/main.css' | relative_url }}" rel="stylesheet" />
+
+<!-- Alpine.js for interactive components (Command Palette) -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
 
 {% seo %}
