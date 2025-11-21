@@ -50,9 +50,15 @@ exclude:
   - node_modules/
   - package.json
   - package-lock.json
+  - tailwind.config.js
+  - _includes/input.css
   - "*.backup"
   - index.html.backup
   - algorithms.html.backup
+
+# Include assets in build
+include:
+  - assets/
 
 # Theme color for browsers
 theme_color: "#0ea5e9"

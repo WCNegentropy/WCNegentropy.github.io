@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Base Styles */
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+  
+  html,
+  body {
+    @apply overflow-x-hidden w-full m-0 p-0;
+  }
+  
+  html {
+    @apply scroll-smooth;
+    scroll-padding-top: 80px;
+  }
+  
+  body {
+    @apply font-sans transition-colors duration-300;
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Custom Components */
+@layer components {
+  /* Background grid pattern */
+  .bg-grid {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(0, 0, 0, 0.05) 1px,
+      transparent 0
+    );
+    background-size: 22px 22px;
+  }
+  
+  .dark .bg-grid {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 0
+    );
+  }
+  
+  /* Animated blobs */
+  .blob {
+    @apply fixed blur-[70px] opacity-30 pointer-events-none;
+    background: conic-gradient(
+      from 90deg at 50% 50%,
+      #60a5fa,
+      #a78bfa,
+      #22d3ee,
+      #60a5fa
+    );
+    animation: spin 18s linear infinite;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  /* Prevent FOUC */
+  html:not(.dark):not(.light) {
+    visibility: hidden;
+  }
+  
+  html.dark,
+  html.light {
+    visibility: visible;
+  }
+}
+
+/* Custom Utilities */
+@layer utilities {
+  /* Add any custom utilities here if needed */
+}
