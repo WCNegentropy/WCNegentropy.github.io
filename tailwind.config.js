@@ -16,22 +16,22 @@ module.exports = {
       },
       colors: {
         brand: {
-          50: '#e6f8ff',
-          100: '#ccefff',
-          200: '#99dfff',
-          300: '#66cfff',
-          400: '#33bfff',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-          950: '#082f49', // Added for dark mode gradients
+          50: '#f0ffe6',
+          100: '#dfffcc',
+          200: '#bfff99',
+          300: '#9fff66',
+          400: '#7fff33',
+          500: '#5fff00',  // Bright lime/code green
+          600: '#4cd700',
+          700: '#39a500',
+          800: '#267300',
+          900: '#134100',
+          950: '#0a2900', // Dark green for gradients
         },
       },
       boxShadow: {
-        glow: '0 10px 30px rgba(14, 165, 233, 0.25)',
-        'glow-lg': '0 20px 60px rgba(14, 165, 233, 0.3)',
+        glow: '0 10px 30px rgba(95, 255, 0, 0.3)',
+        'glow-lg': '0 20px 60px rgba(95, 255, 0, 0.35)',
       },
       animation: {
         'spin-slow': 'spin 18s linear infinite',
