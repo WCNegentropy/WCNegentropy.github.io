@@ -65,19 +65,69 @@ layout: default
   <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Projects</h2>
   
   <div class="mb-8">
-    <h3 class="text-2xl font-bold mb-2">Open Source Model Architectures (HuggingFace)</h3>
-    <p class="text-slate-600 dark:text-slate-300 transition-colors duration-300">
-      These are research architectures, provided openly for experimentation and further development.
+    <p class="text-lg text-slate-600 dark:text-slate-300 transition-colors duration-300">
+      Our flagship initiative: pioneering regenerative agriculture models that prove planetary repair can be profitable. Starting Spring 2026 in New Jersey.
     </p>
   </div>
 
   <!-- Bento Grid Layout -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <!-- BitTransformerLM - Featured (spans 2 columns on larger screens) -->
-    <div class="lg:col-span-2 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300 group bg-gradient-to-br from-brand-50/50 to-violet-50/50 dark:from-brand-950/20 dark:to-violet-950/20">
+  <div class="grid grid-cols-1 gap-4">
+    <!-- Spring 2026 Regenerative Ag Pilot Program - Full Width -->
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-8 hover:shadow-glow transition-all duration-300 group bg-gradient-to-br from-green-50/50 to-emerald-50/50 dark:from-green-950/20 dark:to-emerald-950/20">
+      <div class="flex items-start justify-between mb-4">
+        <span class="text-5xl">🌱</span>
+        <span class="text-xs font-mono bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-3 py-1.5 rounded">COMING SPRING 2026</span>
+      </div>
+      <h4 class="text-2xl font-bold mb-3 group-hover:text-brand-600 transition-colors">Regenerative Ag Pilot Program</h4>
+      <p class="mt-2 text-lg text-slate-600 dark:text-slate-300 transition-colors duration-300 mb-6 max-w-4xl">
+        Our proprietary vermicomposting system pilot launching in New Jersey. Follow the journey as we prove planetary repair can be profitable. This small-scale proof of concept will validate our systems and model, demonstrating the necessary processes to scale to full commercial production.
+      </p>
+      <a href="{{ site.data.site.social.x }}" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 rounded-xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-5 py-3 font-semibold hover:opacity-90 transition-opacity">
+        Follow Our Progress →
+      </a>
+    </div>
+    
+    <!-- GitHub Repos Card -->
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 transition-all duration-300">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-3xl">🐙</span>
+        <h4 class="text-xl font-bold">Open Source Repositories</h4>
+      </div>
+      <p class="text-slate-600 dark:text-slate-300 mb-4">
+        Explore more experimental projects, tools, and research code on GitHub.
+      </p>
+      <a href="https://github.com/WCNegentropy" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 rounded-xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-4 py-2 font-semibold hover:opacity-90 transition-opacity">
+        View GitHub Profile →
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="border-t border-slate-200 dark:border-slate-800 transition-colors duration-300"></div>
+
+<!-- OTHER PROJECTS -->
+<section id="other-projects" class="mx-auto max-w-7xl px-6 py-16">
+  <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Other Projects</h2>
+  
+  <div class="mb-8">
+    <p class="text-slate-600 dark:text-slate-300 transition-colors duration-300">
+      Additional ventures and experimental research projects under WCNegentropy, including open-source AI model architectures and novel algorithm development.
+    </p>
+  </div>
+
+  <!-- Bento Grid Layout for AI Models -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- BitTransformerLM - Featured -->
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300 group bg-gradient-to-br from-brand-50/50 to-violet-50/50 dark:from-brand-950/20 dark:to-violet-950/20">
       <div class="flex items-start justify-between mb-3">
         <span class="text-4xl">🤖</span>
-        <span class="text-xs font-mono bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 px-2 py-1 rounded">FEATURED</span>
+        <span class="text-xs font-mono bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 px-2 py-1 rounded">RESEARCH</span>
       </div>
       <h4 class="text-2xl font-bold mb-2 group-hover:text-brand-600 transition-colors">BitTransformerLM</h4>
       <p class="mt-2 text-slate-600 dark:text-slate-300 transition-colors duration-300 mb-4">
@@ -98,6 +148,7 @@ layout: default
     <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300 group">
       <div class="flex items-start justify-between mb-3">
         <span class="text-4xl">🌊</span>
+        <span class="text-xs font-mono bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 px-2 py-1 rounded">RESEARCH</span>
       </div>
       <h4 class="text-xl font-bold mb-2 group-hover:text-brand-600 transition-colors">WrinkleBrane</h4>
       <p class="mt-2 text-slate-600 dark:text-slate-300 transition-colors duration-300 mb-4">
@@ -108,41 +159,6 @@ layout: default
          rel="noopener noreferrer"
          class="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 font-semibold transition-colors duration-300">
         HuggingFace Model Card →
-      </a>
-    </div>
-    
-    <!-- Spring 2026 Regenerative Ag Pilot Program -->
-    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300 group bg-gradient-to-br from-green-50/50 to-emerald-50/50 dark:from-green-950/20 dark:to-emerald-950/20">
-      <div class="flex items-start justify-between mb-3">
-        <span class="text-4xl">🌱</span>
-        <span class="text-xs font-mono bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-2 py-1 rounded">COMING SPRING 2026</span>
-      </div>
-      <h4 class="text-xl font-bold mb-2 group-hover:text-brand-600 transition-colors">Regenerative Ag Pilot Program</h4>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 transition-colors duration-300 mb-4">
-        Our proprietary vermicomposting system pilot launching in New Jersey. Follow the journey as we prove planetary repair can be profitable.
-      </p>
-      <a href="{{ site.data.site.social.x }}" 
-         target="_blank" 
-         rel="noopener noreferrer"
-         class="inline-flex items-center gap-2 rounded-xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-4 py-2 font-semibold hover:opacity-90 transition-opacity">
-        Check it out! →
-      </a>
-    </div>
-    
-    <!-- GitHub Repos Card -->
-    <div class="md:col-span-2 lg:col-span-3 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 transition-all duration-300">
-      <div class="flex items-center gap-3 mb-4">
-        <span class="text-3xl">🐙</span>
-        <h4 class="text-xl font-bold">Open Source Repositories</h4>
-      </div>
-      <p class="text-slate-600 dark:text-slate-300 mb-4">
-        Explore more experimental projects, tools, and research code on GitHub.
-      </p>
-      <a href="https://github.com/WCNegentropy" 
-         target="_blank" 
-         rel="noopener noreferrer"
-         class="inline-flex items-center gap-2 rounded-xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-4 py-2 font-semibold hover:opacity-90 transition-opacity">
-        View GitHub Profile →
       </a>
     </div>
   </div>
