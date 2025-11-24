@@ -44,7 +44,7 @@
   .bg-grid {
     background-image: radial-gradient(
       circle at 1px 1px,
-      rgba(0, 0, 0, 0.05) 1px,
+      rgba(0, 100, 0, 0.08) 1px,
       transparent 0
     );
     background-size: 22px 22px;
@@ -53,7 +53,7 @@
   .dark .bg-grid {
     background-image: radial-gradient(
       circle at 1px 1px,
-      rgba(255, 255, 255, 0.05) 1px,
+      rgba(95, 255, 0, 0.05) 1px,
       transparent 0
     );
   }
@@ -63,14 +63,24 @@
     @apply fixed blur-[70px] opacity-40 pointer-events-none;
     background: conic-gradient(
       from 90deg at 50% 50%,
+      #2d5f1a,
+      #1a3d0a,
+      #3d7d2a,
+      #2d5f1a
+    );
+    animation: spin 18s linear infinite;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  .dark .blob {
+    background: conic-gradient(
+      from 90deg at 50% 50%,
       #1a1a1a,
       #2d2d2d,
       #0a0a0a,
       #1a1a1a
     );
-    animation: spin 18s linear infinite;
-    will-change: transform;
-    transform: translateZ(0);
   }
   
   /* Prevent FOUC */

@@ -80,13 +80,13 @@
         button.textContent = '✓ Opening Email Client...';
         button.disabled = true;
         button.classList.add('bg-green-600', 'hover:bg-green-700');
-        button.classList.remove('bg-brand-600', 'hover:bg-brand-700');
+        button.classList.remove('bg-brand-700', 'dark:bg-brand-600', 'hover:bg-brand-800', 'dark:hover:bg-brand-700');
         
         setTimeout(() => {
           button.textContent = originalText;
           button.disabled = false;
           button.classList.remove('bg-green-600', 'hover:bg-green-700');
-          button.classList.add('bg-brand-600', 'hover:bg-brand-700');
+          button.classList.add('bg-brand-700', 'dark:bg-brand-600', 'hover:bg-brand-800', 'dark:hover:bg-brand-700');
           contactForm.reset();
         }, 3000);
       });
