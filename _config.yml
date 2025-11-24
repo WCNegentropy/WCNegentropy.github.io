@@ -1,13 +1,13 @@
 # Jekyll Configuration for WCNegentropy Portfolio Site
 title: "WCNegentropy"
-description: "Mad science code factory unleashed - AI research and bleeding-edge R&D"
+description: "New Jersey Regenerative Ag Startup - Soil Amendments, Carbon Sequestration, Carbon Credits"
 url: "https://wcnegentropy.com"
 baseurl: ""
 
 # Site owner information
 owner:
   name: "WCNegentropy"
-  tagline: "The Architect • Software Engineer • R&D • ML/AI"
+  tagline: "Regenerative Agriculture • Soil Amendments • Carbon Sequestration • Carbon Credits"
   email: "contact@wcnegentropy.com"
   location: "NJ, USA"
   github_user: "WCNegentropy"
