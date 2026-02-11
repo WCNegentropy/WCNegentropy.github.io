@@ -1,13 +1,13 @@
 # Jekyll Configuration for WCNegentropy Portfolio Site
 title: "WCNegentropy"
-description: "New Jersey Regenerative Ag Startup - Soil Amendments, Carbon Sequestration, Carbon Credits"
+description: "Open-source developer tools, AI research, and regenerative ventures. Home of retro-vibecoder (UPG), BitTransformerLM, and more."
 url: "https://wcnegentropy.com"
 baseurl: ""
 
 # Site owner information
 owner:
-  name: "WCNEGENTROPY HOLDINGS LLC"
-  tagline: "Regenerative Agriculture • Soil Amendments • Carbon Sequestration • Carbon Credits"
+  name: "WCNegentropy"
+  tagline: "Open Source • Developer Tools • AI Research • Regenerative Ventures"
   email: "contact@wcnegentropy.com"
   location: "DE, NJ, USA"
   github_user: "WCNegentropy"

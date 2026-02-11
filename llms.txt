@@ -1,0 +1,35 @@
+---
+layout: null
+---
+# WCNegentropy
+
+> Open-source developer tools, AI research, and regenerative agriculture ventures.
+
+## About
+
+WCNegentropy is a Delaware holdco building across open-source developer tools, experimental AI research, and regenerative agriculture. We ship MIT-licensed software, publish novel model architectures on HuggingFace, and are bootstrapping a regenerative ag pilot in New Jersey.
+
+## Projects
+
+### retro-vibecoder (Universal Project Generator)
+- URL: https://github.com/WCNegentropy/retro-vibecoder
+- NPM: https://www.npmjs.com/package/@wcnegentropy/cli
+- Description: CLI tool and cross-platform Tauri desktop app that procedurally generates full working boilerplate tech stacks and projects from a single deterministic seed. 40+ generation strategies, 7 archetypes, 12 languages. MIT licensed.
+- Install: npm install -g @wcnegentropy/cli
+
+### BitTransformerLM
+- URL: https://huggingface.co/WCNegentropy/BitTransformerLM
+- Description: Experimental bit-level transformer with 9-bit encoding (8 data + 1 parity). Novel reversible architecture with built-in safety telemetry. 793K-771M parameters. AGPLv3.
+
+### WrinkleBrane
+- URL: https://huggingface.co/WCNegentropy/WrinkleBrane
+- Description: Experimental wave-interference memory system using 4D tensor operations. High-precision associative memory with parallel retrieval (150+ dB PSNR). AGPL-3.0.
+
+## Links
+
+- Website: https://wcnegentropy.com
+- GitHub: https://github.com/WCNegentropy
+- HuggingFace: https://huggingface.co/WCNegentropy
+- X/Twitter: https://twitter.com/WCNegentropy
+- NPM: https://www.npmjs.com/package/@wcnegentropy/cli
+- Email: contact@wcnegentropy.com

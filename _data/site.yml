@@ -1,7 +1,7 @@
 owner_name: "WCNegentropy"
-tagline: "New Jersey Local Regenerative Ag Startup • Soil Amendments • Carbon Sequestration • Carbon Credits"
+tagline: "Open Source • Developer Tools • AI Research • Regenerative Ventures"
 email: "contact@wcnegentropy.com"
-location: "Serving New Jersey Communities' gardens"
+location: "New Jersey, USA"
 github_user: "WCNegentropy"
 avatar: "https://github.com/WCNegentropy.png"
 
@@ -10,10 +10,28 @@ social:
   x: "https://twitter.com/WCNegentropy"
   huggingface: "https://huggingface.co/WCNegentropy"
   reddit: "https://www.reddit.com/r/WCNegentropy/"
+  npm: "https://www.npmjs.com/package/@wcnegentropy/cli"
   linkedin: ""
   email: "mailto:contact@wcnegentropy.com"
 
 products:
+  - id: "prod-retro-vibecoder"
+    name: "retro-vibecoder (UPG)"
+    blurb: "Universal Project Generator — CLI tool and cross-platform Tauri desktop app that procedurally generates full working boilerplate tech stacks from a single deterministic seed. 40+ strategies, 7 archetypes, 12 languages."
+    price: "Free / MIT"
+    license: "MIT"
+    image: "/images/products/UPG.png"
+    highlights:
+      - "Deterministic seed-based generation"
+      - "40+ strategies, 12 languages"
+      - "Cross-platform desktop app (Tauri)"
+      - "npm install -g @wcnegentropy/cli"
+    checkout: "https://github.com/WCNegentropy/retro-vibecoder"
+    npm: "https://www.npmjs.com/package/@wcnegentropy/cli"
+    coming_soon: false
+    is_live: true
+    featured: true
+
   - id: "prod-bit-transformer"
     name: "BitTransformerLM"
     blurb: "Experimental bit-level transformer with 9-bit encoding (8 data + 1 parity). Novel reversible architecture with built-in safety telemetry."
@@ -43,18 +61,3 @@ products:
     checkout: "https://huggingface.co/WCNegentropy/WrinkleBrane"
     coming_soon: false
     is_live: true
-
-  - id: "prod-custom-research"
-    name: "Custom Research Projects"
-    blurb: "Bespoke experimental AI systems and novel algorithm development. Academic collaborations welcome."
-    price: "Contact"
-    license: "Custom research agreements."
-    image: "/images/products/custom-research.jpg"
-    highlights:
-      - "Novel architectures"
-      - "Academic partnerships"
-      - "Research validation"
-      - "Open publication"
-    checkout: "#contact"
-    coming_soon: false
-    is_live: false
