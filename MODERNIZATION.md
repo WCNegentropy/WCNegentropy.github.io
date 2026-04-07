@@ -74,6 +74,9 @@ The design system lives in `_includes/input.css`. It uses CSS custom properties 
 /* Amber (live software / status) */
 --amber, --amber-dim
 
+/* Violet (AI models) */
+--violet, --violet-dim
+
 /* Code */
 --code-bg, --code-text
 

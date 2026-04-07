@@ -26,6 +26,10 @@
   --amber:        #f59e0b;
   --amber-dim:    rgba(245, 158, 11, 0.10);
 
+  /* Violet (AI models) */
+  --violet:       #7c3aed;
+  --violet-dim:   rgba(124, 58, 237, 0.10);
+
   /* Code */
   --code-bg:      #0a0a0a;
   --code-text:    #34cc96;
