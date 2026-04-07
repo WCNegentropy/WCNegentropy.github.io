@@ -19,7 +19,7 @@ tags: [unified-field-theory, quantum-mechanics, general-relativity, entropy, ten
     <section>
       <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">Overview</h2>
       <p class="text-slate-800 dark:text-slate-300 leading-relaxed">
-        MAGUFT is a unified theoretical framework that models quantum mechanics and general relativity as orthogonal projections of a single entropy-driven master equation on the metric-valued density field <span class="font-mono">Φ<sup>ab</sup> = √ρ g<sup>ab</sup></span>.
+        MAGUFT is a unified theoretical framework that models quantum mechanics and general relativity as orthogonal projections of a single entropy-driven master equation on the metric-valued density field $\Phi^{ab} = \sqrt{\rho}\,g^{ab}$.
       </p>
     </section>
 
