@@ -24,12 +24,12 @@
       <a href="/software/retro-vibecoder/"
          class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2{% if page.url contains 'retro-vibecoder' %} bg-surface-2{% endif %}"
          {% if page.url contains 'retro-vibecoder' %}aria-current="page" style="color: var(--accent);"{% else %}style="color: var(--text-secondary);"{% endif %}>retro-vibecoder</a>
-      <a href="/#models"
-         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2"
-         style="color: var(--text-secondary);">Models</a>
-      <a href="/#contact"
-         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2"
-         style="color: var(--text-secondary);">Contact</a>
+      <a href="/models/"
+         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2{% if page.url contains 'models' %} bg-surface-2{% endif %}"
+         {% if page.url contains 'models' %}aria-current="page" style="color: var(--accent);"{% else %}style="color: var(--text-secondary);"{% endif %}>Models</a>
+      <a href="/contact/"
+         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2{% if page.url contains 'contact' %} bg-surface-2{% endif %}"
+         {% if page.url contains 'contact' %}aria-current="page" style="color: var(--accent);"{% else %}style="color: var(--text-secondary);"{% endif %}>Contact</a>
     </nav>
 
     <!-- Controls -->
@@ -68,10 +68,10 @@
          {% if page.url contains 'magrot' %}aria-current="page" style="color: var(--accent); background-color: var(--surface-2);"{% else %}style="color: var(--text-secondary);"{% endif %}>MagRot</a>
       <a href="/software/retro-vibecoder/" class="meta-label px-3 py-2 rounded-md"
          {% if page.url contains 'retro-vibecoder' %}aria-current="page" style="color: var(--accent); background-color: var(--surface-2);"{% else %}style="color: var(--text-secondary);"{% endif %}>retro-vibecoder</a>
-      <a href="/#models" class="meta-label px-3 py-2 rounded-md"
-         style="color: var(--text-secondary);">Models</a>
-      <a href="/#contact" class="meta-label px-3 py-2 rounded-md"
-         style="color: var(--text-secondary);">Contact</a>
+      <a href="/models/" class="meta-label px-3 py-2 rounded-md"
+         {% if page.url contains 'models' %}aria-current="page" style="color: var(--accent); background-color: var(--surface-2);"{% else %}style="color: var(--text-secondary);"{% endif %}>Models</a>
+      <a href="/contact/" class="meta-label px-3 py-2 rounded-md"
+         {% if page.url contains 'contact' %}aria-current="page" style="color: var(--accent); background-color: var(--surface-2);"{% else %}style="color: var(--text-secondary);"{% endif %}>Contact</a>
     </nav>
   </div>
 </header>
