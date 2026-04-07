@@ -102,12 +102,23 @@ The design system lives in `_includes/input.css`. It uses CSS custom properties 
 | `.section-rule` | Fading horizontal divider |
 | `.bg-grid` | Technical grid overlay (48px, masked edges) |
 | `.page-hero` | Collection page header block (border-bottom) |
+| `.hero-accent` | 2px colored accent bar before page title |
+| `.hero-accent-software` | Amber variant of `.hero-accent` |
+| `.hero-accent-models` | Violet variant of `.hero-accent` |
+| `.page-deck` | JetBrains Mono subtitle/deck line below page title |
+| `.meta-strip` | Flex metadata row with border-top (hero footer) |
+| `.meta-item` | Individual item in a `.meta-strip` row |
 | `.section-heading` | Content section h2 — Space Grotesk, semibold |
+| `.section-kicker` | Mono label with `::before` accent line — above section h2s |
 | `.action-row` | Flex row for CTA buttons |
 | `.callout` | Left-bordered highlighted note block |
+| `.card-accent` | Absolute left-side accent rail on panel cards |
+| `.card-accent-software` | Amber variant of `.card-accent` |
+| `.card-accent-models` | Violet variant of `.card-accent` |
 | `.fact-item` | Stat/capability card (value + label) |
 | `.fact-item-value` | Large accent numeric value |
 | `.fact-item-label` | Mono label below value |
+| `.topic-tag` | Taxonomy chip — mono uppercase, surface-2 background |
 
 ---
 

@@ -12,31 +12,31 @@ tags: [unified-field-theory, quantum-mechanics, general-relativity, entropy, ten
 
   <section>
     <h2 class="section-heading">Current State</h2>
-    <ul class="space-y-2" style="color: var(--text-secondary);">
+    <ul class="space-y-2 text-secondary">
       <li class="flex gap-3">
-        <span class="meta-label mt-0.5 flex-shrink-0" style="color: var(--text-tertiary);">Track</span>
+        <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">Track</span>
         <span>Papers 1–2 (foundation), current Paper 3, and retroactive addenda</span>
       </li>
       <li class="flex gap-3">
-        <span class="meta-label mt-0.5 flex-shrink-0" style="color: var(--text-tertiary);">Tooling</span>
+        <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">Tooling</span>
         <span>SymPy-based symbolic derivation pipeline, JAX solvers, Pydantic schemas</span>
       </li>
       <li class="flex gap-3">
-        <span class="meta-label mt-0.5 flex-shrink-0" style="color: var(--text-tertiary);">Tests</span>
+        <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">Tests</span>
         <span>Alpha estimate, mass ratio sensitivity, spin statistics validation</span>
       </li>
       <li class="flex gap-3">
-        <span class="meta-label mt-0.5 flex-shrink-0" style="color: var(--text-tertiary);">Archive</span>
-        <span>Superseded earlier Papers 3–4 in <code style="font-family:'JetBrains Mono',monospace; font-size:0.8em; color: var(--accent);">/research/legacy</code></span>
+        <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">Archive</span>
+        <span>Superseded earlier Papers 3–4 in <code class="text-accent">/research/legacy</code></span>
       </li>
     </ul>
   </section>
 
   <section>
     <h2 class="section-heading">Licensing</h2>
-    <p class="leading-relaxed" style="color: var(--text-secondary);">
-      Split licensing model: <strong style="color: var(--text-primary);">CC BY 4.0</strong> for research papers and documentation,
-      <strong style="color: var(--text-primary);">AGPLv3</strong> for software and computational tools.
+    <p class="leading-relaxed text-secondary">
+      Split licensing model: <strong class="text-primary">CC BY 4.0</strong> for research papers and documentation,
+      <strong class="text-primary">AGPLv3</strong> for software and computational tools.
       Commercial licensing available from WCNEGENTROPY HOLDINGS LLC.
     </p>
   </section>
