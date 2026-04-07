@@ -2,7 +2,7 @@
 title: "retro-vibecoder — Universal Project Generator (UPG)"
 description: "A CLI tool and cross-platform Tauri desktop app that procedurally generates full working boilerplate tech stacks from a single deterministic seed. Powered by a constraint solver engine with 40+ generation strategies across 7 archetypes and 12 languages."
 schema_type: "SoftwareSourceCode"
-status: "Live — v0.2.2"
+status: "Live — v0.2.6"
 license: "MIT"
 repo_url: "https://github.com/WCNegentropy/retro-vibecoder"
 npm_url: "https://www.npmjs.com/package/@wcnegentropy/cli"
@@ -51,7 +51,7 @@ tags: [cli, code-generator, procedural-generation, tauri, typescript, developer-
        class="btn-ghost">
       NPM Package →
     </a>
-    <a href="https://github.com/WCNegentropy/retro-vibecoder/releases/tag/0.2.2"
+    <a href="https://github.com/WCNegentropy/retro-vibecoder/releases/tag/0.2.6"
        target="_blank" rel="noopener noreferrer"
        class="btn-ghost">
       Download Desktop App →

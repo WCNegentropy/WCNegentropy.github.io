@@ -156,7 +156,7 @@ tags: [tag1, tag2]
 title: "SHORT_NAME — Full Title"
 description: "Lead description"
 schema_type: "SoftwareSourceCode"
-status: "Live — v0.2.2"
+status: "Live — v0.2.6"
 license: "MIT"
 repo_url: "https://github.com/..."
 npm_url: "https://www.npmjs.com/package/..."  # optional
@@ -272,4 +272,3 @@ Check that Alpine.js is loaded: view page source, search for `alpinejs`. Verify 
 ---
 
 *WCNEGENTROPY HOLDINGS LLC — contact@wcnegentropy.com*
-
