@@ -45,13 +45,13 @@ defaults:
       path: ""
       type: "research"
     values:
-      layout: "page"
+      layout: "research"
       schema_type: "ScholarlyArticle"
   - scope:
       path: ""
       type: "software"
     values:
-      layout: "page"
+      layout: "software"
       schema_type: "SoftwareSourceCode"
   - scope:
       path: ""

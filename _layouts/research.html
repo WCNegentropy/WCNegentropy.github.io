@@ -1,0 +1,62 @@
+---
+layout: default
+---
+
+<div class="mx-auto max-w-5xl px-5 sm:px-8 py-16 lg:py-20">
+  <!-- Breadcrumb / back -->
+  <nav class="mb-8 flex items-center gap-2 text-xs" aria-label="Breadcrumb">
+    <a href="/" class="meta-label underline-hover flex items-center gap-1.5" style="color: var(--text-tertiary);">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-3" aria-hidden="true">
+        <path fill-rule="evenodd" d="M9.78 4.22a.75.75 0 0 1 0 1.06L7.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L5.47 8.53a.75.75 0 0 1 0-1.06l3.25-3.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/>
+      </svg>
+      Home
+    </a>
+    <span style="color: var(--text-tertiary);">/</span>
+    <span class="meta-label" style="color: var(--text-tertiary);">Research</span>
+    <span style="color: var(--text-tertiary);">/</span>
+    <span class="meta-label" style="color: var(--text-secondary);">{{ page.title | split: "—" | first | strip }}</span>
+  </nav>
+
+  <!-- Collection metadata rail -->
+  {% if page.status or page.license or page.repo_url %}
+  <aside class="mb-8 panel p-4 flex flex-wrap gap-x-6 gap-y-2 text-xs" aria-label="Research metadata">
+    {% if page.status %}
+    <div class="flex items-center gap-2">
+      <span class="meta-label" style="color: var(--text-tertiary);">STATUS</span>
+      <span style="color: var(--text-secondary);">{{ page.status }}</span>
+    </div>
+    {% endif %}
+    {% if page.license %}
+    <div class="flex items-center gap-2">
+      <span class="meta-label" style="color: var(--text-tertiary);">LICENSE</span>
+      <span style="color: var(--text-secondary);">{{ page.license }}</span>
+    </div>
+    {% endif %}
+    {% if page.repo_url %}
+    <div class="flex items-center gap-2">
+      <span class="meta-label" style="color: var(--text-tertiary);">REPOSITORY</span>
+      <a href="{{ page.repo_url }}" target="_blank" rel="noopener noreferrer"
+         class="underline-hover" style="color: var(--accent);">
+        {{ page.repo_url | remove: "https://github.com/" }} ↗
+      </a>
+    </div>
+    {% endif %}
+  </aside>
+  {% endif %}
+
+  <!-- Page content -->
+  <article class="prose-reset">
+    {{ content }}
+  </article>
+
+  <!-- Tags -->
+  {% if page.tags.size > 0 %}
+  <footer class="mt-12 pt-6" style="border-top: 1px solid var(--border);">
+    <div class="flex flex-wrap gap-2">
+      {% for tag in page.tags %}
+      <span class="meta-label px-2 py-0.5 rounded" style="background-color: var(--surface-2); color: var(--text-tertiary);">{{ tag }}</span>
+      {% endfor %}
+    </div>
+  </footer>
+  {% endif %}
+</div>
