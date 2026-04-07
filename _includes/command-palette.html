@@ -66,22 +66,21 @@
       <template x-for="(item, index) in filteredItems" :key="index">
         <a :href="item.url"
            @click="navigate(item.url)"
-           class="flex items-center gap-3 px-4 py-2.5 transition-colors duration-100 cursor-pointer"
+           class="flex items-center gap-3 px-4 py-2.5 transition-colors duration-100 cursor-pointer focus-visible:outline-none"
            style="color: var(--text-primary);"
            x-bind:style="{ 'background': '' }"
            @mouseenter="$el.style.background = 'var(--surface-2)'"
            @mouseleave="$el.style.background = ''"
            @focus="$el.style.background = 'var(--surface-2)'"
-           @blur="$el.style.background = ''"
-           class="focus-visible:outline-none"
+           @blur="$el.style.background = ''">
           <span class="text-base w-6 text-center flex-shrink-0" x-text="item.icon"></span>
           <div class="flex-1 min-w-0">
             <div class="text-sm font-medium truncate" x-text="item.title"></div>
             <div class="text-xs truncate" style="color: var(--text-tertiary);" x-text="item.description"></div>
           </div>
-          <kbd class="hidden sm:inline-block px-1.5 py-0.5 text-2xs font-mono rounded border"
-               style="background: var(--surface-2); border-color: var(--border); color: var(--text-tertiary);"
-               x-text="item.shortcut || ''"></kbd>
+           <kbd class="hidden sm:inline-block px-1.5 py-0.5 text-2xs font-mono rounded border"
+                style="background: var(--surface-2); border-color: var(--border); color: var(--text-secondary);"
+                x-text="item.shortcut || ''"></kbd>
         </a>
       </template>
     </div>
@@ -91,13 +90,13 @@
          style="border-color: var(--border); background: var(--surface-2);">
       <div class="flex items-center gap-2 text-2xs" style="color: var(--text-tertiary);">
         <kbd class="px-1.5 py-0.5 rounded border"
-             style="background: var(--surface-1); border-color: var(--border); font-family: monospace;">⌘K</kbd>
+             style="background: var(--surface-1); border-color: var(--border); color: var(--text-secondary); font-family: monospace;">⌘K</kbd>
         <span>toggle</span>
         <kbd class="px-1.5 py-0.5 rounded border"
-             style="background: var(--surface-1); border-color: var(--border); font-family: monospace;">↑↓</kbd>
+             style="background: var(--surface-1); border-color: var(--border); color: var(--text-secondary); font-family: monospace;">↑↓</kbd>
         <span>navigate</span>
         <kbd class="px-1.5 py-0.5 rounded border"
-             style="background: var(--surface-1); border-color: var(--border); font-family: monospace;">↵</kbd>
+             style="background: var(--surface-1); border-color: var(--border); color: var(--text-secondary); font-family: monospace;">↵</kbd>
         <span>select</span>
       </div>
     </div>
