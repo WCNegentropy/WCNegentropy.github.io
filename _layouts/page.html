@@ -2,4 +2,19 @@
 layout: default
 ---
 
-{{ content }}
+<div class="mx-auto max-w-5xl px-5 sm:px-8 py-16 lg:py-20">
+  <!-- Breadcrumb / back -->
+  <nav class="mb-8" aria-label="Breadcrumb">
+    <a href="/" class="meta-label underline-hover flex items-center gap-1.5" style="color: var(--text-tertiary);">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-3" aria-hidden="true">
+        <path fill-rule="evenodd" d="M9.78 4.22a.75.75 0 0 1 0 1.06L7.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L5.47 8.53a.75.75 0 0 1 0-1.06l3.25-3.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/>
+      </svg>
+      Back to home
+    </a>
+  </nav>
+
+  <!-- Page content -->
+  <article class="prose-reset">
+    {{ content }}
+  </article>
+</div>

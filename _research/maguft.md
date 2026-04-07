@@ -8,44 +8,69 @@ repo_url: "https://github.com/WCNegentropy/MAGUFT"
 tags: [unified-field-theory, quantum-mechanics, general-relativity, entropy, tensor-fields, sympy]
 ---
 
-<div class="mx-auto max-w-4xl px-6 py-16">
-  <div class="flex items-start justify-between mb-6">
-    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">MAGUFT</h1>
-    <span class="text-xs font-mono bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 px-3 py-1.5 rounded">ACTIVE RESEARCH</span>
+<div style="border-bottom: 1px solid var(--border); margin-bottom: 2.5rem; padding-bottom: 2rem;">
+  <div class="flex items-start justify-between gap-4 mb-3">
+    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight"
+        style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">MAGUFT</h1>
+    <span class="badge badge-research" style="white-space: nowrap;">Active Research</span>
   </div>
-  <p class="text-xl text-slate-700 dark:text-slate-300 mb-8">Magnetic Rotation Grand Unified Field Theory</p>
+  <p class="text-lg" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">
+    Magnetic Rotation Grand Unified Field Theory
+  </p>
+  <div class="flex flex-wrap gap-4 mt-3 text-xs" style="color: var(--text-tertiary);">
+    <span class="meta-label">CC BY 4.0 (Research)</span>
+    <span>·</span>
+    <span class="meta-label">AGPLv3 (Software)</span>
+  </div>
+</div>
 
-  <div class="prose prose-slate dark:prose-invert max-w-none space-y-8">
-    <section>
-      <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">Overview</h2>
-      <p class="text-slate-800 dark:text-slate-300 leading-relaxed">
-        MAGUFT is a unified theoretical framework that models quantum mechanics and general relativity as orthogonal projections of a single entropy-driven master equation on the metric-valued density field $\Phi^{ab} = \sqrt{\rho}\,g^{ab}$.
-      </p>
-    </section>
+<div class="space-y-10">
+  <section>
+    <h2 class="text-xl font-semibold mb-3"
+        style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">Overview</h2>
+    <p class="leading-relaxed" style="color: var(--text-secondary);">
+      MAGUFT is a unified theoretical framework that models quantum mechanics and general relativity as orthogonal projections of a single entropy-driven master equation on the metric-valued density field $\Phi^{ab} = \sqrt{\rho}\,g^{ab}$.
+    </p>
+  </section>
 
-    <section>
-      <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">Current State</h2>
-      <ul class="list-disc pl-6 space-y-2 text-slate-800 dark:text-slate-300">
-        <li><strong>Active research track:</strong> Papers 1–2 (foundation), current Paper 3, and retroactive addenda</li>
-        <li><strong>Computational framework:</strong> SymPy-based symbolic derivation pipeline, JAX solvers, Pydantic schemas</li>
-        <li><strong>Experiments:</strong> Alpha estimate, mass ratio sensitivity, spin statistics validation</li>
-        <li><strong>Archived:</strong> Superseded earlier Papers 3–4 in <code>/research/legacy</code></li>
-      </ul>
-    </section>
+  <section>
+    <h2 class="text-xl font-semibold mb-3"
+        style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">Current State</h2>
+    <ul class="space-y-2" style="color: var(--text-secondary);">
+      <li class="flex gap-3">
+        <span class="meta-label mt-0.5 flex-shrink-0" style="color: var(--text-tertiary);">Track</span>
+        <span>Papers 1–2 (foundation), current Paper 3, and retroactive addenda</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="meta-label mt-0.5 flex-shrink-0" style="color: var(--text-tertiary);">Tooling</span>
+        <span>SymPy-based symbolic derivation pipeline, JAX solvers, Pydantic schemas</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="meta-label mt-0.5 flex-shrink-0" style="color: var(--text-tertiary);">Tests</span>
+        <span>Alpha estimate, mass ratio sensitivity, spin statistics validation</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="meta-label mt-0.5 flex-shrink-0" style="color: var(--text-tertiary);">Archive</span>
+        <span>Superseded earlier Papers 3–4 in <code style="font-family:'JetBrains Mono',monospace; font-size:0.8em; color: var(--accent);">/research/legacy</code></span>
+      </li>
+    </ul>
+  </section>
 
-    <section>
-      <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">Licensing</h2>
-      <p class="text-slate-800 dark:text-slate-300 leading-relaxed">
-        Split licensing model: <strong>CC BY 4.0</strong> for research papers and documentation, <strong>AGPLv3</strong> for software and computational tools. Commercial licensing available from WCNEGENTROPY HOLDINGS LLC.
-      </p>
-    </section>
+  <section>
+    <h2 class="text-xl font-semibold mb-3"
+        style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">Licensing</h2>
+    <p class="leading-relaxed" style="color: var(--text-secondary);">
+      Split licensing model: <strong style="color: var(--text-primary);">CC BY 4.0</strong> for research papers and documentation,
+      <strong style="color: var(--text-primary);">AGPLv3</strong> for software and computational tools.
+      Commercial licensing available from WCNEGENTROPY HOLDINGS LLC.
+    </p>
+  </section>
 
-    <div class="flex flex-wrap gap-3 pt-4">
-      <a href="https://github.com/WCNegentropy/MAGUFT"
-         target="_blank" rel="noopener noreferrer"
-         class="inline-flex items-center gap-2 rounded-xl bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 px-5 py-3 font-semibold hover:opacity-90 transition-opacity">
-        🐙 GitHub Repository →
-      </a>
-    </div>
+  <div class="flex flex-wrap gap-3 pt-2">
+    <a href="https://github.com/WCNegentropy/MAGUFT"
+       target="_blank" rel="noopener noreferrer"
+       class="btn-primary">
+      GitHub Repository →
+    </a>
   </div>
 </div>

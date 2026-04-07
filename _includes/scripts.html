@@ -18,103 +18,98 @@
     }
   };
 
-  // --- Theme ---
-  const applyTheme = (t) => {
-    const root = document.documentElement;
-    // Remove both classes first for clean state
-    root.classList.remove('dark', 'light');
-    // Add the appropriate class
-    root.classList.add(t);
-    
-    const themeIcon = document.querySelector('.i-theme');
-    if (themeIcon) themeIcon.textContent = t === 'dark' ? '🌙' : '🌞';
-    localStorage.setItem('theme', t);
-  }
-  
-  const initTheme = () => {
-    const pref = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    applyTheme(pref);
-  }
-  
-  // Apply theme immediately before DOMContentLoaded to prevent FOUC
+  // --- Theme (applied before DOMContentLoaded to prevent FOUC) ---
   (() => {
-    const savedTheme = localStorage.getItem('theme');
+    const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+    const theme = saved || (prefersDark ? 'dark' : 'light');
     document.documentElement.classList.add(theme);
   })();
 
-  // --- Populate dynamic content ---
-  const byId = (id) => document.getElementById(id);
-  
-  // --- Contact form ---
-  const setupContactForm = () => {
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(contactForm);
-        const name = formData.get('name') || '';
-        const email = formData.get('email') || '';
-        const subject = formData.get('subject') || 'Contact from WCNegentropy.com';
-        const message = formData.get('message') || '';
-        
-        if (!name.trim() || !email.trim() || !message.trim()) {
-          alert('Please fill in all required fields.');
-          return;
-        }
-        
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-          alert('Please enter a valid email address.');
-          return;
-        }
-        
-        const emailBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
-        const mailtoUrl = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${emailBody}`;
-        
-        window.location.href = mailtoUrl;
-        
-        const button = contactForm.querySelector('button[type="submit"]');
-        const originalText = button.textContent;
-        button.textContent = '✓ Opening Email Client...';
-        button.disabled = true;
-        button.classList.add('bg-green-600', 'hover:bg-green-700');
-        button.classList.remove('bg-brand-700', 'dark:bg-brand-600', 'hover:bg-brand-800', 'dark:hover:bg-brand-700');
-        
-        setTimeout(() => {
-          button.textContent = originalText;
-          button.disabled = false;
-          button.classList.remove('bg-green-600', 'hover:bg-green-700');
-          button.classList.add('bg-brand-700', 'dark:bg-brand-600', 'hover:bg-brand-800', 'dark:hover:bg-brand-700');
-          contactForm.reset();
-        }, 3000);
-      });
-    }
-  }
-
-  // --- Initialize site ---
-  const initializeSite = () => {
-    try {
-      // Set year in footer
-      const yearEl = byId('year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
-      
-      // Setup contact form
-      setupContactForm();
-    } catch (error) {
-      console.error('Site initialization error:', error);
-    }
+  const applyTheme = (t) => {
+    const root = document.documentElement;
+    root.classList.remove('dark', 'light');
+    root.classList.add(t);
+    const icon = document.querySelector('.i-theme');
+    if (icon) icon.textContent = t === 'dark' ? '🌙' : '🌞';
+    localStorage.setItem('theme', t);
   };
 
-  // --- On load ---
+  const initTheme = () => {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved || (prefersDark ? 'dark' : 'light'));
+  };
+
+  // --- Populate dynamic content ---
+  const byId = (id) => document.getElementById(id);
+
+  // --- Mobile menu ---
+  const setupMobileMenu = () => {
+    const toggle = byId('mobile-menu-toggle');
+    const menu   = byId('mobile-menu');
+    if (!toggle || !menu) return;
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+    // Close on nav-link click
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  };
+
+  // --- Contact form ---
+  const setupContactForm = () => {
+    const form = byId('contactForm');
+    if (!form) return;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data    = new FormData(form);
+      const name    = (data.get('name')    || '').trim();
+      const email   = (data.get('email')   || '').trim();
+      const subject = (data.get('subject') || '').trim() || 'Contact from WCNegentropy.com';
+      const message = (data.get('message') || '').trim();
+
+      if (!name || !email || !message) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+      window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        const orig = btn.textContent;
+        btn.textContent = '✓ Opening email client…';
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.textContent = orig;
+          btn.disabled = false;
+          form.reset();
+        }, 3000);
+      }
+    });
+  };
+
+  // --- Init ---
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
-    document.getElementById('theme-toggle')?.addEventListener('click', () => {
-      const t = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-      applyTheme(t);
+    byId('theme-toggle')?.addEventListener('click', () => {
+      const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+      applyTheme(next);
     });
-    initializeSite();
+    const yearEl = byId('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+    setupMobileMenu();
+    setupContactForm();
   });
 </script>
