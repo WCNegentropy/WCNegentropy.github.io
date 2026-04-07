@@ -1,7 +1,7 @@
 owner_name: "WCNegentropy"
-tagline: "Open Source • Developer Tools • AI Research • Regenerative Ventures"
+tagline: "Negentropy • Unified Field Theory • Open-Source Tools • Deep Tech Research"
 email: "contact@wcnegentropy.com"
-location: "New Jersey, USA"
+location: "Distributed"
 github_user: "WCNegentropy"
 avatar: "https://github.com/WCNegentropy.png"
 
@@ -14,50 +14,67 @@ social:
   linkedin: ""
   email: "mailto:contact@wcnegentropy.com"
 
-products:
-  - id: "prod-retro-vibecoder"
+# Core IP pillars
+research:
+  - id: "maguft"
+    name: "MAGUFT"
+    blurb: "Magnetic Rotation Grand Unified Field Theory — a unified theoretical framework modeling quantum mechanics and general relativity as orthogonal projections of a single entropy-driven master equation on the metric-valued density field Φ^{ab} = √ρ g^{ab}."
+    license: "CC BY 4.0 (Research) / AGPLv3 (Software)"
+    status: "Active Research"
+    url: "https://github.com/WCNegentropy/MAGUFT"
+    highlights:
+      - "Grand Unified Field Theory attempt"
+      - "Entropy-driven master equation"
+      - "SymPy symbolic derivation pipeline"
+      - "Split-license: CC BY 4.0 + AGPLv3"
+
+  - id: "magrot"
+    name: "MagRot"
+    blurb: "Rotational-Vector Framework for Magnetic Field Dynamics — a dimensionless rotational parameter R(x) encoding local tendency toward collapse, expansion, or equilibrium in magnetic field configurations. Validated against Z-pinch, tokamak, and Earth dipole."
+    license: "AGPLv3 (Software) / CC BY 4.0 (Research)"
+    status: "Active R&D — v2 Thermodynamic Framework"
+    url: "https://github.com/WCNegentropy/magrot"
+    highlights:
+      - "Dimensionless rotational parameter R(x)"
+      - "Entropy-parameterized state flow"
+      - "Tokamak & Earth dipole validated"
+      - "Full 3D cylindrical physics pipeline"
+
+software:
+  - id: "retro-vibecoder"
     name: "retro-vibecoder (UPG)"
     blurb: "Universal Project Generator — CLI tool and cross-platform Tauri desktop app that procedurally generates full working boilerplate tech stacks from a single deterministic seed. 40+ strategies, 7 archetypes, 12 languages."
-    price: "Free / MIT"
     license: "MIT"
-    image: "/images/products/UPG.png"
+    status: "Live — v0.2.2"
+    url: "https://github.com/WCNegentropy/retro-vibecoder"
+    npm: "https://www.npmjs.com/package/@wcnegentropy/cli"
     highlights:
       - "Deterministic seed-based generation"
       - "40+ strategies, 12 languages"
       - "Cross-platform desktop app (Tauri)"
       - "npm install -g @wcnegentropy/cli"
-    checkout: "https://github.com/WCNegentropy/retro-vibecoder"
-    npm: "https://www.npmjs.com/package/@wcnegentropy/cli"
-    coming_soon: false
-    is_live: true
-    featured: true
 
-  - id: "prod-bit-transformer"
+huggingface:
+  - id: "bit-transformer"
     name: "BitTransformerLM"
     blurb: "Experimental bit-level transformer with 9-bit encoding (8 data + 1 parity). Novel reversible architecture with built-in safety telemetry."
-    price: "Research"
-    license: "AGPLv3 - Research & Academic Use"
-    image: "/images/products/bit-transformer.jpg"
+    license: "AGPLv3"
+    status: "Research"
+    url: "https://huggingface.co/WCNegentropy/BitTransformerLM"
     highlights:
       - "9-bit encoding system"
       - "Reversible architecture"
       - "Safety telemetry"
       - "793K-771M parameters"
-    checkout: "https://huggingface.co/WCNegentropy/BitTransformerLM"
-    coming_soon: false
-    is_live: true
 
-  - id: "prod-wrinkle-brane"
+  - id: "wrinkle-brane"
     name: "WrinkleBrane"
     blurb: "Experimental wave-interference memory system using 4D tensor operations. High-precision associative memory with parallel retrieval (150+ dB PSNR)."
-    price: "Research"
-    license: "AGPL-3.0 - Experimental Research"
-    image: "/images/products/wrinkle-brane.jpg"
+    license: "AGPL-3.0"
+    status: "Research"
+    url: "https://huggingface.co/WCNegentropy/WrinkleBrane"
     highlights:
       - "4D tensor operations"
       - "Wave-interference memory"
       - "150+ dB PSNR"
       - "Parallel retrieval"
-    checkout: "https://huggingface.co/WCNegentropy/WrinkleBrane"
-    coming_soon: false
-    is_live: true
