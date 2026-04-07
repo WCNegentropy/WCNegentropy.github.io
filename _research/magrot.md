@@ -107,8 +107,7 @@ tags: [magnetic-fields, plasma-physics, thermodynamics, entropy, tokamak, z-pinc
     <div class="code-block">
       <span class="text-tertiary">$</span> pip install -e .
     </div>
-    <div class="code-block mt-4 overflow-x-auto text-sm">
-<pre><code>from magrot.fields.grid import CylindricalGrid
+    <pre class="code-block mt-4 overflow-x-auto text-sm"><code>from magrot.fields.grid import CylindricalGrid
 from magrot.fields.analytic import field_zpinch_bennett
 from magrot.rotation.metrics import compute_all_metrics
 import numpy as np
@@ -121,7 +120,6 @@ def kappa_eq(g):
 
 results = compute_all_metrics(B, grid, p_mat=p_mat,
                               kappa_eq_func=kappa_eq, L_char=0.01)</code></pre>
-    </div>
   </section>
 
   <section>
