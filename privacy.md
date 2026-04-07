@@ -40,7 +40,6 @@ description: "Privacy Policy for WCNegentropy — open-source software, research
         </p>
         <ul class="list-disc pl-6 space-y-2 text-slate-800 dark:text-slate-300 mb-4">
           <li><strong>Log Data:</strong> IP address, browser type, pages visited, access times (collected by GitHub Pages infrastructure)</li>
-          <li><strong>Theme Preference:</strong> Your dark/light mode selection (stored locally in your browser's localStorage — never transmitted to us)</li>
         </ul>
 
         <h3 class="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">2.3 What We Do Not Collect</h3>

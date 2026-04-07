@@ -5,26 +5,30 @@
 /* ─── Design Tokens (CSS custom properties) ────────────────────────────── */
 :root {
   /* Surfaces */
-  --canvas:     #f9f7f4;
-  --surface-1:  #ffffff;
-  --surface-2:  #f4f1ec;
-  --surface-3:  #ede9e2;
-  --border:     #ddd8cf;
-  --border-sub: #e8e4dc;
+  --canvas:     #080808;
+  --surface-1:  #101010;
+  --surface-2:  #161616;
+  --surface-3:  #1e1e1e;
+  --border:     #252525;
+  --border-sub: #1c1c1c;
 
   /* Text */
-  --text-primary:   #181510;
-  --text-secondary: #5a544a;
-  --text-tertiary:  #8a8278;
+  --text-primary:   #e6e1d6;
+  --text-secondary: #9a9591;
+  --text-tertiary:  #5c5c5c;
 
   /* Accent */
-  --accent:       #0a8c5c;
-  --accent-hover: #077048;
-  --accent-dim:   rgba(10, 140, 92, 0.12);
+  --accent:       #10b37a;
+  --accent-hover: #34cc96;
+  --accent-dim:   rgba(16, 179, 122, 0.10);
 
   /* Amber (status/live) */
-  --amber:        #d97706;
-  --amber-dim:    rgba(217, 119, 6, 0.12);
+  --amber:        #f59e0b;
+  --amber-dim:    rgba(245, 158, 11, 0.10);
+
+  /* Code */
+  --code-bg:      #0a0a0a;
+  --code-text:    #34cc96;
 
   /* Motion */
   --ease-out:   cubic-bezier(0.0, 0.0, 0.2, 1);
@@ -33,26 +37,6 @@
   --duration-fast: 120ms;
   --duration-base: 220ms;
   --duration-slow: 380ms;
-}
-
-.dark {
-  --canvas:     #080808;
-  --surface-1:  #101010;
-  --surface-2:  #161616;
-  --surface-3:  #1e1e1e;
-  --border:     #252525;
-  --border-sub: #1c1c1c;
-
-  --text-primary:   #e6e1d6;
-  --text-secondary: #9a9591;
-  --text-tertiary:  #5c5c5c;
-
-  --accent:       #10b37a;
-  --accent-hover: #34cc96;
-  --accent-dim:   rgba(16, 179, 122, 0.10);
-
-  --amber:        #f59e0b;
-  --amber-dim:    rgba(245, 158, 11, 0.10);
 }
 
 /* ─── Base ──────────────────────────────────────────────────────────────── */
@@ -64,7 +48,7 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 72px;
-    color-scheme: light dark;
+    color-scheme: dark;
   }
 
   body {
@@ -114,10 +98,6 @@
     }
     html { scroll-behavior: auto; }
   }
-
-  /* Prevent FOUC */
-  html:not(.dark):not(.light) { visibility: hidden; }
-  html.dark, html.light       { visibility: visible; }
 }
 
 /* ─── Components ────────────────────────────────────────────────────────── */
@@ -217,6 +197,8 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    position: relative;
+    z-index: 1;
     background-color: var(--accent);
     color: #fff;
     font-weight: 600;
@@ -238,13 +220,15 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    position: relative;
+    z-index: 1;
     color: var(--text-primary);
     font-weight: 500;
     font-size: 0.875rem;
     padding: 0.625rem 1.25rem;
     border-radius: 0.375rem;
     border: 1px solid var(--border);
-    background: transparent;
+    background-color: var(--surface-1);
     transition: border-color var(--duration-fast) var(--ease-out),
                 color var(--duration-fast) var(--ease-out),
                 box-shadow var(--duration-fast) var(--ease-out);
@@ -287,18 +271,14 @@
 
   /* --- Code block ------------------------------------------------------ */
   .code-block {
-    background-color: var(--surface-1);
+    background-color: var(--code-bg);
     border: 1px solid var(--border);
     border-radius: 0.375rem;
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 0.8125rem;
     padding: 0.75rem 1rem;
-    color: var(--accent);
+    color: var(--code-text);
     overflow-x: auto;
-  }
-  .dark .code-block {
-    background-color: #0a0a0a;
-    color: #34cc96;
   }
 }
 
