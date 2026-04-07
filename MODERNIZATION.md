@@ -295,4 +295,3 @@ For questions about this modernization:
 ---
 
 **Modernization completed on December 2024**
-**Built with ❤️ for New Jersey local businesses**
