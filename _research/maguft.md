@@ -19,11 +19,11 @@ tags: [unified-field-theory, quantum-mechanics, general-relativity, entropy, ten
       </li>
       <li class="flex gap-3">
         <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">Tooling</span>
-        <span>Installable SymPy/SciPy/JAX package with Pydantic schemas, provenance capture, claim traceability, and CLI experiment runners</span>
+        <span>Installable SymPy/SciPy/JAX package with Pydantic schemas, provenance capture, research-claim traceability, and CLI experiment runners</span>
       </li>
       <li class="flex gap-3">
         <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">Tests</span>
-        <span>31 migrated tests plus runnable alpha, mass-ratio, and spin-statistics validation experiments</span>
+        <span>31 migrated tests covering the Paper 3 computation modules, plus runnable alpha, mass-ratio, and spin-statistics validation experiments</span>
       </li>
       <li class="flex gap-3">
         <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">Governance</span>

@@ -68,7 +68,7 @@ tags: [magnetic-fields, plasma-physics, thermodynamics, entropy, tokamak, z-pinc
       </li>
       <li class="flex gap-3">
         <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">Result</span>
-        <span>Entropy-parameterized Z-pinch converges to R = 1.000000 exactly, versus R = 1.05 after 15 periods for the legacy time-based method</span>
+        <span>Entropy-parameterized Z-pinch converges to R = 1.000000 exactly, versus R = 1.05 after 15 oscillation periods for the legacy time-based method</span>
       </li>
       <li class="flex gap-3">
         <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">3D Findings</span>
