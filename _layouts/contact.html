@@ -1,0 +1,173 @@
+---
+layout: default
+---
+
+<div class="mx-auto max-w-5xl px-5 sm:px-8 py-16 lg:py-20">
+
+  <!-- Breadcrumb -->
+  <nav class="mb-10 flex items-center gap-2 text-xs" aria-label="Breadcrumb">
+    <a href="/" class="meta-label underline-hover flex items-center gap-1.5" style="color: var(--text-tertiary);">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-3" aria-hidden="true">
+        <path fill-rule="evenodd" d="M9.78 4.22a.75.75 0 0 1 0 1.06L7.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L5.47 8.53a.75.75 0 0 1 0-1.06l3.25-3.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/>
+      </svg>
+      Home
+    </a>
+    <span style="color: var(--text-tertiary);">/</span>
+    <span class="meta-label" style="color: var(--text-secondary);">Contact</span>
+  </nav>
+
+  <!-- Page hero -->
+  <header class="page-hero mb-12">
+    <div style="height: 2px; width: 3rem; background: var(--accent); border-radius: 1px; margin-bottom: 1.5rem;"></div>
+
+    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-3"
+        style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">Contact</h1>
+    <p class="text-base mb-5 max-w-xl" style="color: var(--text-secondary);">
+      For research collaborations, commercial licensing inquiries, or general questions — reach out directly.
+    </p>
+
+    <!-- Metadata strip -->
+    <div class="flex flex-wrap gap-x-6 gap-y-2 pt-4 text-xs" style="border-top: 1px solid var(--border-sub);">
+      <div class="flex items-center gap-2">
+        <span class="meta-label">ENTITY</span>
+        <span style="color: var(--text-secondary);">WCNEGENTROPY HOLDINGS LLC</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="meta-label">EMAIL</span>
+        <a href="mailto:{{ site.data.site.email }}" class="underline-hover" style="color: var(--accent);">{{ site.data.site.email }}</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contact body: left info + right form -->
+  <div class="grid lg:grid-cols-[1fr_480px] gap-12 lg:gap-16">
+
+    <!-- Left: contact info -->
+    <div>
+      <div class="space-y-8">
+
+        <!-- Use cases -->
+        <div>
+          <h2 class="section-heading mb-4">Topics</h2>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="meta-label mt-0.5 w-36 flex-shrink-0" style="color: var(--text-tertiary);">Research</span>
+              <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                Collaboration inquiries, academic access, dataset or methodology discussions — MAGUFT, MagRot, or any open IP pillar.
+              </p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="meta-label mt-0.5 w-36 flex-shrink-0" style="color: var(--text-tertiary);">Commercial Licensing</span>
+              <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                Commercial use or integration of AGPLv3-licensed software (retro-vibecoder, BitTransformerLM, WrinkleBrane) or CC-licensed research.
+              </p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="meta-label mt-0.5 w-36 flex-shrink-0" style="color: var(--text-tertiary);">General</span>
+              <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                Press, partnerships, technical questions, or anything else.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profiles -->
+        <div class="pt-6" style="border-top: 1px solid var(--border);">
+          <h2 class="section-heading mb-4">Profiles</h2>
+          <div class="flex flex-col gap-2.5">
+            <a href="{{ site.data.site.social.github }}" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-3 text-sm underline-hover" style="color: var(--text-secondary);">
+              <span class="meta-label w-28 flex-shrink-0" style="color: var(--text-tertiary);">GitHub</span>
+              github.com/WCNegentropy
+            </a>
+            <a href="{{ site.data.site.social.huggingface }}" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-3 text-sm underline-hover" style="color: var(--text-secondary);">
+              <span class="meta-label w-28 flex-shrink-0" style="color: var(--text-tertiary);">HuggingFace</span>
+              huggingface.co/WCNegentropy
+            </a>
+            <a href="{{ site.data.site.social.npm }}" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-3 text-sm underline-hover" style="color: var(--text-secondary);">
+              <span class="meta-label w-28 flex-shrink-0" style="color: var(--text-tertiary);">NPM</span>
+              @wcnegentropy/cli
+            </a>
+            <a href="{{ site.data.site.social.x }}" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-3 text-sm underline-hover" style="color: var(--text-secondary);">
+              <span class="meta-label w-28 flex-shrink-0" style="color: var(--text-tertiary);">X (Twitter)</span>
+              @WCNegentropy
+            </a>
+          </div>
+        </div>
+
+        <!-- Direct email -->
+        <div class="pt-6" style="border-top: 1px solid var(--border);">
+          <p class="meta-label mb-2" style="color: var(--text-tertiary);">Direct email</p>
+          <a href="mailto:{{ site.data.site.email }}" class="link-accent text-base font-medium">
+            {{ site.data.site.email }}
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right: contact form -->
+    <div class="panel p-6 lg:p-8">
+      <p class="text-sm font-semibold mb-6" style="color: var(--text-primary);">Send a message</p>
+      <form id="contactForm" class="space-y-4" novalidate>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="contact-name" class="meta-label block mb-1.5" style="color: var(--text-tertiary);">Name *</label>
+            <input
+              id="contact-name"
+              required
+              name="name"
+              placeholder="Your name"
+              autocomplete="name"
+              class="w-full rounded-md border px-3.5 py-2.5 text-sm transition-all duration-150"
+              style="background: var(--canvas); border-color: var(--border); color: var(--text-primary);"
+            />
+          </div>
+          <div>
+            <label for="contact-email" class="meta-label block mb-1.5" style="color: var(--text-tertiary);">Email *</label>
+            <input
+              id="contact-email"
+              required
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              class="w-full rounded-md border px-3.5 py-2.5 text-sm transition-all duration-150"
+              style="background: var(--canvas); border-color: var(--border); color: var(--text-primary);"
+            />
+          </div>
+        </div>
+        <div>
+          <label for="contact-subject" class="meta-label block mb-1.5" style="color: var(--text-tertiary);">Subject</label>
+          <input
+            id="contact-subject"
+            name="subject"
+            placeholder="Research collaboration / Licensing / Other"
+            class="w-full rounded-md border px-3.5 py-2.5 text-sm transition-all duration-150"
+            style="background: var(--canvas); border-color: var(--border); color: var(--text-primary);"
+          />
+        </div>
+        <div>
+          <label for="contact-message" class="meta-label block mb-1.5" style="color: var(--text-tertiary);">Message *</label>
+          <textarea
+            id="contact-message"
+            required
+            name="message"
+            rows="5"
+            placeholder="Your message..."
+            class="w-full rounded-md border px-3.5 py-2.5 text-sm transition-all duration-150 resize-y"
+            style="background: var(--canvas); border-color: var(--border); color: var(--text-primary);"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full justify-center">
+          Send Message
+        </button>
+      </form>
+    </div>
+
+  </div>
+
+</div>

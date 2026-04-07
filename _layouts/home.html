@@ -286,55 +286,50 @@ layout: default
   <div class="mx-auto max-w-7xl px-5 sm:px-8 py-20">
 
     <!-- Section header -->
-    <div class="mb-12">
-      <p class="meta-label mb-2" style="color: var(--text-tertiary);">
-        <span style="display:inline-block; width:16px; height:1px; background:var(--accent); vertical-align:middle; margin-right:8px;"></span>
-        HuggingFace
-      </p>
-      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">AI Models</h2>
-      <p class="text-sm" style="color: var(--text-secondary);">Experimental architectures and novel algorithms published on HuggingFace. Free for research and academic use.</p>
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+      <div>
+        <p class="meta-label mb-2" style="color: var(--text-tertiary);">
+          <span style="display:inline-block; width:16px; height:1px; background:var(--accent); vertical-align:middle; margin-right:8px;"></span>
+          HuggingFace
+        </p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-2" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">AI Models</h2>
+        <p class="text-sm" style="color: var(--text-secondary);">Experimental architectures and novel algorithms — open for research use.</p>
+      </div>
+      <a href="/models/" class="btn-ghost flex-shrink-0">
+        View All Models
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-3.5" aria-hidden="true">
+          <path fill-rule="evenodd" d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8Z" clip-rule="evenodd"/>
+        </svg>
+      </a>
     </div>
 
+    <!-- Teaser: compact two-column cards -->
     <div class="grid md:grid-cols-2 gap-4">
 
       <!-- BitTransformerLM -->
-      <article class="panel p-6 group">
-        <div class="flex items-start justify-between mb-4">
-          <span class="badge badge-research">Research · AGPLv3</span>
-          <span class="meta-label" style="color: var(--text-tertiary);">793K – 771M params</span>
+      <article class="panel p-5 group" style="position: relative; overflow: hidden;">
+        <div class="absolute top-0 left-0 w-1 h-full" style="background: var(--violet);"></div>
+        <div class="pl-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-lg font-bold" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">BitTransformerLM</h3>
+            <span class="meta-label" style="color: var(--text-tertiary);">793K–771M</span>
+          </div>
+          <p class="text-xs mb-3" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">Binary transformer · 9-bit encoding · reversible arch</p>
+          <a href="/models/" class="link-accent text-xs">Details →</a>
         </div>
-        <h3 class="text-xl font-bold mb-1" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">BitTransformerLM</h3>
-        <p class="text-sm mb-4" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">Binary transformer architecture</p>
-        <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
-          A novel binary transformer for low-resource settings with 9-bit encoding (8 data + 1 parity), reversible architecture, and built-in safety telemetry.
-        </p>
-        <div class="flex flex-wrap gap-3 text-xs mb-5" style="color: var(--text-tertiary);">
-          <span>9-bit encoding</span> <span>·</span>
-          <span>Reversible arch</span> <span>·</span>
-          <span>Safety telemetry</span>
-        </div>
-        <a href="https://huggingface.co/WCNegentropy/BitTransformerLM" target="_blank" rel="noopener noreferrer"
-           class="link-accent text-sm">HuggingFace Model Card →</a>
       </article>
 
       <!-- WrinkleBrane -->
-      <article class="panel p-6 group">
-        <div class="flex items-start justify-between mb-4">
-          <span class="badge badge-research">Research · AGPLv3</span>
-          <span class="meta-label" style="color: var(--text-tertiary);">150+ dB PSNR</span>
+      <article class="panel p-5 group" style="position: relative; overflow: hidden;">
+        <div class="absolute top-0 left-0 w-1 h-full" style="background: var(--violet);"></div>
+        <div class="pl-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-lg font-bold" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">WrinkleBrane</h3>
+            <span class="meta-label" style="color: var(--text-tertiary);">150+ dB PSNR</span>
+          </div>
+          <p class="text-xs mb-3" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">Wave-interference memory · 4D tensor ops · parallel retrieval</p>
+          <a href="/models/" class="link-accent text-xs">Details →</a>
         </div>
-        <h3 class="text-xl font-bold mb-1" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">WrinkleBrane</h3>
-        <p class="text-sm mb-4" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">Wave-interference memory system</p>
-        <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
-          Wave interference-based transformer variant using 4D tensor operations. High-precision associative memory with parallel retrieval (150+ dB PSNR).
-        </p>
-        <div class="flex flex-wrap gap-3 text-xs mb-5" style="color: var(--text-tertiary);">
-          <span>4D tensor ops</span> <span>·</span>
-          <span>Wave-interference memory</span> <span>·</span>
-          <span>Parallel retrieval</span>
-        </div>
-        <a href="https://huggingface.co/WCNegentropy/WrinkleBrane" target="_blank" rel="noopener noreferrer"
-           class="link-accent text-sm">HuggingFace Model Card →</a>
       </article>
     </div>
   </div>
@@ -346,108 +341,37 @@ layout: default
 <!-- ══════════════════════════════════════════════════════════ CONTACT ══ -->
 <section id="contact" aria-label="Contact">
   <div class="mx-auto max-w-7xl px-5 sm:px-8 py-20">
-    <div class="grid lg:grid-cols-[1fr_480px] gap-16">
+    <div class="grid lg:grid-cols-[1fr_auto] gap-8 items-center">
 
       <!-- Left: contact intro -->
-      <div>
+      <div class="max-w-xl">
         <p class="meta-label mb-2" style="color: var(--text-tertiary);">
           <span style="display:inline-block; width:16px; height:1px; background:var(--accent); vertical-align:middle; margin-right:8px;"></span>
           Get in touch
         </p>
         <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">Contact</h2>
-        <p class="text-sm leading-relaxed mb-6" style="color: var(--text-secondary);">
+        <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
           For research collaborations, commercial licensing inquiries, or general questions — reach out directly.
+          Available for academic partnerships, IP licensing, and technical consulting.
         </p>
         <a href="mailto:{{ site.data.site.email }}"
            class="link-accent text-base font-medium">{{ site.data.site.email }}</a>
-
-        <!-- Social quick-links -->
-        <div class="mt-8 pt-8 border-t" style="border-color: var(--border);">
-          <p class="meta-label mb-4" style="color: var(--text-tertiary);">Profiles</p>
-          <div class="flex flex-col gap-2">
-            <a href="{{ site.data.site.social.github }}" target="_blank" rel="noopener noreferrer"
-               class="flex items-center gap-3 text-sm underline-hover" style="color: var(--text-secondary);">
-              <span class="meta-label w-24" style="color: var(--text-tertiary);">GitHub</span>
-              github.com/WCNegentropy
-            </a>
-            <a href="{{ site.data.site.social.huggingface }}" target="_blank" rel="noopener noreferrer"
-               class="flex items-center gap-3 text-sm underline-hover" style="color: var(--text-secondary);">
-              <span class="meta-label w-24" style="color: var(--text-tertiary);">HuggingFace</span>
-              huggingface.co/WCNegentropy
-            </a>
-            <a href="{{ site.data.site.social.npm }}" target="_blank" rel="noopener noreferrer"
-               class="flex items-center gap-3 text-sm underline-hover" style="color: var(--text-secondary);">
-              <span class="meta-label w-24" style="color: var(--text-tertiary);">NPM</span>
-              @wcnegentropy/cli
-            </a>
-            <a href="{{ site.data.site.social.x }}" target="_blank" rel="noopener noreferrer"
-               class="flex items-center gap-3 text-sm underline-hover" style="color: var(--text-secondary);">
-              <span class="meta-label w-24" style="color: var(--text-tertiary);">X (Twitter)</span>
-              @WCNegentropy
-            </a>
-          </div>
-        </div>
       </div>
 
-      <!-- Right: contact form -->
-      <div class="panel p-6 lg:p-8">
-        <p class="text-sm font-semibold mb-6" style="color: var(--text-primary);">Send a message</p>
-        <form id="contactForm" class="space-y-4" novalidate>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label for="contact-name" class="meta-label block mb-1.5" style="color: var(--text-tertiary);">Name *</label>
-              <input
-                id="contact-name"
-                required
-                name="name"
-                placeholder="Your name"
-                autocomplete="name"
-                class="w-full rounded-md border px-3.5 py-2.5 text-sm transition-all duration-150"
-                style="background: var(--canvas); border-color: var(--border); color: var(--text-primary);"
-              />
-            </div>
-            <div>
-              <label for="contact-email" class="meta-label block mb-1.5" style="color: var(--text-tertiary);">Email *</label>
-              <input
-                id="contact-email"
-                required
-                type="email"
-                name="email"
-                placeholder="you@example.com"
-                autocomplete="email"
-                class="w-full rounded-md border px-3.5 py-2.5 text-sm transition-all duration-150"
-                style="background: var(--canvas); border-color: var(--border); color: var(--text-primary);"
-              />
-            </div>
-          </div>
-          <div>
-            <label for="contact-subject" class="meta-label block mb-1.5" style="color: var(--text-tertiary);">Subject</label>
-            <input
-              id="contact-subject"
-              name="subject"
-              placeholder="Research collaboration / Licensing / Other"
-              class="w-full rounded-md border px-3.5 py-2.5 text-sm transition-all duration-150"
-              style="background: var(--canvas); border-color: var(--border); color: var(--text-primary);"
-            />
-          </div>
-          <div>
-            <label for="contact-message" class="meta-label block mb-1.5" style="color: var(--text-tertiary);">Message *</label>
-            <textarea
-              id="contact-message"
-              required
-              name="message"
-              rows="5"
-              placeholder="Your message..."
-              class="w-full rounded-md border px-3.5 py-2.5 text-sm transition-all duration-150 resize-y"
-              style="background: var(--canvas); border-color: var(--border); color: var(--text-primary);"
-            ></textarea>
-          </div>
-          <button type="submit" class="btn-primary w-full justify-center">
-            Send Message
-          </button>
-        </form>
+      <!-- Right: CTA to contact page -->
+      <div class="flex flex-col gap-3 flex-shrink-0">
+        <a href="/contact/" class="btn-primary">
+          Open Contact Page
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4" aria-hidden="true">
+            <path fill-rule="evenodd" d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8Z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+        <a href="mailto:{{ site.data.site.email }}" class="btn-ghost justify-center">
+          Email directly
+        </a>
       </div>
 
     </div>
   </div>
 </section>
+

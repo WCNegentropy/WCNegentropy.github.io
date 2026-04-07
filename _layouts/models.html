@@ -1,0 +1,166 @@
+---
+layout: default
+---
+
+<div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 lg:py-20">
+
+  <!-- Breadcrumb -->
+  <nav class="mb-10 flex items-center gap-2 text-xs" aria-label="Breadcrumb">
+    <a href="/" class="meta-label underline-hover flex items-center gap-1.5" style="color: var(--text-tertiary);">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-3" aria-hidden="true">
+        <path fill-rule="evenodd" d="M9.78 4.22a.75.75 0 0 1 0 1.06L7.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L5.47 8.53a.75.75 0 0 1 0-1.06l3.25-3.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/>
+      </svg>
+      Home
+    </a>
+    <span style="color: var(--text-tertiary);">/</span>
+    <span class="meta-label" style="color: var(--text-secondary);">Models</span>
+  </nav>
+
+  <!-- Page hero -->
+  <header class="page-hero mb-12">
+    <!-- Violet accent rule — distinguishes models from research (green) and software (amber) -->
+    <div style="height: 2px; width: 3rem; background: var(--violet); border-radius: 1px; margin-bottom: 1.5rem;"></div>
+
+    <div class="flex items-start justify-between gap-4 flex-wrap mb-3">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight"
+          style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">AI Models</h1>
+      <span class="badge badge-research flex-shrink-0 mt-1">HuggingFace</span>
+    </div>
+
+    <p class="text-base mb-4" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">huggingface.co/WCNegentropy</p>
+
+    <p class="text-base leading-relaxed mb-5 max-w-2xl" style="color: var(--text-secondary);">
+      Experimental AI architectures and novel algorithms — published openly for research and academic use. Each model explores a distinct structural hypothesis about how intelligence and memory might be better organized.
+    </p>
+
+    <!-- Metadata strip -->
+    <div class="flex flex-wrap gap-x-6 gap-y-2 pt-4 text-xs" style="border-top: 1px solid var(--border-sub);">
+      <div class="flex items-center gap-2">
+        <span class="meta-label">LICENSE</span>
+        <span style="color: var(--text-secondary);">AGPLv3</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="meta-label">PROFILE</span>
+        <a href="https://huggingface.co/WCNegentropy" target="_blank" rel="noopener noreferrer"
+           class="underline-hover" style="color: var(--violet);">
+          huggingface.co/WCNegentropy ↗
+        </a>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="meta-label">USE</span>
+        <span style="color: var(--text-secondary);">Free for research &amp; academic use</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Model cards -->
+  <section aria-label="Published models">
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+
+      <!-- BitTransformerLM -->
+      <article class="panel p-6 group" style="position: relative; overflow: hidden;">
+        <div class="absolute top-0 left-0 w-1 h-full" style="background: var(--violet);"></div>
+        <div class="pl-4">
+          <div class="flex items-start justify-between mb-4">
+            <span class="badge badge-research">Research · AGPLv3</span>
+            <span class="meta-label" style="color: var(--text-tertiary);">793K – 771M params</span>
+          </div>
+          <h2 class="text-2xl font-bold mb-1" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">BitTransformerLM</h2>
+          <p class="text-sm mb-4" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">Binary transformer architecture</p>
+          <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+            A novel binary transformer for low-resource settings using 9-bit encoding (8 data + 1 parity). Features a reversible architecture enabling exact gradient computation, and built-in safety telemetry for alignment research.
+          </p>
+
+          <!-- Capabilities -->
+          <div class="space-y-2 mb-5">
+            <div class="flex items-center gap-3 text-xs">
+              <span class="meta-label w-28" style="color: var(--text-tertiary);">Encoding</span>
+              <span style="color: var(--text-secondary);">9-bit (8 data + 1 parity)</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs">
+              <span class="meta-label w-28" style="color: var(--text-tertiary);">Architecture</span>
+              <span style="color: var(--text-secondary);">Reversible transformer</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs">
+              <span class="meta-label w-28" style="color: var(--text-tertiary);">Parameters</span>
+              <span style="color: var(--text-secondary);">793K – 771M (configurable)</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs">
+              <span class="meta-label w-28" style="color: var(--text-tertiary);">Safety</span>
+              <span style="color: var(--text-secondary);">Built-in telemetry</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4 pt-4" style="border-top: 1px solid var(--border-sub);">
+            <a href="https://huggingface.co/WCNegentropy/BitTransformerLM" target="_blank" rel="noopener noreferrer"
+               class="link-accent text-sm">HuggingFace Model Card →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- WrinkleBrane -->
+      <article class="panel p-6 group" style="position: relative; overflow: hidden;">
+        <div class="absolute top-0 left-0 w-1 h-full" style="background: var(--violet);"></div>
+        <div class="pl-4">
+          <div class="flex items-start justify-between mb-4">
+            <span class="badge badge-research">Research · AGPLv3</span>
+            <span class="meta-label" style="color: var(--text-tertiary);">150+ dB PSNR</span>
+          </div>
+          <h2 class="text-2xl font-bold mb-1" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">WrinkleBrane</h2>
+          <p class="text-sm mb-4" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">Wave-interference memory system</p>
+          <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+            Wave interference-based transformer variant using 4D tensor operations as the primary computational primitive. Achieves high-precision associative memory with parallel retrieval — demonstrated at 150+ dB PSNR recall accuracy.
+          </p>
+
+          <!-- Capabilities -->
+          <div class="space-y-2 mb-5">
+            <div class="flex items-center gap-3 text-xs">
+              <span class="meta-label w-28" style="color: var(--text-tertiary);">Computation</span>
+              <span style="color: var(--text-secondary);">4D tensor operations</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs">
+              <span class="meta-label w-28" style="color: var(--text-tertiary);">Memory</span>
+              <span style="color: var(--text-secondary);">Wave-interference associative</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs">
+              <span class="meta-label w-28" style="color: var(--text-tertiary);">Retrieval</span>
+              <span style="color: var(--text-secondary);">Parallel, 150+ dB PSNR</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs">
+              <span class="meta-label w-28" style="color: var(--text-tertiary);">License</span>
+              <span style="color: var(--text-secondary);">AGPL-3.0</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4 pt-4" style="border-top: 1px solid var(--border-sub);">
+            <a href="https://huggingface.co/WCNegentropy/WrinkleBrane" target="_blank" rel="noopener noreferrer"
+               class="link-accent text-sm">HuggingFace Model Card →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Research posture note -->
+    <div class="callout">
+      <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+        <strong style="color: var(--text-primary);">Open research posture.</strong>
+        All models are published under AGPLv3 and freely available for academic research, experimentation, and non-commercial use.
+        For commercial licensing inquiries, <a href="/contact/" class="link-accent">get in touch</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Upcoming -->
+  <section class="mt-16" aria-label="Upcoming models">
+    <h2 class="section-heading mb-6">In Development</h2>
+    <div class="panel p-6" style="border-style: dashed;">
+      <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+        Further experimental architectures are in active development as part of the broader WCNegentropy research agenda —
+        including work related to PQC-based privacy layers and procedural generation systems. Watch the
+        <a href="https://huggingface.co/WCNegentropy" target="_blank" rel="noopener noreferrer" class="link-accent">HuggingFace profile</a>
+        for updates.
+      </p>
+    </div>
+  </section>
+
+</div>

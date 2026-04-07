@@ -23,14 +23,18 @@
 ```
 WCNegentropy.github.io/
 ├── index.md                 # Homepage (layout: home)
+├── models.md                # AI Models page (layout: models, permalink: /models/)
+├── contact.md               # Contact page (layout: contact, permalink: /contact/)
 ├── _config.yml              # Jekyll config with collection defaults
 ├── _data/site.yml           # Centralized site data (owner, projects, social)
 ├── _layouts/
 │   ├── default.html         # Base HTML shell
-│   ├── home.html            # Homepage atlas layout
+│   ├── home.html            # Homepage atlas layout (with teaser sections)
 │   ├── page.html            # Generic content page
 │   ├── research.html        # Research collection layout (publication-style)
-│   └── software.html        # Software collection layout (artifact-style)
+│   ├── software.html        # Software collection layout (artifact-style)
+│   ├── models.html          # AI Models page layout (violet accent, HuggingFace)
+│   └── contact.html         # Contact page layout (form + profiles)
 ├── _includes/
 │   ├── head.html            # <head> — JSON-LD, MathJax, SEO, fonts
 │   ├── header.html          # Sticky nav with active-page highlighting
@@ -69,6 +73,9 @@ The design system lives in `_includes/input.css`. It uses CSS custom properties 
 
 /* Amber (live software / status) */
 --amber, --amber-dim
+
+/* Violet (AI models) */
+--violet, --violet-dim
 
 /* Code */
 --code-bg, --code-text
@@ -155,6 +162,8 @@ tags: [tag1, tag2]
 | MAGUFT | `/research/maguft/` | `research` |
 | MagRot | `/research/magrot/` | `research` |
 | retro-vibecoder | `/software/retro-vibecoder/` | `software` |
+| AI Models | `/models/` | `models` |
+| Contact | `/contact/` | `contact` |
 | Privacy | `/privacy/` | `page` |
 | Terms | `/terms/` | `page` |
 
@@ -162,12 +171,23 @@ tags: [tag1, tag2]
 
 ## Navigation
 
-The header (`_includes/header.html`) provides:
-- Direct links to all three major IP collection pages
-- Active-page highlighting using `page.url` (accent color + surface background)
-- `aria-current="page"` on the current page link (accessibility)
-- ⌘K command palette trigger
-- Responsive mobile nav with hamburger toggle
+The header (`_includes/header.html`) provides direct links to all major site destinations:
+
+| Nav Item | Destination | Active-state logic |
+|---|---|---|
+| MAGUFT | `/research/maguft/` | `page.url contains 'maguft'` |
+| MagRot | `/research/magrot/` | `page.url contains 'magrot'` |
+| retro-vibecoder | `/software/retro-vibecoder/` | `page.url contains 'retro-vibecoder'` |
+| Models | `/models/` | `page.url contains 'models'` |
+| Contact | `/contact/` | `page.url contains 'contact'` |
+
+Active pages receive `aria-current="page"`, the accent color, and a surface-2 background.
+Both desktop and mobile nav are kept in sync.
+
+### Homepage teaser sections
+
+The homepage (`_layouts/home.html`) includes concise teaser/preview sections for Models and Contact
+that link through to their dedicated pages — the full content lives at `/models/` and `/contact/`.
 
 ---
 
