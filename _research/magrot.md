@@ -21,21 +21,21 @@ tags: [magnetic-fields, plasma-physics, thermodynamics, entropy, tokamak, z-pinc
 
   <section>
     <h2 class="section-heading">Validation</h2>
-    <ul class="space-y-2" style="color: var(--text-secondary);">
+    <ul class="space-y-2 text-secondary">
       <li class="flex gap-3">
-        <span class="meta-label mt-0.5 flex-shrink-0" style="color: var(--text-tertiary);">Tier 1</span>
+        <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">Tier 1</span>
         <span>Analytic: infinite wire, Z-pinch Bennett, screw pinch, dipole 2D</span>
       </li>
       <li class="flex gap-3">
-        <span class="meta-label mt-0.5 flex-shrink-0" style="color: var(--text-tertiary);">Tier 2</span>
+        <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">Tier 2</span>
         <span>Cross-validation: Earth dipole (R=1.0 at equator), Tokamak (ITER-scale)</span>
       </li>
       <li class="flex gap-3">
-        <span class="meta-label mt-0.5 flex-shrink-0" style="color: var(--text-tertiary);">v2 Suite</span>
+        <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">v2 Suite</span>
         <span>1D (28/33 checks) and full 3D (26/37 checks) validation suites</span>
       </li>
       <li class="flex gap-3">
-        <span class="meta-label mt-0.5 flex-shrink-0" style="color: var(--text-tertiary);">Result</span>
+        <span class="meta-label mt-0.5 flex-shrink-0 text-tertiary">Result</span>
         <span>Entropy-parameterized Z-pinch converges to R = 1.000000 exactly</span>
       </li>
     </ul>
@@ -43,16 +43,16 @@ tags: [magnetic-fields, plasma-physics, thermodynamics, entropy, tokamak, z-pinc
 
   <section>
     <h2 class="section-heading">v2: Thermodynamic State Flow</h2>
-    <p class="leading-relaxed" style="color: var(--text-secondary);">
+    <p class="leading-relaxed text-secondary">
       Version 2 replaces time-based dynamics with entropy-parameterized state evolution. The evolution parameter is entropy produced (σ), not elapsed time (t), yielding guaranteed convergence via the second law.
     </p>
   </section>
 
   <section>
     <h2 class="section-heading">Licensing</h2>
-    <p class="leading-relaxed" style="color: var(--text-secondary);">
-      Split licensing model: <strong style="color: var(--text-primary);">AGPLv3</strong> for software and simulators,
-      <strong style="color: var(--text-primary);">CC BY 4.0</strong> for framework specifications, validation reports, and generated results.
+    <p class="leading-relaxed text-secondary">
+      Split licensing model: <strong class="text-primary">AGPLv3</strong> for software and simulators,
+      <strong class="text-primary">CC BY 4.0</strong> for framework specifications, validation reports, and generated results.
       Commercial licensing available.
     </p>
   </section>

@@ -36,7 +36,7 @@ tags: [cli, code-generator, procedural-generation, tauri, typescript, developer-
   <section>
     <h2 class="section-heading">Install</h2>
     <div class="code-block">
-      <span style="color: var(--text-tertiary);">$</span> npm install -g @wcnegentropy/cli
+      <span class="text-tertiary">$</span> npm install -g @wcnegentropy/cli
     </div>
   </section>
 

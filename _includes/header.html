@@ -9,7 +9,6 @@
            style="ring-color: var(--accent);"
            alt="{{ site.owner.name }}" loading="eager" width="28" height="28">
       <span class="font-display font-semibold text-sm tracking-tight transition-colors duration-150"
-            style="font-family: 'Space Grotesk', sans-serif;"
             >WCNegentropy</span>
     </a>
 
@@ -38,16 +37,16 @@
       <button
         x-data
         @click="$dispatch('toggle-command-palette')"
-        class="hidden md:inline-flex items-center gap-2 rounded-md border px-2.5 py-1 text-2xs font-mono transition-all duration-150 hover:border-accent"
-        style="border-color: var(--border); color: var(--text-tertiary);"
+        class="hidden md:inline-flex items-center gap-2 rounded-md border px-2.5 py-1 text-2xs font-mono transition-all duration-150 hover:border-accent text-tertiary"
+        style="border-color: var(--border);"
         aria-label="Open command palette (Ctrl K)">
         <span>⌘K</span>
       </button>
 
       <!-- Mobile menu toggle -->
       <button id="mobile-menu-toggle"
-        class="md:hidden inline-flex items-center justify-center size-8 rounded-md border transition-all duration-150"
-        style="border-color: var(--border); color: var(--text-secondary);"
+        class="md:hidden inline-flex items-center justify-center size-8 rounded-md border transition-all duration-150 text-secondary"
+        style="border-color: var(--border);"
         aria-label="Open mobile navigation"
         aria-expanded="false">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4">

@@ -10,58 +10,57 @@ layout: default
 
   <!-- Breadcrumb -->
   <nav class="mb-10 flex items-center gap-2 text-xs" aria-label="Breadcrumb">
-    <a href="/" class="meta-label underline-hover flex items-center gap-1.5" style="color: var(--text-tertiary);">
+    <a href="/" class="meta-label underline-hover flex items-center gap-1.5 text-tertiary">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-3" aria-hidden="true">
         <path fill-rule="evenodd" d="M9.78 4.22a.75.75 0 0 1 0 1.06L7.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L5.47 8.53a.75.75 0 0 1 0-1.06l3.25-3.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/>
       </svg>
       Home
     </a>
-    <span style="color: var(--text-tertiary);">/</span>
-    <span class="meta-label" style="color: var(--text-tertiary);">Research</span>
-    <span style="color: var(--text-tertiary);">/</span>
-    <span class="meta-label" style="color: var(--text-secondary);">{{ short_name }}</span>
+    <span class="text-tertiary">/</span>
+    <span class="meta-label text-tertiary">Research</span>
+    <span class="text-tertiary">/</span>
+    <span class="meta-label text-secondary">{{ short_name }}</span>
   </nav>
 
   <!-- Publication hero (from frontmatter) -->
   <header class="page-hero">
     <!-- Accent rule -->
-    <div style="height: 2px; width: 3rem; background: var(--accent); border-radius: 1px; margin-bottom: 1.5rem;"></div>
+    <div class="hero-accent"></div>
 
     <div class="flex items-start justify-between gap-4 flex-wrap mb-3">
-      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight"
-          style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">{{ short_name }}</h1>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-primary">{{ short_name }}</h1>
       {% if page.status %}
       <span class="badge badge-research flex-shrink-0 mt-1">{{ page.status }}</span>
       {% endif %}
     </div>
 
     {% if subtitle != "" %}
-    <p class="text-base mb-4" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">{{ subtitle }}</p>
+    <p class="page-deck mb-4">{{ subtitle }}</p>
     {% endif %}
 
     {% if page.description %}
-    <p class="text-base leading-relaxed mb-5 max-w-2xl" style="color: var(--text-secondary);">{{ page.description }}</p>
+    <p class="text-base leading-relaxed mb-5 max-w-2xl text-secondary">{{ page.description }}</p>
     {% endif %}
 
     <!-- Metadata strip -->
-    <div class="flex flex-wrap gap-x-6 gap-y-2 pt-4 text-xs" style="border-top: 1px solid var(--border-sub);">
+    <div class="meta-strip">
       {% if page.status %}
-      <div class="flex items-center gap-2">
+      <div class="meta-item">
         <span class="meta-label">STATUS</span>
-        <span style="color: var(--text-secondary);">{{ page.status }}</span>
+        <span class="text-secondary">{{ page.status }}</span>
       </div>
       {% endif %}
       {% if page.license %}
-      <div class="flex items-center gap-2">
+      <div class="meta-item">
         <span class="meta-label">LICENSE</span>
-        <span style="color: var(--text-secondary);">{{ page.license }}</span>
+        <span class="text-secondary">{{ page.license }}</span>
       </div>
       {% endif %}
       {% if page.repo_url %}
-      <div class="flex items-center gap-2">
+      <div class="meta-item">
         <span class="meta-label">REPOSITORY</span>
         <a href="{{ page.repo_url }}" target="_blank" rel="noopener noreferrer"
-           class="underline-hover" style="color: var(--accent);">
+           class="text-accent underline-hover">
           {{ page.repo_url | remove: "https://github.com/" }} ↗
         </a>
       </div>
@@ -77,10 +76,10 @@ layout: default
   <!-- Tags -->
   {% if page.tags.size > 0 %}
   <footer class="mt-12 pt-6" style="border-top: 1px solid var(--border);">
-    <p class="meta-label mb-3" style="color: var(--text-tertiary);">Topics</p>
+    <p class="meta-label mb-3 text-tertiary">Topics</p>
     <div class="flex flex-wrap gap-2">
       {% for tag in page.tags %}
-      <span class="meta-label px-2 py-0.5 rounded" style="background-color: var(--surface-2); color: var(--text-tertiary);">{{ tag }}</span>
+      <span class="topic-tag">{{ tag }}</span>
       {% endfor %}
     </div>
   </footer>

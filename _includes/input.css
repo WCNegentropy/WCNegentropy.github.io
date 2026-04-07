@@ -343,6 +343,90 @@
     text-transform: uppercase;
     color: var(--text-tertiary);
   }
+
+  /* --- Hero accent rule (colored 2px bar before page/section title) --- */
+  .hero-accent {
+    height: 2px;
+    width: 3rem;
+    border-radius: 1px;
+    margin-bottom: 1.5rem;
+    background: var(--accent);
+  }
+  .hero-accent-software { background: var(--amber); }
+  .hero-accent-models   { background: var(--violet); }
+
+  /* --- Page deck / mono subtitle line --------------------------------- */
+  /* Spacing intentionally omitted — use utility classes (e.g. mb-4) per context */
+  .page-deck {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+  }
+
+  /* --- Topic/tag chip (taxonomy badge on collection pages) ------------ */
+  .topic-tag {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    background-color: var(--surface-2);
+    border-radius: 0.25rem;
+    padding: 0.125rem 0.5rem;
+  }
+
+  /* --- Metadata strip (hero bottom border row) ------------------------ */
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.5rem;
+    row-gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-sub);
+    font-size: 0.75rem;
+  }
+
+  /* --- Metadata strip item -------------------------------------------- */
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* --- Section kicker (accent line + mono label above section h2) ----- */
+  .section-kicker {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .section-kicker::before {
+    content: '';
+    display: block;
+    width: 1rem;
+    height: 1px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* --- Card accent rail (absolute left-side border on panel cards) ---- */
+  .card-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent);
+  }
+  .card-accent-software { background: var(--amber); }
+  .card-accent-models   { background: var(--violet); }
 }
 
 /* ─── Utilities ─────────────────────────────────────────────────────────── */
