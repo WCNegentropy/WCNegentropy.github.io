@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" id="top">
 <head>
   {% include head.html %}
 </head>
-<body class="bg-brand-100 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
-  <!-- Background blobs -->
-  <div class="blob w-[40vw] h-[40vw] top-[-10vw] left-[-10vw] rounded-full"></div>
-  <div class="blob w-[30vw] h-[30vw] bottom-[-10vw] right-[-10vw] rounded-full"></div>
+<body class="font-sans antialiased">
 
   {% include header.html %}
-  
+
   {% include command-palette.html %}
 
-  <main>
+  <main id="main-content">
     {{ content }}
   </main>
 

@@ -1,29 +1,75 @@
-<header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-brand-200/70 dark:supports-[backdrop-filter]:bg-slate-900/60 border-b border-brand-300/60 dark:border-slate-800 transition-colors duration-300">
-  <div class="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3 group">
-      <img src="{{ site.owner.avatar }}" class="size-10 rounded-full ring-2 ring-brand-400/40 transition-all" alt="{{ site.owner.name }}" loading="eager" width="40" height="40">
-      <div>
-        <div class="font-semibold tracking-tight group-hover:text-brand-700 dark:group-hover:text-brand-600 transition-colors">{{ site.owner.name }}</div>
-        <div class="text-xs text-slate-700 dark:text-slate-400 transition-colors">{{ site.owner.tagline }}</div>
-      </div>
+<header class="sticky top-0 z-40 border-b transition-all duration-200"
+        style="background-color: color-mix(in srgb, var(--canvas) 85%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-color: var(--border);">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 h-14 flex items-center justify-between gap-4">
+
+    <!-- Identity -->
+    <a href="/" class="flex items-center gap-2.5 group flex-shrink-0" aria-label="WCNegentropy home">
+      <img src="{{ site.owner.avatar }}"
+           class="size-7 rounded-full ring-1 transition-all duration-200"
+           style="ring-color: var(--accent);"
+           alt="{{ site.owner.name }}" loading="eager" width="28" height="28">
+      <span class="font-display font-semibold text-sm tracking-tight transition-colors duration-150"
+            style="font-family: 'Space Grotesk', sans-serif;"
+            >WCNegentropy</span>
     </a>
-    <nav class="hidden md:flex items-center gap-6 text-sm">
-      <a href="/#ip-grid" class="hover:text-brand-700 dark:hover:text-brand-600 transition-colors">Core IP</a>
-      <a href="/#models" class="hover:text-brand-700 dark:hover:text-brand-600 transition-colors">AI Models</a>
-      <a href="/#contact" class="hover:text-brand-700 dark:hover:text-brand-600 transition-colors">Contact</a>
+
+    <!-- Nav (desktop) -->
+    <nav class="hidden md:flex items-center gap-1" aria-label="Primary navigation">
+      <a href="/#ip-grid"
+         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2"
+         style="color: var(--text-secondary);">Research &amp; IP</a>
+      <a href="/#models"
+         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2"
+         style="color: var(--text-secondary);">Models</a>
+      <a href="/#contact"
+         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2"
+         style="color: var(--text-secondary);">Contact</a>
     </nav>
+
+    <!-- Controls -->
     <div class="flex items-center gap-2">
-      <button 
-        x-data 
+      <!-- ⌘K trigger -->
+      <button
+        x-data
         @click="$dispatch('toggle-command-palette')"
-        class="hidden md:inline-flex items-center gap-2 rounded-xl border border-brand-300 dark:border-slate-700 px-3 py-1.5 text-xs hover:shadow-glow transition-all duration-300" 
-        aria-label="Open command palette">
+        class="hidden md:inline-flex items-center gap-2 rounded-md border px-2.5 py-1 text-2xs font-mono transition-all duration-150 hover:border-accent"
+        style="border-color: var(--border); color: var(--text-tertiary);"
+        aria-label="Open command palette (Ctrl K)">
         <span>⌘K</span>
       </button>
-      <button id="theme-toggle" class="inline-flex items-center gap-2 rounded-xl border border-brand-300 dark:border-slate-700 px-3 py-1.5 text-xs hover:shadow-glow transition-all duration-300" aria-label="Toggle theme">
-        <span class="i-theme">🌞</span><span class="hidden sm:inline">Theme</span>
+
+      <!-- Theme toggle -->
+      <button id="theme-toggle"
+        class="inline-flex items-center justify-center size-8 rounded-md border transition-all duration-150"
+        style="border-color: var(--border); color: var(--text-secondary);"
+        aria-label="Toggle dark/light theme">
+        <span class="i-theme text-sm">🌞</span>
       </button>
-      <a href="/#contact" class="rounded-xl bg-brand-700 text-white px-4 py-2 text-sm font-semibold shadow-glow hover:bg-brand-800 dark:bg-brand-600 dark:hover:bg-brand-700 transition-colors">Get In Touch</a>
+
+      <!-- Mobile menu toggle -->
+      <button id="mobile-menu-toggle"
+        class="md:hidden inline-flex items-center justify-center size-8 rounded-md border transition-all duration-150"
+        style="border-color: var(--border); color: var(--text-secondary);"
+        aria-label="Open mobile navigation"
+        aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4">
+          <path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z" clip-rule="evenodd"/>
+        </svg>
+      </button>
     </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <div id="mobile-menu"
+       class="hidden md:hidden border-t"
+       style="border-color: var(--border); background-color: var(--surface-1);">
+    <nav class="px-5 py-3 flex flex-col gap-1" aria-label="Mobile navigation">
+      <a href="/#ip-grid" class="meta-label px-3 py-2 rounded-md"
+         style="color: var(--text-secondary);">Research &amp; IP</a>
+      <a href="/#models" class="meta-label px-3 py-2 rounded-md"
+         style="color: var(--text-secondary);">Models</a>
+      <a href="/#contact" class="meta-label px-3 py-2 rounded-md"
+         style="color: var(--text-secondary);">Contact</a>
+    </nav>
   </div>
 </header>

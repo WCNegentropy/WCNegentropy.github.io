@@ -2,324 +2,442 @@
 layout: default
 ---
 
-<!-- HERO / MISSION -->
-<section class="relative overflow-hidden">
-  <div class="absolute inset-0 bg-grid pointer-events-none transition-all duration-300"></div>
-  <div class="mx-auto max-w-7xl px-6 pt-16 pb-12 lg:pt-24 lg:pb-16">
-    <div class="max-w-4xl">
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-        A <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-brand-700">Negentropic</span> Attractor
-      </h1>
-      <p class="mt-6 text-xl text-slate-800 dark:text-slate-300 max-w-3xl leading-relaxed transition-colors duration-300">
-        Creating an interconnected web of projects and ideas to benefit humanity — from unified field theories and magnetic confinement frameworks to deterministic code generators and novel AI architectures.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a href="#ip-grid"
-           class="inline-flex items-center gap-2 rounded-xl bg-brand-700 text-white dark:bg-brand-600 px-6 py-3 font-semibold shadow-glow hover:bg-brand-800 dark:hover:bg-brand-700 transition-colors">
-          Explore Core IP →
-        </a>
-        <a href="https://github.com/WCNegentropy"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="inline-flex items-center gap-2 rounded-xl border border-brand-300 dark:border-slate-700 px-6 py-3 font-semibold hover:shadow-glow transition-all duration-300">
-          🐙 GitHub Profile
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ═══════════════════════════════════════════════════════════ HERO ══ -->
+<section class="relative overflow-hidden" aria-label="Introduction">
+  <!-- Technical grid overlay -->
+  <div class="absolute inset-0 bg-grid pointer-events-none opacity-60" aria-hidden="true"></div>
 
-<div class="border-t border-brand-200 dark:border-slate-800 transition-colors duration-300"></div>
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 pt-20 pb-16 lg:pt-28 lg:pb-20">
+    <div class="grid lg:grid-cols-[1fr_420px] gap-16 items-center">
 
-<!-- IP GRID — Core Pillars -->
-<section id="ip-grid" class="mx-auto max-w-7xl px-6 py-16">
-  <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Core IP</h2>
-  <p class="text-slate-800 dark:text-slate-300 mb-8 transition-colors duration-300">
-    Deep-tech research and open-source software under split licenses — CC BY 4.0 for research, AGPLv3 for computational tools, MIT for developer tools.
-  </p>
+      <!-- Left: Thesis frame -->
+      <div class="max-w-2xl">
+        <!-- Entity label -->
+        <p class="meta-label mb-5 flex items-center gap-2" style="color: var(--text-tertiary);">
+          <span style="display:inline-block; width:24px; height:1px; background:var(--accent); vertical-align:middle;"></span>
+          WCNEGENTROPY HOLDINGS LLC
+        </p>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <!-- MAGUFT -->
-    <div class="rounded-2xl border border-brand-300 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300 group bg-gradient-to-br from-violet-50/50 to-indigo-50/50 dark:from-violet-950/20 dark:to-indigo-950/20">
-      <div class="flex items-start justify-between mb-3">
-        <span class="text-4xl">🔬</span>
-        <span class="text-xs font-mono bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 px-2 py-1 rounded">RESEARCH</span>
-      </div>
-      <h3 class="text-2xl font-bold mb-2 group-hover:text-brand-600 transition-colors">MAGUFT</h3>
-      <p class="text-sm font-mono text-slate-600 dark:text-slate-400 mb-3">Magnetic Rotation Grand Unified Field Theory</p>
-      <p class="text-slate-800 dark:text-slate-300 transition-colors duration-300 mb-4">
-        A unified framework modeling QM and GR as orthogonal projections of a single entropy-driven master equation on $\Phi^{ab} = \sqrt{\rho}\,g^{ab}$.
-      </p>
-      <div class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400 mb-4">
-        <span>📄 CC BY 4.0</span>
-        <span>•</span>
-        <span>💻 AGPLv3</span>
-        <span>•</span>
-        <span>Papers 1–3</span>
-      </div>
-      <a href="https://github.com/WCNegentropy/MAGUFT"
-         target="_blank" rel="noopener noreferrer"
-         class="inline-flex items-center gap-2 text-brand-700 hover:text-brand-800 dark:text-brand-600 dark:hover:text-brand-700 font-semibold transition-colors duration-300">
-        GitHub Repository →
-      </a>
-    </div>
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold leading-[1.08] tracking-tight mb-6"
+            style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">
+          A Negentropic<br>
+          <span style="color: var(--accent);">Attractor</span>
+        </h1>
 
-    <!-- MagRot -->
-    <div class="rounded-2xl border border-brand-300 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300 group bg-gradient-to-br from-cyan-50/50 to-blue-50/50 dark:from-cyan-950/20 dark:to-blue-950/20">
-      <div class="flex items-start justify-between mb-3">
-        <span class="text-4xl">🧲</span>
-        <span class="text-xs font-mono bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 px-2 py-1 rounded">RESEARCH</span>
-      </div>
-      <h3 class="text-2xl font-bold mb-2 group-hover:text-brand-600 transition-colors">MagRot</h3>
-      <p class="text-sm font-mono text-slate-600 dark:text-slate-400 mb-3">Rotational-Vector Framework for Magnetic Field Dynamics</p>
-      <p class="text-slate-800 dark:text-slate-300 transition-colors duration-300 mb-4">
-        Dimensionless rotational parameter R(x) encoding local collapse, expansion, or equilibrium in magnetic fields. Validated against Z-pinch, tokamak (ITER-scale), and Earth dipole.
-      </p>
-      <div class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400 mb-4">
-        <span>💻 AGPLv3</span>
-        <span>•</span>
-        <span>📄 CC BY 4.0</span>
-        <span>•</span>
-        <span>v2 Thermo</span>
-      </div>
-      <a href="https://github.com/WCNegentropy/magrot"
-         target="_blank" rel="noopener noreferrer"
-         class="inline-flex items-center gap-2 text-brand-700 hover:text-brand-800 dark:text-brand-600 dark:hover:text-brand-700 font-semibold transition-colors duration-300">
-        GitHub Repository →
-      </a>
-    </div>
+        <!-- Thesis statement -->
+        <p class="text-lg leading-relaxed mb-8 max-w-xl" style="color: var(--text-secondary);">
+          Creating an interconnected web of projects and ideas to benefit humanity — from unified field theories and magnetic confinement frameworks to deterministic code generators and novel AI architectures.
+        </p>
 
-    <!-- retro-vibecoder (UPG) -->
-    <div class="rounded-2xl border border-brand-300 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300 group bg-gradient-to-br from-purple-50/50 to-indigo-50/50 dark:from-purple-950/20 dark:to-indigo-950/20">
-      <div class="flex items-start justify-between mb-3">
-        <span class="text-4xl">⚡</span>
-        <div class="flex items-center gap-2">
-          <span class="text-xs font-mono bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-2 py-1 rounded">LIVE v0.2.2</span>
-          <span class="text-xs font-mono bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 px-2 py-1 rounded">MIT</span>
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-3">
+          <a href="#ip-grid" class="btn-primary">
+            Explore Core IP
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4" aria-hidden="true">
+              <path fill-rule="evenodd" d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8Z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+          <a href="https://github.com/WCNegentropy" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+            GitHub Profile ↗
+          </a>
         </div>
-      </div>
-      <h3 class="text-2xl font-bold mb-2 group-hover:text-brand-600 transition-colors">retro-vibecoder (UPG)</h3>
-      <p class="text-sm font-mono text-slate-600 dark:text-slate-400 mb-3">Universal Project Generator</p>
-      <p class="text-slate-800 dark:text-slate-300 transition-colors duration-300 mb-4">
-        CLI tool + Tauri desktop app — procedurally generates full working boilerplate tech stacks from a single deterministic seed. 40+ strategies, 7 archetypes, 12 languages.
-      </p>
-      <div class="rounded-xl bg-slate-900 dark:bg-slate-800 p-3 mb-4 font-mono text-xs text-green-400">
-        <span class="text-slate-500">$</span> npm install -g @wcnegentropy/cli
-      </div>
-      <div class="flex items-center gap-3">
-        <a href="https://github.com/WCNegentropy/retro-vibecoder"
-           target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center gap-2 text-brand-700 hover:text-brand-800 dark:text-brand-600 dark:hover:text-brand-700 font-semibold transition-colors duration-300">
-          GitHub →
-        </a>
-        <a href="https://www.npmjs.com/package/@wcnegentropy/cli"
-           target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center gap-2 text-brand-700 hover:text-brand-800 dark:text-brand-600 dark:hover:text-brand-700 font-semibold transition-colors duration-300">
-          NPM →
-        </a>
-      </div>
-    </div>
 
-    <!-- Upcoming / Modular -->
-    <div class="rounded-2xl border border-dashed border-brand-300 dark:border-slate-700 p-6 transition-all duration-300 group">
-      <div class="flex items-start justify-between mb-3">
-        <span class="text-4xl">🔮</span>
-        <span class="text-xs font-mono bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 px-2 py-1 rounded">IN DEVELOPMENT</span>
-      </div>
-      <h3 class="text-2xl font-bold mb-2">Upcoming</h3>
-      <div class="space-y-3 mt-4">
-        <div class="flex items-start gap-3">
-          <span>🔐</span>
+        <!-- Stat strip -->
+        <div class="flex flex-wrap gap-6 mt-10 pt-8 border-t" style="border-color: var(--border);">
           <div>
-            <p class="font-semibold text-slate-900 dark:text-slate-100">PQC Privacy Layer</p>
-            <p class="text-sm text-slate-700 dark:text-slate-400">Post-Quantum Cryptography for user data sovereignty in the Quantum age</p>
+            <p class="text-2xl font-bold" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">5</p>
+            <p class="meta-label mt-0.5" style="color: var(--text-tertiary);">IP Pillars</p>
           </div>
-        </div>
-        <div class="flex items-start gap-3">
-          <span>🎮</span>
           <div>
-            <p class="font-semibold text-slate-900 dark:text-slate-100">Procedural Game Engine</p>
-            <p class="text-sm text-slate-700 dark:text-slate-400">Custom engine with procedural generation at its core — already rendering</p>
+            <p class="text-2xl font-bold" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">3</p>
+            <p class="meta-label mt-0.5" style="color: var(--text-tertiary);">Active Tracks</p>
+          </div>
+          <div>
+            <p class="text-2xl font-bold" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">40+</p>
+            <p class="meta-label mt-0.5" style="color: var(--text-tertiary);">UPG Strategies</p>
+          </div>
+          <div>
+            <p class="text-2xl font-bold" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">Split</p>
+            <p class="meta-label mt-0.5" style="color: var(--text-tertiary);">License Model</p>
           </div>
         </div>
       </div>
+
+      <!-- Right: Knowledge-map diagram (SVG) -->
+      <div class="hidden lg:flex items-center justify-center" aria-hidden="true">
+        <svg viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg"
+             class="w-full max-w-sm opacity-80"
+             style="filter: drop-shadow(0 0 24px rgba(16,179,122,0.08));">
+          <defs>
+            <style>
+              .node-ring { fill: none; stroke-width: 1; }
+              .node-fill { fill-opacity: 0.08; }
+              .edge      { fill: none; stroke-width: 1; stroke-linecap: round; stroke-dasharray: 4 4; }
+              .node-label{ font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; text-anchor: middle; }
+              .center-label{ font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; text-anchor: middle; }
+            </style>
+            <!-- Glow filter -->
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- Outer orbit ring -->
+          <circle cx="190" cy="190" r="145" class="node-ring" stroke="rgba(16,179,122,0.12)"/>
+          <circle cx="190" cy="190" r="90"  class="node-ring" stroke="rgba(16,179,122,0.08)"/>
+
+          <!-- Connector edges (field lines) -->
+          <!-- Center → MAGUFT -->
+          <path d="M190 190 Q160 140 110 78" class="edge" stroke="rgba(16,179,122,0.35)"/>
+          <!-- Center → MagRot -->
+          <path d="M190 190 Q230 140 270 78" class="edge" stroke="rgba(16,179,122,0.35)"/>
+          <!-- Center → UPG -->
+          <path d="M190 190 Q320 210 335 190" class="edge" stroke="rgba(16,179,122,0.25)"/>
+          <!-- Center → BitTX -->
+          <path d="M190 190 Q240 290 270 318" class="edge" stroke="rgba(16,179,122,0.25)"/>
+          <!-- Center → WrinkleBrane -->
+          <path d="M190 190 Q140 290 110 318" class="edge" stroke="rgba(16,179,122,0.25)"/>
+
+          <!-- MAGUFT node (top-left) -->
+          <circle cx="110" cy="75"  r="30" class="node-fill node-ring" fill="rgba(16,179,122,1)" stroke="rgba(16,179,122,0.5)" filter="url(#glow)"/>
+          <text x="110" y="71"  class="node-label" fill="rgba(16,179,122,0.9)">MAGUFT</text>
+          <text x="110" y="82"  class="node-label" fill="rgba(16,179,122,0.5)" font-size="7">GUT / Theory</text>
+
+          <!-- MagRot node (top-right) -->
+          <circle cx="270" cy="75"  r="30" class="node-fill node-ring" fill="rgba(16,179,122,1)" stroke="rgba(16,179,122,0.5)" filter="url(#glow)"/>
+          <text x="270" y="71"  class="node-label" fill="rgba(16,179,122,0.9)">MagRot</text>
+          <text x="270" y="82"  class="node-label" fill="rgba(16,179,122,0.5)" font-size="7">Plasma / R&amp;D</text>
+
+          <!-- UPG node (right) -->
+          <circle cx="338" cy="190" r="26" class="node-fill node-ring" fill="rgba(245,158,11,1)" stroke="rgba(245,158,11,0.4)"/>
+          <text x="338" y="186" class="node-label" fill="rgba(245,158,11,0.9)">UPG</text>
+          <text x="338" y="197" class="node-label" fill="rgba(245,158,11,0.5)" font-size="7">CLI · LIVE</text>
+
+          <!-- BitTransformerLM (bottom-right) -->
+          <circle cx="270" cy="318" r="28" class="node-fill node-ring" fill="rgba(16,179,122,1)" stroke="rgba(16,179,122,0.4)"/>
+          <text x="270" y="314" class="node-label" fill="rgba(16,179,122,0.9)">BitTx</text>
+          <text x="270" y="325" class="node-label" fill="rgba(16,179,122,0.5)" font-size="7">Model / AI</text>
+
+          <!-- WrinkleBrane (bottom-left) -->
+          <circle cx="110" cy="318" r="28" class="node-fill node-ring" fill="rgba(16,179,122,1)" stroke="rgba(16,179,122,0.4)"/>
+          <text x="110" y="314" class="node-label" fill="rgba(16,179,122,0.9)">WrinkBrane</text>
+          <text x="110" y="325" class="node-label" fill="rgba(16,179,122,0.5)" font-size="7">Wave / Memory</text>
+
+          <!-- Centre node -->
+          <circle cx="190" cy="190" r="42" fill="rgba(16,179,122,0.06)" stroke="rgba(16,179,122,0.5)" stroke-width="1" filter="url(#glow)"/>
+          <circle cx="190" cy="190" r="34" fill="rgba(16,179,122,0.04)" stroke="rgba(16,179,122,0.2)" stroke-width="1"/>
+          <text x="190" y="186" class="center-label" fill="rgba(16,179,122,0.9)">NEGENTROPY</text>
+          <text x="190" y="200" class="node-label" fill="rgba(16,179,122,0.5)" font-size="8">wcnegentropy.com</text>
+        </svg>
+      </div>
+
     </div>
   </div>
 </section>
 
-<div class="border-t border-brand-200 dark:border-slate-800 transition-colors duration-300"></div>
+<!-- Section divider -->
+<div class="section-rule mx-5 sm:mx-8"></div>
 
-<!-- AI RESEARCH MODELS (HuggingFace) -->
-<section id="models" class="mx-auto max-w-7xl px-6 py-16">
-  <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">AI Models</h2>
-  <p class="text-slate-800 dark:text-slate-300 mb-8 transition-colors duration-300">
-    Experimental AI architectures and novel algorithms published on HuggingFace. Free for research and academic use.
-  </p>
+<!-- ═══════════════════════════════════════════════════════ IP ATLAS ══ -->
+<section id="ip-grid" aria-label="Core IP Atlas">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-20">
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <!-- BitTransformerLM -->
-    <div class="rounded-2xl border border-brand-300 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300 group">
-      <div class="flex items-start justify-between mb-3">
-        <span class="text-4xl">🤖</span>
-        <span class="text-xs font-mono bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 px-2 py-1 rounded">RESEARCH</span>
+    <!-- Section header -->
+    <div class="flex items-baseline justify-between mb-12">
+      <div>
+        <p class="meta-label mb-2" style="color: var(--text-tertiary);">
+          <span style="display:inline-block; width:16px; height:1px; background:var(--accent); vertical-align:middle; margin-right:8px;"></span>
+          Core IP Atlas
+        </p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">Research &amp; Software</h2>
       </div>
-      <h4 class="text-2xl font-bold mb-2 group-hover:text-brand-600 transition-colors">BitTransformerLM</h4>
-      <p class="mt-2 text-slate-800 dark:text-slate-300 transition-colors duration-300 mb-4">
-        A novel binary transformer for low-resource settings with 9-bit encoding (8 data + 1 parity), reversible architecture, and built-in safety telemetry.
+      <p class="hidden sm:block text-sm max-w-xs text-right" style="color: var(--text-secondary);">
+        Split-licensed: CC BY 4.0 (research) · AGPLv3 (software) · MIT (tools)
       </p>
-      <div class="flex items-center gap-3 mt-4">
-        <a href="https://huggingface.co/WCNegentropy/BitTransformerLM"
-           target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center gap-2 text-brand-700 hover:text-brand-800 dark:text-brand-600 dark:hover:text-brand-700 font-semibold transition-colors duration-300">
-          HuggingFace Model Card →
-        </a>
-        <span class="text-xs text-slate-700 dark:text-slate-400">793K-771M params</span>
-      </div>
     </div>
 
-    <!-- WrinkleBrane -->
-    <div class="rounded-2xl border border-brand-300 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300 group">
-      <div class="flex items-start justify-between mb-3">
-        <span class="text-4xl">🌊</span>
-        <span class="text-xs font-mono bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 px-2 py-1 rounded">RESEARCH</span>
-      </div>
-      <h4 class="text-xl font-bold mb-2 group-hover:text-brand-600 transition-colors">WrinkleBrane</h4>
-      <p class="mt-2 text-slate-800 dark:text-slate-300 transition-colors duration-300 mb-4">
-        Wave interference-based transformer variant using 4D tensor operations. High-precision associative memory with parallel retrieval (150+ dB PSNR).
+    <!-- Theory row: 2 equal columns -->
+    <div class="grid md:grid-cols-2 gap-4 mb-4">
+
+      <!-- MAGUFT -->
+      <article class="panel p-6 group" style="position: relative; overflow: hidden;">
+        <div class="absolute top-0 left-0 w-1 h-full" style="background: var(--accent);"></div>
+        <div class="pl-4">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <span class="badge badge-research">Research · Papers 1–3</span>
+            </div>
+            <span class="meta-label" style="color: var(--text-tertiary);">CC BY 4.0 / AGPLv3</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-1" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">MAGUFT</h3>
+          <p class="text-sm mb-3" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">Magnetic Rotation Grand Unified Field Theory</p>
+          <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+            A unified framework modeling QM and GR as orthogonal projections of a single entropy-driven master equation on $\Phi^{ab} = \sqrt{\rho}\,g^{ab}$.
+          </p>
+          <div class="flex flex-wrap gap-4 text-xs mb-5" style="color: var(--text-tertiary);">
+            <span>Papers 1–3 + addenda</span>
+            <span>·</span>
+            <span>SymPy symbolic pipeline</span>
+            <span>·</span>
+            <span>Active research</span>
+          </div>
+          <a href="https://github.com/WCNegentropy/MAGUFT" target="_blank" rel="noopener noreferrer"
+             class="link-accent text-sm">GitHub Repository →</a>
+        </div>
+      </article>
+
+      <!-- MagRot -->
+      <article class="panel p-6 group" style="position: relative; overflow: hidden;">
+        <div class="absolute top-0 left-0 w-1 h-full" style="background: var(--accent);"></div>
+        <div class="pl-4">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <span class="badge badge-research">Research · v2 Thermo</span>
+            </div>
+            <span class="meta-label" style="color: var(--text-tertiary);">AGPLv3 / CC BY 4.0</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-1" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">MagRot</h3>
+          <p class="text-sm mb-3" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">Rotational-Vector Framework for Magnetic Field Dynamics</p>
+          <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+            Dimensionless rotational parameter R(x) encoding local collapse, expansion, or equilibrium in magnetic fields. Validated against Z-pinch, tokamak (ITER-scale), and Earth dipole.
+          </p>
+          <div class="flex flex-wrap gap-4 text-xs mb-5" style="color: var(--text-tertiary);">
+            <span>Z-pinch · tokamak · Earth dipole</span>
+            <span>·</span>
+            <span>Entropy-parameterized state flow</span>
+          </div>
+          <a href="https://github.com/WCNegentropy/magrot" target="_blank" rel="noopener noreferrer"
+             class="link-accent text-sm">GitHub Repository →</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Software + Upcoming row: 2/3 + 1/3 -->
+    <div class="grid md:grid-cols-3 gap-4 mb-4">
+
+      <!-- retro-vibecoder (UPG) — wider card -->
+      <article class="panel p-6 md:col-span-2 group" style="position: relative; overflow: hidden;">
+        <div class="absolute top-0 left-0 w-1 h-full" style="background: var(--amber);"></div>
+        <div class="pl-4">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <span class="badge badge-live">Live · v0.2.2</span>
+              <span class="badge badge-dev">MIT</span>
+            </div>
+            <span class="meta-label" style="color: var(--text-tertiary);">Software</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-1" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">retro-vibecoder</h3>
+          <p class="text-sm mb-3" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">Universal Project Generator (UPG)</p>
+          <p class="text-sm leading-relaxed mb-4" style="color: var(--text-secondary);">
+            CLI tool + Tauri desktop app — procedurally generates full working boilerplate tech stacks from a single deterministic seed. 40+ strategies, 7 archetypes, 12 languages.
+          </p>
+          <div class="code-block mb-5">
+            <span style="color: var(--text-tertiary);">$</span> npm install -g @wcnegentropy/cli
+          </div>
+          <div class="flex items-center gap-4">
+            <a href="https://github.com/WCNegentropy/retro-vibecoder" target="_blank" rel="noopener noreferrer"
+               class="link-accent text-sm">GitHub →</a>
+            <a href="https://www.npmjs.com/package/@wcnegentropy/cli" target="_blank" rel="noopener noreferrer"
+               class="link-accent text-sm">NPM →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Upcoming — narrower card -->
+      <article class="panel p-6" style="border-style: dashed;">
+        <div class="mb-4">
+          <span class="badge badge-dev">In Development</span>
+        </div>
+        <h3 class="text-lg font-bold mb-4" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">Upcoming</h3>
+        <div class="space-y-5">
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: var(--text-primary);">PQC Privacy Layer</p>
+            <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">Post-Quantum Cryptography for user data sovereignty in the quantum age.</p>
+          </div>
+          <div class="section-rule"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: var(--text-primary);">Procedural Game Engine</p>
+            <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">Custom engine with procedural generation at its core — already rendering.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- Section divider -->
+<div class="section-rule mx-5 sm:mx-8"></div>
+
+<!-- ═══════════════════════════════════════════════════════ AI MODELS ══ -->
+<section id="models" aria-label="AI Research Models">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-20">
+
+    <!-- Section header -->
+    <div class="mb-12">
+      <p class="meta-label mb-2" style="color: var(--text-tertiary);">
+        <span style="display:inline-block; width:16px; height:1px; background:var(--accent); vertical-align:middle; margin-right:8px;"></span>
+        HuggingFace
       </p>
-      <a href="https://huggingface.co/WCNegentropy/WrinkleBrane"
-         target="_blank" rel="noopener noreferrer"
-         class="inline-flex items-center gap-2 text-brand-700 hover:text-brand-800 dark:text-brand-600 dark:hover:text-brand-700 font-semibold transition-colors duration-300">
-        HuggingFace Model Card →
-      </a>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">AI Models</h2>
+      <p class="text-sm" style="color: var(--text-secondary);">Experimental architectures and novel algorithms published on HuggingFace. Free for research and academic use.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+
+      <!-- BitTransformerLM -->
+      <article class="panel p-6 group">
+        <div class="flex items-start justify-between mb-4">
+          <span class="badge badge-research">Research · AGPLv3</span>
+          <span class="meta-label" style="color: var(--text-tertiary);">793K – 771M params</span>
+        </div>
+        <h3 class="text-xl font-bold mb-1" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">BitTransformerLM</h3>
+        <p class="text-sm mb-4" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">Binary transformer architecture</p>
+        <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+          A novel binary transformer for low-resource settings with 9-bit encoding (8 data + 1 parity), reversible architecture, and built-in safety telemetry.
+        </p>
+        <div class="flex flex-wrap gap-3 text-xs mb-5" style="color: var(--text-tertiary);">
+          <span>9-bit encoding</span> <span>·</span>
+          <span>Reversible arch</span> <span>·</span>
+          <span>Safety telemetry</span>
+        </div>
+        <a href="https://huggingface.co/WCNegentropy/BitTransformerLM" target="_blank" rel="noopener noreferrer"
+           class="link-accent text-sm">HuggingFace Model Card →</a>
+      </article>
+
+      <!-- WrinkleBrane -->
+      <article class="panel p-6 group">
+        <div class="flex items-start justify-between mb-4">
+          <span class="badge badge-research">Research · AGPLv3</span>
+          <span class="meta-label" style="color: var(--text-tertiary);">150+ dB PSNR</span>
+        </div>
+        <h3 class="text-xl font-bold mb-1" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">WrinkleBrane</h3>
+        <p class="text-sm mb-4" style="font-family: 'JetBrains Mono', monospace; color: var(--text-tertiary);">Wave-interference memory system</p>
+        <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+          Wave interference-based transformer variant using 4D tensor operations. High-precision associative memory with parallel retrieval (150+ dB PSNR).
+        </p>
+        <div class="flex flex-wrap gap-3 text-xs mb-5" style="color: var(--text-tertiary);">
+          <span>4D tensor ops</span> <span>·</span>
+          <span>Wave-interference memory</span> <span>·</span>
+          <span>Parallel retrieval</span>
+        </div>
+        <a href="https://huggingface.co/WCNegentropy/WrinkleBrane" target="_blank" rel="noopener noreferrer"
+           class="link-accent text-sm">HuggingFace Model Card →</a>
+      </article>
     </div>
   </div>
 </section>
 
-<div class="border-t border-brand-200 dark:border-slate-800 transition-colors duration-300"></div>
+<!-- Section divider -->
+<div class="section-rule mx-5 sm:mx-8"></div>
 
-<!-- CONTACT -->
-<section id="contact" class="mx-auto max-w-7xl px-6 py-16">
-  <div class="max-w-3xl">
-    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Contact</h2>
-    <p class="text-slate-800 dark:text-slate-300 mb-6 transition-colors duration-300">
-      For research collaborations, commercial licensing, or general inquiries:
-    </p>
+<!-- ══════════════════════════════════════════════════════════ CONTACT ══ -->
+<section id="contact" aria-label="Contact">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-20">
+    <div class="grid lg:grid-cols-[1fr_480px] gap-16">
 
-    <div class="space-y-4">
-      <p>
-        <span class="font-semibold">Email:</span>
-        <a href="mailto:{{ site.data.site.email }}" class="text-brand-700 hover:text-brand-800 dark:text-brand-600 dark:hover:text-brand-700 hover:underline transition-colors duration-300">
-          {{ site.data.site.email }}
-        </a>
-      </p>
+      <!-- Left: contact intro -->
+      <div>
+        <p class="meta-label mb-2" style="color: var(--text-tertiary);">
+          <span style="display:inline-block; width:16px; height:1px; background:var(--accent); vertical-align:middle; margin-right:8px;"></span>
+          Get in touch
+        </p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4" style="font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);">Contact</h2>
+        <p class="text-sm leading-relaxed mb-6" style="color: var(--text-secondary);">
+          For research collaborations, commercial licensing inquiries, or general questions — reach out directly.
+        </p>
+        <a href="mailto:{{ site.data.site.email }}"
+           class="link-accent text-base font-medium">{{ site.data.site.email }}</a>
 
-      <div class="pt-4">
-        <p class="text-sm text-slate-700 dark:text-slate-400 mb-3 transition-colors duration-300">or use the contact form:</p>
-        <div class="rounded-2xl border border-brand-300 dark:border-slate-800 p-6 transition-all duration-300">
-          <form id="contactForm" class="space-y-4">
-            <div class="grid md:grid-cols-2 gap-4">
+        <!-- Social quick-links -->
+        <div class="mt-8 pt-8 border-t" style="border-color: var(--border);">
+          <p class="meta-label mb-4" style="color: var(--text-tertiary);">Profiles</p>
+          <div class="flex flex-col gap-2">
+            <a href="{{ site.data.site.social.github }}" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-3 text-sm underline-hover" style="color: var(--text-secondary);">
+              <span class="meta-label w-24" style="color: var(--text-tertiary);">GitHub</span>
+              github.com/WCNegentropy
+            </a>
+            <a href="{{ site.data.site.social.huggingface }}" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-3 text-sm underline-hover" style="color: var(--text-secondary);">
+              <span class="meta-label w-24" style="color: var(--text-tertiary);">HuggingFace</span>
+              huggingface.co/WCNegentropy
+            </a>
+            <a href="{{ site.data.site.social.npm }}" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-3 text-sm underline-hover" style="color: var(--text-secondary);">
+              <span class="meta-label w-24" style="color: var(--text-tertiary);">NPM</span>
+              @wcnegentropy/cli
+            </a>
+            <a href="{{ site.data.site.social.x }}" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-3 text-sm underline-hover" style="color: var(--text-secondary);">
+              <span class="meta-label w-24" style="color: var(--text-tertiary);">X (Twitter)</span>
+              @WCNegentropy
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: contact form -->
+      <div class="panel p-6 lg:p-8">
+        <p class="text-sm font-semibold mb-6" style="color: var(--text-primary);">Send a message</p>
+        <form id="contactForm" class="space-y-4" novalidate>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="contact-name" class="meta-label block mb-1.5" style="color: var(--text-tertiary);">Name *</label>
               <input
+                id="contact-name"
                 required
                 name="name"
-                placeholder="Your Name"
+                placeholder="Your name"
                 autocomplete="name"
-                class="w-full rounded-xl border border-brand-400 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 px-4 py-3 transition-all duration-300"
+                class="w-full rounded-md border px-3.5 py-2.5 text-sm transition-all duration-150"
+                style="background: var(--canvas); border-color: var(--border); color: var(--text-primary);"
               />
+            </div>
+            <div>
+              <label for="contact-email" class="meta-label block mb-1.5" style="color: var(--text-tertiary);">Email *</label>
               <input
+                id="contact-email"
                 required
                 type="email"
                 name="email"
-                placeholder="Your Email"
+                placeholder="you@example.com"
                 autocomplete="email"
-                class="w-full rounded-xl border border-brand-400 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 px-4 py-3 transition-all duration-300"
+                class="w-full rounded-md border px-3.5 py-2.5 text-sm transition-all duration-150"
+                style="background: var(--canvas); border-color: var(--border); color: var(--text-primary);"
               />
             </div>
+          </div>
+          <div>
+            <label for="contact-subject" class="meta-label block mb-1.5" style="color: var(--text-tertiary);">Subject</label>
             <input
+              id="contact-subject"
               name="subject"
-              placeholder="Subject"
-              class="w-full rounded-xl border border-brand-400 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 px-4 py-3 transition-all duration-300"
+              placeholder="Research collaboration / Licensing / Other"
+              class="w-full rounded-md border px-3.5 py-2.5 text-sm transition-all duration-150"
+              style="background: var(--canvas); border-color: var(--border); color: var(--text-primary);"
             />
+          </div>
+          <div>
+            <label for="contact-message" class="meta-label block mb-1.5" style="color: var(--text-tertiary);">Message *</label>
             <textarea
+              id="contact-message"
               required
               name="message"
               rows="5"
               placeholder="Your message..."
-              class="w-full rounded-xl border border-brand-400 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 px-4 py-3 transition-all duration-300"
+              class="w-full rounded-md border px-3.5 py-2.5 text-sm transition-all duration-150 resize-y"
+              style="background: var(--canvas); border-color: var(--border); color: var(--text-primary);"
             ></textarea>
-            <button
-              type="submit"
-              class="rounded-xl bg-brand-700 text-white dark:bg-brand-600 dark:text-white px-6 py-3 font-semibold shadow-glow hover:bg-brand-800 dark:hover:bg-brand-700 transition-colors duration-300"
-            >
-              Send Message
-            </button>
-          </form>
-        </div>
+          </div>
+          <button type="submit" class="btn-primary w-full justify-center">
+            Send Message
+          </button>
+        </form>
       </div>
+
     </div>
-  </div>
-</section>
-
-<div class="border-t border-brand-200 dark:border-slate-800 transition-colors duration-300"></div>
-
-<!-- LINKS -->
-<section id="links" class="mx-auto max-w-7xl px-6 py-16">
-  <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-6">Links</h2>
-
-  <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-    <a
-      href="{{ site.data.site.social.github }}"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="rounded-2xl border border-brand-300 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300"
-    >
-      <div class="text-2xl mb-2">🐙</div>
-      <div class="font-semibold">GitHub</div>
-      <div class="text-sm text-slate-700 dark:text-slate-400 transition-colors duration-300">Open source repos</div>
-    </a>
-
-    <a
-      href="{{ site.data.site.social.npm }}"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="rounded-2xl border border-brand-300 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300"
-    >
-      <div class="text-2xl mb-2">📦</div>
-      <div class="font-semibold">NPM</div>
-      <div class="text-sm text-slate-700 dark:text-slate-400 transition-colors duration-300">@wcnegentropy/cli</div>
-    </a>
-
-    <a
-      href="{{ site.data.site.social.huggingface }}"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="rounded-2xl border border-brand-300 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300"
-    >
-      <div class="text-2xl mb-2">🤗</div>
-      <div class="font-semibold">HuggingFace</div>
-      <div class="text-sm text-slate-700 dark:text-slate-400 transition-colors duration-300">AI models</div>
-    </a>
-
-    <a
-      href="{{ site.data.site.social.x }}"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="rounded-2xl border border-brand-300 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300"
-    >
-      <div class="text-2xl mb-2">𝕏</div>
-      <div class="font-semibold">X (Twitter)</div>
-      <div class="text-sm text-slate-700 dark:text-slate-400 transition-colors duration-300">Updates & thoughts</div>
-    </a>
-
-    <a
-      href="{{ site.data.site.social.reddit }}"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="rounded-2xl border border-brand-300 dark:border-slate-800 p-6 hover:shadow-glow transition-all duration-300"
-    >
-      <div class="text-2xl mb-2">🤖</div>
-      <div class="font-semibold">Reddit</div>
-      <div class="text-sm text-slate-700 dark:text-slate-400 transition-colors duration-300">Community</div>
-    </a>
   </div>
 </section>
