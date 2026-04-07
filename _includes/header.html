@@ -16,14 +16,14 @@
     <!-- Nav (desktop) -->
     <nav class="hidden md:flex items-center gap-1" aria-label="Primary navigation">
       <a href="/research/maguft/"
-         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2"
-         style="color: var(--text-secondary);">MAGUFT</a>
+         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2{% if page.url contains 'maguft' %} bg-surface-2{% endif %}"
+         {% if page.url contains 'maguft' %}aria-current="page" style="color: var(--accent);"{% else %}style="color: var(--text-secondary);"{% endif %}>MAGUFT</a>
       <a href="/research/magrot/"
-         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2"
-         style="color: var(--text-secondary);">MagRot</a>
+         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2{% if page.url contains 'magrot' %} bg-surface-2{% endif %}"
+         {% if page.url contains 'magrot' %}aria-current="page" style="color: var(--accent);"{% else %}style="color: var(--text-secondary);"{% endif %}>MagRot</a>
       <a href="/software/retro-vibecoder/"
-         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2"
-         style="color: var(--text-secondary);">retro-vibecoder</a>
+         class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2{% if page.url contains 'retro-vibecoder' %} bg-surface-2{% endif %}"
+         {% if page.url contains 'retro-vibecoder' %}aria-current="page" style="color: var(--accent);"{% else %}style="color: var(--text-secondary);"{% endif %}>retro-vibecoder</a>
       <a href="/#models"
          class="meta-label px-3 py-1.5 rounded-md transition-colors duration-150 hover:bg-surface-2"
          style="color: var(--text-secondary);">Models</a>
@@ -63,11 +63,11 @@
        style="border-color: var(--border); background-color: var(--surface-1);">
     <nav class="px-5 py-3 flex flex-col gap-1" aria-label="Mobile navigation">
       <a href="/research/maguft/" class="meta-label px-3 py-2 rounded-md"
-         style="color: var(--text-secondary);">MAGUFT</a>
+         {% if page.url contains 'maguft' %}aria-current="page" style="color: var(--accent); background-color: var(--surface-2);"{% else %}style="color: var(--text-secondary);"{% endif %}>MAGUFT</a>
       <a href="/research/magrot/" class="meta-label px-3 py-2 rounded-md"
-         style="color: var(--text-secondary);">MagRot</a>
+         {% if page.url contains 'magrot' %}aria-current="page" style="color: var(--accent); background-color: var(--surface-2);"{% else %}style="color: var(--text-secondary);"{% endif %}>MagRot</a>
       <a href="/software/retro-vibecoder/" class="meta-label px-3 py-2 rounded-md"
-         style="color: var(--text-secondary);">retro-vibecoder</a>
+         {% if page.url contains 'retro-vibecoder' %}aria-current="page" style="color: var(--accent); background-color: var(--surface-2);"{% else %}style="color: var(--text-secondary);"{% endif %}>retro-vibecoder</a>
       <a href="/#models" class="meta-label px-3 py-2 rounded-md"
          style="color: var(--text-secondary);">Models</a>
       <a href="/#contact" class="meta-label px-3 py-2 rounded-md"
