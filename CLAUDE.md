@@ -73,7 +73,7 @@ WCNegentropy.github.io/
 - **NPM**: https://www.npmjs.com/package/@wcnegentropy/cli
 - **Description**: CLI tool and cross-platform Tauri desktop app that procedurally generates full working boilerplate tech stacks from a single deterministic seed. 40+ strategies, 7 archetypes, 12 languages.
 - **License**: MIT
-- **Status**: Live — v0.2.2
+- **Status**: Live — v0.2.6
 
 ### 4. BitTransformerLM
 - **Repository**: https://huggingface.co/WCNegentropy/BitTransformerLM

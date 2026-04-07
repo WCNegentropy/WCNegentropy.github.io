@@ -23,9 +23,9 @@ research:
     status: "Active Research"
     url: "https://github.com/WCNegentropy/MAGUFT"
     highlights:
-      - "Grand Unified Field Theory attempt"
-      - "Entropy-driven master equation"
-      - "SymPy symbolic derivation pipeline"
+      - "Fine-structure constant and mass hierarchy predictions"
+      - "9 named Paper 3 claims with verification tracking"
+      - "Installable SymPy/SciPy/JAX research package"
       - "Split-license: CC BY 4.0 + AGPLv3"
 
   - id: "magrot"
@@ -35,9 +35,9 @@ research:
     status: "Active R&D — v2 Thermodynamic Framework"
     url: "https://github.com/WCNegentropy/magrot"
     highlights:
-      - "Dimensionless rotational parameter R(x)"
+      - "4 complementary R metrics"
       - "Entropy-parameterized state flow"
-      - "Tokamak & Earth dipole validated"
+      - "R = 1.000000 exact vs 1.05 time-based"
       - "Full 3D cylindrical physics pipeline"
 
 software:
@@ -45,7 +45,7 @@ software:
     name: "retro-vibecoder (UPG)"
     blurb: "Universal Project Generator — CLI tool and cross-platform Tauri desktop app that procedurally generates full working boilerplate tech stacks from a single deterministic seed. 40+ strategies, 7 archetypes, 12 languages."
     license: "MIT"
-    status: "Live — v0.2.2"
+    status: "Live — v0.2.6"
     url: "https://github.com/WCNegentropy/retro-vibecoder"
     npm: "https://www.npmjs.com/package/@wcnegentropy/cli"
     highlights:
