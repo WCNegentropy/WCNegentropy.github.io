@@ -1,111 +1,63 @@
 # WCNegentropy.github.io
 
-**Professional Digital Solutions for New Jersey Local Businesses**
+**A negentropic attractor — creating an interconnected web of projects and ideas to benefit humanity.**
 
-This is the business website for WCNegentropy, providing comprehensive web development, e-commerce setup, and automation services exclusively to New Jersey local businesses.
+WCNegentropy is a deep-tech IP holding company and research lab. We build unified field theories, magnetic confinement frameworks, deterministic code generators, and novel AI architectures — all published under open or split licenses.
 
-## 🏠 About Us
+## 🔬 Core IP
 
-WCNegentropy serves New Jersey businesses with:
-- **In-person setup and training** at your location
-- **Competitive pricing** - 50% below market average
-- **Local support** - Fast response times for NJ businesses
-- **Comprehensive services** - Web development, e-commerce, automation, and more
+### Research
 
-## 🎯 Services
+| Project | Description | License |
+|---------|-------------|---------|
+| **[MAGUFT](https://github.com/WCNegentropy/MAGUFT)** | Magnetic Rotation Grand Unified Field Theory — models QM and GR as orthogonal projections of a single entropy-driven master equation on $\Phi^{ab}=\sqrt{\rho}\,g^{ab}$ | CC BY 4.0 / AGPLv3 |
+| **[MagRot](https://github.com/WCNegentropy/magrot)** | Dimensionless rotational parameter R(x) for magnetic field dynamics — validated against Z-pinch, tokamak, and Earth dipole configurations | AGPLv3 / CC BY 4.0 |
 
-We specialize in helping NJ businesses establish and grow their digital presence:
-- Website Development (responsive, mobile-optimized)
-- E-commerce Setup (Shopify, Wix, custom solutions)
-- Digital Marketing & Automation
-- Google Workspace & Professional Email
-- Domain Management & Hosting
-- Business Intelligence & Analytics
+### Software
 
-## 📍 Service Area
+| Project | Description | License |
+|---------|-------------|---------|
+| **[retro-vibecoder (UPG)](https://github.com/WCNegentropy/retro-vibecoder)** | Universal Project Generator — deterministic seed-based CLI + Tauri desktop app. 40+ strategies, 7 archetypes, 12 languages | MIT |
 
-**New Jersey businesses only** - We focus exclusively on serving local NJ businesses with hands-on, in-person support.
+### AI Models (HuggingFace)
 
-## 💰 Competitive Pricing
+| Model | Description | License |
+|-------|-------------|---------|
+| **[BitTransformerLM](https://huggingface.co/WCNegentropy/BitTransformerLM)** | Bit-level transformer with 9-bit encoding, reversible architecture, safety telemetry (793K–771M params) | AGPLv3 |
+| **[WrinkleBrane](https://huggingface.co/WCNegentropy/WrinkleBrane)** | Wave-interference memory system — 4D tensor ops, 150+ dB PSNR associative recall | AGPL-3.0 |
 
-All service packages priced 50% below market average, starting at:
-- Small Business Essentials: $1,250 setup / $250/month
-- E-commerce Stores: From $1,750 setup / $325/month
-- Enterprise Solutions: From $7,500 setup / $1,750/month
+### Upcoming
 
-## 📞 Contact
+- **PQC Privacy Layer** — Post-Quantum Cryptography for user data sovereignty
+- **Procedural Game Engine** — Custom engine with procedural generation at its core
 
-**Email**: contact@wcnegentropy.com  
-**Location**: Serving all of New Jersey
+## 🛠 Site Technical Stack
 
-Visit our website at [wcnegentropy.com](https://wcnegentropy.com) for complete service details and to get a quote.
-
-## 🛠 Technical Details
-
-### Modern Stack (2025)
-
-**Frontend:**
-- Jekyll 4.3.x (Static Site Generator)
-- Tailwind CSS 3.4.x (JIT Compilation)
-- Alpine.js 3.14.x (Lightweight JavaScript Framework)
-- Inter & JetBrains Mono Fonts
-
-**Build Pipeline:**
-- GitHub Actions with SHA-pinned actions for security
-- Node.js 20 for Tailwind CSS compilation
-- Ruby 3.1 for Jekyll build
-- NPM & Bundler caching for fast builds (1-2 min)
-
-**Features:**
-- ⌘K Command Palette for quick navigation
-- Bento Grid layout for modern aesthetics
-- Dark mode with system preference detection
-- Optimized CSS (22KB minified)
-- Resource preloading for performance
-- SEO optimized with jekyll-seo-tag
+- **Jekyll 4.3.x** static site generator with Tailwind CSS 3.4.x (JIT) and Alpine.js 3.14.x
+- **GitHub Actions** CI/CD — SHA-pinned, least-privilege permissions
+- **MathJax 3** for native LaTeX rendering of field equations
+- **Dynamic JSON-LD** schema injection per collection (`ScholarlyArticle`, `SoftwareSourceCode`)
+- **Collections**: `_research`, `_software`, `_posts` for structured content
 
 ### Development
 
 ```bash
-# Install dependencies
-npm install
-bundle install --path vendor/bundle
-
-# Build Tailwind CSS
+npm install && bundle install --path vendor/bundle
 npm run build:css
-
-# Build Jekyll site
 bundle exec jekyll build
-
-# Local development server
 bundle exec jekyll serve --host 0.0.0.0 --port 4000
-
-# Watch Tailwind for changes (separate terminal)
-npm run watch:css
 ```
 
-### Security
+## 📬 Contact
 
-- ✅ All GitHub Actions pinned to SHA hashes
-- ✅ Least-privilege permissions (contents: read, pages: write)
-- ✅ No external API dependencies in production
-- ✅ Security headers (X-Content-Type-Options, X-Frame-Options, CSP)
-- ✅ HTTPS enforced via GitHub Pages
+**Email**: contact@wcnegentropy.com
+**Web**: [wcnegentropy.com](https://wcnegentropy.com)
 
-### Performance
+## 📄 Documentation
 
-- ⚡ ~22KB minified CSS (tree-shaken with Tailwind JIT)
-- ⚡ DNS prefetching for CDN resources
-- ⚡ Font preloading for critical resources
-- ⚡ Build time: 1-2 minutes with caching
-- ⚡ Lighthouse score: 95+ (Performance, Accessibility, SEO)
-
-### Documentation
-
-- **[CLAUDE.md](./CLAUDE.md)** - Comprehensive technical documentation
-- **[.github/workflows/README.md](./.github/workflows/README.md)** - CI/CD pipeline details
-- **[JEKYLL_MIGRATION.md](./JEKYLL_MIGRATION.md)** - Jekyll migration notes (if exists)
+- **[CLAUDE.md](./CLAUDE.md)** — Technical documentation and AI context
+- **[.github/workflows/README.md](./.github/workflows/README.md)** — CI/CD pipeline details
 
 ---
 
-Built with ❤️ for New Jersey local businesses
+*All intellectual property held by WCNEGENTROPY HOLDINGS LLC.*

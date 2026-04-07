@@ -1,20 +1,22 @@
-# Jekyll Configuration for WCNegentropy Portfolio Site
+# Jekyll Configuration for WCNegentropy — Deep Tech IP Holdco & Research Lab
 title: "WCNegentropy"
-description: "Open-source developer tools, AI research, and regenerative ventures. Home of retro-vibecoder (UPG), BitTransformerLM, and more."
+description: "A negentropic attractor — unified field theory, magnetic dynamics research, deterministic code generators, and novel AI architectures."
 url: "https://wcnegentropy.com"
 baseurl: ""
 
 # Site owner information
 owner:
   name: "WCNegentropy"
-  tagline: "Open Source • Developer Tools • AI Research • Regenerative Ventures"
+  tagline: "Negentropy • Unified Field Theory • Open-Source Tools • Deep Tech Research"
   email: "contact@wcnegentropy.com"
-  location: "DE, NJ, USA"
+  location: "Distributed"
   github_user: "WCNegentropy"
   avatar: "https://github.com/WCNegentropy.png"
 
 # Jekyll settings
 markdown: kramdown
+kramdown:
+  math_engine: mathjax
 highlighter: rouge
 sass:
   sass_dir: _sass
@@ -25,16 +27,38 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
-# Collections (for future blog posts)
+# Collections — Hub and Spoke architecture
 collections:
+  research:
+    output: true
+    permalink: /research/:path/
+  software:
+    output: true
+    permalink: /software/:path/
   posts:
     output: true
-    permalink: /:categories/:year/:month/:day/:title/
+    permalink: /blog/:year/:month/:day/:title/
 
-# Disqus comments (set to enable)
-# To enable Disqus comments on blog posts, set comments: true in post frontmatter
-# and uncomment the line below with your Disqus shortname
-# disqus_shortname: your-disqus-shortname
+# Default frontmatter per collection
+defaults:
+  - scope:
+      path: ""
+      type: "research"
+    values:
+      layout: "page"
+      schema_type: "ScholarlyArticle"
+  - scope:
+      path: ""
+      type: "software"
+    values:
+      layout: "page"
+      schema_type: "SoftwareSourceCode"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "page"
+      schema_type: "BlogPosting"
 
 # Exclude from build
 exclude:

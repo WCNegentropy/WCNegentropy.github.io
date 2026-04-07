@@ -1,201 +1,131 @@
-# CLAUDE.md - WCNegentropy GitHub Pages Documentation
+# CLAUDE.md — WCNegentropy Technical Documentation
 
 ## 🚀 Project Overview
 
-**WCNegentropy.github.io** is the business website for WCNegentropy, a New Jersey-based digital services company providing comprehensive web development, e-commerce setup, and automation solutions exclusively for local NJ businesses. The site serves as both a service showcase and client portfolio, featuring competitive pricing and emphasizing in-person setup and support.
+**WCNegentropy.github.io** is the public-facing website for **WCNEGENTROPY HOLDINGS LLC** — a deep-tech IP holding company and research lab. The site functions as a high-density information-theoretical attractor, showcasing the entity's core intellectual property across unified field theory, magnetic dynamics research, deterministic code generation, and novel AI architectures.
 
 ### 🎯 Mission Statement
-*"Your Local NJ Digital Partner"* - We're committed to empowering New Jersey businesses with professional digital solutions, hands-on support, and competitive rates that undercut the competition. Every client gets in-person consultations, setup, and training right at their location.
+*"A negentropic attractor, creating an interconnected web of projects and ideas to benefit humanity."*
 
-### 🏠 Business Model (Updated December 2025)
-- **Service Area**: New Jersey local businesses exclusively
-- **Approach**: In-person setup, consultations, and hands-on training
-- **Pricing**: Highly competitive rates (50% below market average)
-- **Focus**: Local restaurants, salons, professional services, and small-to-medium NJ businesses
-- **Specialization**: Web development, e-commerce (Shopify/Wix), automation, and digital presence
-
-### ⚡ Recent Migration to Jekyll (October 2025)
-The site has been successfully migrated from pure static HTML to **Jekyll**, providing:
-- **Maintainable Structure**: Reusable layouts and includes for easier updates
-- **Data-Driven Content**: Site configuration in YAML files instead of JavaScript objects
-- **SEO Enhancement**: Automatic sitemap generation and SEO tags
-- **Future-Ready**: Easy content management and blog integration capability
-- **Preserved Functionality**: All interactive features remain fully functional
+### 🏗️ Entity Structure
+- **Entity**: WCNEGENTROPY HOLDINGS LLC (Delaware Holdco)
+- **Focus**: Deep-tech research, open-source software, AI model publishing
+- **IP Model**: Split licensing — CC BY 4.0 for research, AGPLv3 for software, MIT for developer tools
+- **Distribution**: Distributed / Global
+- **Contact**: contact@wcnegentropy.com
 
 ## 📁 Repository Structure
 
 ```
 WCNegentropy.github.io/
-├── index.md                # Main landing page with frontmatter
-├── algorithms.html         # Interactive algorithm visualizer
-├── _config.yml             # Jekyll configuration
+├── index.md                # Main landing page (frontmatter → home.html layout)
+├── _config.yml             # Jekyll configuration with collections
 ├── Gemfile                 # Ruby dependencies
 ├── _layouts/               # Jekyll page templates
 │   ├── default.html        # Base layout with header/footer
-│   ├── home.html           # Homepage layout
+│   ├── home.html           # Homepage dashboard layout
 │   └── page.html           # Standard page layout
 ├── _includes/              # Reusable components
-│   ├── head.html           # HTML head with meta tags
+│   ├── head.html           # HTML head — dynamic JSON-LD, MathJax, meta
 │   ├── header.html         # Navigation bar
 │   ├── footer.html         # Footer content
+│   ├── command-palette.html # ⌘K command palette (Alpine.js)
 │   └── scripts.html        # JavaScript for interactive features
 ├── _data/                  # Site data files
-│   └── site.yml            # Site configuration (owner, social links, products)
+│   └── site.yml            # Core config: research, software, HuggingFace entries
+├── _research/              # Research collection (MAGUFT, MagRot)
+├── _software/              # Software collection (retro-vibecoder/UPG)
+├── _posts/                 # Blog posts (Jekyll tagging for cross-links)
 ├── images/                 # Image assets
 │   ├── brand/              # Brand images (avatar, logo)
-│   ├── products/           # Product showcase images
+│   ├── products/           # Project screenshots
 │   └── social/             # Social media preview images
+├── assets/css/             # Compiled Tailwind CSS
+├── privacy.md              # Privacy policy (research IP / open-source focus)
+├── terms.md                # Terms of service (open-source licensing / research IP)
+├── llms.txt                # LLM-optimized site summary
 ├── .github/workflows/
-│   └── pages.yml           # GitHub Actions Jekyll build & deploy
+│   └── deploy.yml          # GitHub Actions build & deploy pipeline
 ├── .devcontainer/
 │   └── devcontainer.json   # Codespace development environment
 └── .vscode/
     └── settings.json       # VS Code workspace settings
 ```
 
-## 🌐 Site Architecture & Features
+## 🔬 Core Intellectual Property
 
-### 1. **Main Business Website (index.md → index.html)**
-- **Framework**: Jekyll with Liquid templating + Tailwind CSS (CDN)
-- **Design**: Modern, dark-mode supported, responsive design
-- **Layout**: Uses `home.html` layout extending `default.html`
-- **Key Sections**:
-  - Hero emphasizing NJ local business focus and in-person support
-  - About section highlighting local service area and hands-on approach
-  - Service packages with competitive pricing (all prices cut 50% below market)
-  - Client testimonials (NSCoutureStudio case study)
-  - Research projects showcase (BitTransformerLM, WrinkleBrane on HuggingFace)
-  - Contact form with mailto integration
-  - Social links (GitHub, X/Twitter, Hugging Face)
+### 1. MAGUFT — Magnetic Rotation Grand Unified Field Theory
+- **Repository**: https://github.com/WCNegentropy/MAGUFT
+- **Description**: A unified theoretical framework modeling quantum mechanics and general relativity as orthogonal projections of a single entropy-driven master equation on the metric-valued density field Φ^{ab} = √ρ g^{ab}
+- **Components**: Papers 1–3, addenda, SymPy symbolic derivation pipeline, computational experiments
+- **License**: CC BY 4.0 (research) / AGPLv3 (software)
+- **Status**: Active research — Paper 3 current track
 
-### 2. **Algorithm Visualizer (algorithms.html)**
-- **Purpose**: Interactive demonstrations of computer science algorithms
-- **Features**:
-  - **Sorting Algorithms**: Bubble Sort, Quick Sort, Merge Sort, Heap Sort
-  - **Pathfinding**: A*, Dijkstra's, BFS, DFS with visual grid
-  - **Neural Networks**: Simple perceptron with training visualization
-- **Tech Stack**: Vanilla JavaScript with Canvas API for neural network visualization
-- **Educational Value**: Step-by-step algorithm execution with detailed logging
-- **Status**: ✅ Fully functional and maintained
-- **Note**: Kept as static HTML for complex JavaScript interactions
+### 2. MagRot — Rotational-Vector Framework for Magnetic Field Dynamics
+- **Repository**: https://github.com/WCNegentropy/magrot
+- **Description**: Dimensionless rotational parameter R(x) encoding local tendency toward collapse, expansion, or equilibrium in magnetic field configurations
+- **Validation**: Z-pinch, tokamak (ITER-scale), Earth dipole — v2 thermodynamic framework validated
+- **License**: AGPLv3 (software) / CC BY 4.0 (research)
+- **Status**: Active R&D — v2 entropy-parameterized state flow
+
+### 3. retro-vibecoder (UPG) — Universal Project Generator
+- **Repository**: https://github.com/WCNegentropy/retro-vibecoder
+- **NPM**: https://www.npmjs.com/package/@wcnegentropy/cli
+- **Description**: CLI tool and cross-platform Tauri desktop app that procedurally generates full working boilerplate tech stacks from a single deterministic seed. 40+ strategies, 7 archetypes, 12 languages.
+- **License**: MIT
+- **Status**: Live — v0.2.2
+
+### 4. BitTransformerLM
+- **Repository**: https://huggingface.co/WCNegentropy/BitTransformerLM
+- **Description**: Experimental bit-level transformer with 9-bit encoding (8 data + 1 parity), reversible architecture, safety telemetry
+- **Parameters**: 793K–771M configurable
+- **License**: AGPLv3
+
+### 5. WrinkleBrane
+- **Repository**: https://huggingface.co/WCNegentropy/WrinkleBrane
+- **Description**: Wave-interference memory system using 4D tensor operations, 150+ dB PSNR associative recall
+- **License**: AGPL-3.0
+
+### 6. Upcoming Projects
+- **PQC Privacy Layer**: Post-Quantum Cryptography for user data sovereignty
+- **Procedural Game Engine**: Custom engine with procedural generation core
 
 ## 🛠 Technical Implementation
 
 ### Jekyll Build System
-The site uses **Jekyll 4.3.x** for static site generation:
-- **Layouts**: Modular templates in `_layouts/` for consistent structure
-- **Includes**: Reusable components in `_includes/` (header, footer, scripts)
-- **Data Files**: YAML configuration in `_data/` for easy content management
-- **Build Process**: GitHub Actions automatically builds and deploys on push to main
+- **Jekyll 4.3.x** for static site generation
+- **Layouts**: `_layouts/` — `default.html` (base), `home.html` (dashboard), `page.html` (standard)
+- **Includes**: `_includes/` — head, header, footer, scripts, command-palette
+- **Data Files**: `_data/site.yml` — centralized config for all projects and social links
+- **Collections**: `_research`, `_software`, `_posts` — structured content with custom layouts
+- **Build Process**: GitHub Actions builds and deploys on push to main
 
 ### Configuration Management
-Site data is now centralized in `_data/site.yml` (previously JavaScript):
+Site data centralized in `_data/site.yml`:
 
 ```yaml
 owner_name: "WCNegentropy"
-tagline: "New Jersey's Local Business Digital Partner • Web Development • E-Commerce • Automation"
-email: "contact@wcnegentropy.com"
-location: "Serving New Jersey Local Businesses Exclusively"
-github_user: "WCNegentropy"
-avatar: "https://github.com/WCNegentropy.png"
-social: { /* social links */ }
-products: [ /* HuggingFace research projects */ ]
+tagline: "Negentropy • Unified Field Theory • Open-Source Tools • Deep Tech Research"
+location: "Distributed"
+research: [ MAGUFT, MagRot ]
+software: [ retro-vibecoder ]
+huggingface: [ BitTransformerLM, WrinkleBrane ]
 ```
+
+### SEO & AI Indexability
+- **Dynamic JSON-LD Schema**: Per-collection injection — `ScholarlyArticle` for `_research`, `SoftwareSourceCode` for `_software`
+- **MathJax 3**: Native LaTeX rendering for field equations (e.g., $\Phi^{ab}=\sqrt{\rho}\,g^{ab}$)
+- **jekyll-seo-tag** and **jekyll-sitemap** plugins
+- **llms.txt**: LLM-optimized summary at site root
 
 ### Theme System
 - **Implementation**: CSS custom properties with JavaScript toggle
 - **Storage**: localStorage for preference persistence
 - **Dark Mode**: Automatic detection with manual override
-- **Consistency**: Applied across all three pages
 
-### GitHub Integration
-- **API**: GitHub REST API v3 for repository fetching
-- **Sorting**: By stars (descending), then by last updated
-- **Rate Limits**: Handles API failures gracefully
-- **Display**: Top 6 repositories with metadata
-
-## 🔬 Live AI Research Models
-
-### 1. **BitTransformerLM** ✅ LIVE
-- **Repository**: https://huggingface.co/WCNegentropy/BitTransformerLM
-- **Architecture**: Experimental bit-level transformer with 9-bit encoding (8 data + 1 parity)
-- **Features**: Novel reversible architecture with built-in safety telemetry
-- **Parameters**: 793K-771M configurable model size
-- **License**: AGPLv3 - Research & Academic Use
-- **Status**: Live on Hugging Face (Research Phase)
-
-### 2. **WrinkleBrane** ✅ LIVE
-- **Repository**: https://huggingface.co/WCNegentropy/WrinkleBrane
-- **Architecture**: Experimental wave-interference memory system using 4D tensor operations
-- **Features**: High-precision associative memory with parallel retrieval (150+ dB PSNR)
-- **Technology**: Orthogonal code spaces (Hadamard and DCT codes)
-- **License**: AGPL-3.0 - Experimental Research
-- **Status**: Live on Hugging Face (Early Research Phase)
-
-### 3. **Custom Research Projects**
-- Bespoke experimental AI systems and novel algorithm development
-- Academic collaborations and research partnerships
-- Status: Available for consultation
-
-## 💼 Service Packages & Pricing (Updated December 2025)
-
-### Business Positioning
-- **Target Market**: New Jersey local businesses exclusively
-- **Service Model**: In-person setup, consultations, and hands-on training
-- **Competitive Edge**: Prices cut 50% below market average to undercut competition
-- **Geographic Focus**: Serving NJ communities with local, personal touch
-
-### Core Business Packages
-1. **Small Business Essentials** - $1,250 setup / $250/month
-   - Perfect for local restaurants, salons, service providers
-   - 3-5 page professional website with contact forms
-   - Domain, hosting, Google Workspace setup
-   - Local SEO and mobile optimization
-
-2. **Startup Launch Package** - $2,250 setup / $375/month
-   - Complete digital presence for new businesses
-   - Custom 5-10 page website with modern design
-   - Professional email, workspace, marketing automation
-   - 60 days support and training
-
-3. **Growth & Scaling Package** - $3,250 setup / $600/month
-   - For established businesses ready to expand
-   - Advanced website with CRM integration
-   - Marketing automation, SEO, social media
-   - Priority technical support (10-15 hours/month)
-
-### E-Commerce Packages
-1. **Shopify Store Builder** - $1,750 setup / $325/month
-2. **E-Commerce Automation Suite** - $3,750 setup / $900/month
-3. **Multi-Channel Commerce** - $6,000 setup / $1,250/month
-
-### Service-Based Business Packages
-1. **Local Service Provider** - $1,600 setup / $300/month (restaurants, gyms)
-2. **Professional Services Suite** - $2,750 setup / $550/month (lawyers, accountants)
-3. **Healthcare/Wellness Package** - $4,250 setup / $800/month (HIPAA-compliant)
-
-### Marketing & Automation
-1. **Digital Marketing Automation** - $2,000 setup / $700/month
-2. **Lead Generation Engine** - $3,000 setup / $900/month
-3. **Content & SEO Powerhouse** - $2,750 setup / $650/month
-
-### Enterprise & Advanced
-1. **Enterprise Web Solutions** - $7,500+ setup / $1,750+/month
-2. **Business Intelligence & Analytics** - $6,000 setup / $1,400/month
-3. **Complete Digital Transformation** - $12,500+ setup / $2,250+/month
-
-### Add-On Services
-- **WordPress to Modern Migration**: $1,250 - $4,250
-- **Mobile App Development**: $4,250 - $12,500
-- **Custom Integration Solutions**: $750 - $2,750
-- **Emergency Support & Consulting**: $62.50-$100/hour
-
-### Value Proposition
-- All packages include in-person setup and training at client location
-- Hands-on support throughout the entire process
-- No hidden fees or surprise charges
-- Local NJ business focus ensures fast response times
-- Competitive pricing designed to undercut larger agencies
+### Typography
+- **Inter**: Body text, headings — clean, documentation-style reading
+- **JetBrains Mono**: Code blocks, equations, technical content
 
 ## ⚙️ Development Environment
 
@@ -220,605 +150,61 @@ products: [ /* HuggingFace research projects */ ]
 
 ### Visual Identity
 - **Color Scheme**: Brand blue (#0ea5e9) with violet accents
-- **Typography**: Inter font family for consistency
-- **Icons**: Emoji-based for personality and universal recognition
-- **Animations**: Subtle hover effects and smooth transitions
+- **Typography**: Inter for body, JetBrains Mono for code — documentation-style reading
+- **Icons**: Emoji-based for universal recognition
+- **Animations**: Subtle hover effects, glow shadows, smooth transitions
 
 ### User Experience
 - **Mobile-First**: Responsive design across all devices
-- **Accessibility**: Proper ARIA labels and semantic HTML
-- **Performance**: CDN resources, minimal dependencies
-- **Progressive Enhancement**: Works without JavaScript for core content
+- **Accessibility**: ARIA labels, semantic HTML
+- **Performance**: CDN resources, minimal dependencies, tree-shaken CSS
+- **Progressive Enhancement**: Core content works without JavaScript
 
-### Content Strategy
-- **Technical Depth**: Detailed algorithm implementations
-- **Educational Value**: Step-by-step explanations and logging
-- **Professional Polish**: Clean, modern aesthetic
-- **Interactive Elements**: Engaging demonstrations and live code
+## ⚙️ Development Environment
 
-## 🧪 Interactive Features
+### GitHub Actions
+- **Workflow**: `.github/workflows/deploy.yml`
+- **Trigger**: Push to main branch or manual dispatch
+- **Pipeline**: Node.js 20 (Tailwind CSS) → Ruby 3.1 (Jekyll) → GitHub Pages
+- **Security**: All actions SHA-pinned, least-privilege permissions
 
-### Algorithm Visualizations
-- **Real-time**: Live step-by-step algorithm execution
-- **Educational**: Detailed console logging for learning
-- **Customizable**: Speed controls and algorithm selection
-- **Visual**: Color-coded states (comparing, swapping, sorted)
-
-### Code Playground
-- **Live Execution**: JavaScript runs directly in browser
-- **Syntax Highlighting**: CodeMirror with theme support
-- **Example Library**: Pre-built algorithmic demonstrations
-- **Error Handling**: Graceful error display and recovery
-
-### Dynamic Content
-- **GitHub Integration**: Live repository data fetching
-- **Theme Persistence**: User preference memory
-- **Contact Forms**: Direct mailto integration
-- **SEO Optimization**: JSON-LD structured data
-
-## 📈 Analytics & SEO
-
-### Meta Configuration
-- **Open Graph**: Full social media preview support
-- **Twitter Cards**: Optimized social sharing
-- **Canonical URLs**: Proper URL structure
-- **Description Meta**: Search engine optimization
-
-### Performance Optimization
-- **CDN Resources**: Tailwind CSS, Google Fonts, CodeMirror
-- **Image Optimization**: GitHub avatars, Unsplash images
-- **Minification**: Inline CSS and JavaScript for core functionality
-- **Caching**: localStorage for preferences
-
-## 🔒 Security Considerations
-
-### Code Execution
-- **Sandboxed**: JavaScript execution in browser context only
-- **No Server-Side**: Pure client-side execution environment
-- **Input Validation**: Safe eval usage with error catching
-- **Origin Security**: GitHub API calls with proper error handling
-
-### Contact & Communication
-- **Email Integration**: Mailto links for contact forms
-- **No Data Storage**: No backend data collection
-- **Privacy**: Client-side only preferences storage
-
-## 🚀 Deployment & CI/CD
-
-### GitHub Pages Integration with Jekyll
-- **Automatic Deployment**: On push to main branch via GitHub Actions
-- **Jekyll Build**: Ruby 3.1, Jekyll 4.3.x with plugins (sitemap, SEO tags)
-- **Custom Domain**: wcnegentropy.com configured via CNAME
-- **HTTPS Enforced**: GitHub Pages SSL certificate
-
-### Local Jekyll Development
+### Local Development
 ```bash
 # Install dependencies
-gem install bundler --user-install
+npm install
 bundle install --path vendor/bundle
 
-# Build the site
+# Build Tailwind CSS
+npm run build:css
+
+# Build Jekyll site
 bundle exec jekyll build
 
-# Serve locally with live reload
+# Local development server
 bundle exec jekyll serve --host 0.0.0.0 --port 4000
-
-# Access at http://localhost:4000
 ```
 
-### Development Workflow
-1. **Local Development**: Jekyll server with live reload
-2. **Git Workflow**: Feature branches with main branch protection
-3. **Automatic Build**: GitHub Actions builds Jekyll on push
-4. **Automatic Deployment**: Deploys to GitHub Pages after successful build
-5. **Testing**: Local testing before push, automated build validation
+## 🔒 Security
 
-## 🎯 Future Enhancement Opportunities
-
-### Technical Improvements
-- **Build Process**: Add Tailwind CSS purging for smaller bundle
-- **Testing**: Automated testing for interactive features
-- **Analytics**: Privacy-respecting analytics integration
-- **PWA Features**: Service worker for offline capability
-
-### Content Expansion
-- **Blog Section**: Technical articles and tutorials
-- **Project Deep-Dives**: Detailed R&D project documentation
-- **API Documentation**: For any future backend services
-- **Video Content**: Algorithm explanation videos
-
-### Interactive Features
-- **More Algorithms**: Expand visualizer with additional algorithms
-- **Collaborative Features**: Shareable code snippets
-- **Performance Metrics**: Algorithm complexity analysis
-- **Mobile Optimization**: Touch-friendly interactions
+- **SHA-Pinned Actions**: All GitHub Actions pinned to commit hashes
+- **Security Headers**: X-Content-Type-Options, X-Frame-Options, CSP, Referrer-Policy
+- **No Server-Side Storage**: Pure static site, mailto-based contact
+- **Input Validation**: Safe URL handling, sanitized DOM operations
+- **HTTPS Enforced**: GitHub Pages SSL
 
 ## 🛡️ Testing Commands
 
-### Jekyll Testing Workflow
 ```bash
-# Install dependencies
-bundle install --path vendor/bundle
+# Full build
+npm run build:css && bundle exec jekyll build
 
-# Build site (check for errors)
-bundle exec jekyll build
-
-# Serve locally with live reload
+# Local server
 bundle exec jekyll serve --host 0.0.0.0 --port 4000
 
-# Access at http://localhost:4000
-
-# Validate HTML
-curl -s http://localhost:4000/ | head -100
-
-# Check for build warnings
-bundle exec jekyll build --verbose
-
-# Clean build artifacts
-bundle exec jekyll clean
-```
-
-### Production Testing
-```bash
-# Validate HTML
-curl -s https://validator.w3.org/nu/?doc=https://wcnegentropy.com
-
-# Check accessibility
-npm install -g lighthouse
-lighthouse https://wcnegentropy.com --chrome-flags="--headless"
-
-# Test Jekyll build in CI environment
-bundle exec jekyll build --baseurl "" --verbose
-```
-
-### Manual Testing Checklist
-- [x] Jekyll build completes without errors
-- [x] Local server runs on port 4000
-- [x] All navigation links work correctly
-- [x] Algorithm visualizations run without errors (✅ FIXED: Pathfinding now shows visual feedback)
-- [x] Neural network visualization displays properly (✅ FIXED: Canvas and loss chart working)
-- [ ] Theme toggle functions across all pages (needs validation on production)
-- [ ] Mobile responsiveness on different screen sizes
-- [x] GitHub API integration displays repositories (✅ SECURED: Input validation added)
-- [ ] Contact forms generate proper mailto links
-- [ ] All external links open in new tabs
-- [x] Sitemap.xml generated correctly
-- [x] Robots.txt generated correctly
-- [x] SEO tags included in head
-
-## 📞 Support & Maintenance
-
-### Regular Maintenance Tasks
-1. **Update Dependencies**: Monitor CDN resource versions
-2. **Content Review**: Keep portfolio projects current
-3. **Performance Monitoring**: Check loading times and responsiveness
-4. **Link Validation**: Ensure all external links remain functional
-5. **GitHub API**: Monitor rate limits and update handling
-
-### Common Issues & Solutions
-- **GitHub API Rate Limits**: Implement caching or authentication
-- **CodeMirror Loading**: Check CDN availability and fallbacks
-- **Mobile Scrolling**: Ensure proper viewport meta tags
-- **Cross-Browser**: Test in Safari, Firefox, Chrome, Edge
-
-## 🐛 Recent Bug Fixes & Security Updates (December 2024)
-
-### Critical Issues Resolved
-
-#### 1. **Pathfinding Visualization Bug** (✅ FIXED)
-**Issue**: Pathfinding algorithms had no visual feedback - buttons worked but grid remained unchanged.
-**Root Cause**: Missing proper status updates and improved error handling in start() method.
-**Solution**: 
-- Added comprehensive status reporting during algorithm execution
-- Improved error handling with try-catch blocks
-- Enhanced console logging for debugging
-- Fixed algorithm completion notifications
-
-#### 2. **Neural Network Visualization Issues** (✅ FIXED)
-**Issues**: 
-- Canvas sizing problems causing layout issues
-- Loss chart not rendering properly
-- Network diagram not displaying correctly
-- Training process unclear to users
-
-**Solutions**:
-- **Fixed Canvas Sizing**: Set explicit dimensions (400x300) with responsive CSS
-- **Enhanced Network Diagram**: 
-  - Added weight-based connection opacity
-  - Proper node positioning with adaptive spacing
-  - Layer labels and node identifiers
-  - Visual distinction between input/hidden/output layers
-- **Improved Loss Chart**:
-  - Grid lines for better readability
-  - Proper axis labels with min/max values
-  - Placeholder text when no data available
-  - Normalized scaling for better visualization
-- **Training Enhancements**:
-  - Real-time progress reporting with percentages
-  - Simplified gradient descent simulation
-  - Early stopping when convergence reached
-  - Better epoch/loss reporting
-
-#### 3. **Code Playground Security Vulnerabilities** (✅ SECURED)
-**Critical Issue**: Used dangerous `eval()` function allowing potential XSS and code injection attacks.
-**Security Risks**:
-- DOM manipulation attacks
-- Cookie/localStorage theft
-- Cross-site scripting (XSS)
-- Malicious network requests
-- Browser hijacking
-
-**Comprehensive Security Solution**:
-- **Replaced `eval()` with safe Function constructor** in restricted context
-- **Pattern-Based Filtering**: Blocks 15+ dangerous JavaScript patterns:
-  ```javascript
-  document.cookie, localStorage, window.location, 
-  XMLHttpRequest, fetch(), innerHTML with <script>, 
-  eval(), Function(), setTimeout with eval, etc.
-  ```
-- **Restricted Execution Context**: Blocked access to:
-  - `window`, `document`, `location`, `history`
-  - `localStorage`, `sessionStorage`
-  - `XMLHttpRequest`, `fetch`
-  - `eval`, `Function`, `setTimeout`, `setInterval`
-- **Output Sanitization**: All console output HTML-escaped
-- **Safe DOM Manipulation**: Using textContent instead of innerHTML
-
-#### 4. **GitHub API Security Hardening** (✅ SECURED)
-**Issues**: Potential XSS through unsanitized API data and unsafe DOM updates.
-**Solutions**:
-- **Input Validation**: Username regex validation (`/^[a-zA-Z0-9\-._]+$/`)
-- **URL Validation**: Ensures GitHub URLs start with 'https://github.com/'
-- **Data Sanitization**: All API responses sanitized and length-limited
-- **Safe DOM Creation**: Replaced innerHTML with proper DOM element creation
-- **Error Handling**: Graceful API failure handling without information disclosure
-
-### Security Headers Added
-All pages now include comprehensive security headers:
-```html
-<meta http-equiv="X-Content-Type-Options" content="nosniff" />
-<meta http-equiv="X-Frame-Options" content="DENY" />
-<meta http-equiv="X-XSS-Protection" content="1; mode=block" />
-<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-<meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
-```
-
-### Testing the Fixes
-
-#### Pathfinding Test:
-1. Go to algorithms.html
-2. Click "Find Path" button
-3. **Expected**: Grid shows visited cells (purple) and final path (cyan)
-4. **Expected**: Status text updates during execution
-
-#### Neural Network Test:
-1. Go to algorithms.html  
-2. Click "Train Network" button
-3. **Expected**: Network diagram displays with colored nodes and connections
-4. **Expected**: Loss chart shows decreasing curve over time
-5. **Expected**: Progress percentage and loss values update in real-time
-
-#### Security Test (Code Playground):
-1. Go to playground.html
-2. Try entering: `document.cookie = "test=hack"`
-3. **Expected**: "Security Error: Code contains potentially dangerous operations"
-4. Try: `window.location = "http://evil.com"`
-5. **Expected**: Same security error
-6. Try safe code: `console.log("Hello World")`
-7. **Expected**: Executes normally
-
-### Performance Improvements
-- Fixed canvas sizing issues causing layout shifts
-- Optimized neural network rendering with proper error handling
-- Improved algorithm execution feedback
-- Better memory management in visualizations
-
-## 🔧 Recent Bug Fixes & Updates (August 2025)
-
-### Critical Pathfinding Algorithm Execution Fix (✅ FIXED)
-**Issue**: Pathfinding visualization failed to execute - CI tests showed "PathViz start method not available: object" error.
-**Root Cause**: JavaScript `typeof` operator incorrectly detecting async methods, preventing proper method execution.
-**Solution**: 
-- Implemented direct method call using `.call(pathViz)` to bypass type detection issues
-- Added comprehensive error handling and debugging logs
-- Enhanced async function detection with `AsyncFunction` constructor checking
-- Method now executes regardless of type detection inconsistencies
-
-### Tailwind CSS Deprecation Warnings Fixed (✅ UPDATED)
-**Issue**: Browser console showed deprecation warnings for Tailwind CSS configuration.
-**Problems Fixed**:
-- **darkMode**: Updated from deprecated `'class'` to modern `'selector'` configuration
-- **CDN Production Warning**: Addressed Tailwind CDN usage warnings for static sites
-**Solution**: Updated Tailwind configuration to use current best practices while maintaining compatibility
-
-### Browser Console Warnings Addressed (✅ RESOLVED)
-**Issues Fixed**:
-- **Message Port Errors**: Resolved "message port closed before response received" errors from browser extensions
-- **X-Frame-Options**: Fixed meta tag placement warnings (moved to server headers)
-- **Resource Loading**: Improved error handling for missing favicon and resources
-
-### Development & CI Improvements
-- **Enhanced Debugging**: Added detailed logging for pathfinding method detection and execution
-- **Error Resilience**: Improved error handling in async method calls
-- **CI Testing**: Updated test procedures to handle method binding edge cases
-- **Performance**: Reduced console noise and improved error reporting
-
-### Updated Testing Procedures
-
-#### Pathfinding Algorithm Test:
-1. Navigate to algorithms.html
-2. Click "Find Path" button  
-3. **Expected**: Console shows "✅ Calling pathViz.start()" message
-4. **Expected**: Grid displays visited cells in purple color
-5. **Expected**: Final path appears in cyan color
-6. **Expected**: Status text updates with algorithm progress
-
-#### Browser Console Verification:
-1. Open Developer Tools → Console
-2. Load algorithms.html
-3. **Expected**: No Tailwind deprecation warnings
-4. **Expected**: All visualizers initialize without errors
-5. **Expected**: Method detection logs show proper async function handling
-
-### Performance Improvements
-- Fixed canvas sizing issues causing layout shifts
-- Optimized neural network rendering with proper error handling
-- Improved algorithm execution feedback
-- Better memory management in visualizations
-- Eliminated deprecated configuration warnings
-- Enhanced error handling and recovery
-
----
-
-## 🚀 Recent Major Updates (August 2025)
-
-### Live Model Integration (✅ COMPLETED)
-**Major Enhancement**: Replaced all placeholder products with actual live Hugging Face models
-
-#### Key Changes:
-- **Real Research Showcase**: Updated main page to feature BitTransformerLM and WrinkleBrane models
-- **Live Hugging Face Links**: Direct links to actual research repositories
-- **Enhanced User Experience**: 
-  - Removed placeholder hero image for cleaner, focused design
-  - Added "Live on HF" badges with pulsing animation
-  - Updated CTAs to "View Live Models" and "View on HF"
-  - Hero section restructured for better model discovery
-
-#### Technical Improvements:
-- **GitHub Repository Filtering**: Automatically excludes website repo from repository listings
-- **External Link Handling**: Proper `target="_blank"` and `rel="noopener noreferrer"` for HF links
-- **Visual Enhancements**: 
-  - Orange HF buttons for live model links
-  - Green animated badges for live status
-  - Center-aligned hero for better focus
-
-#### Content Updates:
-- **Accurate Model Descriptions**: Based on actual HF repository data
-- **Research-Focused Messaging**: Emphasizes experimental nature and academic use
-- **License Clarity**: AGPLv3 and AGPL-3.0 licensing properly displayed
-
-### Impact:
-- **Professional Credibility**: Site now showcases real, deployable research
-- **Research Visibility**: Direct pathways to live AI models
-- **User Engagement**: Clear calls-to-action to interact with actual models
-- **Academic Positioning**: Proper research disclaimers and licensing
-
----
-
-### Security & UX Enhancements (✅ COMPLETED)
-**Major Enhancement**: Fixed critical playground execution and contact form usability issues
-
-#### Key Security Fixes:
-- **Code Playground Restoration**: Replaced failing Function constructor with modern iframe sandboxing
-- **Contact Form Autofill**: Enabled secure autofill while maintaining mailto functionality
-- **Enhanced Sandbox Security**: Added iframe-based execution with postMessage communication
-- **User Experience**: Both features now work properly without security compromises
-
-#### Technical Improvements:
-- **Modern Iframe Sandboxing**: 
-  - Replaced strict mode Function constructor with isolated iframe execution
-  - Added 5-second timeout protection
-  - Proper postMessage communication between sandbox and parent
-  - Enhanced security patterns blocking (parent access, eval, setTimeout, etc.)
-- **Contact Form Enhancement**:
-  - Added proper `autocomplete` attributes for autofill support
-  - Client-side validation with visual feedback
-  - Secure mailto URL generation with proper encoding
-  - Form remains static-site compatible (no server required)
-
-#### Security Measures:
-- **Iframe Sandbox**: `sandbox="allow-scripts"` with restricted permissions
-- **Pattern Blocking**: 20+ dangerous JavaScript patterns blocked
-- **Input Validation**: Email regex validation and required field checks
-- **XSS Prevention**: All user input properly sanitized and escaped
-- **Timeout Protection**: Prevents infinite loops in code execution
-
-### Code Playground Security Architecture:
-```
-User Code → Pattern Validation → Iframe Sandbox → PostMessage → Safe Output Display
-                                      ↓
-                     No DOM access, No parent access, No external resources
-```
-
-### Contact Form Architecture:
-```
-Form Input → Client Validation → Secure mailto URL → Email Client
-                                         ↓
-                           Autofill enabled, No server required
+# Clean build
+bundle exec jekyll clean && bundle exec jekyll build --verbose
 ```
 
 ---
 
-### Site Structure Optimization (✅ COMPLETED)
-**Enhancement**: Removed redundant playground page to focus on core content
-
-#### Key Changes:
-- **Playground Removal**: Deleted `playground.html` as it was a placeholder for real content
-- **Navigation Cleanup**: Removed playground links from all navigation menus
-- **Hero CTA Update**: Replaced playground button with "Get In Touch" for better conversion
-- **Algorithm Visualizer Preserved**: Maintained `/algorithms.html` with full functionality
-
-#### Rationale:
-- **Content Focus**: Site now showcases real HF models instead of placeholder tools
-- **User Journey**: Cleaner navigation focused on R&D, visualizations, and contact
-- **Maintenance**: Reduces codebase complexity by removing unused features
-- **Professional Image**: More focused on actual research and capabilities
-
-#### Impact:
-- **Simplified Navigation**: Cleaner user experience with focused CTAs
-- **Reduced Maintenance**: Less code to maintain and debug
-- **Clear Value Proposition**: Direct path from models to visualizer to contact
-
-## 🖼️ Custom Images & Media Management
-
-### Image Directory Structure
-```
-images/
-├── products/           # Product showcase images (1200x675px)
-│   ├── bit-transformer.jpg    # BitTransformerLM showcase
-│   ├── wrinkle-brane.jpg      # WrinkleBrane showcase  
-│   └── custom-research.jpg    # Custom R&D projects
-├── social/            # Social media & preview images
-│   ├── og-image.png          # Open Graph preview (1200x630px)
-│   ├── twitter-card.png      # Twitter card image (1200x628px)
-│   └── favicon.ico           # Site favicon (32x32px)
-└── brand/             # Brand & identity images
-    ├── avatar.png            # Profile/avatar image (400x400px)
-    ├── logo.svg              # Site logo (vector)
-    └── hero-bg.jpg           # Hero background (optional)
-```
-
-### Adding Custom Images (Step-by-Step)
-
-#### 1. **Prepare Your Images**
-- **Product Images**: 1200x675px (16:9 aspect ratio)
-- **Avatar**: 400x400px square, PNG with transparency
-- **Social Images**: Exact dimensions for platform compliance
-
-#### 2. **Optimize for Web**
-```bash
-# Recommended tools:
-- TinyPNG.com (online compression)
-- squoosh.app (Google's web app)
-- ImageOptim (Mac) / FileOptimizer (Windows)
-
-# Target file sizes:
-- Product images: < 200KB
-- Social images: < 1MB
-- Avatar: < 100KB
-```
-
-#### 3. **Add to Repository**
-```bash
-# Upload images to correct directories:
-git add images/products/bit-transformer.jpg
-git add images/products/wrinkle-brane.jpg
-git add images/products/custom-research.jpg
-git add images/brand/avatar.png
-git commit -m "Add custom product and brand images"
-git push origin main
-```
-
-#### 4. **Update Avatar Reference** (Optional)
-To use custom avatar instead of GitHub profile:
-```javascript
-// In index.html SITE configuration:
-avatar: "/images/brand/avatar.png", // Custom avatar
-```
-
-### Fallback System
-- **Automatic**: Site shows elegant placeholders if images are missing
-- **No Broken Images**: Graceful degradation with branded placeholders
-- **Development Friendly**: Works during image preparation phase
-
-### Image Best Practices
-- **Format**: WebP preferred, JPEG fallback
-- **Compression**: 80-85% quality for web
-- **Alt Text**: Descriptive alternative text for accessibility
-- **Lazy Loading**: Implemented for performance
-- **Responsive**: Single high-res images with CSS scaling
-
----
-
-## 🎉 Jekyll Migration Complete (October 2025)
-
-### Migration Summary
-The site has been successfully migrated from static HTML to Jekyll, providing a more maintainable and scalable foundation:
-
-**✅ Completed:**
-- Jekyll 4.3.x with Ruby 3.1 configuration
-- Modular layouts system (_layouts/default.html, home.html, page.html)
-- Reusable includes (_includes/head.html, header.html, footer.html, scripts.html)
-- Data-driven configuration (_data/site.yml replacing JavaScript SITE object)
-- GitHub Actions workflow for automated Jekyll builds
-- SEO enhancements (sitemap.xml, robots.txt, jekyll-seo-tag plugin)
-- Local development with `bundle exec jekyll serve`
-- All interactive features preserved (products grid, GitHub API, contact form, theme toggle)
-- Algorithm visualizer fully functional
-
-**Benefits:**
-- **Easier Maintenance**: Update content in YAML files instead of HTML
-- **Better SEO**: Automatic sitemap generation and structured data
-- **Cleaner Code**: Separation of content, structure, and presentation
-- **Future-Ready**: Easy to add blog posts or additional content types
-- **Professional Workflow**: Standard Ruby/Jekyll development practices
-
-**Migration Notes:**
-- Original HTML files backed up as `*.backup` (excluded from build)
-- Custom domain (wcnegentropy.com) configuration preserved
-- All URLs remain the same (no breaking changes)
-- Interactive JavaScript features work identically
-
-### Quick Start for Development
-```bash
-# Clone repository
-git clone https://github.com/WCNegentropy/WCNegentropy.github.io.git
-cd WCNegentropy.github.io
-
-# Install dependencies
-bundle install --path vendor/bundle
-
-# Run local server
-bundle exec jekyll serve
-
-# Access at http://localhost:4000
-```
-
----
-
-*This documentation serves as a comprehensive guide for understanding, maintaining, and extending the WCNegentropy GitHub Pages site. The site embodies a philosophy of innovation, education, and technical excellence in the realm of AI/ML and algorithmic research. All major bugs have been resolved and security vulnerabilities patched as of December 2024. Live model integration and custom image system completed August 2025. **Jekyll migration completed October 2025** for improved maintainability and SEO. **Business model pivot to NJ local services completed December 2025** with competitive pricing and in-person support emphasis.*
-
----
-
-## 🔄 Business Model Update (December 2025)
-
-### Major Strategic Shift
-WCNegentropy has pivoted to focus exclusively on serving **New Jersey local businesses** with a hands-on, in-person approach:
-
-**Key Changes:**
-- ✅ **Geographic Focus**: Now serving NJ businesses exclusively
-- ✅ **Pricing Strategy**: All service prices cut 50% to undercut competition
-- ✅ **Service Model**: Emphasis on in-person setup, consultations, and training
-- ✅ **Target Market**: Local restaurants, salons, professional services, and SMBs
-- ✅ **Value Proposition**: Local partner with competitive rates and personal touch
-
-**Website Updates:**
-- Hero section updated to emphasize NJ local business focus
-- About section rewritten with local service area and in-person messaging
-- Services intro emphasizes competitive pricing and local support
-- All package prices reduced by 50% across the board
-- Site tagline updated: "New Jersey's Local Business Digital Partner"
-
-**Documentation Updates:**
-- CLAUDE.md revised to reflect new business model
-- Comprehensive pricing list added to documentation
-- Service area and approach clearly defined
-- Target market and competitive positioning documented
-
-**Pricing Examples (50% reduction):**
-- Small Business Essentials: $2,500 → $1,250 setup
-- Startup Launch: $4,500 → $2,250 setup
-- E-Commerce Automation: $7,500 → $3,750 setup
-- Emergency Support: $125-200/hr → $62.50-100/hr
-
-This pivot positions WCNegentropy as the most competitive and accessible digital services provider for New Jersey local businesses.
+*All intellectual property held by WCNEGENTROPY HOLDINGS LLC.*
