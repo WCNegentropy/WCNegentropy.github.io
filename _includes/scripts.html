@@ -18,29 +18,6 @@
     }
   };
 
-  // --- Theme (applied before DOMContentLoaded to prevent FOUC) ---
-  (() => {
-    const saved = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = saved || (prefersDark ? 'dark' : 'light');
-    document.documentElement.classList.add(theme);
-  })();
-
-  const applyTheme = (t) => {
-    const root = document.documentElement;
-    root.classList.remove('dark', 'light');
-    root.classList.add(t);
-    const icon = document.querySelector('.i-theme');
-    if (icon) icon.textContent = t === 'dark' ? '🌙' : '🌞';
-    localStorage.setItem('theme', t);
-  };
-
-  const initTheme = () => {
-    const saved = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    applyTheme(saved || (prefersDark ? 'dark' : 'light'));
-  };
-
   // --- Populate dynamic content ---
   const byId = (id) => document.getElementById(id);
 
@@ -102,11 +79,7 @@
 
   // --- Init ---
   document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    byId('theme-toggle')?.addEventListener('click', () => {
-      const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-      applyTheme(next);
-    });
+    localStorage.removeItem('theme');
     const yearEl = byId('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
     setupMobileMenu();
