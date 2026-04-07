@@ -112,14 +112,15 @@ from magrot.fields.analytic import field_zpinch_bennett
 from magrot.rotation.metrics import compute_all_metrics
 import numpy as np
 
+a = 0.01
 grid = CylindricalGrid(Nr=80, Ntheta=32, Nz=20, r_range=(0.0003, 0.05))
-B, p_mat = field_zpinch_bennett(grid, I=1e4, a=0.01)
+B, p_mat = field_zpinch_bennett(grid, I=1e4, a=a)
 
 def kappa_eq(g):
-    return np.full(g.R.shape, 1.0 / 0.01)
+    return np.full(g.R.shape, 1.0 / a)
 
 results = compute_all_metrics(B, grid, p_mat=p_mat,
-                              kappa_eq_func=kappa_eq, L_char=0.01)</code></pre>
+                              kappa_eq_func=kappa_eq, L_char=a)</code></pre>
   </section>
 
   <section>
