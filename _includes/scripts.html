@@ -79,7 +79,6 @@
 
   // --- Init ---
   document.addEventListener('DOMContentLoaded', () => {
-    localStorage.removeItem('theme');
     const yearEl = byId('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
     setupMobileMenu();

@@ -267,18 +267,14 @@
 
   /* --- Code block ------------------------------------------------------ */
   .code-block {
-    background-color: var(--surface-1);
+    background-color: #0a0a0a;
     border: 1px solid var(--border);
     border-radius: 0.375rem;
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 0.8125rem;
     padding: 0.75rem 1rem;
-    color: var(--accent);
-    overflow-x: auto;
-  }
-  .code-block {
-    background-color: #0a0a0a;
     color: #34cc96;
+    overflow-x: auto;
   }
 }
 
