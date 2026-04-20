@@ -54,7 +54,7 @@ description: "Privacy Policy for WCNegentropy — website, software, and AI mode
           We use information we receive to:
         </p>
         <ul class="list-disc pl-6 space-y-2 text-slate-800 dark:text-slate-300">
-          <li><strong>Respond to Inquiries:</strong> Reply to research collaboration requests, licensing inquiries, and general questions</li>
+          <li><strong>Respond to Inquiries:</strong> Reply to project questions, licensing inquiries, and general messages</li>
           <li><strong>Process License Requests:</strong> Evaluate and fulfill commercial licensing inquiries for our AGPLv3-licensed software</li>
           <li><strong>Improve Our Site:</strong> Understand how visitors interact with our content to improve the user experience</li>
           <li><strong>Legal Compliance:</strong> Fulfill legal obligations and protect our intellectual property rights</li>
@@ -71,10 +71,10 @@ description: "Privacy Policy for WCNegentropy — website, software, and AI mode
 
         <h3 class="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">4.2 HuggingFace Models</h3>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
-          Our AI research models are published on HuggingFace. Interactions with our models on HuggingFace are governed by <a href="https://huggingface.co/privacy" class="text-brand-600 hover:text-brand-700 hover:underline" target="_blank" rel="noopener noreferrer">HuggingFace's Privacy Policy</a>.
+          Our AI models are published on HuggingFace. Interactions with our models on HuggingFace are governed by <a href="https://huggingface.co/privacy" class="text-brand-600 hover:text-brand-700 hover:underline" target="_blank" rel="noopener noreferrer">HuggingFace's Privacy Policy</a>.
         </p>
 
-        <h3 class="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">4.3 Research Data</h3>
+        <h3 class="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">4.3 Public Documentation</h3>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed">
           Our public project documentation, model cards, and website content do not require user accounts and do not contain personal data submitted by readers. We do not collect personal information from users who read or reference this material.
         </p>

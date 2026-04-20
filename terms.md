@@ -69,7 +69,7 @@ description: "Terms of Service for WCNegentropy — website, software, and AI mo
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">4. Research & Experimental Software Disclaimer</h2>
+        <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">4. Experimental Software Disclaimer</h2>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
           <strong>4.1 Experimental Nature:</strong> BitTransformerLM and WrinkleBrane are experimental projects. They are provided for research, academic, and educational purposes. They are not production-ready and should not be relied upon for critical applications.
         </p>
@@ -84,13 +84,13 @@ description: "Terms of Service for WCNegentropy — website, software, and AI mo
       <section>
         <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">5. Acceptable Use</h2>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
-          When using our website, software, or research, you agree not to:
+          When using our website, software, public documentation, or models, you agree not to:
         </p>
         <ul class="list-disc pl-6 space-y-2 text-slate-800 dark:text-slate-300">
           <li>Violate any applicable laws or regulations</li>
           <li>Infringe on intellectual property rights beyond what the applicable license permits</li>
           <li>Use our AI models to generate harmful, misleading, or deceptive content</li>
-          <li>Misrepresent WCNegentropy's research findings or falsely claim affiliation</li>
+          <li>Misrepresent WCNegentropy's work or falsely claim affiliation</li>
           <li>Distribute malware or harmful code through our platforms</li>
           <li>Attempt to circumvent license terms or usage restrictions</li>
         </ul>

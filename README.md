@@ -29,7 +29,7 @@ WCNegentropy is a deep-tech IP holding company and software lab. We build develo
 - **Jekyll 4.3.x** static site generator with Tailwind CSS 3.4.x (JIT) and Alpine.js 3.14.x
 - **GitHub Actions** CI/CD — SHA-pinned, least-privilege permissions
 - **MathJax 3** for native LaTeX rendering of technical notation
-- **Dynamic JSON-LD** schema injection per collection (`ScholarlyArticle`, `SoftwareSourceCode`)
+- **Dynamic JSON-LD** schema injection for structured project metadata
 - **Collections**: `_software`, `_posts` for structured content
 
 ### Development
