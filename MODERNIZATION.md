@@ -42,9 +42,6 @@ WCNegentropy.github.io/
 │   ├── command-palette.html # ⌘K command palette (Alpine.js)
 │   ├── scripts.html         # Lightweight JS (mobile menu, contact form)
 │   └── input.css            # Tailwind source + design token CSS
-├── _research/               # Research collection
-│   ├── maguft.md            # MAGUFT — Grand Unified Field Theory
-│   └── magrot.md            # MagRot — Magnetic Field Dynamics
 ├── _software/               # Software collection
 │   └── retro-vibecoder.md   # retro-vibecoder / UPG
 ├── assets/css/main.css      # Built Tailwind output (committed)
@@ -126,29 +123,11 @@ The design system lives in `_includes/input.css`. It uses CSS custom properties 
 
 Collections are defined in `_config.yml` with automatic layout assignment via `defaults`.
 
-### Research Collection (`_research/`)
-- **Layout**: `research.html` — publication-style
-- **URL pattern**: `/research/:slug/`
-- **JSON-LD schema**: `ScholarlyArticle`
-- **Visual language**: green accent rule, formal metadata strip, abstract block
-
 ### Software Collection (`_software/`)
 - **Layout**: `software.html` — artifact/product-style
 - **URL pattern**: `/software/:slug/`
 - **JSON-LD schema**: `SoftwareSourceCode`
 - **Visual language**: amber accent rule, comprehensive fact rail (status, version, license, repo, npm)
-
-### Frontmatter Fields (Research)
-
-```yaml
-title: "SHORT_NAME — Full Title"      # Split on "—" for hero rendering
-description: "Abstract/lead text"     # Rendered in page hero
-schema_type: "ScholarlyArticle"
-status: "Active Research"
-license: "CC BY 4.0 (Research) / AGPLv3 (Software)"
-repo_url: "https://github.com/..."
-tags: [tag1, tag2]
-```
 
 ### Frontmatter Fields (Software)
 
@@ -170,8 +149,6 @@ tags: [tag1, tag2]
 | Page | URL | Layout |
 |---|---|---|
 | Homepage | `/` | `home` |
-| MAGUFT | `/research/maguft/` | `research` |
-| MagRot | `/research/magrot/` | `research` |
 | retro-vibecoder | `/software/retro-vibecoder/` | `software` |
 | AI Models | `/models/` | `models` |
 | Contact | `/contact/` | `contact` |
@@ -186,8 +163,6 @@ The header (`_includes/header.html`) provides direct links to all major site des
 
 | Nav Item | Destination | Active-state logic |
 |---|---|---|
-| MAGUFT | `/research/maguft/` | `page.url contains 'maguft'` |
-| MagRot | `/research/magrot/` | `page.url contains 'magrot'` |
 | retro-vibecoder | `/software/retro-vibecoder/` | `page.url contains 'retro-vibecoder'` |
 | Models | `/models/` | `page.url contains 'models'` |
 | Contact | `/contact/` | `page.url contains 'contact'` |

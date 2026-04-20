@@ -2,15 +2,15 @@
 
 ## 🚀 Project Overview
 
-**WCNegentropy.github.io** is the public-facing website for **WCNEGENTROPY HOLDINGS LLC** — a deep-tech IP holding company and research lab. The site functions as a high-density information-theoretical attractor, showcasing the entity's core intellectual property across unified field theory, magnetic dynamics research, deterministic code generation, and novel AI architectures.
+**WCNegentropy.github.io** is the public-facing website for **WCNEGENTROPY HOLDINGS LLC** — a deep-tech IP holding company and software lab. The site functions as a high-density information-theoretical attractor, showcasing the entity's public software, developer tooling, experimental AI systems, and emerging infrastructure work.
 
 ### 🎯 Mission Statement
 *"A negentropic attractor, creating an interconnected web of projects and ideas to benefit humanity."*
 
 ### 🏗️ Entity Structure
 - **Entity**: WCNEGENTROPY HOLDINGS LLC (Delaware Holdco)
-- **Focus**: Deep-tech research, open-source software, AI model publishing
-- **IP Model**: Split licensing — CC BY 4.0 for research, AGPLv3 for software, MIT for developer tools
+- **Focus**: Deep-tech software, open-source tooling, AI model publishing
+- **IP Model**: Project-specific open licensing — AGPL-family licenses for model software, MIT for developer tools
 - **Distribution**: Distributed / Global
 - **Contact**: contact@wcnegentropy.com
 
@@ -32,8 +32,7 @@ WCNegentropy.github.io/
 │   ├── command-palette.html # ⌘K command palette (Alpine.js)
 │   └── scripts.html        # JavaScript for interactive features
 ├── _data/                  # Site data files
-│   └── site.yml            # Core config: research, software, HuggingFace entries
-├── _research/              # Research collection (MAGUFT, MagRot)
+│   └── site.yml            # Core config: software and HuggingFace entries
 ├── _software/              # Software collection (retro-vibecoder/UPG)
 ├── _posts/                 # Blog posts (Jekyll tagging for cross-links)
 ├── images/                 # Image assets
@@ -41,8 +40,8 @@ WCNegentropy.github.io/
 │   ├── products/           # Project screenshots
 │   └── social/             # Social media preview images
 ├── assets/css/             # Compiled Tailwind CSS
-├── privacy.md              # Privacy policy (research IP / open-source focus)
-├── terms.md                # Terms of service (open-source licensing / research IP)
+├── privacy.md              # Privacy policy (website / open-source focus)
+├── terms.md                # Terms of service (open-source licensing / public projects)
 ├── llms.txt                # LLM-optimized site summary
 ├── .github/workflows/
 │   └── deploy.yml          # GitHub Actions build & deploy pipeline
@@ -54,39 +53,25 @@ WCNegentropy.github.io/
 
 ## 🔬 Core Intellectual Property
 
-### 1. MAGUFT — Magnetic Rotation Grand Unified Field Theory
-- **Repository**: https://github.com/WCNegentropy/MAGUFT
-- **Description**: A unified theoretical framework modeling quantum mechanics and general relativity as orthogonal projections of a single entropy-driven master equation on the metric-valued density field Φ^{ab} = √ρ g^{ab}
-- **Components**: Papers 1–3, addenda, SymPy symbolic derivation pipeline, computational experiments
-- **License**: CC BY 4.0 (research) / AGPLv3 (software)
-- **Status**: Active research — Paper 3 current track
-
-### 2. MagRot — Rotational-Vector Framework for Magnetic Field Dynamics
-- **Repository**: https://github.com/WCNegentropy/magrot
-- **Description**: Dimensionless rotational parameter R(x) encoding local tendency toward collapse, expansion, or equilibrium in magnetic field configurations
-- **Validation**: Z-pinch, tokamak (ITER-scale), Earth dipole — v2 thermodynamic framework validated
-- **License**: AGPLv3 (software) / CC BY 4.0 (research)
-- **Status**: Active R&D — v2 entropy-parameterized state flow
-
-### 3. retro-vibecoder (UPG) — Universal Project Generator
+### 1. retro-vibecoder (UPG) — Universal Project Generator
 - **Repository**: https://github.com/WCNegentropy/retro-vibecoder
 - **NPM**: https://www.npmjs.com/package/@wcnegentropy/cli
 - **Description**: CLI tool and cross-platform Tauri desktop app that procedurally generates full working boilerplate tech stacks from a single deterministic seed. 40+ strategies, 7 archetypes, 12 languages.
 - **License**: MIT
 - **Status**: Live — v0.2.6
 
-### 4. BitTransformerLM
+### 2. BitTransformerLM
 - **Repository**: https://huggingface.co/WCNegentropy/BitTransformerLM
 - **Description**: Experimental bit-level transformer with 9-bit encoding (8 data + 1 parity), reversible architecture, safety telemetry
 - **Parameters**: 793K–771M configurable
 - **License**: AGPLv3
 
-### 5. WrinkleBrane
+### 3. WrinkleBrane
 - **Repository**: https://huggingface.co/WCNegentropy/WrinkleBrane
 - **Description**: Wave-interference memory system using 4D tensor operations, 150+ dB PSNR associative recall
 - **License**: AGPL-3.0
 
-### 6. Upcoming Projects
+### 4. Upcoming Projects
 - **PQC Privacy Layer**: Post-Quantum Cryptography for user data sovereignty
 - **Procedural Game Engine**: Custom engine with procedural generation core
 
@@ -97,7 +82,7 @@ WCNegentropy.github.io/
 - **Layouts**: `_layouts/` — `default.html` (base), `home.html` (dashboard), `page.html` (standard)
 - **Includes**: `_includes/` — head, header, footer, scripts, command-palette
 - **Data Files**: `_data/site.yml` — centralized config for all projects and social links
-- **Collections**: `_research`, `_software`, `_posts` — structured content with custom layouts
+- **Collections**: `_software`, `_posts` — structured content with custom layouts
 - **Build Process**: GitHub Actions builds and deploys on push to main
 
 ### Configuration Management
@@ -105,16 +90,15 @@ Site data centralized in `_data/site.yml`:
 
 ```yaml
 owner_name: "WCNegentropy"
-tagline: "Negentropy • Unified Field Theory • Open-Source Tools • Deep Tech Research"
+tagline: "Negentropy • Developer Tools • AI Systems • Deep Tech"
 location: "Distributed"
-research: [ MAGUFT, MagRot ]
 software: [ retro-vibecoder ]
 huggingface: [ BitTransformerLM, WrinkleBrane ]
 ```
 
 ### SEO & AI Indexability
-- **Dynamic JSON-LD Schema**: Per-collection injection — `ScholarlyArticle` for `_research`, `SoftwareSourceCode` for `_software`
-- **MathJax 3**: Native LaTeX rendering for field equations (e.g., $\Phi^{ab}=\sqrt{\rho}\,g^{ab}$)
+- **Dynamic JSON-LD Schema**: Per-collection injection — `SoftwareSourceCode` for `_software`
+- **MathJax 3**: Native LaTeX rendering for technical notation
 - **jekyll-seo-tag** and **jekyll-sitemap** plugins
 - **llms.txt**: LLM-optimized summary at site root
 

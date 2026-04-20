@@ -3,23 +3,11 @@ layout: null
 ---
 # WCNegentropy
 
-> A negentropic attractor — deep-tech IP holding company and research lab building unified field theories, magnetic dynamics frameworks, deterministic code generators, and novel AI architectures.
+> A negentropic attractor — deep-tech IP holding company and software lab building developer tools, experimental AI systems, and emerging infrastructure.
 
 ## About
 
-WCNEGENTROPY HOLDINGS LLC is a Delaware holdco focused on deep-tech research and open-source software. We publish theoretical physics frameworks, computational tools, and experimental AI models under split licenses (CC BY 4.0 for research, AGPLv3 for software, MIT for developer tools).
-
-## Research
-
-### MAGUFT — Magnetic Rotation Grand Unified Field Theory
-- URL: https://github.com/WCNegentropy/MAGUFT
-- Description: A unified theoretical framework modeling quantum mechanics and general relativity as orthogonal projections of a single entropy-driven master equation on the metric-valued density field Φ^{ab} = √ρ g^{ab}. Includes Papers 1-3, SymPy symbolic derivation pipeline, and computational experiments.
-- License: CC BY 4.0 (Research) / AGPLv3 (Software)
-
-### MagRot — Rotational-Vector Framework for Magnetic Field Dynamics
-- URL: https://github.com/WCNegentropy/magrot
-- Description: Dimensionless rotational parameter R(x) encoding local tendency toward collapse, expansion, or equilibrium in magnetic field configurations. Validated against Z-pinch, tokamak (ITER-scale), and Earth dipole. v2 entropy-parameterized state flow framework.
-- License: AGPLv3 (Software) / CC BY 4.0 (Research)
+WCNEGENTROPY HOLDINGS LLC is a Delaware holdco focused on deep-tech software, developer tooling, and experimental AI systems. We publish public tooling, model releases, and supporting documentation under project-specific open licenses.
 
 ## Software
 
@@ -50,4 +38,4 @@ WCNEGENTROPY HOLDINGS LLC is a Delaware holdco focused on deep-tech research and
 
 ## Commercial Licensing
 
-AGPLv3-licensed software requires derivative works and network services to be open-sourced. For proprietary/closed-source commercial use, contact contact@wcnegentropy.com for a commercial license.
+Some WCNegentropy projects use copyleft licensing that may require source disclosure for derivatives or network use. For commercial licensing or custom terms, contact contact@wcnegentropy.com.

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Terms of Service"
-description: "Terms of Service for WCNegentropy — open-source software, research publications, and AI models"
+description: "Terms of Service for WCNegentropy — website, software, and AI models"
 ---
 
 <div class="mx-auto max-w-4xl px-6 py-16">
@@ -14,10 +14,10 @@ description: "Terms of Service for WCNegentropy — open-source software, resear
       <section>
         <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">1. Agreement to Terms</h2>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
-          By accessing or using WCNegentropy's website, open-source software, research publications, or AI models, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
+          By accessing or using WCNegentropy's website, open-source software, public documentation, or AI models, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
         </p>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed">
-          WCNEGENTROPY HOLDINGS LLC ("WCNegentropy," "we," "us," or "our") is a deep-tech IP holding company and research lab. We publish open-source software, research papers, and experimental AI models under various licenses.
+          WCNEGENTROPY HOLDINGS LLC ("WCNegentropy," "we," "us," or "our") is a deep-tech IP holding company and software lab. We publish open-source software, public documentation, and experimental AI models under various licenses.
         </p>
       </section>
 
@@ -29,12 +29,12 @@ description: "Terms of Service for WCNegentropy — open-source software, resear
         </p>
         <ul class="list-disc pl-6 space-y-2 text-slate-800 dark:text-slate-300 mb-4">
           <li><strong>MIT-Licensed Software:</strong> retro-vibecoder (Universal Project Generator) — freely usable, modifiable, and distributable</li>
-          <li><strong>AGPLv3-Licensed Software:</strong> MAGUFT computational framework, MagRot simulator — copyleft requirements apply</li>
+          <li><strong>AGPL-Licensed Projects:</strong> BitTransformerLM and WrinkleBrane model releases — copyleft requirements apply where noted</li>
         </ul>
 
-        <h3 class="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">2.2 Research Publications</h3>
+        <h3 class="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">2.2 Website Content & Documentation</h3>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
-          Research papers and documentation under Creative Commons Attribution 4.0 International (CC BY 4.0), including MAGUFT theoretical papers and MagRot framework specifications.
+          Website copy, project documentation, and related materials are provided for informational purposes. Additional license terms may be identified on a per-project basis where applicable.
         </p>
 
         <h3 class="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">2.3 AI Models</h3>
@@ -52,7 +52,7 @@ description: "Terms of Service for WCNegentropy — open-source software, resear
           <strong>3.2 MIT License (retro-vibecoder):</strong> You may use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, subject to the MIT License terms including the copyright notice requirement.
         </p>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
-          <strong>3.3 AGPLv3 License (MAGUFT, MagRot, AI Models):</strong> You may use, modify, and distribute the software, provided that:
+          <strong>3.3 AGPL License (AI Models and Related Releases):</strong> You may use, modify, and distribute covered software, provided that:
         </p>
         <ul class="list-disc pl-6 space-y-2 text-slate-800 dark:text-slate-300 mb-4">
           <li>Derivative works must be released under the same AGPLv3 license</li>
@@ -61,20 +61,20 @@ description: "Terms of Service for WCNegentropy — open-source software, resear
           <li>Complete corresponding source code must be made available</li>
         </ul>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
-          <strong>3.4 CC BY 4.0 License (Research):</strong> You may share and adapt our research publications for any purpose, including commercial, provided you give appropriate credit, link to the license, and indicate if changes were made.
+          <strong>3.4 Project-Specific Terms:</strong> Some releases or documentation may identify additional or alternative licensing terms. You are responsible for complying with the terms attached to the specific project or asset you use.
         </p>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed">
-          <strong>3.5 Commercial Licensing:</strong> If you wish to use AGPLv3-licensed software in a proprietary, closed-source product or SaaS without complying with AGPLv3 copyleft requirements, you must obtain a commercial license. Contact <a href="mailto:contact@wcnegentropy.com" class="text-brand-600 hover:text-brand-700 hover:underline">contact@wcnegentropy.com</a> for commercial licensing inquiries.
+          <strong>3.5 Commercial Licensing:</strong> If you need a commercial license, enterprise arrangement, or custom usage terms for a WCNegentropy project, contact <a href="mailto:contact@wcnegentropy.com" class="text-brand-600 hover:text-brand-700 hover:underline">contact@wcnegentropy.com</a>.
         </p>
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">4. Research & Experimental Software Disclaimer</h2>
+        <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">4. Experimental Software Disclaimer</h2>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
-          <strong>4.1 Experimental Nature:</strong> MAGUFT, MagRot, BitTransformerLM, and WrinkleBrane are experimental research projects. They are provided for research, academic, and educational purposes. They are not production-ready and should not be relied upon for critical applications.
+          <strong>4.1 Experimental Nature:</strong> BitTransformerLM and WrinkleBrane are experimental projects. They are provided for research, academic, and educational purposes. They are not production-ready and should not be relied upon for critical applications.
         </p>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
-          <strong>4.2 Theoretical Framework:</strong> MAGUFT is a theoretical physics framework under active development. Claims and predictions within the framework are subject to ongoing validation and peer review.
+          <strong>4.2 Model Outputs:</strong> Generated outputs, benchmark results, and experimental claims may be incomplete, inaccurate, or unsuitable for downstream use without independent evaluation.
         </p>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed">
           <strong>4.3 No Guarantees:</strong> We make no guarantees about the accuracy, completeness, or reliability of research results, computational outputs, or model predictions.
@@ -84,13 +84,13 @@ description: "Terms of Service for WCNegentropy — open-source software, resear
       <section>
         <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">5. Acceptable Use</h2>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
-          When using our website, software, or research, you agree not to:
+          When using our website, software, public documentation, or models, you agree not to:
         </p>
         <ul class="list-disc pl-6 space-y-2 text-slate-800 dark:text-slate-300">
           <li>Violate any applicable laws or regulations</li>
           <li>Infringe on intellectual property rights beyond what the applicable license permits</li>
           <li>Use our AI models to generate harmful, misleading, or deceptive content</li>
-          <li>Misrepresent WCNegentropy's research findings or falsely claim affiliation</li>
+          <li>Misrepresent WCNegentropy's work or falsely claim affiliation</li>
           <li>Distribute malware or harmful code through our platforms</li>
           <li>Attempt to circumvent license terms or usage restrictions</li>
         </ul>
@@ -112,7 +112,7 @@ description: "Terms of Service for WCNegentropy — open-source software, resear
       <section>
         <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">7. Limitation of Liability</h2>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
-          <strong>7.1 No Consequential Damages:</strong> In no event shall WCNegentropy be liable for any indirect, incidental, special, consequential, or punitive damages arising from or related to your use of our software, research, or website.
+          <strong>7.1 No Consequential Damages:</strong> In no event shall WCNegentropy be liable for any indirect, incidental, special, consequential, or punitive damages arising from or related to your use of our software, public documentation, models, or website.
         </p>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed">
           <strong>7.2 Force Majeure:</strong> We are not liable for delays or failures caused by circumstances beyond our reasonable control.
@@ -168,7 +168,7 @@ description: "Terms of Service for WCNegentropy — open-source software, resear
 
       <div class="border-t border-slate-200 dark:border-slate-800 pt-8 mt-12">
         <p class="text-sm text-slate-700 dark:text-slate-400 text-center mb-6">
-          By using WCNegentropy's website, software, or research, you acknowledge that you have read, understood, and agree to these Terms of Service.
+          By using WCNegentropy's website, software, public documentation, or models, you acknowledge that you have read, understood, and agree to these Terms of Service.
         </p>
         <div class="text-center">
           <a href="/" class="inline-block rounded-xl bg-brand-600 text-white px-6 py-3 font-semibold shadow-glow hover:bg-brand-700 transition-colors duration-300">
