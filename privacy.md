@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Privacy Policy"
-description: "Privacy Policy for WCNegentropy — open-source software, research publications, and AI models"
+description: "Privacy Policy for WCNegentropy — website, software, and AI models"
 ---
 
 <div class="mx-auto max-w-4xl px-6 py-16">
@@ -14,10 +14,10 @@ description: "Privacy Policy for WCNegentropy — open-source software, research
       <section>
         <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">1. Introduction</h2>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
-          WCNEGENTROPY HOLDINGS LLC ("WCNegentropy," "we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you visit our website (wcnegentropy.com), use our open-source software, access our research publications, or interact with our AI models.
+          WCNEGENTROPY HOLDINGS LLC ("WCNegentropy," "we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you visit our website (wcnegentropy.com), use our open-source software, access public project documentation, or interact with our AI models.
         </p>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed">
-          WCNegentropy is a deep-tech IP holding company and research lab. We publish open-source software under permissive and copyleft licenses, research papers under Creative Commons, and experimental AI models on HuggingFace. This policy applies to information collected through our website and related digital properties.
+          WCNegentropy is a deep-tech IP holding company and software lab. We publish open-source software, experimental AI models on HuggingFace, and supporting public documentation. This policy applies to information collected through our website and related digital properties.
         </p>
       </section>
 
@@ -62,7 +62,7 @@ description: "Privacy Policy for WCNegentropy — open-source software, research
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">4. Open-Source Software & Research Privacy</h2>
+        <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">4. Open-Source Software & Public Documentation Privacy</h2>
         
         <h3 class="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">4.1 GitHub Repositories</h3>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed mb-4">
@@ -76,7 +76,7 @@ description: "Privacy Policy for WCNegentropy — open-source software, research
 
         <h3 class="text-xl font-semibold mb-3 text-slate-800 dark:text-slate-200">4.3 Research Data</h3>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed">
-          Our published research (MAGUFT, MagRot) is licensed under CC BY 4.0 and does not contain any personal data. We do not collect personal information from users who read or cite our research papers.
+          Our public project documentation, model cards, and website content do not require user accounts and do not contain personal data submitted by readers. We do not collect personal information from users who read or reference this material.
         </p>
       </section>
 
@@ -131,7 +131,7 @@ description: "Privacy Policy for WCNegentropy — open-source software, research
       <section>
         <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">9. International Users</h2>
         <p class="text-slate-800 dark:text-slate-300 leading-relaxed">
-          Our website and research are accessible globally. If you are located in the European Economic Area (EEA) or other jurisdictions with data protection laws, your personal data may be processed in the United States. By using our services, you consent to this transfer. We process data on the legal bases of legitimate interest (operating our research platform) and consent (when you contact us).
+          Our website and public project materials are accessible globally. If you are located in the European Economic Area (EEA) or other jurisdictions with data protection laws, your personal data may be processed in the United States. By using our services, you consent to this transfer. We process data on the legal bases of legitimate interest (operating our public website and project platform) and consent (when you contact us).
         </p>
       </section>
 

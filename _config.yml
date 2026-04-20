@@ -1,13 +1,13 @@
 # Jekyll Configuration for WCNegentropy — Deep Tech IP Holdco & Research Lab
 title: "WCNegentropy"
-description: "A negentropic attractor — unified field theory, magnetic dynamics research, deterministic code generators, and novel AI architectures."
+description: "A negentropic attractor — developer tools, experimental AI systems, and deep-tech software."
 url: "https://wcnegentropy.com"
 baseurl: ""
 
 # Site owner information
 owner:
   name: "WCNegentropy"
-  tagline: "Negentropy • Unified Field Theory • Open-Source Tools • Deep Tech Research"
+  tagline: "Negentropy • Developer Tools • AI Systems • Deep Tech"
   email: "contact@wcnegentropy.com"
   location: "Distributed"
   github_user: "WCNegentropy"

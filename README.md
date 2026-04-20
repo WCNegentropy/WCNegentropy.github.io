@@ -2,16 +2,9 @@
 
 **A negentropic attractor — creating an interconnected web of projects and ideas to benefit humanity.**
 
-WCNegentropy is a deep-tech IP holding company and research lab. We build unified field theories, magnetic confinement frameworks, deterministic code generators, and novel AI architectures — all published under open or split licenses.
+WCNegentropy is a deep-tech IP holding company and software lab. We build developer tools, experimental AI systems, and emerging infrastructure — all published under project-specific open licenses.
 
 ## 🔬 Core IP
-
-### Research
-
-| Project | Description | License |
-|---------|-------------|---------|
-| **[MAGUFT](https://github.com/WCNegentropy/MAGUFT)** | Magnetic Rotation Grand Unified Field Theory — models QM and GR as orthogonal projections of a single entropy-driven master equation on $\Phi^{ab}=\sqrt{\rho}\,g^{ab}$ | CC BY 4.0 / AGPLv3 |
-| **[MagRot](https://github.com/WCNegentropy/magrot)** | Dimensionless rotational parameter R(x) for magnetic field dynamics — validated against Z-pinch, tokamak, and Earth dipole configurations | AGPLv3 / CC BY 4.0 |
 
 ### Software
 
@@ -35,9 +28,9 @@ WCNegentropy is a deep-tech IP holding company and research lab. We build unifie
 
 - **Jekyll 4.3.x** static site generator with Tailwind CSS 3.4.x (JIT) and Alpine.js 3.14.x
 - **GitHub Actions** CI/CD — SHA-pinned, least-privilege permissions
-- **MathJax 3** for native LaTeX rendering of field equations
+- **MathJax 3** for native LaTeX rendering of technical notation
 - **Dynamic JSON-LD** schema injection per collection (`ScholarlyArticle`, `SoftwareSourceCode`)
-- **Collections**: `_research`, `_software`, `_posts` for structured content
+- **Collections**: `_software`, `_posts` for structured content
 
 ### Development
 

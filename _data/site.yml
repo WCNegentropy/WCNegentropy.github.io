@@ -1,5 +1,5 @@
 owner_name: "WCNegentropy"
-tagline: "Negentropy • Unified Field Theory • Open-Source Tools • Deep Tech Research"
+tagline: "Negentropy • Developer Tools • AI Systems • Deep Tech"
 email: "contact@wcnegentropy.com"
 location: "Distributed"
 github_user: "WCNegentropy"
@@ -13,32 +13,6 @@ social:
   npm: "https://www.npmjs.com/package/@wcnegentropy/cli"
   linkedin: ""
   email: "mailto:contact@wcnegentropy.com"
-
-# Core IP pillars
-research:
-  - id: "maguft"
-    name: "MAGUFT"
-    blurb: "Magnetic Rotation Grand Unified Field Theory — a unified theoretical framework modeling quantum mechanics and general relativity as orthogonal projections of a single entropy-driven master equation on the metric-valued density field Φ^{ab} = √ρ g^{ab}."
-    license: "CC BY 4.0 (Research) / AGPLv3 (Software)"
-    status: "Active Research"
-    url: "https://github.com/WCNegentropy/MAGUFT"
-    highlights:
-      - "Fine-structure constant and mass hierarchy predictions"
-      - "9 named Paper 3 claims with verification tracking"
-      - "Installable SymPy/SciPy/JAX research package"
-      - "Split-license: CC BY 4.0 + AGPLv3"
-
-  - id: "magrot"
-    name: "MagRot"
-    blurb: "Rotational-Vector Framework for Magnetic Field Dynamics — a dimensionless rotational parameter R(x) encoding local tendency toward collapse, expansion, or equilibrium in magnetic field configurations. Validated against Z-pinch, tokamak, and Earth dipole."
-    license: "AGPLv3 (Software) / CC BY 4.0 (Research)"
-    status: "Active R&D — v2 Thermodynamic Framework"
-    url: "https://github.com/WCNegentropy/magrot"
-    highlights:
-      - "4 complementary R metrics"
-      - "Entropy-parameterized state flow"
-      - "R = 1.000000 exact vs 1.05 time-based"
-      - "Full 3D cylindrical physics pipeline"
 
 software:
   - id: "retro-vibecoder"
