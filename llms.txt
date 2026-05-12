@@ -12,10 +12,12 @@ WCNEGENTROPY HOLDINGS LLC is a Delaware holdco focused on deep-tech software, de
 ## Software
 
 ### retro-vibecoder (Universal Project Generator)
-- URL: https://github.com/WCNegentropy/retro-vibecoder
+- URL: https://wcnegentropy.com/software/retro-vibecoder/
+- GitHub: https://github.com/WCNegentropy/retro-vibecoder
 - NPM: https://www.npmjs.com/package/@wcnegentropy/cli
-- Description: CLI tool and cross-platform Tauri desktop app that procedurally generates full working boilerplate tech stacks and projects from a single deterministic seed. 40+ generation strategies, 7 archetypes, 12 languages. MIT licensed.
-- Install: npm install -g @wcnegentropy/cli
+- Description: Flagship deterministic scaffolding engine for humans and AI agents. Generates full tech stacks from a single integer seed using a constraint solver.
+- Agent Workflow: Use the `--manifest [file.json]` flag for non-interactive, deterministic scaffolding. Use `upg --help [command]` for detailed API usage.
+- Install: `npm install -g @wcnegentropy/cli @wcnegentropy/core @wcnegentropy/shared @wcnegentropy/procedural`
 
 ## AI Models (HuggingFace)
 

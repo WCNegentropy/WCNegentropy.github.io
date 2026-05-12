@@ -17,7 +17,7 @@ social:
 software:
   - id: "retro-vibecoder"
     name: "retro-vibecoder (UPG)"
-    blurb: "Universal Project Generator — CLI tool and cross-platform Tauri desktop app that procedurally generates full working boilerplate tech stacks from a single deterministic seed. 40+ strategies, 7 archetypes, 12 languages."
+    blurb: "Universal Project Generator — Flagship CLI and desktop app for deterministic project scaffolding. Generates full tech stacks from a single integer seed. 40+ strategies, 7 archetypes, 12 languages. Agent-optimized."
     license: "MIT"
     status: "Live — v0.2.6"
     url: "https://github.com/WCNegentropy/retro-vibecoder"
@@ -25,8 +25,8 @@ software:
     highlights:
       - "Deterministic seed-based generation"
       - "40+ strategies, 12 languages"
-      - "Cross-platform desktop app (Tauri)"
-      - "npm install -g @wcnegentropy/cli"
+      - "Agent-optimized workflow (manifests)"
+      - "npm install -g @wcnegentropy/cli @wcnegentropy/core @wcnegentropy/shared @wcnegentropy/procedural"
 
 huggingface:
   - id: "bit-transformer"

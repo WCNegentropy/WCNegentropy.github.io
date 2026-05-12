@@ -84,6 +84,7 @@
   "name": "{{ page.title | escape }}",
   "description": "{{ page.description | escape }}",
   "url": "{{ page.url | absolute_url }}",
+  "image": "{{ page.image | absolute_url }}",
   "author": {
     "@type": "Organization",
     "name": "WCNEGENTROPY HOLDINGS LLC",
@@ -91,7 +92,10 @@
   }{% if page.repo_url %},
   "codeRepository": "{{ page.repo_url }}"{% endif %}{% if page.license %},
   "license": "{{ page.license | escape }}"{% endif %}{% if page.tags %},
-  "keywords": "{{ page.tags | join: ', ' }}"{% endif %}
+  "keywords": "{{ page.tags | join: ', ' }}"{% endif %},
+  "runtimePlatform": "Node.js, Windows, macOS, Linux",
+  "programmingLanguage": "TypeScript, Rust",
+  "abstract": "A deterministic engine for procedural project generation using integer seeds and constraint solvers."
 }
 </script>
 {% elsif page.schema_type == "BlogPosting" %}
@@ -160,10 +164,18 @@
     "name": "WCNEGENTROPY HOLDINGS LLC",
     "url": "https://wcnegentropy.com"
   },
-  "url": "https://github.com/WCNegentropy/retro-vibecoder",
+  "url": "https://wcnegentropy.com/software/retro-vibecoder/",
   "downloadUrl": "https://www.npmjs.com/package/@wcnegentropy/cli",
-  "description": "CLI tool and cross-platform Tauri desktop app that procedurally generates full working boilerplate tech stacks from a single deterministic seed. 40+ strategies, 7 archetypes, 12 languages.",
-  "license": "https://opensource.org/licenses/MIT"
+  "softwareHelp": "https://wcnegentropy.com/faq/",
+  "description": "Deterministic project generator and scaffolding engine for humans and AI agents. 40+ strategies, 12 languages, seed-based reproducibility.",
+  "license": "https://opensource.org/licenses/MIT",
+  "featureList": [
+    "Deterministic seed-based generation",
+    "Multi-language support (12 languages)",
+    "Agent-optimized manifest system",
+    "Cross-platform desktop app",
+    "Seed registry and sweeps"
+  ]
 }
 </script>
 {% endif %}
